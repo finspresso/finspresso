@@ -1,5 +1,6 @@
 import json
-
+import pandas as pd
+import os
 
 FEDERAL_SINGLE = [
     (14500, 0.00, 0.77),
@@ -223,6 +224,17 @@ def main():
         }
         with open(file_name, "w") as outfile:
             json.dump(tax_rates_dict, outfile, indent=4)
+    path_steuerfuss = "2020/gsheet.csv"
+    if os.path.exists(path_steuerfuss):
+        df = pd.read_csv(path_steuerfuss, index_col=0)
+        steuerfuss_dict = {
+            community: df.loc[community].values[0] for community in df.index
+        }
+        with open("2020/steuerfuss.json", "w") as outfile:
+            json.dump(steuerfuss_dict, outfile, indent=4)
+    # if os.path.exists(path_steuerfuss):
+    #     df = pd.read_csv(file_name)
+    #     print(df)
 
 
 if __name__ == "__main__":
