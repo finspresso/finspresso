@@ -230,11 +230,8 @@ def main():
         steuerfuss_dict = {
             community: df.loc[community].values[0] for community in df.index
         }
-        with open("2020/steuerfuss.json", "w") as outfile:
-            json.dump(steuerfuss_dict, outfile, indent=4)
-    # if os.path.exists(path_steuerfuss):
-    #     df = pd.read_csv(file_name)
-    #     print(df)
+        with open("2020/steuerfuss.json", "w", encoding="utf8") as outfile:
+            json.dump(steuerfuss_dict, outfile, indent=4, ensure_ascii=False)
 
 
 if __name__ == "__main__":
