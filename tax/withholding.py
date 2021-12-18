@@ -2,7 +2,7 @@ import argparse
 import json
 import logging
 import coloredlogs
-import matplotlib.pyplot as plt
+import pyqtgraph as pg
 import numpy as np
 import pandas as pd
 
@@ -52,15 +52,24 @@ class TaxWithholder:
         )
 
         taxes_canton = incomes_samples.map(lambda x: self.get_tax(x, tax_canton_df))
-        fig = plt.figure(figsize=(20, 15))
-        ax = fig.add_subplot(111)
-        ax.plot(incomes_samples, taxes_canton, label="Base tax canton")
-        ax.set_title("Tax")
-        ax.set_xlabel("taxable income [CHF]")
-        ax.set_ylabel("tax [CHF]")
-        ax.legend()
-        ax.grid()
-        plt.show()
+
+        # create plot
+        plt = pg.plot()
+        plt.showGrid(x=True, y=True)
+        plt.addLegend()
+
+        # set properties
+        plt.setLabel("left", "taxable income [CHF]")
+        plt.setLabel("bottom", "tax [CHF]")
+        plt.setWindowTitle("pyqtgraph plot")
+
+        # plot
+        plt.plot(
+            incomes_samples,
+            taxes_canton,
+            pen=pg.mkPen("b", width=5),
+            name="Base tax canton",
+        )
 
 
 def main():
@@ -88,6 +97,7 @@ def main():
         marital_status=args.marital_status,
     )
     tax_withholder.plot_tax_per_income()
+    pg.QtGui.QApplication.exec_()
 
 
 if __name__ == "__main__":

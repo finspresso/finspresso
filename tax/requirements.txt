@@ -1,5 +1,6 @@
 pre-commit
 coloredLogs
 pandas
-matplotlib
 numpy
+pyqtgraph==0.12.3
+PyQt5==5.12
