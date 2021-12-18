@@ -1,3 +1,5 @@
 pre-commit
 coloredLogs
 pandas
+matplotlib
+numpy
