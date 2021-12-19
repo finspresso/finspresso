@@ -7,6 +7,7 @@ import coloredlogs
 # import numpy as np
 # import pandas as pd
 # import pyqtgraph as pg
+# Next make GUI combobox to select the municipality and then it shows graph for base tax and total tax based on selected municpality and selected data
 import sys
 from pyqtgraph.Qt import QtGui
 
