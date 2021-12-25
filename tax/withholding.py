@@ -94,17 +94,22 @@ class PlottingApp(QtGui.QWidget):
         QtGui.QWidget.__init__(self)
         self.setWindowTitle("Taxes")
         self.main_layout = QtGui.QVBoxLayout()
-        self.canton_cb = QtGui.QComboBox()
+        self.municipality_cb = QtGui.QComboBox()
         if combo_list:
-            self.canton_cb.addItems(combo_list)
+            self.municipality_cb.addItems(combo_list)
 
-        self.main_layout.addWidget(self.canton_cb)
+        self.municipality_cb.currentTextChanged.connect(self.municipality_cb_changed)
+
+        self.main_layout.addWidget(self.municipality_cb)
         self.setLayout(self.main_layout)
         self.plot_widget = pg.PlotWidget()
         self.main_layout.addWidget(self.plot_widget)
 
     def update_data(self, x, y):
         self.plot_widget.plot(x, y)
+
+    def municipality_cb_changed(self):
+        print(str(self.municipality_cb.currentText()))
 
     #     self.central_layout = QtGui.QVBoxLayout()
     #     self.plot_boxes_layout = QtGui.QHBoxLayout()
