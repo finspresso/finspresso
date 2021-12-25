@@ -4,9 +4,10 @@ import logging
 
 import coloredlogs
 
-# import numpy as np
-# import pandas as pd
-# import pyqtgraph as pg
+import numpy as np
+import pandas as pd
+import pyqtgraph as pg
+
 # Next make GUI combobox to select the municipality and then it shows graph for base tax and total tax based on selected municpality and selected data
 import sys
 from pyqtgraph.Qt import QtGui
@@ -47,18 +48,19 @@ class TaxWithholder:
         return tax
 
     def plot_tax_per_income(self):
-        self.plotting_app.show()
-        # incomes_samples = pd.Series(np.linspace(0, 5 * 1e5, 1000))
-        # tax_canton_dict = self.tax_rates_dict["canton"][self.marital_status]
-        # tax_canton_df = pd.DataFrame(
-        #     {
-        #         "taxable income": tax_canton_dict["taxable income"],
-        #         "tax_rate": tax_canton_dict["tax_rate"],
-        #         "tax": tax_canton_dict["tax"],
-        #     }
-        # )
+        incomes_samples = pd.Series(np.linspace(0, 5 * 1e5, 1000))
+        tax_canton_dict = self.tax_rates_dict["canton"][self.marital_status]
+        tax_canton_df = pd.DataFrame(
+            {
+                "taxable income": tax_canton_dict["taxable income"],
+                "tax_rate": tax_canton_dict["tax_rate"],
+                "tax": tax_canton_dict["tax"],
+            }
+        )
 
-        # taxes_canton = incomes_samples.map(lambda x: self.get_tax(x, tax_canton_df))
+        taxes_canton = incomes_samples.map(lambda x: self.get_tax(x, tax_canton_df))
+        self.plotting_app.update_data(incomes_samples, taxes_canton)
+        self.plotting_app.show()
 
         # # create plot
         # plt = pg.plot()
@@ -89,6 +91,11 @@ class PlottingApp(QtGui.QWidget):
 
         self.main_layout.addWidget(self.canton_cb)
         self.setLayout(self.main_layout)
+        self.plot_widget = pg.PlotWidget()
+        self.main_layout.addWidget(self.plot_widget)
+
+    def update_data(self, x, y):
+        self.plot_widget.plot(x, y)
 
     #     self.central_layout = QtGui.QVBoxLayout()
     #     self.plot_boxes_layout = QtGui.QHBoxLayout()
