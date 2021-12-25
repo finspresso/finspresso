@@ -22,19 +22,27 @@ class TaxWithholder:
     def __init__(
         self,
         tax_rates_file="2020/tax_rates.json",
+        steuerfuss_file="2020/steuerfuss.json",
         municipality="Zürich",
         marital_status="single",
     ):
         self.tax_rates_file = tax_rates_file
+        self.steuerfuss_file = steuerfuss_file
         self.municipality = municipality
         self.marital_status = marital_status
         self.load_tax_rates()
-        self.plotting_app = PlottingApp()
+        self.load_steuerfuss()
+        self.plotting_app = PlottingApp(combo_list=self.steuerfuss_dict)
 
     def load_tax_rates(self):
         self.tax_rates_dict = dict()
         with open(self.tax_rates_file, "r") as read_file:
             self.tax_rates_dict = json.load(read_file)
+
+    def load_steuerfuss(self):
+        self.steuerfuss_dict = dict()
+        with open(self.steuerfuss_file, "r") as read_file:
+            self.steuerfuss_dict = json.load(read_file)
 
     def get_tax(self, income, tax_df):
         index_ref = tax_df[tax_df["taxable income"] < income].last_valid_index()
@@ -82,12 +90,13 @@ class TaxWithholder:
 
 
 class PlottingApp(QtGui.QWidget):
-    def __init__(self):
+    def __init__(self, combo_list=[]):
         QtGui.QWidget.__init__(self)
         self.setWindowTitle("Taxes")
         self.main_layout = QtGui.QVBoxLayout()
         self.canton_cb = QtGui.QComboBox()
-        self.canton_cb.addItems(["Java", "C#", "Python"])
+        if combo_list:
+            self.canton_cb.addItems(combo_list)
 
         self.main_layout.addWidget(self.canton_cb)
         self.setLayout(self.main_layout)
