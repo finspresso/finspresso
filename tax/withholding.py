@@ -41,7 +41,7 @@ class TaxWithholder:
         )
         self.update_plot_canton_taxes()
         self.update_municipality_input(self.municipality)
-        self.plotting_app.show()
+        # import pdb; pdb.set_trace()
 
     def load_tax_rates(self):
         self.tax_rates_dict = dict()
@@ -81,15 +81,19 @@ class TaxWithholder:
     def update_plot_canton_taxes(self):
         if self.plot_canton_taxes is None:
             self.plot_canton_taxes = self.plotting_app.plot_widget.plot(
-                self.incomes_samples, self.taxes_canton
+                self.incomes_samples, self.taxes_canton, name="Tax Canton"
             )
         else:
             self.plot_canton_taxes.setData(self.incomes_samples, self.taxes_canton)
 
     def update_plot_municipality_taxes(self):
+        pen = pg.mkPen(color=(200, 200, 255), width=1)
         if self.plot_municipality_taxes is None:
             self.plot_municipality_taxes = self.plotting_app.plot_widget.plot(
-                self.incomes_samples, self.taxes_canton
+                self.incomes_samples,
+                self.taxes_canton,
+                name="Municipality tax",
+                pen=pen,
             )
         else:
             self.plot_municipality_taxes.setData(
@@ -121,6 +125,8 @@ class PlottingApp(QtGui.QWidget):
         self.main_layout.addWidget(self.municipality_cb)
         self.setLayout(self.main_layout)
         self.plot_widget = pg.PlotWidget()
+        self.plot_widget.addLegend()
+        self.plot_widget.setBackground((255, 255, 255))
         self.main_layout.addWidget(self.plot_widget)
 
     def update_data(self, x, y):
@@ -217,11 +223,12 @@ def main():
     args = parser.parse_args()
 
     app = QtGui.QApplication(sys.argv)
-    TaxWithholder(
+    tax_withholder = TaxWithholder(
         tax_rates_file=args.tax_rates_file,
         municipality=args.municipality,
         marital_status=args.marital_status,
     )
+    tax_withholder.plotting_app.show()
     sys.exit(app.exec_())
 
     #
