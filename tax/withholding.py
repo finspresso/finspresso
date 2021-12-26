@@ -30,9 +30,18 @@ class TaxWithholder:
         self.steuerfuss_file = steuerfuss_file
         self.municipality = municipality
         self.marital_status = marital_status
+        self.plot_canton_taxes = None
+        self.plot_municipality_taxes = None
         self.load_tax_rates()
         self.load_steuerfuss()
-        self.plotting_app = PlottingApp(combo_list=self.steuerfuss_dict)
+        self.compute_canton_taxes()
+        self.plotting_app = PlottingApp(
+            combo_list=self.steuerfuss_dict,
+            update_function=self.update_municipality_input,
+        )
+        self.update_plot_canton_taxes()
+        self.update_municipality_input(self.municipality)
+        self.plotting_app.show()
 
     def load_tax_rates(self):
         self.tax_rates_dict = dict()
@@ -55,8 +64,8 @@ class TaxWithholder:
             )
         return tax
 
-    def plot_tax_per_income(self):
-        incomes_samples = pd.Series(np.linspace(0, 5 * 1e5, 1000))
+    def compute_canton_taxes(self):
+        self.incomes_samples = pd.Series(np.linspace(0, 5 * 1e5, 1000))
         tax_canton_dict = self.tax_rates_dict["canton"][self.marital_status]
         tax_canton_df = pd.DataFrame(
             {
@@ -65,32 +74,38 @@ class TaxWithholder:
                 "tax": tax_canton_dict["tax"],
             }
         )
+        self.taxes_canton = self.incomes_samples.map(
+            lambda x: self.get_tax(x, tax_canton_df)
+        )
 
-        taxes_canton = incomes_samples.map(lambda x: self.get_tax(x, tax_canton_df))
-        self.plotting_app.update_data(incomes_samples, taxes_canton)
-        self.plotting_app.show()
+    def update_plot_canton_taxes(self):
+        if self.plot_canton_taxes is None:
+            self.plot_canton_taxes = self.plotting_app.plot_widget.plot(
+                self.incomes_samples, self.taxes_canton
+            )
+        else:
+            self.plot_canton_taxes.setData(self.incomes_samples, self.taxes_canton)
 
-        # # create plot
-        # plt = pg.plot()
-        # plt.showGrid(x=True, y=True)
-        # plt.addLegend()
+    def update_plot_municipality_taxes(self):
+        if self.plot_municipality_taxes is None:
+            self.plot_municipality_taxes = self.plotting_app.plot_widget.plot(
+                self.incomes_samples, self.taxes_canton
+            )
+        else:
+            self.plot_municipality_taxes.setData(
+                self.incomes_samples, self.taxes_municipality
+            )
 
-        # # set properties
-        # plt.setLabel("left", "taxable income [CHF]")
-        # plt.setLabel("bottom", "tax [CHF]")
-        # plt.setWindowTitle("pyqtgraph plot")
-
-        # # plot
-        # plt.plot(
-        #     incomes_samples,
-        #     taxes_canton,
-        #     pen=pg.mkPen("b", width=5),
-        #     name="Base tax canton",
-        # )
+    def update_municipality_input(self, value):
+        self.municipality = value
+        self.taxes_municipality = (
+            self.taxes_canton * self.steuerfuss_dict.get(self.municipality) / 100
+        )
+        self.update_plot_municipality_taxes()
 
 
 class PlottingApp(QtGui.QWidget):
-    def __init__(self, combo_list=[]):
+    def __init__(self, combo_list=[], update_function=None):
         QtGui.QWidget.__init__(self)
         self.setWindowTitle("Taxes")
         self.main_layout = QtGui.QVBoxLayout()
@@ -98,7 +113,10 @@ class PlottingApp(QtGui.QWidget):
         if combo_list:
             self.municipality_cb.addItems(combo_list)
 
-        self.municipality_cb.currentTextChanged.connect(self.municipality_cb_changed)
+        if update_function is not None:
+            self.municipality_cb.currentTextChanged.connect(update_function)
+        else:
+            logger.warning("No update function specified.")
 
         self.main_layout.addWidget(self.municipality_cb)
         self.setLayout(self.main_layout)
@@ -108,8 +126,8 @@ class PlottingApp(QtGui.QWidget):
     def update_data(self, x, y):
         self.plot_widget.plot(x, y)
 
-    def municipality_cb_changed(self):
-        print(str(self.municipality_cb.currentText()))
+    # def municipality_cb_changed(self):
+    #    print(str(self.municipality_cb.currentText()))
 
     #     self.central_layout = QtGui.QVBoxLayout()
     #     self.plot_boxes_layout = QtGui.QHBoxLayout()
@@ -199,12 +217,11 @@ def main():
     args = parser.parse_args()
 
     app = QtGui.QApplication(sys.argv)
-    tax_withholder = TaxWithholder(
+    TaxWithholder(
         tax_rates_file=args.tax_rates_file,
         municipality=args.municipality,
         marital_status=args.marital_status,
     )
-    tax_withholder.plot_tax_per_income()
     sys.exit(app.exec_())
 
     #
