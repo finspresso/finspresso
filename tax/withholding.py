@@ -45,7 +45,6 @@ class TaxWithholder:
             update_function=self.update_municipality_input,
             selected_combobox_list=self.municipality,
         )
-        self.update_plot_canton_taxes()
         self.update_municipality_input(self.municipality)
 
     def load_tax_rates(self):
@@ -85,33 +84,29 @@ class TaxWithholder:
 
     def update_plot_canton_taxes(self):
         pen = pg.mkPen(color="g", width=4)
-        if self.plot_canton_taxes is None:
-            self.plot_canton_taxes = self.plotting_app.plot_widget.plot(
-                self.incomes_samples, self.taxes_canton, name="Tax canton", pen=pen
-            )
-        else:
-            self.plot_canton_taxes.setData(self.incomes_samples, self.taxes_canton)
+        self.plot_canton_taxes = self.plotting_app.plot_widget.plot(
+            self.incomes_samples, self.taxes_canton, name="Tax canton", pen=pen
+        )
 
     def update_plot_municipality_taxes(self):
         pen = pg.mkPen(color="r", width=4)
-        if self.plot_municipality_taxes is None:
-            self.plot_municipality_taxes = self.plotting_app.plot_widget.plot(
-                self.incomes_samples,
-                self.taxes_municipality,
-                name="Tax municipality",
-                pen=pen,
-            )
-        else:
-            self.plot_municipality_taxes.setData(
-                self.incomes_samples, self.taxes_municipality
-            )
+        self.plot_municipality_taxes = self.plotting_app.plot_widget.plot(
+            self.incomes_samples,
+            self.taxes_municipality,
+            name="Tax municipality (Steuerfuss:"
+            + str(self.steuerfuss_municipality * 100)
+            + ")",
+            pen=pen,
+        )
 
     def update_municipality_input(self, value):
         self.municipality = value
-        self.taxes_municipality = (
-            self.taxes_canton * self.steuerfuss_dict.get(self.municipality) / 100
-        )
+        self.plotting_app.plot_widget.clear()
+        self.plotting_app.plot_widget.plotItem.legend.items = []
+        self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality) / 100
+        self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality
         self.update_plot_municipality_taxes()
+        self.update_plot_canton_taxes()
 
 
 class PlottingApp(QtGui.QWidget):
