@@ -212,15 +212,15 @@ def main():
             "taxable income": [
                 federal_income for federal_income, _, _ in FEDERAL_SINGLE
             ],
-            "tax rate": [tax_rate for _, tax_rate, _ in FEDERAL_SINGLE],
-            "tax": [tax for _, _, tax in FEDERAL_SINGLE],
+            "tax": [tax for _, tax, _ in FEDERAL_SINGLE],
+            "tax rate": [tax_rate for _, _, tax_rate in FEDERAL_SINGLE],
         }
         tax_rates_dict["federal"]["married"] = {
             "taxable income": [
                 federal_income for federal_income, _, _ in FEDERAL_MARRIED
             ],
-            "tax rate": [tax_rate for _, tax_rate, _ in FEDERAL_MARRIED],
-            "tax": [tax for _, _, tax in FEDERAL_MARRIED],
+            "tax": [tax for _, tax, _ in FEDERAL_MARRIED],
+            "tax_rate": [tax_rate for _, _, tax_rate in FEDERAL_MARRIED],
         }
         with open(file_name, "w") as outfile:
             json.dump(tax_rates_dict, outfile, indent=4)

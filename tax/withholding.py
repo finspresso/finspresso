@@ -69,6 +69,12 @@ class TaxWithholder:
             self.incomes_samples, self.taxes_canton, name="Tax canton", pen=pen
         )
 
+    def update_plot_federal_taxes(self):
+        pen = pg.mkPen(color="b", width=4)
+        self.plot_federal_taxes = self.plotting_app.plot_widget.plot(
+            self.incomes_samples, self.taxes_federal, name="Tax federal", pen=pen
+        )
+
     def update_plot_municipality_taxes(self):
         pen = pg.mkPen(color="r", width=4)
         self.plot_municipality_taxes = self.plotting_app.plot_widget.plot(
@@ -88,6 +94,7 @@ class TaxWithholder:
         self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
         self.update_plot_municipality_taxes()
         self.update_plot_canton_taxes()
+        self.update_plot_federal_taxes()
 
     @classmethod
     def compute_taxes(cls, tax_dict, incomes_samples):
