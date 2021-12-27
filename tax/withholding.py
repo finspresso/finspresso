@@ -93,8 +93,8 @@ class TaxWithholder:
         self.plot_municipality_taxes = self.plotting_app.plot_widget.plot(
             self.incomes_samples,
             self.taxes_municipality,
-            name="Tax municipality (Steuerfuss:"
-            + str(self.steuerfuss_municipality * 100)
+            name="Tax municipality (Steuerfuss: "
+            + str(self.steuerfuss_municipality)
             + ")",
             pen=pen,
         )
@@ -103,8 +103,8 @@ class TaxWithholder:
         self.municipality = value
         self.plotting_app.plot_widget.clear()
         self.plotting_app.plot_widget.plotItem.legend.items = []
-        self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality) / 100
-        self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality
+        self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality)
+        self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
         self.update_plot_municipality_taxes()
         self.update_plot_canton_taxes()
 
