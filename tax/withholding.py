@@ -37,9 +37,15 @@ class TaxWithholder:
         self.marital_status = marital_status
         self.plot_canton_taxes = None
         self.plot_municipality_taxes = None
+        self.incomes_samples = pd.Series(np.linspace(0, 5 * 1e5, 1000))
         self.load_tax_rates()
         self.load_steuerfuss()
-        self.compute_canton_taxes()
+        self.taxes_canton = self.compute_taxes(
+            self.tax_rates_dict["canton"][self.marital_status], self.incomes_samples
+        )
+        self.taxes_federal = self.compute_taxes(
+            self.tax_rates_dict["federal"][self.marital_status], self.incomes_samples
+        )
         self.plotting_app = PlottingApp(
             combo_list=[*self.steuerfuss_dict],
             update_function=self.update_municipality_input,
@@ -56,31 +62,6 @@ class TaxWithholder:
         self.steuerfuss_dict = dict()
         with open(self.steuerfuss_file, "r") as read_file:
             self.steuerfuss_dict = json.load(read_file)
-
-    def get_tax(self, income, tax_df):
-        index_ref = tax_df[tax_df["taxable income"] < income].last_valid_index()
-        tax = 0
-        if index_ref is not None:
-            residual = income - tax_df.loc[index_ref, "taxable income"]
-            tax = (
-                tax_df.loc[index_ref, "tax"]
-                + tax_df.loc[index_ref, "tax_rate"] * residual / 1e2
-            )
-        return tax
-
-    def compute_canton_taxes(self):
-        self.incomes_samples = pd.Series(np.linspace(0, 5 * 1e5, 1000))
-        tax_canton_dict = self.tax_rates_dict["canton"][self.marital_status]
-        tax_canton_df = pd.DataFrame(
-            {
-                "taxable income": tax_canton_dict["taxable income"],
-                "tax_rate": tax_canton_dict["tax_rate"],
-                "tax": tax_canton_dict["tax"],
-            }
-        )
-        self.taxes_canton = self.incomes_samples.map(
-            lambda x: self.get_tax(x, tax_canton_df)
-        )
 
     def update_plot_canton_taxes(self):
         pen = pg.mkPen(color="g", width=4)
@@ -107,6 +88,30 @@ class TaxWithholder:
         self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
         self.update_plot_municipality_taxes()
         self.update_plot_canton_taxes()
+
+    @classmethod
+    def compute_taxes(cls, tax_dict, incomes_samples):
+        tax_df = pd.DataFrame(
+            {
+                "taxable income": tax_dict["taxable income"],
+                "tax rate": tax_dict["tax rate"],
+                "tax": tax_dict["tax"],
+            }
+        )
+        taxes = incomes_samples.map(lambda x: cls.get_tax(x, tax_df))
+        return taxes
+
+    @classmethod
+    def get_tax(self, income, tax_df):
+        index_ref = tax_df[tax_df["taxable income"] < income].last_valid_index()
+        tax = 0
+        if index_ref is not None:
+            residual = income - tax_df.loc[index_ref, "taxable income"]
+            tax = (
+                tax_df.loc[index_ref, "tax"]
+                + tax_df.loc[index_ref, "tax rate"] * residual / 1e2
+            )
+        return tax
 
 
 class PlottingApp(QtGui.QWidget):
