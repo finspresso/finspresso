@@ -12,5 +12,5 @@ In order to be able to run the Python script, run:
 To run the code type:
 `python withholding.py`
 
-This will open up the default GUI as shown below:
+This will open up the default GUI as shown below. In the dropdown menu you can select the desired municipality e.g. Seegräben.
 ![Tax](images/tax.png)
