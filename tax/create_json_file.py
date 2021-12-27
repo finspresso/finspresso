@@ -209,17 +209,17 @@ def main():
     if "federal" not in tax_rates_dict.keys():
         tax_rates_dict["federal"] = {"single": None, "married": None}
         tax_rates_dict["federal"]["single"] = {
-            "taxable_income": [
+            "taxable income": [
                 federal_income for federal_income, _, _ in FEDERAL_SINGLE
             ],
-            "tax_rate": [tax_rate for _, tax_rate, _ in FEDERAL_SINGLE],
+            "tax rate": [tax_rate for _, tax_rate, _ in FEDERAL_SINGLE],
             "tax": [tax for _, _, tax in FEDERAL_SINGLE],
         }
         tax_rates_dict["federal"]["married"] = {
-            "taxable_income": [
+            "taxable income": [
                 federal_income for federal_income, _, _ in FEDERAL_MARRIED
             ],
-            "tax_rate": [tax_rate for _, tax_rate, _ in FEDERAL_MARRIED],
+            "tax rate": [tax_rate for _, tax_rate, _ in FEDERAL_MARRIED],
             "tax": [tax for _, _, tax in FEDERAL_MARRIED],
         }
         with open(file_name, "w") as outfile:
