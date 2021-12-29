@@ -51,7 +51,8 @@ class TaxWithholder:
             combo_list=[*self.steuerfuss_dict],
             update_function=self.update_municipality_input,
             selected_combobox_list=self.municipality,
-            update_mouse_function=self.update_mouse_cursor,
+            update_mouse_function_upper=self.update_mouse_cursor,
+            update_mouse_function_lower=self.update_mouse_cursor_rate,
         )
         self.update_municipality_input(self.municipality)
 
@@ -138,7 +139,11 @@ class TaxWithholder:
         self.plotting_app.plot_widget.clear()
         self.plotting_app.plot_widget_tax_rate.clear()
         self.plotting_app.plot_mouse_points = None
+        self.plotting_app.plot_mouse_points_rate = None
         self.plotting_app.plot_widget.addItem(self.plotting_app.cursor_label)
+        self.plotting_app.plot_widget_tax_rate.addItem(
+            self.plotting_app.cursor_rate_label
+        )
         self.plotting_app.plot_widget.plotItem.legend.items = []
         self.plotting_app.plot_widget_tax_rate.plotItem.legend.items = []
         self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality)
@@ -200,6 +205,47 @@ class TaxWithholder:
             )
             self.plotting_app.update_mouse_points()
 
+    def update_mouse_cursor_rate(self, evt):
+        mousePoint = self.plotting_app.plot_widget_tax_rate.plotItem.vb.mapSceneToView(
+            evt
+        )
+        if (
+            mousePoint.x() <= self.taxes_canton_rate.index[-1]
+            and mousePoint.x() >= self.taxes_canton_rate.index[0]
+        ):
+            x_tax_canton, y_tax_canton = self.get_closest_point(
+                mousePoint.x(), self.taxes_canton_rate
+            )
+            x_tax_municipality, y_tax_municipality = self.get_closest_point(
+                mousePoint.x(), self.taxes_municipality_rate
+            )
+            x_tax_federal, y_tax_federal = self.get_closest_point(
+                mousePoint.x(), self.taxes_federal_rate
+            )
+            x_tax_total, y_tax_total = self.get_closest_point(
+                mousePoint.x(), self.taxes_total_rate
+            )
+            self.plotting_app.mouse_points_rate["x"] = [
+                x_tax_canton,
+                x_tax_municipality,
+                x_tax_federal,
+                x_tax_total,
+            ]
+            self.plotting_app.mouse_points_rate["y"] = [
+                y_tax_canton,
+                y_tax_municipality,
+                y_tax_federal,
+                y_tax_total,
+            ]
+            self.plotting_app.cursor_rate_label_text = (
+                f"Taxable income: {np.round(x_tax_canton, 1)}\n"
+                + f"Tax municipality rate: {np.round(y_tax_municipality, 1)}%\n"
+                + f"Tax canton rate: {np.round(y_tax_canton, 1)}%\n"
+                + f"Tax federal rate: {np.round(y_tax_federal, 1)}%\n"
+                + f"Tax total rate: {np.round(y_tax_total, 1)}%\n"
+            )
+            self.plotting_app.update_mouse_points_rate()
+
     @staticmethod
     def get_closest_point(target_point, data_series):
         diff_series = pd.Series(
@@ -241,7 +287,8 @@ class PlottingApp(QtGui.QWidget):
         combo_list=[],
         selected_combobox_list=None,
         update_function=None,
-        update_mouse_function=None,
+        update_mouse_function_upper=None,
+        update_mouse_function_lower=None,
     ):
         QtGui.QWidget.__init__(self)
         self.setWindowTitle("Taxes")
@@ -250,6 +297,8 @@ class PlottingApp(QtGui.QWidget):
         self.municipality_cb = QtGui.QComboBox()
         self.mouse_points = {"x": None, "y": None}
         self.plot_mouse_points = None
+        self.mouse_points_rate = {"x": None, "y": None}
+        self.plot_mouse_points_rate = None
         if combo_list:
             combo_list.sort()
             self.municipality_cb.addItems(combo_list)
@@ -264,13 +313,15 @@ class PlottingApp(QtGui.QWidget):
         self.main_layout.addWidget(self.municipality_cb)
         self.setLayout(self.main_layout)
         self.plot_widget = pg.PlotWidget()
-        self.cursor_label = pg.TextItem(anchor=(0, 0))
+        self.cursor_label = pg.TextItem(anchor=(0, 2))
         self.cursor_label_text = "-"
         self.cursor_label.setText(self.cursor_label_text)
         self.plot_widget.addLegend()
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
         self.plot_widget.setLabel("bottom", "taxable income [CHF]")
         self.plot_widget.setLabel("left", "tax [CHF]")
+        self.cursor = Qt.CrossCursor
+        self.plot_widget.setCursor(self.cursor)
         self.main_layout.addWidget(self.plot_widget)
 
         self.plot_widget_tax_rate = pg.PlotWidget()
@@ -278,12 +329,19 @@ class PlottingApp(QtGui.QWidget):
         self.plot_widget_tax_rate.showGrid(x=True, y=True, alpha=0.4)
         self.plot_widget_tax_rate.setLabel("bottom", "taxable income [CHF]")
         self.plot_widget_tax_rate.setLabel("left", "rate %")
+        self.cursor_rate = Qt.CrossCursor
+        self.cursor_rate_label = pg.TextItem(anchor=(0, 2))
+        self.cursor_rate_label_text = "-"
+        self.cursor_rate_label.setText(self.cursor_rate_label_text)
+        self.plot_widget_tax_rate.setCursor(self.cursor_rate)
         self.main_layout.addWidget(self.plot_widget_tax_rate)
 
-        self.cursor = Qt.CrossCursor
-        self.plot_widget.setCursor(self.cursor)
-        if update_mouse_function is not None:
-            self.plot_widget.scene().sigMouseMoved.connect(update_mouse_function)
+        if update_mouse_function_upper is not None:
+            self.plot_widget.scene().sigMouseMoved.connect(update_mouse_function_upper)
+        if update_mouse_function_lower is not None:
+            self.plot_widget_tax_rate.scene().sigMouseMoved.connect(
+                update_mouse_function_lower
+            )
 
     def update_mouse_points(self):
         if self.mouse_points["x"] is not None and self.mouse_points["y"] is not None:
@@ -296,6 +354,24 @@ class PlottingApp(QtGui.QWidget):
                     self.mouse_points["x"], self.mouse_points["y"]
                 )
             self.cursor_label.setText(self.cursor_label_text)
+
+    def update_mouse_points_rate(self):
+        if (
+            self.mouse_points_rate["x"] is not None
+            and self.mouse_points_rate["y"] is not None
+        ):
+            if self.plot_mouse_points_rate is None:
+                self.plot_mouse_points_rate = self.plot_widget_tax_rate.plot(
+                    self.mouse_points_rate["x"],
+                    self.mouse_points_rate["y"],
+                    pen=None,
+                    symbol="x",
+                )
+            else:
+                self.plot_mouse_points_rate.setData(
+                    self.mouse_points_rate["x"], self.mouse_points_rate["y"]
+                )
+            self.cursor_rate_label.setText(self.cursor_rate_label_text)
 
 
 def main():
