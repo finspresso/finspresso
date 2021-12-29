@@ -95,21 +95,71 @@ class TaxWithholder:
             pen=pen,
         )
 
+    def update_plot_canton_taxes_rate(self):
+        pen = pg.mkPen(color="g", width=4)
+        self.plot_canton_taxes_rate = self.plotting_app.plot_widget_tax_rate.plot(
+            self.taxes_canton_rate.index,
+            self.taxes_canton_rate,
+            name="Tax canton rate",
+            pen=pen,
+        )
+
+    def update_plot_federal_taxes_rate(self):
+        pen = pg.mkPen(color="b", width=4)
+        self.plot_federal_taxes_rate = self.plotting_app.plot_widget_tax_rate.plot(
+            self.taxes_federal_rate.index,
+            self.taxes_federal_rate,
+            name="Tax federal rate",
+            pen=pen,
+        )
+
+    def update_plot_total_taxes_rate(self):
+        pen = pg.mkPen(color="k", width=4)
+        self.plot_total_taxes_rate = self.plotting_app.plot_widget_tax_rate.plot(
+            self.taxes_total_rate.index,
+            self.taxes_total_rate,
+            name="Tax total rate",
+            pen=pen,
+        )
+
+    def update_plot_municipality_taxes_rate(self):
+        pen = pg.mkPen(color="r", width=4)
+        self.plot_municipality_taxes_rate = self.plotting_app.plot_widget_tax_rate.plot(
+            self.taxes_municipality_rate.index,
+            self.taxes_municipality_rate,
+            name="Tax municipality rate (Steuerfuss: "
+            + str(self.steuerfuss_municipality)
+            + ")",
+            pen=pen,
+        )
+
     def update_municipality_input(self, value):
         self.municipality = value
         self.plotting_app.plot_widget.clear()
+        self.plotting_app.plot_widget_tax_rate.clear()
         self.plotting_app.plot_mouse_points = None
         self.plotting_app.plot_widget.addItem(self.plotting_app.cursor_label)
         self.plotting_app.plot_widget.plotItem.legend.items = []
+        self.plotting_app.plot_widget_tax_rate.plotItem.legend.items = []
         self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality)
         self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
         self.taxes_total = (
             self.taxes_federal + self.taxes_canton + self.taxes_municipality
         )
+        self.taxes_canton_rate = self.taxes_canton / self.taxes_canton.index * 100
+        self.taxes_municipality_rate = (
+            self.taxes_municipality / self.taxes_municipality.index * 100
+        )
+        self.taxes_federal_rate = self.taxes_federal / self.taxes_federal.index * 100
+        self.taxes_total_rate = self.taxes_total / self.taxes_total.index * 100
         self.update_plot_municipality_taxes()
         self.update_plot_canton_taxes()
         self.update_plot_federal_taxes()
         self.update_plot_total_taxes()
+        self.update_plot_municipality_taxes_rate()
+        self.update_plot_canton_taxes_rate()
+        self.update_plot_federal_taxes_rate()
+        self.update_plot_total_taxes_rate()
 
     def update_mouse_cursor(self, evt):
         mousePoint = self.plotting_app.plot_widget.plotItem.vb.mapSceneToView(evt)
@@ -223,6 +273,13 @@ class PlottingApp(QtGui.QWidget):
         self.plot_widget.setLabel("left", "tax [CHF]")
         self.main_layout.addWidget(self.plot_widget)
 
+        self.plot_widget_tax_rate = pg.PlotWidget()
+        self.plot_widget_tax_rate.addLegend()
+        self.plot_widget_tax_rate.showGrid(x=True, y=True, alpha=0.4)
+        self.plot_widget_tax_rate.setLabel("bottom", "taxable income [CHF]")
+        self.plot_widget_tax_rate.setLabel("left", "rate %")
+        self.main_layout.addWidget(self.plot_widget_tax_rate)
+
         self.cursor = Qt.CrossCursor
         self.plot_widget.setCursor(self.cursor)
         if update_mouse_function is not None:
@@ -245,7 +302,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--tax_rates_file",
-        help="Path to to .json file containing tax rates of cantons and federation",
+        help="Path to to .json file containing tax rates of cantons and federal",
         default="2020/tax_rates.json",
     )
     parser.add_argument(
