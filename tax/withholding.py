@@ -195,6 +195,7 @@ class PlottingApp(QtGui.QWidget):
     ):
         QtGui.QWidget.__init__(self)
         self.setWindowTitle("Taxes")
+        self.setGeometry(100, 100, 1200, 900)
         self.main_layout = QtGui.QVBoxLayout()
         self.municipality_cb = QtGui.QComboBox()
         self.mouse_points = {"x": None, "y": None}
