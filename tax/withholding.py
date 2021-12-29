@@ -38,7 +38,7 @@ class TaxWithholder:
         self.marital_status = marital_status
         self.plot_canton_taxes = None
         self.plot_municipality_taxes = None
-        self.incomes_samples = pd.Series(np.linspace(0, 5 * 1e5, 1000))
+        self.incomes_samples = pd.Series(np.linspace(0, 2.5 * 1e5, 1000))
         self.load_tax_rates()
         self.load_steuerfuss()
         self.taxes_canton = self.compute_taxes(
@@ -93,7 +93,7 @@ class TaxWithholder:
         self.municipality = value
         self.plotting_app.plot_widget.clear()
         self.plotting_app.plot_mouse_points = None
-        self.plotting_app.plot_widget.addItem(self.plotting_app.cursorlabel)
+        self.plotting_app.plot_widget.addItem(self.plotting_app.cursor_label)
         self.plotting_app.plot_widget.plotItem.legend.items = []
         self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality)
         self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
@@ -126,6 +126,12 @@ class TaxWithholder:
                 y_tax_municipality,
                 y_tax_federal,
             ]
+            self.plotting_app.cursor_label_text = (
+                f"Taxable income: {np.round(x_tax_canton)}\n"
+                + f"Tax municipality: {np.round(y_tax_municipality)}\n"
+                + f"Tax canton: {np.round(y_tax_canton)}\n"
+                + f"Tax federal: {np.round(y_tax_federal)}"
+            )
             self.plotting_app.update_mouse_points()
 
     @staticmethod
@@ -191,8 +197,9 @@ class PlottingApp(QtGui.QWidget):
         self.main_layout.addWidget(self.municipality_cb)
         self.setLayout(self.main_layout)
         self.plot_widget = pg.PlotWidget()
-        self.cursorlabel = pg.TextItem(anchor=(-1, 10))
-        self.cursorlabel.setText("test")
+        self.cursor_label = pg.TextItem(anchor=(0, 0))
+        self.cursor_label_text = "-"
+        self.cursor_label.setText(self.cursor_label_text)
         self.plot_widget.addLegend()
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
         self.plot_widget.setLabel("bottom", "taxable income [CHF]")
@@ -201,7 +208,6 @@ class PlottingApp(QtGui.QWidget):
 
         self.cursor = Qt.CrossCursor
         self.plot_widget.setCursor(self.cursor)
-        # self.plot_widget.scene().sigMouseMoved.connect(self.mouse_moved)
         if update_mouse_function is not None:
             self.plot_widget.scene().sigMouseMoved.connect(update_mouse_function)
 
@@ -215,30 +221,7 @@ class PlottingApp(QtGui.QWidget):
                 self.plot_mouse_points.setData(
                     self.mouse_points["x"], self.mouse_points["y"]
                 )
-
-    def mouse_moved(self, evt):
-        # from PyQt5.QtCore import pyqtRemoveInputHook
-        # from pdb import set_trace
-        # pyqtRemoveInputHook()
-        # set_trace()
-        mousePoint = self.plot_widget.plotItem.vb.mapSceneToView(evt)
-        self.mouse_points["x"] = mousePoint.x()
-        self.mouse_points["y"] = mousePoint.y()
-        self.update_mouse_points()
-
-        # print(mousePoint.x(), mousePoint.y())
-        # self.plot_widget.plot([mousePoint.x()],[mousePoint.y()], pen=None, symbol='x')
-        # pos = evt[0]  ## using signal proxy turns original arguments into a tuple
-        # if self.plotWidget.sceneBoundingRect().contains(pos):
-        # mousePoint = self.plotWidget.vb.mapSceneToView(pos)
-        # print('x: {}, y: {}'.format(mousePoint.x(), mousePoint.y()))
-        # index = int(mousePoint.x())
-        # #if index > 0 and index < len(data1):
-        # if index > 0 and index < self.MFmax:
-        #     self.cursorlabel.setText("<span style='font-size: 12pt'>x=%0.1f,   <span style='color: red'>y=%0.1f</span>" % (
-        #     mousePoint.x(), mousePoint.y()))
-        # self.vLine.setPos(mousePoint.x())
-        # self.hLine.setPos(mousePoint.y())
+            self.cursor_label.setText(self.cursor_label_text)
 
 
 def main():
