@@ -78,6 +78,12 @@ class TaxWithholder:
             self.taxes_federal.index, self.taxes_federal, name="Tax federal", pen=pen
         )
 
+    def update_plot_total_taxes(self):
+        pen = pg.mkPen(color="k", width=4)
+        self.plot_total_taxes = self.plotting_app.plot_widget.plot(
+            self.taxes_total.index, self.taxes_total, name="Tax total", pen=pen
+        )
+
     def update_plot_municipality_taxes(self):
         pen = pg.mkPen(color="r", width=4)
         self.plot_municipality_taxes = self.plotting_app.plot_widget.plot(
@@ -97,9 +103,13 @@ class TaxWithholder:
         self.plotting_app.plot_widget.plotItem.legend.items = []
         self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality)
         self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
+        self.taxes_total = (
+            self.taxes_federal + self.taxes_canton + self.taxes_municipality
+        )
         self.update_plot_municipality_taxes()
         self.update_plot_canton_taxes()
         self.update_plot_federal_taxes()
+        self.update_plot_total_taxes()
 
     def update_mouse_cursor(self, evt):
         mousePoint = self.plotting_app.plot_widget.plotItem.vb.mapSceneToView(evt)
@@ -116,21 +126,27 @@ class TaxWithholder:
             x_tax_federal, y_tax_federal = self.get_closest_point(
                 mousePoint.x(), self.taxes_federal
             )
+            x_tax_total, y_tax_total = self.get_closest_point(
+                mousePoint.x(), self.taxes_total
+            )
             self.plotting_app.mouse_points["x"] = [
                 x_tax_canton,
                 x_tax_municipality,
                 x_tax_federal,
+                x_tax_total,
             ]
             self.plotting_app.mouse_points["y"] = [
                 y_tax_canton,
                 y_tax_municipality,
                 y_tax_federal,
+                y_tax_total,
             ]
             self.plotting_app.cursor_label_text = (
                 f"Taxable income: {np.round(x_tax_canton)}\n"
                 + f"Tax municipality: {np.round(y_tax_municipality)}\n"
                 + f"Tax canton: {np.round(y_tax_canton)}\n"
-                + f"Tax federal: {np.round(y_tax_federal)}"
+                + f"Tax federal: {np.round(y_tax_federal)}\n"
+                + f"Tax total: {np.round(y_tax_total)}\n"
             )
             self.plotting_app.update_mouse_points()
 
