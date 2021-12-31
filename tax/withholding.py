@@ -171,21 +171,24 @@ class TaxWithholder:
             # Tax rates
             file_json = self.storage_folder_tax_rates / file_name
             out_dict = {
-                "labels": self.taxes_total_rate.index.values.tolist(),
+                "labels": np.round(self.taxes_total_rate.index.values).tolist(),
                 "datasets": [
                     {
                         "label": "Tax municipality rate",
-                        "data": self.taxes_municipality_rate.tolist(),
+                        "data": self.taxes_municipality_rate.round(decimals=2).tolist(),
                     },
                     {
                         "label": "Tax canton rate",
-                        "data": self.taxes_canton_rate.tolist(),
+                        "data": self.taxes_canton_rate.round(decimals=2).tolist(),
                     },
                     {
                         "label": "Tax federal rate",
-                        "data": self.taxes_federal_rate.tolist(),
+                        "data": self.taxes_federal_rate.round(decimals=2).tolist(),
                     },
-                    {"label": "Tax total rate", "data": self.taxes_total_rate.tolist()},
+                    {
+                        "label": "Tax total rate",
+                        "data": self.taxes_total_rate.round(decimals=2).tolist(),
+                    },
                 ],
             }
             with file_json.open("w") as outfile:
@@ -194,15 +197,24 @@ class TaxWithholder:
             # Tax values
             file_json = self.storage_folder_tax_values / file_name
             out_dict = {
-                "labels": self.taxes_total.index.values.tolist(),
+                "labels": np.round(self.taxes_total_rate.index.values).tolist(),
                 "datasets": [
                     {
                         "label": "Tax municipality",
-                        "data": self.taxes_municipality.tolist(),
+                        "data": self.taxes_municipality.round(decimals=2).tolist(),
                     },
-                    {"label": "Tax canton", "data": self.taxes_canton.tolist()},
-                    {"label": "Tax federal", "data": self.taxes_federal.tolist()},
-                    {"label": "Tax total", "data": self.taxes_total.tolist()},
+                    {
+                        "label": "Tax canton",
+                        "data": self.taxes_canton.round(decimals=2).tolist(),
+                    },
+                    {
+                        "label": "Tax federal",
+                        "data": self.taxes_federal.round(decimals=2).tolist(),
+                    },
+                    {
+                        "label": "Tax total",
+                        "data": self.taxes_total.round(decimals=2).tolist(),
+                    },
                 ],
             }
             with file_json.open("w") as outfile:
