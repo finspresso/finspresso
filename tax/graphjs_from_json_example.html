@@ -29,6 +29,10 @@
                     yAxisID: 'precipitation',
                     backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
                     borderColor: 'transparent'
+                },{
+                    yAxisID: 'precipitation2',
+                    backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
+                    borderColor: 'transparent'
                 }]
             },
             plugins: [ChartDataSource],
@@ -62,6 +66,16 @@
                         scaleLabel: {
                             display: true,
                             labelString: 'Precipitation (mm)'
+                        }
+                    }, {
+                        id: 'precipitation2',
+                        position: 'right',
+                        gridLines: {
+                            drawOnChartArea: false
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Precipitation2 (mm)'
                         }
                     }]
                 },
