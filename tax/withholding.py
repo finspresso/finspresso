@@ -39,6 +39,9 @@ class TaxWithholder:
         self.municipality = municipality
         self.marital_status = marital_status
         self.storage_folder = Path(storage_folder)
+        self.storage_folder_tax_values = self.storage_folder / "tax_values"
+        self.storage_folder_tax_rates = self.storage_folder / "tax_rates"
+
         self.plot_canton_taxes = None
         self.plot_municipality_taxes = None
         self.incomes_samples = pd.Series(np.linspace(0, 2.5 * 1e5, 1000))
@@ -145,36 +148,68 @@ class TaxWithholder:
             self.taxes_federal + self.taxes_canton + self.taxes_municipality
         )
         self.taxes_canton_rate = self.taxes_canton / self.taxes_canton.index * 100
+        self.taxes_canton_rate.fillna(0, inplace=True)
         self.taxes_municipality_rate = (
             self.taxes_municipality / self.taxes_municipality.index * 100
         )
+        self.taxes_municipality_rate.fillna(0, inplace=True)
         self.taxes_federal_rate = self.taxes_federal / self.taxes_federal.index * 100
+        self.taxes_federal_rate.fillna(0, inplace=True)
         self.taxes_total_rate = self.taxes_total / self.taxes_total.index * 100
+        self.taxes_total_rate.fillna(0, inplace=True)
 
-    def create_storage_folder(self):
+    def create_storage_folders(self):
         self.storage_folder.mkdir(parents=True, exist_ok=True)
+        self.storage_folder_tax_values.mkdir(parents=True, exist_ok=True)
+        self.storage_folder_tax_rates.mkdir(parents=True, exist_ok=True)
 
     def store_tax_values(self):
-        import pdb
-
-        pdb.set_trace()
         for municipality in self.steuerfuss_dict.keys():
             self.municipality = municipality
             self.update_tax_values()
             file_name = municipality + ".json"
-            file_json = self.storage_folder / file_name
+            # Tax rates
+            file_json = self.storage_folder_tax_rates / file_name
             out_dict = {
                 "labels": self.taxes_total_rate.index.values.tolist(),
                 "datasets": [
-                    {"label": "tax rate", "data": self.taxes_total_rate.tolist()}
+                    {
+                        "label": "Tax municipality rate",
+                        "data": self.taxes_municipality_rate.tolist(),
+                    },
+                    {
+                        "label": "Tax canton rate",
+                        "data": self.taxes_canton_rate.tolist(),
+                    },
+                    {
+                        "label": "Tax federal rate",
+                        "data": self.taxes_federal_rate.tolist(),
+                    },
+                    {"label": "Tax total rate", "data": self.taxes_total_rate.tolist()},
                 ],
             }
+            with file_json.open("w") as outfile:
+                json.dump(out_dict, outfile, indent=4)
 
+            # Tax values
+            file_json = self.storage_folder_tax_values / file_name
+            out_dict = {
+                "labels": self.taxes_total.index.values.tolist(),
+                "datasets": [
+                    {
+                        "label": "Tax municipality",
+                        "data": self.taxes_municipality.tolist(),
+                    },
+                    {"label": "Tax canton", "data": self.taxes_canton.tolist()},
+                    {"label": "Tax federal", "data": self.taxes_federal.tolist()},
+                    {"label": "Tax total", "data": self.taxes_total.tolist()},
+                ],
+            }
             with file_json.open("w") as outfile:
                 json.dump(out_dict, outfile, indent=4)
 
     def store_tax_rates_to_json(self):
-        self.create_storage_folder()
+        self.create_storage_folders()
         self.store_tax_values()
 
     def update_municipality_input(self, value):
