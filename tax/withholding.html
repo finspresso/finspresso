@@ -15,8 +15,10 @@
     </div>
     <script>
         var chartColors = {
-        red: 'rgb(255, 99, 132)',
-        blue: 'rgb(54, 162, 235)'
+        red: 'rgb(255, 0, 0)',
+        green: 'rgb(0, 255, 0)',
+        blue: 'rgb(0, 0, 235)',
+        black: 'rgb(0, 0, 0)'
         };
 
         var color = Chart.helpers.color;
@@ -30,13 +32,37 @@
                     pointBackgroundColor: chartColors.red,
                     tension: 0,
                     fill: false
+                },
+                {
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.green,
+                    pointBackgroundColor: chartColors.green,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.blue,
+                    pointBackgroundColor: chartColors.blue,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.black,
+                    pointBackgroundColor: chartColors.black,
+                    tension: 0,
+                    fill: false
                 }]
             },
             plugins: [ChartDataSource],
             options: {
                 title: {
                     display: true,
-                    text: 'JSON data source (dataset) sample'
+                    text: 'Tax rate'
                 },
                 scales: {
                     xAxes: [{
@@ -59,7 +85,7 @@
                 plugins: {
                     datasource: {
                         type: 'json',
-                        url: 'https://192.168.43.60/Zurich.json',
+                        url: 'https://192.168.43.60/storage_json/tax_rates/Zurich.json',
                         rowMapping: 'dataset',
                         indexLabels: 'labels',
                         datasetLabels: 'datasets[*].label',
@@ -78,7 +104,7 @@
         municipality.addEventListener('change', updateMunicipality);
         function updateMunicipality() {
             const label = municipality.options[municipality.selectedIndex].text;
-            window.myChart.options.plugins.datasource.url = 'https://192.168.43.60/' + label +'.json';
+            window.myChart.options.plugins.datasource.url = 'https://192.168.43.60/storage_json/tax_rates/' + label +'.json';
             window.myChart.update()
         }
     </script>
