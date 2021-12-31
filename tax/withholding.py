@@ -335,6 +335,24 @@ class TaxWithholder:
         y = data_series.loc[x]
         return (x, y)
 
+    @staticmethod
+    def create_html(steuerfuss_file):
+        steuerfuss_dict = dict()
+        with open(steuerfuss_file, "r") as read_file:
+            steuerfuss_dict = json.load(read_file)
+        municipalities = [*steuerfuss_dict]
+        municipalities.sort()
+        with open("html_elements.html", "w") as html_file:
+            for municipality in municipalities:
+                html_file.write(
+                    '<option value="'
+                    + municipality
+                    + '">'
+                    + municipality
+                    + "</option>"
+                    + "\n"
+                )
+
     @classmethod
     def compute_taxes(cls, tax_dict, incomes_samples):
         tax_df = pd.DataFrame(
@@ -472,14 +490,22 @@ def main():
         default="single",
         choices=["single", "married"],
     )
-
     parser.add_argument(
         "--json",
         help="If selected the data will not be visualized but it will store all the relevant tax rates in .json file",
         action="store_true",
     )
+    parser.add_argument(
+        "--html_elements",
+        help="If true creates html elements",
+        action="store_true",
+    )
     args = parser.parse_args()
 
+    if args.html_elements:
+        steuerfuss_file = "2020/steuerfuss.json"
+        TaxWithholder.create_html(steuerfuss_file)
+        exit(0)
     app = QtGui.QApplication(sys.argv)
     tax_withholder = TaxWithholder(
         tax_rates_file=args.tax_rates_file,
