@@ -1,0 +1,72 @@
+<!doctype html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+</head>
+<body>
+	<div>
+		<canvas id="myChart"></canvas>
+	</div>
+    <script>
+        var chartColors = {
+        red: 'rgb(255, 99, 132)',
+        blue: 'rgb(54, 162, 235)'
+        };
+
+        var color = Chart.helpers.color;
+        var config = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.red,
+                    pointBackgroundColor: chartColors.red,
+                    tension: 0,
+                    fill: false
+                }]
+            },
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'JSON data source (dataset) sample'
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'taxable income [CHF]'
+                        }
+                    }],
+                    yAxes: [{
+                        id: 'tax_rate',
+                        gridLines: {
+                            drawOnChartArea: false
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tax rate %'
+                        }
+                    }]
+                },
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: 'https://192.168.43.60/withholding_data.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        datasetLabels: 'datasets[*].label',
+                        data: 'datasets[*].data'
+                    }
+                }
+            }
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            window.myChart = new Chart(ctx, config);
+        };
+    </script>
+</body>
+</html>
