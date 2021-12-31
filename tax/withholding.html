@@ -2,7 +2,12 @@
 <head>
     <style type="text/css">
         .select-selected {
-        width:1200px;
+        width:200px;
+        }
+    </style>
+    <style type="text/css">
+        .chartBox {
+            width:900px;
         }
     </style>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -174,10 +179,10 @@
             <option value="Zürich">Zürich</option>
         </select>
     </div>
-    <div>
+    <div class="chartBox">
 		<canvas id="myChartTaxValue"></canvas>
 	</div>
-    <div>
+    <div class="chartBox">
 		<canvas id="myChartTaxRate"></canvas>
 	</div>
     <script>
