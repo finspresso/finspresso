@@ -10,9 +10,9 @@ import pyqtgraph as pg
 
 # Next make GUI combobox to select the municipality and then it shows graph for base tax and total tax based on selected municpality and selected data
 import sys
+from pathlib import Path
 from PyQt5.QtCore import Qt
 from pyqtgraph.Qt import QtGui
-
 
 # Global settings
 coloredlogs.install()
@@ -31,11 +31,14 @@ class TaxWithholder:
         steuerfuss_file="2020/steuerfuss.json",
         municipality="Zürich",
         marital_status="single",
+        storage_folder="storage_json",
+        store_only=False,
     ):
         self.tax_rates_file = tax_rates_file
         self.steuerfuss_file = steuerfuss_file
         self.municipality = municipality
         self.marital_status = marital_status
+        self.storage_folder = Path(storage_folder)
         self.plot_canton_taxes = None
         self.plot_municipality_taxes = None
         self.incomes_samples = pd.Series(np.linspace(0, 2.5 * 1e5, 1000))
@@ -47,14 +50,15 @@ class TaxWithholder:
         self.taxes_federal = self.compute_taxes(
             self.tax_rates_dict["federal"][self.marital_status], self.incomes_samples
         )
-        self.plotting_app = PlottingApp(
-            combo_list=[*self.steuerfuss_dict],
-            update_function=self.update_municipality_input,
-            selected_combobox_list=self.municipality,
-            update_mouse_function_upper=self.update_mouse_cursor,
-            update_mouse_function_lower=self.update_mouse_cursor_rate,
-        )
-        self.update_municipality_input(self.municipality)
+        if not store_only:
+            self.plotting_app = PlottingApp(
+                combo_list=[*self.steuerfuss_dict],
+                update_function=self.update_municipality_input,
+                selected_combobox_list=self.municipality,
+                update_mouse_function_upper=self.update_mouse_cursor,
+                update_mouse_function_lower=self.update_mouse_cursor_rate,
+            )
+            self.update_municipality_input(self.municipality)
 
     def load_tax_rates(self):
         self.tax_rates_dict = dict()
@@ -134,6 +138,45 @@ class TaxWithholder:
             pen=pen,
         )
 
+    def update_tax_values(self):
+        self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality)
+        self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
+        self.taxes_total = (
+            self.taxes_federal + self.taxes_canton + self.taxes_municipality
+        )
+        self.taxes_canton_rate = self.taxes_canton / self.taxes_canton.index * 100
+        self.taxes_municipality_rate = (
+            self.taxes_municipality / self.taxes_municipality.index * 100
+        )
+        self.taxes_federal_rate = self.taxes_federal / self.taxes_federal.index * 100
+        self.taxes_total_rate = self.taxes_total / self.taxes_total.index * 100
+
+    def create_storage_folder(self):
+        self.storage_folder.mkdir(parents=True, exist_ok=True)
+
+    def store_tax_values(self):
+        import pdb
+
+        pdb.set_trace()
+        for municipality in self.steuerfuss_dict.keys():
+            self.municipality = municipality
+            self.update_tax_values()
+            file_name = municipality + ".json"
+            file_json = self.storage_folder / file_name
+            out_dict = {
+                "labels": self.taxes_total_rate.index.values.tolist(),
+                "datasets": [
+                    {"label": "tax rate", "data": self.taxes_total_rate.tolist()}
+                ],
+            }
+
+            with file_json.open("w") as outfile:
+                json.dump(out_dict, outfile, indent=4)
+
+    def store_tax_rates_to_json(self):
+        self.create_storage_folder()
+        self.store_tax_values()
+
     def update_municipality_input(self, value):
         self.municipality = value
         self.plotting_app.plot_widget.clear()
@@ -146,17 +189,7 @@ class TaxWithholder:
         )
         self.plotting_app.plot_widget.plotItem.legend.items = []
         self.plotting_app.plot_widget_tax_rate.plotItem.legend.items = []
-        self.steuerfuss_municipality = self.steuerfuss_dict.get(self.municipality)
-        self.taxes_municipality = self.taxes_canton * self.steuerfuss_municipality / 100
-        self.taxes_total = (
-            self.taxes_federal + self.taxes_canton + self.taxes_municipality
-        )
-        self.taxes_canton_rate = self.taxes_canton / self.taxes_canton.index * 100
-        self.taxes_municipality_rate = (
-            self.taxes_municipality / self.taxes_municipality.index * 100
-        )
-        self.taxes_federal_rate = self.taxes_federal / self.taxes_federal.index * 100
-        self.taxes_total_rate = self.taxes_total / self.taxes_total.index * 100
+        self.update_tax_values()
         self.update_plot_municipality_taxes()
         self.update_plot_canton_taxes()
         self.update_plot_federal_taxes()
@@ -392,6 +425,12 @@ def main():
         default="single",
         choices=["single", "married"],
     )
+
+    parser.add_argument(
+        "--json",
+        help="If selected the data will not be visualized but it will store all the relevant tax rates in .json file",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     app = QtGui.QApplication(sys.argv)
@@ -399,9 +438,13 @@ def main():
         tax_rates_file=args.tax_rates_file,
         municipality=args.municipality,
         marital_status=args.marital_status,
+        store_only=args.json,
     )
-    tax_withholder.plotting_app.show()
-    sys.exit(app.exec_())
+    if args.json:
+        tax_withholder.store_tax_rates_to_json()
+    else:
+        tax_withholder.plotting_app.show()
+        sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
