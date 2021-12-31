@@ -175,7 +175,10 @@
         </select>
     </div>
     <div>
-		<canvas id="myChart"></canvas>
+		<canvas id="myChartTaxValue"></canvas>
+	</div>
+    <div>
+		<canvas id="myChartTaxRate"></canvas>
 	</div>
     <script>
         var chartColors = {
@@ -186,7 +189,79 @@
         };
 
         var color = Chart.helpers.color;
-        var config = {
+        var configValue = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.red,
+                    pointBackgroundColor: chartColors.red,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.green,
+                    pointBackgroundColor: chartColors.green,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.blue,
+                    pointBackgroundColor: chartColors.blue,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.black,
+                    pointBackgroundColor: chartColors.black,
+                    tension: 0,
+                    fill: false
+                }]
+            },
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'Tax'
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'taxable income [CHF]'
+                        }
+                    }],
+                    yAxes: [{
+                        id: 'tax_value',
+                        gridLines: {
+                            drawOnChartArea: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tax [CHF]'
+                        }
+                    }]
+                },
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: 'https://192.168.43.60/storage_json/tax_values/Adlikon.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        datasetLabels: 'datasets[*].label',
+                        data: 'datasets[*].data'
+                    }
+                }
+            }
+        };
+        var configRate = {
             type: 'line',
             data: {
                 datasets: [{
@@ -249,7 +324,7 @@
                 plugins: {
                     datasource: {
                         type: 'json',
-                        url: 'https://192.168.43.60/storage_json/tax_rates/Zurich.json',
+                        url: 'https://192.168.43.60/storage_json/tax_rates/Adlikon.json',
                         rowMapping: 'dataset',
                         indexLabels: 'labels',
                         datasetLabels: 'datasets[*].label',
@@ -260,16 +335,20 @@
         };
 
         window.onload = function() {
-            var ctx = document.getElementById('myChart').getContext('2d');
-            window.myChart = new Chart(ctx, config);
+            var ctxValue = document.getElementById('myChartTaxValue').getContext('2d');
+            window.myChartTaxValue = new Chart(ctxValue, configValue);
+            var ctxRate = document.getElementById('myChartTaxRate').getContext('2d');
+            window.myChartTaxRate = new Chart(ctxRate, configRate)
         };
 
         const municipality = document.getElementById('municipality');
         municipality.addEventListener('change', updateMunicipality);
         function updateMunicipality() {
             const label = municipality.options[municipality.selectedIndex].text;
-            window.myChart.options.plugins.datasource.url = 'https://192.168.43.60/storage_json/tax_rates/' + label +'.json';
-            window.myChart.update()
+            window.myChartTaxRate.options.plugins.datasource.url = 'https://192.168.43.60/storage_json/tax_rates/' + label +'.json';
+            window.myChartTaxValue.options.plugins.datasource.url = 'https://192.168.43.60/storage_json/tax_values/' + label +'.json';
+            window.myChartTaxRate.update()
+            window.myChartTaxValue.update()
         }
     </script>
 </body>
