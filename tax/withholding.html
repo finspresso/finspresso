@@ -7,6 +7,12 @@
 	<div>
 		<canvas id="myChart"></canvas>
 	</div>
+    <div class="selectBoxMunicipality">
+        <select id=municipality>
+            <option value="Zurich">Zurich</option>
+            <option value="Uster">Uster</option>
+        </select>
+    </div>
     <script>
         var chartColors = {
         red: 'rgb(255, 99, 132)',
@@ -53,7 +59,7 @@
                 plugins: {
                     datasource: {
                         type: 'json',
-                        url: 'https://192.168.43.60/withholding_data.json',
+                        url: 'https://192.168.43.60/Zurich.json',
                         rowMapping: 'dataset',
                         indexLabels: 'labels',
                         datasetLabels: 'datasets[*].label',
@@ -67,6 +73,14 @@
             var ctx = document.getElementById('myChart').getContext('2d');
             window.myChart = new Chart(ctx, config);
         };
+
+        const municipality = document.getElementById('municipality');
+        municipality.addEventListener('change', updateMunicipality);
+        function updateMunicipality() {
+            const label = municipality.options[municipality.selectedIndex].text;
+            window.myChart.options.plugins.datasource.url = 'https://192.168.43.60/' + label +'.json';
+            window.myChart.update()
+        }
     </script>
 </body>
 </html>
