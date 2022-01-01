@@ -186,6 +186,7 @@
 		<canvas id="myChartTaxRate"></canvas>
 	</div>
     <script>
+        const baseURL = 'https://192.168.43.60/storage_json'
         var chartColors = {
         red: 'rgb(255, 0, 0)',
         green: 'rgb(0, 255, 0)',
@@ -257,7 +258,7 @@
                 plugins: {
                     datasource: {
                         type: 'json',
-                        url: 'https://192.168.43.60/storage_json/tax_values/Adlikon.json',
+                        url: baseURL + '/tax_values/Adlikon.json',
                         rowMapping: 'dataset',
                         indexLabels: 'labels',
                         datasetLabels: 'datasets[*].label',
@@ -329,7 +330,7 @@
                 plugins: {
                     datasource: {
                         type: 'json',
-                        url: 'https://192.168.43.60/storage_json/tax_rates/Adlikon.json',
+                        url: baseURL + '/tax_rates/Adlikon.json',
                         rowMapping: 'dataset',
                         indexLabels: 'labels',
                         datasetLabels: 'datasets[*].label',
@@ -350,8 +351,8 @@
         municipality.addEventListener('change', updateMunicipality);
         function updateMunicipality() {
             const label = municipality.options[municipality.selectedIndex].text;
-            window.myChartTaxRate.options.plugins.datasource.url = 'https://192.168.43.60/storage_json/tax_rates/' + label +'.json';
-            window.myChartTaxValue.options.plugins.datasource.url = 'https://192.168.43.60/storage_json/tax_values/' + label +'.json';
+            window.myChartTaxRate.options.plugins.datasource.url = baseURL + '/tax_rates/' + label +'.json';
+            window.myChartTaxValue.options.plugins.datasource.url = baseURL +'/tax_values/' + label +'.json';
             window.myChartTaxRate.update()
             window.myChartTaxValue.update()
         }
