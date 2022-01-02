@@ -341,21 +341,19 @@
             }
         };
 
-        window.onload = function() {
-            var ctxValue = document.getElementById('myChartTaxValue').getContext('2d');
-            window.myChartTaxValue = new Chart(ctxValue, configValue);
-            var ctxRate = document.getElementById('myChartTaxRate').getContext('2d');
-            window.myChartTaxRate = new Chart(ctxRate, configRate)
-        };
+       var ctxValue = document.getElementById('myChartTaxValue').getContext('2d');
+       myChartTaxValue = new Chart(ctxValue, configValue);
+       var ctxRate = document.getElementById('myChartTaxRate').getContext('2d');
+       myChartTaxRate = new Chart(ctxRate, configRate)
 
         const municipality = document.getElementById('municipality');
         municipality.addEventListener('change', updateMunicipality);
         function updateMunicipality() {
             const label = municipality.options[municipality.selectedIndex].text;
-            window.myChartTaxRate.options.plugins.datasource.url = baseURL + '/tax_rates/' + label +'.json';
-            window.myChartTaxValue.options.plugins.datasource.url = baseURL +'/tax_values/' + label +'.json';
-            window.myChartTaxRate.update()
-            window.myChartTaxValue.update()
+            myChartTaxRate.options.plugins.datasource.url = baseURL + '/tax_rates/' + label +'.json';
+            myChartTaxValue.options.plugins.datasource.url = baseURL +'/tax_values/' + label +'.json';
+            myChartTaxRate.update()
+            myChartTaxValue.update()
         }
     </script>
 </body>
