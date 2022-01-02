@@ -1,0 +1,366 @@
+<!doctype html>
+<head>
+    <style type="text/css">
+        .select-selected {
+        width:200px;
+        }
+    </style>
+    <style type="text/css">
+        .chartBox {
+            width:900px;
+        }
+    </style>
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+    <div class="select-selected">
+        <select id=municipality>
+            <option value="Adlikon">Adlikon</option>
+            <option value="Adliswil">Adliswil</option>
+            <option value="Aesch">Aesch</option>
+            <option value="Affoltern a.A.">Affoltern a.A.</option>
+            <option value="Altikon">Altikon</option>
+            <option value="Andelfingen">Andelfingen</option>
+            <option value="Bachenbülach">Bachenbülach</option>
+            <option value="Bachs">Bachs</option>
+            <option value="Bassersdorf">Bassersdorf</option>
+            <option value="Bauma">Bauma</option>
+            <option value="Benken">Benken</option>
+            <option value="Berg a.I.">Berg a.I.</option>
+            <option value="Birmensdorf">Birmensdorf</option>
+            <option value="Bonstetten">Bonstetten</option>
+            <option value="Boppelsen">Boppelsen</option>
+            <option value="Brütten">Brütten</option>
+            <option value="Bubikon">Bubikon</option>
+            <option value="Buch a.I.">Buch a.I.</option>
+            <option value="Buchs">Buchs</option>
+            <option value="Bäretswil">Bäretswil</option>
+            <option value="Bülach">Bülach</option>
+            <option value="Dachsen">Dachsen</option>
+            <option value="Dielsdorf">Dielsdorf</option>
+            <option value="Dietikon">Dietikon</option>
+            <option value="Dietlikon">Dietlikon</option>
+            <option value="Dinhard">Dinhard</option>
+            <option value="Dorf">Dorf</option>
+            <option value="Dägerlen">Dägerlen</option>
+            <option value="Dällikon">Dällikon</option>
+            <option value="Dänikon">Dänikon</option>
+            <option value="Dättlikon">Dättlikon</option>
+            <option value="Dübendorf">Dübendorf</option>
+            <option value="Dürnten">Dürnten</option>
+            <option value="Egg">Egg</option>
+            <option value="Eglisau">Eglisau</option>
+            <option value="Elgg">Elgg</option>
+            <option value="Ellikon a.d.Th.">Ellikon a.d.Th.</option>
+            <option value="Elsau">Elsau</option>
+            <option value="Embrach">Embrach</option>
+            <option value="Erlenbach">Erlenbach</option>
+            <option value="Fehraltorf">Fehraltorf</option>
+            <option value="Feuerthalen">Feuerthalen</option>
+            <option value="Fischenthal">Fischenthal</option>
+            <option value="Flaach">Flaach</option>
+            <option value="Flurlingen">Flurlingen</option>
+            <option value="Freienstein-Teufen">Freienstein-Teufen</option>
+            <option value="Fällanden">Fällanden</option>
+            <option value="Geroldswil">Geroldswil</option>
+            <option value="Glattfelden">Glattfelden</option>
+            <option value="Gossau">Gossau</option>
+            <option value="Greifensee">Greifensee</option>
+            <option value="Grüningen">Grüningen</option>
+            <option value="Hagenbuch">Hagenbuch</option>
+            <option value="Hausen a.A.">Hausen a.A.</option>
+            <option value="Hedingen">Hedingen</option>
+            <option value="Henggart">Henggart</option>
+            <option value="Herrliberg">Herrliberg</option>
+            <option value="Hettlingen">Hettlingen</option>
+            <option value="Hinwil">Hinwil</option>
+            <option value="Hittnau">Hittnau</option>
+            <option value="Hochfelden">Hochfelden</option>
+            <option value="Hombrechtikon">Hombrechtikon</option>
+            <option value="Horgen">Horgen</option>
+            <option value="Humlikon">Humlikon</option>
+            <option value="Höri">Höri</option>
+            <option value="Hüntwangen">Hüntwangen</option>
+            <option value="Hüttikon">Hüttikon</option>
+            <option value="Illnau-Effretikon">Illnau-Effretikon</option>
+            <option value="Kappel a.A.">Kappel a.A.</option>
+            <option value="Kilchberg">Kilchberg</option>
+            <option value="Kleinandelfingen">Kleinandelfingen</option>
+            <option value="Kloten">Kloten</option>
+            <option value="Knonau">Knonau</option>
+            <option value="Küsnacht">Küsnacht</option>
+            <option value="Langnau a.A.">Langnau a.A.</option>
+            <option value="Laufen-Uhwiesen">Laufen-Uhwiesen</option>
+            <option value="Lindau">Lindau</option>
+            <option value="Lufingen">Lufingen</option>
+            <option value="Marthalen">Marthalen</option>
+            <option value="Maschwanden">Maschwanden</option>
+            <option value="Maur">Maur</option>
+            <option value="Meilen">Meilen</option>
+            <option value="Mettmenstetten">Mettmenstetten</option>
+            <option value="Männedorf">Männedorf</option>
+            <option value="Mönchaltorf">Mönchaltorf</option>
+            <option value="Neerach">Neerach</option>
+            <option value="Neftenbach">Neftenbach</option>
+            <option value="Niederglatt">Niederglatt</option>
+            <option value="Niederhasli">Niederhasli</option>
+            <option value="Niederweningen">Niederweningen</option>
+            <option value="Nürensdorf">Nürensdorf</option>
+            <option value="Oberembrach">Oberembrach</option>
+            <option value="Oberengstringen">Oberengstringen</option>
+            <option value="Oberglatt">Oberglatt</option>
+            <option value="Oberrieden">Oberrieden</option>
+            <option value="Oberweningen">Oberweningen</option>
+            <option value="Obfelden">Obfelden</option>
+            <option value="Oetwil a.S.">Oetwil a.S.</option>
+            <option value="Oetwil a.d.L.">Oetwil a.d.L.</option>
+            <option value="Opfikon">Opfikon</option>
+            <option value="Ossingen">Ossingen</option>
+            <option value="Otelfingen">Otelfingen</option>
+            <option value="Ottenbach">Ottenbach</option>
+            <option value="Pfungen">Pfungen</option>
+            <option value="Pfäffikon">Pfäffikon</option>
+            <option value="Rafz">Rafz</option>
+            <option value="Regensberg">Regensberg</option>
+            <option value="Regensdorf">Regensdorf</option>
+            <option value="Rheinau">Rheinau</option>
+            <option value="Richterswil">Richterswil</option>
+            <option value="Rickenbach">Rickenbach</option>
+            <option value="Rifferswil">Rifferswil</option>
+            <option value="Rorbas">Rorbas</option>
+            <option value="Russikon">Russikon</option>
+            <option value="Rümlang">Rümlang</option>
+            <option value="Rüschlikon">Rüschlikon</option>
+            <option value="Rüti">Rüti</option>
+            <option value="Schlatt">Schlatt</option>
+            <option value="Schleinikon">Schleinikon</option>
+            <option value="Schlieren">Schlieren</option>
+            <option value="Schwerzenbach">Schwerzenbach</option>
+            <option value="Schöfflisdorf">Schöfflisdorf</option>
+            <option value="Seegräben">Seegräben</option>
+            <option value="Seuzach">Seuzach</option>
+            <option value="Stadel">Stadel</option>
+            <option value="Stallikon">Stallikon</option>
+            <option value="Stammheim">Stammheim</option>
+            <option value="Steinmaur">Steinmaur</option>
+            <option value="Stäfa">Stäfa</option>
+            <option value="Thalheim a.d.Th.">Thalheim a.d.Th.</option>
+            <option value="Thalwil">Thalwil</option>
+            <option value="Truttikon">Truttikon</option>
+            <option value="Trüllikon">Trüllikon</option>
+            <option value="Turbenthal">Turbenthal</option>
+            <option value="Uetikon a.S.">Uetikon a.S.</option>
+            <option value="Uitikon">Uitikon</option>
+            <option value="Unterengstringen">Unterengstringen</option>
+            <option value="Urdorf">Urdorf</option>
+            <option value="Uster">Uster</option>
+            <option value="Volken">Volken</option>
+            <option value="Volketswil">Volketswil</option>
+            <option value="Wald">Wald</option>
+            <option value="Wallisellen">Wallisellen</option>
+            <option value="Wangen-Brüttisellen">Wangen-Brüttisellen</option>
+            <option value="Wasterkingen">Wasterkingen</option>
+            <option value="Weiach">Weiach</option>
+            <option value="Weiningen">Weiningen</option>
+            <option value="Weisslingen">Weisslingen</option>
+            <option value="Wettswil a.A.">Wettswil a.A.</option>
+            <option value="Wetzikon">Wetzikon</option>
+            <option value="Wiesendangen">Wiesendangen</option>
+            <option value="Wil">Wil</option>
+            <option value="Wila">Wila</option>
+            <option value="Wildberg">Wildberg</option>
+            <option value="Winkel">Winkel</option>
+            <option value="Winterthur">Winterthur</option>
+            <option value="Wädenswil">Wädenswil</option>
+            <option value="Zell">Zell</option>
+            <option value="Zollikon">Zollikon</option>
+            <option value="Zumikon">Zumikon</option>
+            <option value="Zürich">Zürich</option>
+        </select>
+    </div>
+    <div class="chartBox">
+		<canvas id="myChartTaxValue"></canvas>
+	</div>
+    <div class="chartBox">
+		<canvas id="myChartTaxRate"></canvas>
+	</div>
+    <script>
+        const baseURL = 'https://www.finspresso.com/wp-content/uploads/2022/01/storage_json'
+        var chartColors = {
+        red: 'rgb(255, 0, 0)',
+        green: 'rgb(0, 255, 0)',
+        blue: 'rgb(0, 0, 235)',
+        black: 'rgb(0, 0, 0)'
+        };
+
+        var color = Chart.helpers.color;
+        var configValue = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.red,
+                    pointBackgroundColor: chartColors.red,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.green,
+                    pointBackgroundColor: chartColors.green,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.blue,
+                    pointBackgroundColor: chartColors.blue,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_value',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.black,
+                    pointBackgroundColor: chartColors.black,
+                    tension: 0,
+                    fill: false
+                }]
+            },
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'Tax'
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'taxable income [CHF]'
+                        }
+                    }],
+                    yAxes: [{
+                        id: 'tax_value',
+                        gridLines: {
+                            drawOnChartArea: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tax [CHF]'
+                        },
+                        ticks: {
+                            max: 90000
+                        }
+                    }]
+                },
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: baseURL + '/tax_values/Adlikon.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        datasetLabels: 'datasets[*].label',
+                        data: 'datasets[*].data'
+                    }
+                }
+            }
+        };
+        var configRate = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.red,
+                    pointBackgroundColor: chartColors.red,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.green,
+                    pointBackgroundColor: chartColors.green,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.blue,
+                    pointBackgroundColor: chartColors.blue,
+                    tension: 0,
+                    fill: false
+                },
+                {
+                    yAxisID: 'tax_rate',
+                    backgroundColor: 'transparent',
+                    borderColor: chartColors.black,
+                    pointBackgroundColor: chartColors.black,
+                    tension: 0,
+                    fill: false
+                }]
+            },
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'Tax rate'
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'taxable income [CHF]'
+                        }
+                    }],
+                    yAxes: [{
+                        id: 'tax_rate',
+                        gridLines: {
+                            drawOnChartArea: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tax rate %'
+                        },
+                        ticks: {
+                            max: 30
+                        }
+                    }]
+                },
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: baseURL + '/tax_rates/Adlikon.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        datasetLabels: 'datasets[*].label',
+                        data: 'datasets[*].data'
+                    }
+                }
+            }
+        };
+
+       var ctxValue = document.getElementById('myChartTaxValue').getContext('2d');
+       myChartTaxValue = new Chart(ctxValue, configValue);
+       var ctxRate = document.getElementById('myChartTaxRate').getContext('2d');
+       myChartTaxRate = new Chart(ctxRate, configRate)
+
+        const municipality = document.getElementById('municipality');
+        municipality.addEventListener('change', updateMunicipality);
+        function updateMunicipality() {
+            const label = municipality.options[municipality.selectedIndex].text;
+            myChartTaxRate.options.plugins.datasource.url = baseURL + '/tax_rates/' + label +'.json';
+            myChartTaxValue.options.plugins.datasource.url = baseURL +'/tax_values/' + label +'.json';
+            myChartTaxRate.update()
+            myChartTaxValue.update()
+        }
+    </script>
+</body>
+</html>
