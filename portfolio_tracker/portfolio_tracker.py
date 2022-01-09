@@ -22,9 +22,12 @@ pg.setConfigOption("foreground", "k")
 
 
 class DividendProjector:
-    def __init__(self, holdings_file="holdings.json", window_size=3):
+    def __init__(
+        self, holdings_file="holdings.json", window_size=3, geometric_mean_horizon=5
+    ):
         self.holdings_file = Path(holdings_file)
         self.window_size = window_size
+        self.geometric_mean_horizon = geometric_mean_horizon
         self.load_holdings()
         self.download_data_from_yahoo()
         self.tickers = [
@@ -111,6 +114,7 @@ class PlottingApp(QtGui.QWidget):
         QtGui.QWidget.__init__(self)
         self.setGeometry(100, 100, 1200, 900)
         self.main_layout = QtGui.QVBoxLayout()
+        self.top_layout = QtGui.QFormLayout()
         self.security_cb = QtGui.QComboBox()
         if combo_list:
             combo_list.sort()
@@ -121,13 +125,16 @@ class PlottingApp(QtGui.QWidget):
             self.average_years_cb.currentTextChanged.connect(
                 update_average_years_function
             )
+        self.top_layout.addRow("Security:", self.security_cb)
+        self.top_layout.addRow("Number of years for average:", self.average_years_cb)
         self.plot_widget = pg.PlotWidget()
         self.plot_widget.addLegend()
+        self.plot_widget.setLabel("bottom", "year")
+        self.plot_widget.setLabel("left", "dividend growth rate")
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
         if update_function is not None:
             self.security_cb.currentTextChanged.connect(update_function)
-        self.main_layout.addWidget(self.security_cb)
-        self.main_layout.addWidget(self.average_years_cb)
+        self.main_layout.addLayout(self.top_layout)
         self.main_layout.addWidget(self.plot_widget)
         self.setLayout(self.main_layout)
 
