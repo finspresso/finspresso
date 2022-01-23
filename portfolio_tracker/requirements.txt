@@ -1,1 +1,2 @@
+pre-commit
 git+git://github.com/ranaroussi/yfinance@0.1.68
