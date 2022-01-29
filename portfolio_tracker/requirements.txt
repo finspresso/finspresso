@@ -1,2 +1,7 @@
 pre-commit
 git+git://github.com/ranaroussi/yfinance@0.1.68
+pyqtgraph==0.12.3
+PyQt5==5.12
+wheel
+coloredLogs
+pandas==1.3.5

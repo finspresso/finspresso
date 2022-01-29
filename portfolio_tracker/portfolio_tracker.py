@@ -1,5 +1,7 @@
-# Next plot the growths of dividends per holding, Add combobox to get the number of years back + add option for geometric mean
+# 1. Next make plot that allows
+# 2.Next plot the growths of dividends per holding, Add combobox to get the number of years back + add option for geometric mean
 import argparse
+import datetime
 import yfinance as yf
 import pyqtgraph as pg
 import json
@@ -62,11 +64,14 @@ class DividendProjector:
         self.compute_dividend_growth_values(self.window_size)
 
     def compute_dividend_growth_values(self, window_size):
+        current_year = datetime.datetime.now().year
         for security in self.holdings_dict.values():
             if security.get("yfinance", False):
+                dividends_per_year = security["dividends per year"][
+                    security["dividends per year"].index < current_year
+                ]
                 security["dividends per year growth"] = (
-                    security["dividends per year"].diff()
-                    / security["dividends per year"].shift()
+                    dividends_per_year.diff() / dividends_per_year.shift() * 100
                 )
                 security["dividends per year growth lp"] = (
                     security["dividends per year growth"].rolling(window_size).mean()
@@ -130,7 +135,7 @@ class PlottingApp(QtGui.QWidget):
         self.plot_widget = pg.PlotWidget()
         self.plot_widget.addLegend()
         self.plot_widget.setLabel("bottom", "year")
-        self.plot_widget.setLabel("left", "dividend growth rate")
+        self.plot_widget.setLabel("left", "dividend growth rate %")
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
         if update_function is not None:
             self.security_cb.currentTextChanged.connect(update_function)
