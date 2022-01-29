@@ -42,9 +42,29 @@ class DividendProjector:
             combo_list=self.tickers,
             update_function=self.update_plots,
             update_average_years_function=self.update_dividend_average_years,
+            update_mouse_function_dividend=self.update_tooltip_dividend,
         )
         self.plotting_app.average_years_cb.setCurrentText(str(self.window_size))
         self.update_plots(self.plotting_app.security_cb.currentText())
+
+    def update_tooltip_dividend(self, evt):
+        mousePoint = self.plotting_app.bar_plot_widget.plotItem.vb.mapSceneToView(evt)
+        year, dividend = self.get_closest_point(
+            mousePoint.x(),
+            self.holdings_dict[self.selected_ticker]["dividends per year"],
+        )
+        self.plotting_app.bar_plot_widget.setToolTip(
+            f"year: {year}, dividend: {dividend}"
+        )
+
+    @staticmethod
+    def get_closest_point(target_point, data_series):
+        diff_series = pd.Series(
+            data_series.index.values - target_point, index=data_series.index
+        )
+        x = diff_series.abs().idxmin()
+        y = data_series.loc[x]
+        return (x, y)
 
     def load_holdings(self):
         with self.holdings_file.open("r") as file:
@@ -78,6 +98,7 @@ class DividendProjector:
                 )
 
     def update_plots(self, ticker):
+        self.selected_ticker = ticker
         self.update_plot_dividend_growth(ticker)
         self.update_dividend_bars(ticker)
 
@@ -132,7 +153,11 @@ class DividendProjector:
 
 class PlottingApp(QtGui.QWidget):
     def __init__(
-        self, combo_list=[], update_function=None, update_average_years_function=None
+        self,
+        combo_list=[],
+        update_function=None,
+        update_average_years_function=None,
+        update_mouse_function_dividend=None,
     ):
         QtGui.QWidget.__init__(self)
         self.setGeometry(100, 100, 1200, 900)
@@ -166,6 +191,10 @@ class PlottingApp(QtGui.QWidget):
         self.main_layout.addLayout(self.top_layout)
         self.main_layout.addWidget(self.plot_widget)
         self.main_layout.addWidget(self.bar_plot_widget)
+        if update_mouse_function_dividend is not None:
+            self.bar_plot_widget.scene().sigMouseMoved.connect(
+                update_mouse_function_dividend
+            )
         self.setLayout(self.main_layout)
 
 
