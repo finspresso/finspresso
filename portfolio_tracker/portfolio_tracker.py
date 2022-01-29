@@ -110,7 +110,7 @@ class DividendProjector:
         ].values
         bargraph = pg.BarGraphItem(
             x=x, height=y, width=0.6, brush="g"
-        )  # ToDo: Ensure that current year does not show in bar graph
+        )  # TODO: Ensure that current year does not show in bar graph
         self.plotting_app.bar_plot_widget.addItem(bargraph)
 
     @staticmethod
@@ -156,6 +156,11 @@ class PlottingApp(QtGui.QWidget):
         self.plot_widget.setLabel("left", "dividend growth rate %")
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
         self.bar_plot_widget = pg.PlotWidget()
+        self.bar_plot_widget.setLabel("bottom", "year")
+        self.bar_plot_widget.setLabel(
+            "left", "absolute dividend [USD]"
+        )  # TODO: Make it adaptive depending on currency
+        self.bar_plot_widget.showGrid(x=False, y=True, alpha=0.4)
         if update_function is not None:
             self.security_cb.currentTextChanged.connect(update_function)
         self.main_layout.addLayout(self.top_layout)
