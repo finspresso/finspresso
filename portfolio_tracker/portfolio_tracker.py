@@ -30,6 +30,7 @@ class DividendProjector:
         self.holdings_file = Path(holdings_file)
         self.window_size = window_size
         self.geometric_mean_horizon = geometric_mean_horizon
+        self.current_year = datetime.datetime.now().year
         self.load_holdings()
         self.download_data_from_yahoo()
         self.tickers = [
@@ -39,11 +40,11 @@ class DividendProjector:
         ]
         self.plotting_app = PlottingApp(
             combo_list=self.tickers,
-            update_function=self.update_plot_dividend_growth,
+            update_function=self.update_plots,
             update_average_years_function=self.update_dividend_average_years,
         )
         self.plotting_app.average_years_cb.setCurrentText(str(self.window_size))
-        self.update_plot_dividend_growth(self.plotting_app.security_cb.currentText())
+        self.update_plots(self.plotting_app.security_cb.currentText())
 
     def load_holdings(self):
         with self.holdings_file.open("r") as file:
@@ -64,11 +65,10 @@ class DividendProjector:
         self.compute_dividend_growth_values(self.window_size)
 
     def compute_dividend_growth_values(self, window_size):
-        current_year = datetime.datetime.now().year
         for security in self.holdings_dict.values():
             if security.get("yfinance", False):
                 dividends_per_year = security["dividends per year"][
-                    security["dividends per year"].index < current_year
+                    security["dividends per year"].index < self.current_year
                 ]
                 security["dividends per year growth"] = (
                     dividends_per_year.diff() / dividends_per_year.shift() * 100
@@ -76,6 +76,10 @@ class DividendProjector:
                 security["dividends per year growth lp"] = (
                     security["dividends per year growth"].rolling(window_size).mean()
                 )
+
+    def update_plots(self, ticker):
+        self.update_plot_dividend_growth(ticker)
+        self.update_dividend_bars(ticker)
 
     def update_dividend_average_years(self, value):
         self.compute_dividend_growth_values(int(value))
@@ -94,6 +98,20 @@ class DividendProjector:
         self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
             x, y, name="Dividens per year growth lp", pen=pen, symbol="o"
         )
+
+    def update_dividend_bars(self, ticker):
+        self.plotting_app.bar_plot_widget.clear()
+        security = self.holdings_dict[ticker]
+        x = security["dividends per year"][
+            security["dividends per year"].index < self.current_year
+        ].index.values
+        y = security["dividends per year"][
+            security["dividends per year"].index < self.current_year
+        ].values
+        bargraph = pg.BarGraphItem(
+            x=x, height=y, width=0.6, brush="g"
+        )  # ToDo: Ensure that current year does not show in bar graph
+        self.plotting_app.bar_plot_widget.addItem(bargraph)
 
     @staticmethod
     def get_dividends_per_year(dividends):
@@ -137,10 +155,12 @@ class PlottingApp(QtGui.QWidget):
         self.plot_widget.setLabel("bottom", "year")
         self.plot_widget.setLabel("left", "dividend growth rate %")
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
+        self.bar_plot_widget = pg.PlotWidget()
         if update_function is not None:
             self.security_cb.currentTextChanged.connect(update_function)
         self.main_layout.addLayout(self.top_layout)
         self.main_layout.addWidget(self.plot_widget)
+        self.main_layout.addWidget(self.bar_plot_widget)
         self.setLayout(self.main_layout)
 
 
