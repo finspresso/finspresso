@@ -4,6 +4,7 @@ import argparse
 import datetime
 import yfinance as yf
 import pyqtgraph as pg
+import numpy as np
 import json
 import logging
 import coloredlogs
@@ -93,6 +94,9 @@ class DividendProjector:
                 security["dividends per year growth"] = (
                     dividends_per_year.diff() / dividends_per_year.shift() * 100
                 )
+                security["dividends per year growth diff"] = security[
+                    "dividends per year growth"
+                ].diff()
                 security["dividends per year growth lp"] = (
                     security["dividends per year growth"].rolling(window_size).mean()
                 )
@@ -101,6 +105,7 @@ class DividendProjector:
         self.selected_ticker = ticker
         self.update_plot_dividend_growth(ticker)
         self.update_dividend_bars(ticker)
+        self.update_dividend_growth_diff_hist(ticker)
 
     def update_dividend_average_years(self, value):
         self.compute_dividend_growth_values(int(value))
@@ -133,6 +138,19 @@ class DividendProjector:
             x=x, height=y, width=0.6, brush="g"
         )  # TODO: Ensure that current year does not show in bar graph
         self.plotting_app.bar_plot_widget.addItem(bargraph)
+
+    def update_dividend_growth_diff_hist(self, ticker):
+        self.plotting_app.histogram_variance_widget.clear()
+        security = self.holdings_dict[ticker]
+        boolean_vec = (
+            security["dividends per year growth diff"].index < self.current_year
+        ) & (security["dividends per year growth diff"].notna())
+        vals = security["dividends per year growth diff"][boolean_vec].values
+        y, x = np.histogram(vals, bins=len(vals))
+        curve = pg.PlotCurveItem(
+            x, y, stepMode=True, fillLevel=0, brush=(0, 0, 255, 80)
+        )
+        self.plotting_app.histogram_variance_widget.addItem(curve)
 
     @staticmethod
     def get_dividends_per_year(dividends):
@@ -200,6 +218,13 @@ class PlottingApp(QtGui.QWidget):
                 update_mouse_function_dividend
             )
         self.histogram_variance_widget = pg.PlotWidget()
+        self.histogram_variance_widget.setLabel(
+            "bottom", "delta in dividend growth year by year in %"
+        )
+        self.histogram_variance_widget.setLabel("left", "#")
+        self.histogram_variance_widget.showGrid(x=False, y=True, alpha=0.4)
+        self.main_layout.addWidget(self.histogram_variance_widget)
+
         self.second_figure_dict = {
             "dividens paid": self.bar_plot_widget,
             "yearly fluctuation": self.histogram_variance_widget,
