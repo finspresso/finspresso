@@ -166,6 +166,7 @@ class PlottingApp(QtGui.QWidget):
         self.security_cb = QtGui.QComboBox()
         self.second_figure_cb = QtGui.QComboBox()
         self.second_figure_cb.addItems(["dividens paid", "yearly fluctuation"])
+        self.second_figure_cb.currentTextChanged.connect(self.update_second_figure)
         if combo_list:
             combo_list.sort()
             self.security_cb.addItems(combo_list)
@@ -198,7 +199,19 @@ class PlottingApp(QtGui.QWidget):
             self.bar_plot_widget.scene().sigMouseMoved.connect(
                 update_mouse_function_dividend
             )
+        self.histogram_variance_widget = pg.PlotWidget()
+        self.second_figure_dict = {
+            "dividens paid": self.bar_plot_widget,
+            "yearly fluctuation": self.histogram_variance_widget,
+        }
+        self.current_second_figure = "dividens paid"
         self.setLayout(self.main_layout)
+
+    def update_second_figure(self, desired_plot):
+        logger.info(f"Second plot changed to {desired_plot}")
+        self.second_figure_dict[self.current_second_figure].setParent(None)
+        self.current_second_figure = desired_plot
+        self.main_layout.addWidget(self.second_figure_dict[self.current_second_figure])
 
 
 def main():
