@@ -147,9 +147,7 @@ class DividendProjector:
         ) & (security["dividends per year growth diff"].notna())
         vals = security["dividends per year growth diff"][boolean_vec].values
         y, x = np.histogram(vals, bins=len(vals))
-        curve = pg.PlotCurveItem(
-            x, y, stepMode=True, fillLevel=0, brush=(0, 0, 255, 80)
-        )
+        curve = pg.PlotCurveItem(x, y, stepMode=True, fillLevel=0, brush=(255, 100, 0))
         self.plotting_app.histogram_variance_widget.addItem(curve)
 
     @staticmethod
@@ -225,7 +223,6 @@ class PlottingApp(QtGui.QWidget):
         )
         self.histogram_variance_widget.setLabel("left", "#")
         self.histogram_variance_widget.showGrid(x=False, y=True, alpha=0.4)
-        # self.main_layout.addWidget(self.histogram_variance_widget)
 
         self.second_figure_dict = {
             "Bar chart: Dividens paid": self.bar_plot_widget,
