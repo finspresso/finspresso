@@ -164,6 +164,8 @@ class PlottingApp(QtGui.QWidget):
         self.main_layout = QtGui.QVBoxLayout()
         self.top_layout = QtGui.QFormLayout()
         self.security_cb = QtGui.QComboBox()
+        self.second_figure_cb = QtGui.QComboBox()
+        self.second_figure_cb.addItems(["dividens paid", "yearly fluctuation"])
         if combo_list:
             combo_list.sort()
             self.security_cb.addItems(combo_list)
@@ -175,6 +177,7 @@ class PlottingApp(QtGui.QWidget):
             )
         self.top_layout.addRow("Security:", self.security_cb)
         self.top_layout.addRow("Number of years for average:", self.average_years_cb)
+        self.top_layout.addRow("Second figure:", self.second_figure_cb)
         self.plot_widget = pg.PlotWidget()
         self.plot_widget.addLegend()
         self.plot_widget.setLabel("bottom", "year")

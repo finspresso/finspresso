@@ -1,0 +1,14 @@
+{
+    "securities":[
+                 { "name":"Pfizer",
+                    "ticker": "PFE",
+                    "quantity": 1000,
+                    "yfinance": true
+                 },
+                 { "name":"Schwab US dividend",
+                    "ticker": "SCHD",
+                    "quantity": 1483,
+                    "yfinance": true
+                 }
+            ]
+}
