@@ -183,7 +183,9 @@ class PlottingApp(QtGui.QWidget):
         self.top_layout = QtGui.QFormLayout()
         self.security_cb = QtGui.QComboBox()
         self.second_figure_cb = QtGui.QComboBox()
-        self.second_figure_cb.addItems(["dividens paid", "yearly fluctuation"])
+        self.second_figure_cb.addItems(
+            ["Bar chart: Dividens paid", "Histogram: Delta dividend growth rate"]
+        )
         self.second_figure_cb.currentTextChanged.connect(self.update_second_figure)
         if combo_list:
             combo_list.sort()
@@ -223,13 +225,13 @@ class PlottingApp(QtGui.QWidget):
         )
         self.histogram_variance_widget.setLabel("left", "#")
         self.histogram_variance_widget.showGrid(x=False, y=True, alpha=0.4)
-        self.main_layout.addWidget(self.histogram_variance_widget)
+        # self.main_layout.addWidget(self.histogram_variance_widget)
 
         self.second_figure_dict = {
-            "dividens paid": self.bar_plot_widget,
-            "yearly fluctuation": self.histogram_variance_widget,
+            "Bar chart: Dividens paid": self.bar_plot_widget,
+            "Histogram: Delta dividend growth rate": self.histogram_variance_widget,
         }
-        self.current_second_figure = "dividens paid"
+        self.current_second_figure = "Bar chart: Dividens paid"
         self.setLayout(self.main_layout)
 
     def update_second_figure(self, desired_plot):
