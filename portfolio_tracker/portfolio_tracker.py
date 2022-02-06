@@ -47,6 +47,9 @@ class DividendProjector:
             update_mouse_function_dividend=self.update_tooltip_dividend,
             average_years=self.average_years,
         )
+        self.plotting_app.average_years_checkbox[self.average_years[0]][
+            "Checkbox"
+        ].setChecked(True)
         self.shown_year = 3
         self.plotting_app.average_years_cb.setCurrentText(str(self.window_size))
         self.update_plots(self.plotting_app.security_cb.currentText())
