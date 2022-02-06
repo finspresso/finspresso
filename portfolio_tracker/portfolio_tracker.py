@@ -32,6 +32,7 @@ class DividendProjector:
         self.window_size = window_size
         self.geometric_mean_horizon = geometric_mean_horizon
         self.current_year = datetime.datetime.now().year
+        self.average_years = [1, 2, 3, 4, 5]
         self.load_holdings()
         self.download_data_from_yahoo()
         self.tickers = [
@@ -44,7 +45,9 @@ class DividendProjector:
             update_function=self.update_plots,
             update_average_years_function=self.update_dividend_average_years,
             update_mouse_function_dividend=self.update_tooltip_dividend,
+            average_years=self.average_years,
         )
+        self.shown_year = 3
         self.plotting_app.average_years_cb.setCurrentText(str(self.window_size))
         self.update_plots(self.plotting_app.security_cb.currentText())
 
@@ -83,9 +86,9 @@ class DividendProjector:
                 security["dividends per year"] = self.get_dividends_per_year(
                     security["dividends"]
                 )
-        self.compute_dividend_growth_values(self.window_size)
+        self.compute_dividend_growth_values()
 
-    def compute_dividend_growth_values(self, window_size):
+    def compute_dividend_growth_values(self):
         for security in self.holdings_dict.values():
             if security.get("yfinance", False):
                 dividends_per_year = security["dividends per year"][
@@ -97,9 +100,11 @@ class DividendProjector:
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
-                security["dividends per year growth lp"] = (
-                    security["dividends per year growth"].rolling(window_size).mean()
-                )
+                security["dividends per year growth lp"] = dict()
+                for year in self.average_years:
+                    security["dividends per year growth lp"][str(year)] = (
+                        security["dividends per year growth"].rolling(year).mean()
+                    )
 
     def update_plots(self, ticker):
         self.selected_ticker = ticker
@@ -108,7 +113,7 @@ class DividendProjector:
         self.update_dividend_growth_diff_hist(ticker)
 
     def update_dividend_average_years(self, value):
-        self.compute_dividend_growth_values(int(value))
+        self.shown_year = value
         self.update_plot_dividend_growth(self.plotting_app.security_cb.currentText())
 
     def update_plot_dividend_growth(self, ticker):
@@ -119,8 +124,12 @@ class DividendProjector:
         # if self.plotting_app.plot_widget.plotItem.legend is not None:
         self.plotting_app.plot_widget.plotItem.legend.items = []
         pen = pg.mkPen(color="b", width=4)
-        x = self.holdings_dict[ticker]["dividends per year growth lp"].index.values
-        y = self.holdings_dict[ticker]["dividends per year growth lp"].values
+        x = self.holdings_dict[ticker]["dividends per year growth lp"][
+            self.shown_year
+        ].index.values
+        y = self.holdings_dict[ticker]["dividends per year growth lp"][
+            self.shown_year
+        ].values
         self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
             x, y, name="Dividens per year growth lp", pen=pen, symbol="o"
         )
@@ -144,7 +153,7 @@ class DividendProjector:
         security = self.holdings_dict[ticker]
         boolean_vec = (
             security["dividends per year growth diff"].index < self.current_year
-        ) & (security["dividends per year growth diff"].notna())
+        ) & (np.isfinite(security["dividends per year growth diff"]))
         vals = security["dividends per year growth diff"][boolean_vec].values
         y, x = np.histogram(vals, bins=len(vals))
         curve = pg.PlotCurveItem(x, y, stepMode=True, fillLevel=0, brush=(255, 100, 0))
@@ -174,6 +183,7 @@ class PlottingApp(QtGui.QWidget):
         update_function=None,
         update_average_years_function=None,
         update_mouse_function_dividend=None,
+        average_years=[1, 2, 3, 4, 5],
     ):
         QtGui.QWidget.__init__(self)
         self.setGeometry(100, 100, 1200, 900)
@@ -196,6 +206,8 @@ class PlottingApp(QtGui.QWidget):
             )
         self.top_layout.addRow("Security:", self.security_cb)
         self.top_layout.addRow("Number of years for average:", self.average_years_cb)
+        self.create_average_layout(average_years)
+        self.top_layout.addRow("Visible plots", self.average_years_layout)
         self.top_layout.addRow("Second figure:", self.second_figure_cb)
         self.plot_widget = pg.PlotWidget()
         self.plot_widget.addLegend()
@@ -230,6 +242,13 @@ class PlottingApp(QtGui.QWidget):
         }
         self.current_second_figure = "Bar chart: Dividens paid"
         self.setLayout(self.main_layout)
+
+    def create_average_layout(self, average_years):
+        self.average_years_layout = QtGui.QHBoxLayout()
+        self.average_chers_checkbox = dict()
+        for year in average_years:
+            self.average_chers_checkbox[year] = QtGui.QCheckBox(str(year))
+            self.average_years_layout.addWidget(self.average_chers_checkbox[year])
 
     def update_second_figure(self, desired_plot):
         logger.info(f"Second plot changed to {desired_plot}")

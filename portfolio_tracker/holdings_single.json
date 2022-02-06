@@ -5,6 +5,11 @@
                     "quantity": 1000,
                     "yfinance": true
                  },
+                 { "name":"British American Tobaco",
+                  "ticker": "BTI",
+                  "quantity": 400,
+                  "yfinance": true
+                 },
                  { "name":"Schwab US dividend",
                     "ticker": "SCHD",
                     "quantity": 1483,
