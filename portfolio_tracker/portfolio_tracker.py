@@ -118,21 +118,31 @@ class DividendProjector:
 
     def update_plot_dividend_growth(self, ticker):
         self.plotting_app.plot_widget.clear()
+        self.plotting_app.plot_widget.plotItem.legend.items = []
+        pen = pg.mkPen(color=[255, 0, 0], width=4)
         # from PyQt5.QtCore import pyqtRemoveInputHook
         # pyqtRemoveInputHook()
         # import pdb; pdb.set_trace()
         # if self.plotting_app.plot_widget.plotItem.legend is not None:
-        self.plotting_app.plot_widget.plotItem.legend.items = []
-        pen = pg.mkPen(color="b", width=4)
-        x = self.holdings_dict[ticker]["dividends per year growth lp"][
-            self.shown_year
-        ].index.values
-        y = self.holdings_dict[ticker]["dividends per year growth lp"][
-            self.shown_year
-        ].values
-        self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
-            x, y, name="Dividens per year growth lp", pen=pen, symbol="o"
-        )
+        for year in self.plotting_app.average_years_checkbox.keys():
+            if self.plotting_app.average_years_checkbox[year]["Checkbox"].isChecked():
+                x = self.holdings_dict[ticker]["dividends per year growth lp"][
+                    str(year)
+                ].index.values
+                y = self.holdings_dict[ticker]["dividends per year growth lp"][
+                    str(year)
+                ].values
+                pen = pg.mkPen(
+                    color=self.plotting_app.average_years_checkbox[year]["Color"],
+                    width=4,
+                )
+                self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
+                    x,
+                    y,
+                    name="Dividens per year growth lp: " + str(year),
+                    pen=pen,
+                    symbol="o",
+                )
 
     def update_dividend_bars(self, ticker):
         self.plotting_app.bar_plot_widget.clear()
@@ -206,7 +216,7 @@ class PlottingApp(QtGui.QWidget):
             )
         self.top_layout.addRow("Security:", self.security_cb)
         self.top_layout.addRow("Number of years for average:", self.average_years_cb)
-        self.create_average_layout(average_years)
+        self.create_average_layout(average_years, update_average_years_function)
         self.top_layout.addRow("Visible plots", self.average_years_layout)
         self.top_layout.addRow("Second figure:", self.second_figure_cb)
         self.plot_widget = pg.PlotWidget()
@@ -243,12 +253,23 @@ class PlottingApp(QtGui.QWidget):
         self.current_second_figure = "Bar chart: Dividens paid"
         self.setLayout(self.main_layout)
 
-    def create_average_layout(self, average_years):
+    def create_average_layout(self, average_years, update_average_years_function):
+        rng = np.random.default_rng(seed=42)
+
         self.average_years_layout = QtGui.QHBoxLayout()
-        self.average_chers_checkbox = dict()
+        self.average_years_checkbox = dict()
         for year in average_years:
-            self.average_chers_checkbox[year] = QtGui.QCheckBox(str(year))
-            self.average_years_layout.addWidget(self.average_chers_checkbox[year])
+            self.average_years_checkbox[year] = dict()
+            self.average_years_checkbox[year]["Checkbox"] = QtGui.QCheckBox(str(year))
+            self.average_years_layout.addWidget(
+                self.average_years_checkbox[year]["Checkbox"]
+            )
+            self.average_years_checkbox[year]["Checkbox"].stateChanged.connect(
+                update_average_years_function
+            )
+            self.average_years_checkbox[year]["Color"] = rng.integers(
+                low=0, high=255, size=3
+            ).tolist()
 
     def update_second_figure(self, desired_plot):
         logger.info(f"Second plot changed to {desired_plot}")
