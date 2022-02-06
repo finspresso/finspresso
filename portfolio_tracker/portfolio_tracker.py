@@ -133,7 +133,7 @@ class DividendProjector:
                 ].values
                 pen = pg.mkPen(
                     color=self.plotting_app.average_years_checkbox[year]["Color"],
-                    width=3,
+                    width=4,
                 )
                 self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
                     x,
@@ -213,9 +213,10 @@ class PlottingApp(QtGui.QWidget):
         self.top_layout.addRow("Averaging years:", self.average_years_layout)
         self.top_layout.addRow("Second figure:", self.second_figure_cb)
         self.plot_widget = pg.PlotWidget()
-        self.plot_widget.addLegend()
-        self.plot_widget.setLabel("bottom", "year")
-        self.plot_widget.setLabel("left", "dividend growth rate %")
+        labelStyle = {"font-size": "30px"}
+        self.plot_widget.addLegend(labelTextSize="18pt", offset=(10, 10))
+        self.plot_widget.setLabel("bottom", "Year", **labelStyle)
+        self.plot_widget.setLabel("left", "dividend growth rate %", **labelStyle)
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
         self.bar_plot_widget = pg.PlotWidget()
         self.bar_plot_widget.setLabel("bottom", "year")
