@@ -50,8 +50,6 @@ class DividendProjector:
         self.plotting_app.average_years_checkbox[self.average_years[0]][
             "Checkbox"
         ].setChecked(True)
-        self.shown_year = 3
-        self.plotting_app.average_years_cb.setCurrentText(str(self.window_size))
         self.update_plots(self.plotting_app.security_cb.currentText())
 
     def update_tooltip_dividend(self, evt):
@@ -116,7 +114,6 @@ class DividendProjector:
         self.update_dividend_growth_diff_hist(ticker)
 
     def update_dividend_average_years(self, value):
-        self.shown_year = value
         self.update_plot_dividend_growth(self.plotting_app.security_cb.currentText())
 
     def update_plot_dividend_growth(self, ticker):
@@ -211,16 +208,9 @@ class PlottingApp(QtGui.QWidget):
         if combo_list:
             combo_list.sort()
             self.security_cb.addItems(combo_list)
-        self.average_years_cb = QtGui.QComboBox()
-        self.average_years_cb.addItems(["1", "2", "3", "4", "5"])
-        if update_average_years_function is not None:
-            self.average_years_cb.currentTextChanged.connect(
-                update_average_years_function
-            )
         self.top_layout.addRow("Security:", self.security_cb)
-        self.top_layout.addRow("Number of years for average:", self.average_years_cb)
         self.create_average_layout(average_years, update_average_years_function)
-        self.top_layout.addRow("Visible plots", self.average_years_layout)
+        self.top_layout.addRow("Averaging years:", self.average_years_layout)
         self.top_layout.addRow("Second figure:", self.second_figure_cb)
         self.plot_widget = pg.PlotWidget()
         self.plot_widget.addLegend()
