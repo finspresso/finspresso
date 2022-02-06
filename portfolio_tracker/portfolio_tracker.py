@@ -119,7 +119,6 @@ class DividendProjector:
     def update_plot_dividend_growth(self, ticker):
         self.plotting_app.plot_widget.clear()
         self.plotting_app.plot_widget.plotItem.legend.items = []
-        pen = pg.mkPen(color=[255, 0, 0], width=4)
         # from PyQt5.QtCore import pyqtRemoveInputHook
         # pyqtRemoveInputHook()
         # import pdb; pdb.set_trace()
@@ -134,14 +133,15 @@ class DividendProjector:
                 ].values
                 pen = pg.mkPen(
                     color=self.plotting_app.average_years_checkbox[year]["Color"],
-                    width=4,
+                    width=3,
                 )
                 self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
                     x,
                     y,
-                    name="Dividens per year growth lp: " + str(year),
+                    name="Averaged years: " + str(year),
                     pen=pen,
                     symbol="o",
+                    symbolSize=6,
                 )
 
     def update_dividend_bars(self, ticker):
