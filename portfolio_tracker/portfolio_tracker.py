@@ -109,6 +109,7 @@ class DividendProjector:
 
     def update_plots(self, ticker):
         self.selected_ticker = ticker
+        self.plotting_app.reenable_autoscale()
         self.update_plot_dividend_growth(ticker)
         self.update_dividend_bars(ticker)
         self.update_dividend_growth_diff_hist(ticker)
@@ -246,6 +247,10 @@ class PlottingApp(QtGui.QWidget):
         }
         self.current_second_figure = "Bar chart: Dividens paid"
         self.setLayout(self.main_layout)
+
+    def reenable_autoscale(self):
+        self.plot_widget.enableAutoRange()
+        self.plot_widget.setAutoVisible(x=True, y=True)
 
     def create_average_layout(self, average_years, update_average_years_function):
         rng = np.random.default_rng(seed=42)
