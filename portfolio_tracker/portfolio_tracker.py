@@ -101,35 +101,62 @@ class DividendProjector:
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
-                security["dividends per year growth lp"] = dict()
+                security["rolling average dividends per year"] = dict()
+                security["rolling geometric average dividends per year"] = dict()
                 for year in self.average_years:
-                    security["dividends per year growth lp"][str(year)] = (
+                    security["rolling average dividends per year"][str(year)] = (
                         security["dividends per year growth"].rolling(year).mean()
                     )
+                    security["rolling geometric average dividends per year"][
+                        str(year)
+                    ] = dividends_per_year.rolling(year).apply(
+                        lambda x: self.get_geometric_mean(x)
+                    )
+
+    @staticmethod
+    def get_geometric_mean(x):
+        n = x.shape[0] - 1
+        x0 = x.iloc[0]
+        x1 = x.iloc[-1]
+        geometric_mean = (x1 / x0) ** (1 / n) - 1 if n > 0 else 0
+        geometric_mean *= 100
+        return geometric_mean
+
+    # print(np.random.randn(100))
+    # series = pd.Series(data=np.random.rand(100))
+    # geometric_mean = series.rolling(5).apply(lambda x: get_geometric_mean(x))
 
     def update_plots(self, ticker):
         self.selected_ticker = ticker
         self.plotting_app.reenable_autoscale()
-        self.update_plot_dividend_growth(ticker)
-        self.update_dividend_bars(ticker)
-        self.update_dividend_growth_diff_hist(ticker)
+        self.update_plot_dividend_growth()
+        self.update_dividend_bars()
+        self.update_dividend_growth_diff_hist()
 
-    def update_dividend_average_years(self, value):
-        self.update_plot_dividend_growth(self.plotting_app.security_cb.currentText())
+    def update_dividend_average_years(self):
+        self.update_plot_dividend_growth()
 
-    def update_plot_dividend_growth(self, ticker):
+    def update_plot_dividend_growth(self):
+        ticker = self.plotting_app.security_cb.currentText()
         self.plotting_app.plot_widget.clear()
         self.plotting_app.plot_widget.plotItem.legend.items = []
         # from PyQt5.QtCore import pyqtRemoveInputHook
         # pyqtRemoveInputHook()
         # import pdb; pdb.set_trace()
         # if self.plotting_app.plot_widget.plotItem.legend is not None:
+        if self.plotting_app.averaging_cb.currentText() == "Simple averaging":
+            visible_averaging_values_key = "rolling average dividends per year"
+        elif self.plotting_app.averaging_cb.currentText() == "Geometric averaging":
+            visible_averaging_values_key = (
+                "rolling geometric average dividends per year"
+            )
         for year in self.plotting_app.average_years_checkbox.keys():
             if self.plotting_app.average_years_checkbox[year]["Checkbox"].isChecked():
-                x = self.holdings_dict[ticker]["dividends per year growth lp"][
+
+                x = self.holdings_dict[ticker][visible_averaging_values_key][
                     str(year)
                 ].index.values
-                y = self.holdings_dict[ticker]["dividends per year growth lp"][
+                y = self.holdings_dict[ticker][visible_averaging_values_key][
                     str(year)
                 ].values
                 pen = pg.mkPen(
@@ -145,7 +172,8 @@ class DividendProjector:
                     symbolSize=6,
                 )
 
-    def update_dividend_bars(self, ticker):
+    def update_dividend_bars(self):
+        ticker = self.plotting_app.security_cb.currentText()
         self.plotting_app.bar_plot_widget.clear()
         security = self.holdings_dict[ticker]
         x = security["dividends per year"][
@@ -159,7 +187,8 @@ class DividendProjector:
         )  # TODO: Ensure that current year does not show in bar graph
         self.plotting_app.bar_plot_widget.addItem(bargraph)
 
-    def update_dividend_growth_diff_hist(self, ticker):
+    def update_dividend_growth_diff_hist(self):
+        ticker = self.plotting_app.security_cb.currentText()
         self.plotting_app.histogram_variance_widget.clear()
         security = self.holdings_dict[ticker]
         boolean_vec = (
@@ -201,6 +230,8 @@ class PlottingApp(QtGui.QWidget):
         self.main_layout = QtGui.QVBoxLayout()
         self.top_layout = QtGui.QFormLayout()
         self.security_cb = QtGui.QComboBox()
+        self.averaging_cb = QtGui.QComboBox()
+        self.averaging_cb.addItems(["Simple averaging", "Geometric averaging"])
         self.second_figure_cb = QtGui.QComboBox()
         self.second_figure_cb.addItems(
             ["Bar chart: Dividens paid", "Histogram: Delta dividend growth rate"]
@@ -210,6 +241,7 @@ class PlottingApp(QtGui.QWidget):
             combo_list.sort()
             self.security_cb.addItems(combo_list)
         self.top_layout.addRow("Security:", self.security_cb)
+        self.top_layout.addRow("Averaging method:", self.averaging_cb)
         self.create_average_layout(average_years, update_average_years_function)
         self.top_layout.addRow("Averaging years:", self.average_years_layout)
         self.top_layout.addRow("Second figure:", self.second_figure_cb)
@@ -227,6 +259,7 @@ class PlottingApp(QtGui.QWidget):
         self.bar_plot_widget.showGrid(x=False, y=True, alpha=0.4)
         if update_function is not None:
             self.security_cb.currentTextChanged.connect(update_function)
+            self.averaging_cb.currentTextChanged.connect(update_function)
         self.main_layout.addLayout(self.top_layout)
         self.main_layout.addWidget(self.plot_widget)
         self.main_layout.addWidget(self.bar_plot_widget)
