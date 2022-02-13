@@ -25,12 +25,8 @@ pg.setConfigOption("foreground", "k")
 
 
 class DividendProjector:
-    def __init__(
-        self, holdings_file="holdings.json", window_size=3, geometric_mean_horizon=5
-    ):
+    def __init__(self, holdings_file="holdings.json"):
         self.holdings_file = Path(holdings_file)
-        self.window_size = window_size
-        self.geometric_mean_horizon = geometric_mean_horizon
         self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
         self.load_holdings()
@@ -313,17 +309,9 @@ def main():
         help="JSON file containing portfolio holdings",
         default="holdings.json",
     )
-    parser.add_argument(
-        "--window_size",
-        help="Size of window in year for average of dividend growth",
-        default=3,
-        type=int,
-    )
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
-    dividend_projector = DividendProjector(
-        holdings_file=args.holdings_file, window_size=args.window_size
-    )
+    dividend_projector = DividendProjector(holdings_file=args.holdings_file)
     dividend_projector.plotting_app.show()
 
     sys.exit(app.exec_())
