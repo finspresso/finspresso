@@ -122,10 +122,6 @@ class DividendProjector:
         geometric_mean *= 100
         return geometric_mean
 
-    # print(np.random.randn(100))
-    # series = pd.Series(data=np.random.rand(100))
-    # geometric_mean = series.rolling(5).apply(lambda x: get_geometric_mean(x))
-
     def update_plots(self, ticker):
         self.selected_ticker = ticker
         self.plotting_app.reenable_autoscale()
