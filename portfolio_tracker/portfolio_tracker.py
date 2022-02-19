@@ -46,16 +46,17 @@ class DividendProjector:
         self.plotting_app.average_years_checkbox[self.average_years[0]][
             "Checkbox"
         ].setChecked(True)
-        self.update_plots(self.plotting_app.security_cb.currentText())
+        self.update_plots()
 
     def update_tooltip_dividend(self, evt):
         mousePoint = self.plotting_app.bar_plot_widget.plotItem.vb.mapSceneToView(evt)
+        selected_ticker = self.plotting_app.security_cb.currentText()
         year, dividend = self.get_closest_point(
             mousePoint.x(),
-            self.holdings_dict[self.selected_ticker]["dividends per year"],
+            self.holdings_dict[selected_ticker]["dividends per year"],
         )
         self.plotting_app.bar_plot_widget.setToolTip(
-            f"year: {year}, dividend: {dividend}"
+            f"year: {year}, dividend: {round(dividend,2)}"
         )
 
     @staticmethod
@@ -135,8 +136,7 @@ class DividendProjector:
         ema = ema.sum()
         return ema
 
-    def update_plots(self, ticker):
-        self.selected_ticker = ticker
+    def update_plots(self):
         self.plotting_app.reenable_autoscale()
         self.update_plot_dividend_growth()
         self.update_dividend_bars()
