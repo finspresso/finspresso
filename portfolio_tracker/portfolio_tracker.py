@@ -97,16 +97,22 @@ class DividendProjector:
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
-                security["rolling average dividends per year"] = dict()
+                security["rolling average dividend growth per year"] = dict()
                 security["rolling geometric average dividends per year"] = dict()
+                security["rolling ema dividend growth per year"] = dict()
                 for year in self.average_years:
-                    security["rolling average dividends per year"][str(year)] = (
+                    security["rolling average dividend growth per year"][str(year)] = (
                         security["dividends per year growth"].rolling(year).mean()
                     )
                     security["rolling geometric average dividends per year"][
                         str(year)
                     ] = dividends_per_year.rolling(year).apply(
                         lambda x: self.get_geometric_mean(x)
+                    )
+                    security["rolling ema dividend growth per year"][str(year)] = (
+                        security["dividends per year growth"]
+                        .rolling(year)
+                        .apply(lambda x: self.get_ema(x))
                     )
 
     @staticmethod
@@ -117,6 +123,17 @@ class DividendProjector:
         geometric_mean = (x1 / x0) ** (1 / n) - 1 if n > 0 else 0
         geometric_mean *= 100
         return geometric_mean
+
+    @staticmethod
+    def get_ema(x):
+        N_ema = x.shape[0]
+        alpha = 2 / (N_ema + 1)
+        k = np.array(range(0, N_ema))
+        weights = [alpha * (1 - alpha) ** p for p in k]
+        weights = np.array(weights[::-1])
+        ema = weights * x
+        ema = ema.sum()
+        return ema
 
     def update_plots(self, ticker):
         self.selected_ticker = ticker
@@ -137,11 +154,16 @@ class DividendProjector:
         # import pdb; pdb.set_trace()
         # if self.plotting_app.plot_widget.plotItem.legend is not None:
         if self.plotting_app.averaging_cb.currentText() == "Simple averaging":
-            visible_averaging_values_key = "rolling average dividends per year"
+            visible_averaging_values_key = "rolling average dividend growth per year"
         elif self.plotting_app.averaging_cb.currentText() == "Geometric averaging":
             visible_averaging_values_key = (
                 "rolling geometric average dividends per year"
             )
+        elif (
+            self.plotting_app.averaging_cb.currentText()
+            == "Exponential weighted averaging"
+        ):
+            visible_averaging_values_key = "rolling ema dividend growth per year"
         for year in self.plotting_app.average_years_checkbox.keys():
             if self.plotting_app.average_years_checkbox[year]["Checkbox"].isChecked():
 
@@ -223,7 +245,13 @@ class PlottingApp(QtGui.QWidget):
         self.top_layout = QtGui.QFormLayout()
         self.security_cb = QtGui.QComboBox()
         self.averaging_cb = QtGui.QComboBox()
-        self.averaging_cb.addItems(["Simple averaging", "Geometric averaging"])
+        self.averaging_cb.addItems(
+            [
+                "Simple averaging",
+                "Geometric averaging",
+                "Exponential weighted averaging",
+            ]
+        )
         self.second_figure_cb = QtGui.QComboBox()
         self.second_figure_cb.addItems(
             ["Bar chart: Dividens paid", "Histogram: Delta dividend growth rate"]
