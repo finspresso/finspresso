@@ -180,7 +180,7 @@ class DividendProjector:
                 self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
                     x,
                     y,
-                    name="Averaged years: " + str(year),
+                    name="Window size: " + str(year) + " years",
                     pen=pen,
                     symbol="o",
                     symbolSize=6,
