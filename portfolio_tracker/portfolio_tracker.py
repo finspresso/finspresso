@@ -254,7 +254,11 @@ class PlottingApp(QtGui.QWidget):
         )
         self.second_figure_cb = QtGui.QComboBox()
         self.second_figure_cb.addItems(
-            ["Bar chart: Dividens paid", "Histogram: Delta dividend growth rate"]
+            [
+                "Bar chart: Dividens paid",
+                "Histogram: Delta dividend growth rate",
+                "None",
+            ]
         )
         self.second_figure_cb.currentTextChanged.connect(self.update_second_figure)
         if combo_list:
@@ -297,6 +301,7 @@ class PlottingApp(QtGui.QWidget):
         self.second_figure_dict = {
             "Bar chart: Dividens paid": self.bar_plot_widget,
             "Histogram: Delta dividend growth rate": self.histogram_variance_widget,
+            "None": self.bar_plot_widget,
         }
         self.current_second_figure = "Bar chart: Dividens paid"
         self.setLayout(self.main_layout)
@@ -327,7 +332,10 @@ class PlottingApp(QtGui.QWidget):
         logger.info(f"Second plot changed to {desired_plot}")
         self.second_figure_dict[self.current_second_figure].setParent(None)
         self.current_second_figure = desired_plot
-        self.main_layout.addWidget(self.second_figure_dict[self.current_second_figure])
+        if desired_plot != "None":
+            self.main_layout.addWidget(
+                self.second_figure_dict[self.current_second_figure]
+            )
 
 
 def main():
