@@ -2,17 +2,17 @@
     "securities":[
                  { "name":"Pfizer",
                     "ticker": "PFE",
-                    "quantity": 1000,
+                    "quantity": 2000,
                     "yfinance": true
                  },
                  { "name":"British American Tobaco",
                   "ticker": "BTI",
-                  "quantity": 400,
+                  "quantity": 300,
                   "yfinance": true
                  },
                  { "name":"Schwab US dividend",
                     "ticker": "SCHD",
-                    "quantity": 1483,
+                    "quantity": 1000,
                     "yfinance": true
                  }
             ]

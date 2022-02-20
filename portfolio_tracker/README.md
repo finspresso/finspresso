@@ -1,18 +1,17 @@
 # Portfolio tracker
-The goal of the portfolio tracker is to give the user the option enter his/her holdings via a .json file and it outputs different metrics e.g. dividend, dividend growth rate
+The goal of the portfolio tracker is to give the user the option enter his/her holdings via a .json file and it outputs different metrics e.g. dividend, dividend growth rate. Enter your holdings in the desired .json file in the same format as in the file `holdings_single.json`. Then to run the portfolio tracker run:
+
+`python portfolio_tracker.py --holdings_file holdings_single.json`
 
 ## Installation
 In order to be able to run the Python script, run:
-
-`pip install -r requirements.txt`
-
-The financial data in the tool is downloaded from Yahoo Finance via the API Python wrapper [yfinance](https://github.com/ranaroussi/yfinance). Please note, the given scripts are merely educational nature and should only used for personal usage according to the Yahoo terms of use [here](https://policies.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.htm), [here](https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html), [here](https://policies.yahoo.com/us/en/yahoo/terms/index.htm)
-
-## Dividend analyzer
-
-## Installation
-In order to be able to run the Python script, run:
+Installation of pre-commit hooks
 
 `pip install -r requirements.txt`
 
 `pre-commit install`
+
+## Data source
+The financial data in the tool is downloaded from Yahoo Finance via the API Python wrapper [yfinance](https://github.com/ranaroussi/yfinance). Please note, the given scripts are merely educational nature and should only used for personal usage according to the Yahoo terms of use [here](https://policies.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.htm), [here](https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html), [here](https://policies.yahoo.com/us/en/yahoo/terms/index.htm)
+
+## Dividend analyzer
