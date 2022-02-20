@@ -1,4 +1,11 @@
 # Portfolio tracker
+The goal of the portfolio tracker is to give the user the option enter his/her holdings via a .json file and it outputs different metrics e.g. dividend, dividend growth rate
+
+## Installation
+In order to be able to run the Python script, run:
+
+`pip install -r requirements.txt`
+
 The financial data in the tool is downloaded from Yahoo Finance via the API Python wrapper [yfinance](https://github.com/ranaroussi/yfinance). Please note, the given scripts are merely educational nature and should only used for personal usage according to the Yahoo terms of use [here](https://policies.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.htm), [here](https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html), [here](https://policies.yahoo.com/us/en/yahoo/terms/index.htm)
 
 ## Dividend analyzer
