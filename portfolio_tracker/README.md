@@ -5,7 +5,6 @@ The goal of the portfolio tracker is to give the user the option enter his/her h
 
 ## Installation
 In order to be able to run the Python script, run:
-Installation of pre-commit hooks
 
 `pip install -r requirements.txt`
 
