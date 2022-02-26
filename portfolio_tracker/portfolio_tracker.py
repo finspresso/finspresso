@@ -108,11 +108,18 @@ class DividendProjector:
                 for year in self.average_years:
                     security["rolling average dividend growth per year"]["estimate"][
                         str(year)
-                    ] = (security["dividends per year growth"].rolling(year).mean())
+                    ] = (
+                        security["dividends per year growth"]
+                        .rolling(year)
+                        .mean()
+                        .shift()
+                    )
                     security["rolling geometric average dividends per year"][
                         "estimate"
-                    ][str(year)] = dividends_per_year.rolling(year).apply(
-                        lambda x: self.get_geometric_mean(x)
+                    ][str(year)] = (
+                        dividends_per_year.rolling(year)
+                        .apply(lambda x: self.get_geometric_mean(x))
+                        .shift()
                     )
                     security["rolling ema dividend growth per year"]["estimate"][
                         str(year)
@@ -120,6 +127,7 @@ class DividendProjector:
                         security["dividends per year growth"]
                         .rolling(year)
                         .apply(lambda x: self.get_ema(x))
+                        .shift()
                     )
 
     @staticmethod
@@ -158,7 +166,18 @@ class DividendProjector:
         # from PyQt5.QtCore import pyqtRemoveInputHook
         # pyqtRemoveInputHook()
         # import pdb; pdb.set_trace()
-        # if self.plotting_app.plot_widget.plotItem.legend is not None:
+        pen = pg.mkPen(
+            color="red",
+            width=4,
+        )
+        self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
+            self.holdings_dict[ticker]["dividends per year growth"].index.values,
+            self.holdings_dict[ticker]["dividends per year growth"].values,
+            name="Real dividend growth",
+            pen=pen,
+            symbol="o",
+            symbolSize=6,
+        )
         if self.plotting_app.averaging_cb.currentText() == "Simple averaging":
             visible_averaging_values_key = "rolling average dividend growth per year"
         elif self.plotting_app.averaging_cb.currentText() == "Geometric averaging":
@@ -183,10 +202,10 @@ class DividendProjector:
                     color=self.plotting_app.average_years_checkbox[year]["Color"],
                     width=4,
                 )
-                self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
+                self.plotting_app.plot_widget.plot(
                     x,
                     y,
-                    name="Window size: " + str(year) + " years",
+                    name="Estimate: " + str(year) + " years window size",
                     pen=pen,
                     symbol="o",
                     symbolSize=6,
