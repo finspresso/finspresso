@@ -295,15 +295,15 @@ class PlottingApp(QtGui.QWidget):
         self.top_layout.addRow("Averaging years:", self.average_years_layout)
         self.top_layout.addRow("Second figure:", self.second_figure_cb)
         self.plot_widget = pg.PlotWidget()
-        labelStyle = {"font-size": "30px"}
-        self.plot_widget.addLegend(labelTextSize="18pt", offset=(10, 10))
-        self.plot_widget.setLabel("bottom", "Year", **labelStyle)
-        self.plot_widget.setLabel("left", "dividend growth rate %", **labelStyle)
+        label_style = {"font-size": "20px"}
+        self.plot_widget.addLegend(labelTextSize="14pt", offset=(10, 10))
+        self.plot_widget.setLabel("bottom", "Year", **label_style)
+        self.plot_widget.setLabel("left", "dividend growth rate %", **label_style)
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
         self.bar_plot_widget = pg.PlotWidget()
-        self.bar_plot_widget.setLabel("bottom", "year")
+        self.bar_plot_widget.setLabel("bottom", "Year", **label_style)
         self.bar_plot_widget.setLabel(
-            "left", "absolute dividend [USD]"
+            "left", "absolute dividend [USD]", **label_style
         )  # TODO: Make it adaptive depending on currency
         self.bar_plot_widget.showGrid(x=False, y=True, alpha=0.4)
         if update_function is not None:
