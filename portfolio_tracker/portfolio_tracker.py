@@ -98,19 +98,25 @@ class DividendProjector:
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
-                security["rolling average dividend growth per year"] = dict()
-                security["rolling geometric average dividends per year"] = dict()
-                security["rolling ema dividend growth per year"] = dict()
+                security["rolling average dividend growth per year"] = {
+                    "estimate": dict()
+                }
+                security["rolling geometric average dividends per year"] = {
+                    "estimate": dict()
+                }
+                security["rolling ema dividend growth per year"] = {"estimate": dict()}
                 for year in self.average_years:
-                    security["rolling average dividend growth per year"][str(year)] = (
-                        security["dividends per year growth"].rolling(year).mean()
-                    )
-                    security["rolling geometric average dividends per year"][
+                    security["rolling average dividend growth per year"]["estimate"][
                         str(year)
-                    ] = dividends_per_year.rolling(year).apply(
+                    ] = (security["dividends per year growth"].rolling(year).mean())
+                    security["rolling geometric average dividends per year"][
+                        "estimate"
+                    ][str(year)] = dividends_per_year.rolling(year).apply(
                         lambda x: self.get_geometric_mean(x)
                     )
-                    security["rolling ema dividend growth per year"][str(year)] = (
+                    security["rolling ema dividend growth per year"]["estimate"][
+                        str(year)
+                    ] = (
                         security["dividends per year growth"]
                         .rolling(year)
                         .apply(lambda x: self.get_ema(x))
@@ -168,11 +174,11 @@ class DividendProjector:
             if self.plotting_app.average_years_checkbox[year]["Checkbox"].isChecked():
 
                 x = self.holdings_dict[ticker][visible_averaging_values_key][
-                    str(year)
-                ].index.values
+                    "estimate"
+                ][str(year)].index.values
                 y = self.holdings_dict[ticker][visible_averaging_values_key][
-                    str(year)
-                ].values
+                    "estimate"
+                ][str(year)].values
                 pen = pg.mkPen(
                     color=self.plotting_app.average_years_checkbox[year]["Color"],
                     width=4,
