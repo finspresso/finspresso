@@ -37,7 +37,7 @@ class DividendProjector:
             if security["yfinance"]
         ]
         self.plotting_app = PlottingApp(
-            combo_list=self.tickers,
+            combo_list_tickers=self.tickers,
             update_function=self.update_plots,
             update_average_years_function=self.update_dividend_average_years,
             update_mouse_function_dividend=self.update_tooltip_dividend,
@@ -258,7 +258,7 @@ class DividendProjector:
 class PlottingApp(QtGui.QWidget):
     def __init__(
         self,
-        combo_list=[],
+        combo_list_tickers=[],
         update_function=None,
         update_average_years_function=None,
         update_mouse_function_dividend=None,
@@ -286,9 +286,8 @@ class PlottingApp(QtGui.QWidget):
             ]
         )
         self.second_figure_cb.currentTextChanged.connect(self.update_second_figure)
-        if combo_list:
-            combo_list.sort()
-            self.security_cb.addItems(combo_list)
+        if combo_list_tickers:
+            self.security_cb.addItems(combo_list_tickers)
         self.top_layout.addRow("Security:", self.security_cb)
         self.top_layout.addRow("Averaging method:", self.averaging_cb)
         self.create_average_layout(average_years, update_average_years_function)
