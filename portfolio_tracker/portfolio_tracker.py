@@ -354,7 +354,7 @@ class PlottingApp(QtGui.QWidget):
             ).tolist()
 
     def update_second_figure(self, desired_plot):
-        logger.info(f"Second plot changed to {desired_plot}")
+        logger.debug(f"Second plot changed to {desired_plot}")
         self.second_figure_dict[self.current_second_figure].setParent(None)
         self.current_second_figure = desired_plot
         if desired_plot != "None":
