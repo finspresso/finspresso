@@ -86,6 +86,11 @@ class DividendProjector:
                 )
         self.compute_dividend_growth_values()
 
+    @staticmethod
+    def construct_estimation_dict():
+        estimation_dict = {"estimate": dict(), "estimate deviation": dict()}
+        return estimation_dict
+
     def compute_dividend_growth_values(self):
         for security in self.holdings_dict.values():
             if security.get("yfinance", False):
@@ -98,13 +103,15 @@ class DividendProjector:
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
-                security["rolling average dividend growth per year"] = {
-                    "estimate": dict()
-                }
-                security["rolling geometric average dividends per year"] = {
-                    "estimate": dict()
-                }
-                security["rolling ema dividend growth per year"] = {"estimate": dict()}
+                security[
+                    "rolling average dividend growth per year"
+                ] = self.construct_estimation_dict()
+                security[
+                    "rolling geometric average dividends per year"
+                ] = self.construct_estimation_dict()
+                security[
+                    "rolling ema dividend growth per year"
+                ] = self.construct_estimation_dict()
                 for year in self.average_years:
                     security["rolling average dividend growth per year"]["estimate"][
                         str(year)
@@ -128,6 +135,30 @@ class DividendProjector:
                         .rolling(year)
                         .apply(lambda x: self.get_ema(x))
                         .shift()
+                    )
+                    security["rolling average dividend growth per year"][
+                        "estimate deviation"
+                    ][str(year)] = (
+                        security["rolling average dividend growth per year"][
+                            "estimate"
+                        ][str(year)]
+                        - security["dividends per year growth"]
+                    )
+                    security["rolling geometric average dividends per year"][
+                        "estimate deviation"
+                    ][str(year)] = (
+                        security["rolling geometric average dividends per year"][
+                            "estimate"
+                        ][str(year)]
+                        - security["dividends per year growth"]
+                    )
+                    security["rolling ema dividend growth per year"][
+                        "estimate deviation"
+                    ][str(year)] = (
+                        security["rolling ema dividend growth per year"]["estimate"][
+                            str(year)
+                        ]
+                        - security["dividends per year growth"]
                     )
 
     @staticmethod
