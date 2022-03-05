@@ -88,7 +88,7 @@ class DividendProjector:
 
     @staticmethod
     def construct_estimation_dict():
-        estimation_dict = {"estimate": dict(), "deviation": dict()}
+        estimation_dict = {"estimate": dict(), "deviation": dict(), "rmsd": dict()}
         return estimation_dict
 
     def compute_dividend_growth_values(self):
@@ -121,28 +121,12 @@ class DividendProjector:
                         .mean()
                         .shift()
                     )
-                    security["rolling average dividend growth per year"]["deviation"][
-                        str(year)
-                    ] = (
-                        security["rolling average dividend growth per year"][
-                            "estimate"
-                        ][str(year)]
-                        - security["dividends per year growth"]
-                    )
                     security["rolling geometric average dividends per year"][
                         "estimate"
                     ][str(year)] = (
                         dividends_per_year.rolling(year)
                         .apply(lambda x: self.get_geometric_mean(x))
                         .shift()
-                    )
-                    security["rolling geometric average dividends per year"][
-                        "deviation"
-                    ][str(year)] = (
-                        security["rolling geometric average dividends per year"][
-                            "estimate"
-                        ][str(year)]
-                        - security["dividends per year growth"]
                     )
                     security["rolling ema dividend growth per year"]["estimate"][
                         str(year)
@@ -152,14 +136,26 @@ class DividendProjector:
                         .apply(lambda x: self.get_ema(x))
                         .shift()
                     )
-                    security["rolling ema dividend growth per year"]["deviation"][
-                        str(year)
-                    ] = (
-                        security["rolling ema dividend growth per year"]["estimate"][
+                    averaging_names = [
+                        "rolling average dividend growth per year",
+                        "rolling geometric average dividends per year",
+                        "rolling ema dividend growth per year",
+                    ]
+                    for averaging_name in averaging_names:
+                        security[averaging_name]["deviation"][str(year)] = (
+                            security[averaging_name]["estimate"][str(year)]
+                            - security["dividends per year growth"]
+                        )
+                        security[averaging_name]["rmsd"][
                             str(year)
-                        ]
-                        - security["dividends per year growth"]
-                    )
+                        ] = self.get_root_mean_square_deviation(
+                            security[averaging_name]["deviation"][str(year)]
+                        )
+
+    @staticmethod
+    def get_root_mean_square_deviation(x):
+        rmsd = np.sqrt((x ** 2).mean())
+        return rmsd
 
     @staticmethod
     def get_geometric_mean(x):
