@@ -194,6 +194,8 @@ class DividendProjector:
         ticker = self.plotting_app.security_cb.currentText()
         self.plotting_app.plot_widget.clear()
         self.plotting_app.plot_widget.plotItem.legend.items = []
+        self.plotting_app.plot_widget_diff.clear()
+        self.plotting_app.plot_widget_diff.plotItem.legend.items = []
         # from PyQt5.QtCore import pyqtRemoveInputHook
         # pyqtRemoveInputHook()
         # import pdb; pdb.set_trace()
@@ -237,6 +239,17 @@ class DividendProjector:
                     x,
                     y,
                     name="Estimate: " + str(year) + " years window size",
+                    pen=pen,
+                    symbol="o",
+                    symbolSize=6,
+                )
+                y_diff = (
+                    y - self.holdings_dict[ticker]["dividends per year growth"].values
+                )
+                self.plotting_app.plot_widget_diff.plot(
+                    x,
+                    y_diff,
+                    name="Estimate - Real: " + str(year) + " years window size",
                     pen=pen,
                     symbol="o",
                     symbolSize=6,
@@ -313,6 +326,7 @@ class PlottingApp(QtGui.QWidget):
             [
                 "Bar chart: Dividens paid",
                 "Histogram: Delta dividend growth rate",
+                "Difference: Estimate - Real",
                 "None",
             ]
         )
@@ -330,6 +344,13 @@ class PlottingApp(QtGui.QWidget):
         self.plot_widget.setLabel("bottom", "Year", **label_style)
         self.plot_widget.setLabel("left", "dividend growth rate %", **label_style)
         self.plot_widget.showGrid(x=True, y=True, alpha=0.4)
+        self.plot_widget_diff = pg.PlotWidget()
+        self.plot_widget_diff.addLegend(labelTextSize="14pt", offset=(10, 10))
+        self.plot_widget_diff.setLabel("bottom", "Year", **label_style)
+        self.plot_widget_diff.setLabel(
+            "left", "Deviation dividend growth rate %", **label_style
+        )
+        self.plot_widget_diff.showGrid(x=True, y=True, alpha=0.4)
         self.bar_plot_widget = pg.PlotWidget()
         self.bar_plot_widget.setLabel("bottom", "Year", **label_style)
         self.bar_plot_widget.setLabel(
@@ -356,6 +377,7 @@ class PlottingApp(QtGui.QWidget):
         self.second_figure_dict = {
             "Bar chart: Dividens paid": self.bar_plot_widget,
             "Histogram: Delta dividend growth rate": self.histogram_variance_widget,
+            "Difference: Estimate - Real": self.plot_widget_diff,
             "None": self.bar_plot_widget,
         }
         self.current_second_figure = "Bar chart: Dividens paid"
@@ -364,6 +386,8 @@ class PlottingApp(QtGui.QWidget):
     def reenable_autoscale(self):
         self.plot_widget.enableAutoRange()
         self.plot_widget.setAutoVisible(x=True, y=True)
+        self.plot_widget_diff.enableAutoRange()
+        self.plot_widget_diff.setAutoVisible(x=True, y=True)
 
     def create_average_layout(self, average_years, update_average_years_function):
         rng = np.random.default_rng(seed=42)
