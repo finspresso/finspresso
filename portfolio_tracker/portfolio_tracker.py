@@ -88,7 +88,7 @@ class DividendProjector:
 
     @staticmethod
     def construct_estimation_dict():
-        estimation_dict = {"estimate": dict(), "estimate deviation": dict()}
+        estimation_dict = {"estimate": dict(), "deviation": dict()}
         return estimation_dict
 
     def compute_dividend_growth_values(self):
@@ -121,12 +121,28 @@ class DividendProjector:
                         .mean()
                         .shift()
                     )
+                    security["rolling average dividend growth per year"]["deviation"][
+                        str(year)
+                    ] = (
+                        security["rolling average dividend growth per year"][
+                            "estimate"
+                        ][str(year)]
+                        - security["dividends per year growth"]
+                    )
                     security["rolling geometric average dividends per year"][
                         "estimate"
                     ][str(year)] = (
                         dividends_per_year.rolling(year)
                         .apply(lambda x: self.get_geometric_mean(x))
                         .shift()
+                    )
+                    security["rolling geometric average dividends per year"][
+                        "deviation"
+                    ][str(year)] = (
+                        security["rolling geometric average dividends per year"][
+                            "estimate"
+                        ][str(year)]
+                        - security["dividends per year growth"]
                     )
                     security["rolling ema dividend growth per year"]["estimate"][
                         str(year)
@@ -136,25 +152,9 @@ class DividendProjector:
                         .apply(lambda x: self.get_ema(x))
                         .shift()
                     )
-                    security["rolling average dividend growth per year"][
-                        "estimate deviation"
-                    ][str(year)] = (
-                        security["rolling average dividend growth per year"][
-                            "estimate"
-                        ][str(year)]
-                        - security["dividends per year growth"]
-                    )
-                    security["rolling geometric average dividends per year"][
-                        "estimate deviation"
-                    ][str(year)] = (
-                        security["rolling geometric average dividends per year"][
-                            "estimate"
-                        ][str(year)]
-                        - security["dividends per year growth"]
-                    )
-                    security["rolling ema dividend growth per year"][
-                        "estimate deviation"
-                    ][str(year)] = (
+                    security["rolling ema dividend growth per year"]["deviation"][
+                        str(year)
+                    ] = (
                         security["rolling ema dividend growth per year"]["estimate"][
                             str(year)
                         ]
@@ -243,9 +243,9 @@ class DividendProjector:
                     symbol="o",
                     symbolSize=6,
                 )
-                y_diff = (
-                    y - self.holdings_dict[ticker]["dividends per year growth"].values
-                )
+                y_diff = self.holdings_dict[ticker][visible_averaging_values_key][
+                    "deviation"
+                ][str(year)].values
                 self.plotting_app.plot_widget_diff.plot(
                     x,
                     y_diff,
