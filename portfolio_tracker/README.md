@@ -21,21 +21,21 @@ The upper plot shows the dividend growth rate with different filter methods. The
 
 * Simple averaging
 * Geometric averaging
-* Expontential weighted averaging
+* Exponential weighted averaging
 
 The filtering considers a certain number of years on a rolling basis. Currently, you can select between 1 to 5 years for the filtering window size.
 
 
 
 
-On the top menu you have a selection GUI where you can select the security, the type of the averaging and the number of years to filter respectively which plot to display in the secon figure:
+On the top menu you have a selection GUI where you can select the security, the type of the averaging and the number of years to filter respectively which plot to display in the second figure:
 
-![meanu_bar](images/menu_bar.png)
+![menu_bar](images/menu_bar.png)
 
 
 The last dropdown menu allows to select the plot in the second figure. You have the following options:
 
-* Yearl dividend paid out:
+* Yearly dividend paid out:
 
 ![dividend2](images/dividend2.png)
 
