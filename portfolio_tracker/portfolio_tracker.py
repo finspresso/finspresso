@@ -372,9 +372,9 @@ class PlottingApp(QtGui.QWidget):
         )  # TODO: Make it adaptive depending on currency
         self.bar_plot_widget.showGrid(x=False, y=True, alpha=0.4)
         self.rmsd_plot_widget = pg.PlotWidget()
-        # self.rmsd_plot_widget.setLabel("bottom", "Year", **label_style)
+        self.rmsd_plot_widget.setLabel("bottom", "Averaging Years", **label_style)
         self.rmsd_plot_widget.setLabel(
-            "left", "Root-mean-square deviation", **label_style
+            "left", "Root-mean-square deviation %", **label_style
         )
         self.rmsd_plot_widget.showGrid(x=False, y=True, alpha=0.4)
         if update_function is not None:
