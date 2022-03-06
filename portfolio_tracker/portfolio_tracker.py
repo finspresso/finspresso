@@ -250,6 +250,7 @@ class DividendProjector:
                     symbol="o",
                     symbolSize=6,
                 )
+        self.update_rmsd_bars(visible_averaging_values_key, ticker)
 
     def update_dividend_bars(self):
         ticker = self.plotting_app.security_cb.currentText()
@@ -265,6 +266,22 @@ class DividendProjector:
             x=x, height=y, width=0.6, brush="g"
         )  # TODO: Ensure that current year does not show in bar graph
         self.plotting_app.bar_plot_widget.addItem(bargraph)
+
+    def update_rmsd_bars(self, visible_averaging_values_key, ticker):
+        self.plotting_app.rmsd_plot_widget.clear()
+        if self.plotting_app.rmsd_plot_widget.plotItem.legend is not None:
+            self.plotting_app.rmsd_plot_widget.plotItem.legend.items = []
+        x = [
+            int(key)
+            for key in self.holdings_dict[ticker][visible_averaging_values_key][
+                "rmsd"
+            ].keys()
+        ]
+        y = list(
+            self.holdings_dict[ticker][visible_averaging_values_key]["rmsd"].values()
+        )
+        bargraph_rmsd = pg.BarGraphItem(x=x, height=y, width=0.6, brush="g")
+        self.plotting_app.rmsd_plot_widget.addItem(bargraph_rmsd)
 
     def update_dividend_growth_diff_hist(self):
         ticker = self.plotting_app.security_cb.currentText()
@@ -323,6 +340,7 @@ class PlottingApp(QtGui.QWidget):
                 "Bar chart: Dividens paid",
                 "Histogram: Delta dividend growth rate",
                 "Difference: Estimate - Real",
+                "Root-mean-square devation",
                 "None",
             ]
         )
@@ -353,6 +371,12 @@ class PlottingApp(QtGui.QWidget):
             "left", "absolute dividend [USD]", **label_style
         )  # TODO: Make it adaptive depending on currency
         self.bar_plot_widget.showGrid(x=False, y=True, alpha=0.4)
+        self.rmsd_plot_widget = pg.PlotWidget()
+        # self.rmsd_plot_widget.setLabel("bottom", "Year", **label_style)
+        self.rmsd_plot_widget.setLabel(
+            "left", "Root-mean-square deviation", **label_style
+        )
+        self.rmsd_plot_widget.showGrid(x=False, y=True, alpha=0.4)
         if update_function is not None:
             self.security_cb.currentTextChanged.connect(update_function)
             self.averaging_cb.currentTextChanged.connect(update_function)
@@ -374,6 +398,7 @@ class PlottingApp(QtGui.QWidget):
             "Bar chart: Dividens paid": self.bar_plot_widget,
             "Histogram: Delta dividend growth rate": self.histogram_variance_widget,
             "Difference: Estimate - Real": self.plot_widget_diff,
+            "Root-mean-square devation": self.rmsd_plot_widget,
             "None": self.bar_plot_widget,
         }
         self.current_second_figure = "Bar chart: Dividens paid"
