@@ -17,7 +17,7 @@ The financial data in the tool is downloaded from Yahoo Finance via the API Pyth
 
 ![dividend1](images/dividend1.png)
 
-The upper plot shows the dividend growth rate with different filter methods. There are three filtering methods availabel:
+The upper plot shows the dividend growth rate with different filter methods. There are three filtering methods available:
 
 * Simple averaging
 * Geometric averaging
