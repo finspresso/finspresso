@@ -37,27 +37,29 @@ class TabWindow(QtGui.QTabWidget):
             for security in self.holdings_dict.values()
             if security["yfinance"]
         ]
-        self.plotting_app = PlottingApp(
+        self.dividend_history = DividendHistory(
             combo_list_tickers=self.tickers,
             update_function=self.update_plots,
             update_average_years_function=self.update_dividend_average_years,
             update_mouse_function_dividend=self.update_tooltip_dividend,
             average_years=self.average_years,
         )
-        self.plotting_app.average_years_checkbox[self.average_years[0]][
+        self.dividend_history.average_years_checkbox[self.average_years[0]][
             "Checkbox"
         ].setChecked(True)
         self.update_plots()
-        self.addTab(self.plotting_app, "Dividend history")
+        self.addTab(self.dividend_history, "Dividend history")
 
     def update_tooltip_dividend(self, evt):
-        mousePoint = self.plotting_app.bar_plot_widget.plotItem.vb.mapSceneToView(evt)
-        selected_ticker = self.plotting_app.security_cb.currentText()
+        mousePoint = self.dividend_history.bar_plot_widget.plotItem.vb.mapSceneToView(
+            evt
+        )
+        selected_ticker = self.dividend_history.security_cb.currentText()
         year, dividend = self.get_closest_point(
             mousePoint.x(),
             self.holdings_dict[selected_ticker]["dividends per year"],
         )
-        self.plotting_app.bar_plot_widget.setToolTip(
+        self.dividend_history.bar_plot_widget.setToolTip(
             f"year: {year}, dividend: {round(dividend,2)}"
         )
 
@@ -180,7 +182,7 @@ class TabWindow(QtGui.QTabWidget):
         return ema
 
     def update_plots(self):
-        self.plotting_app.reenable_autoscale()
+        self.dividend_history.reenable_autoscale()
         self.update_plot_dividend_growth()
         self.update_dividend_bars()
         self.update_dividend_growth_diff_hist()
@@ -189,11 +191,11 @@ class TabWindow(QtGui.QTabWidget):
         self.update_plot_dividend_growth()
 
     def update_plot_dividend_growth(self):
-        ticker = self.plotting_app.security_cb.currentText()
-        self.plotting_app.plot_widget.clear()
-        self.plotting_app.plot_widget.plotItem.legend.items = []
-        self.plotting_app.plot_widget_diff.clear()
-        self.plotting_app.plot_widget_diff.plotItem.legend.items = []
+        ticker = self.dividend_history.security_cb.currentText()
+        self.dividend_history.plot_widget.clear()
+        self.dividend_history.plot_widget.plotItem.legend.items = []
+        self.dividend_history.plot_widget_diff.clear()
+        self.dividend_history.plot_widget_diff.plotItem.legend.items = []
         # from PyQt5.QtCore import pyqtRemoveInputHook
         # pyqtRemoveInputHook()
         # import pdb; pdb.set_trace()
@@ -201,7 +203,7 @@ class TabWindow(QtGui.QTabWidget):
             color="red",
             width=4,
         )
-        self.plot_dividend_growth = self.plotting_app.plot_widget.plot(
+        self.plot_dividend_growth = self.dividend_history.plot_widget.plot(
             self.holdings_dict[ticker]["dividends per year growth"].index.values,
             self.holdings_dict[ticker]["dividends per year growth"].values,
             name="Real dividend growth",
@@ -209,19 +211,21 @@ class TabWindow(QtGui.QTabWidget):
             symbol="o",
             symbolSize=6,
         )
-        if self.plotting_app.averaging_cb.currentText() == "Simple averaging":
+        if self.dividend_history.averaging_cb.currentText() == "Simple averaging":
             visible_averaging_values_key = "rolling average dividend growth per year"
-        elif self.plotting_app.averaging_cb.currentText() == "Geometric averaging":
+        elif self.dividend_history.averaging_cb.currentText() == "Geometric averaging":
             visible_averaging_values_key = (
                 "rolling geometric average dividends per year"
             )
         elif (
-            self.plotting_app.averaging_cb.currentText()
+            self.dividend_history.averaging_cb.currentText()
             == "Exponential weighted averaging"
         ):
             visible_averaging_values_key = "rolling ema dividend growth per year"
-        for year in self.plotting_app.average_years_checkbox.keys():
-            if self.plotting_app.average_years_checkbox[year]["Checkbox"].isChecked():
+        for year in self.dividend_history.average_years_checkbox.keys():
+            if self.dividend_history.average_years_checkbox[year][
+                "Checkbox"
+            ].isChecked():
 
                 x = self.holdings_dict[ticker][visible_averaging_values_key][
                     "estimate"
@@ -230,10 +234,10 @@ class TabWindow(QtGui.QTabWidget):
                     "estimate"
                 ][str(year)].values
                 pen = pg.mkPen(
-                    color=self.plotting_app.average_years_checkbox[year]["Color"],
+                    color=self.dividend_history.average_years_checkbox[year]["Color"],
                     width=4,
                 )
-                self.plotting_app.plot_widget.plot(
+                self.dividend_history.plot_widget.plot(
                     x,
                     y,
                     name="Estimate: " + str(year) + " years window size",
@@ -244,7 +248,7 @@ class TabWindow(QtGui.QTabWidget):
                 y_diff = self.holdings_dict[ticker][visible_averaging_values_key][
                     "deviation"
                 ][str(year)].values
-                self.plotting_app.plot_widget_diff.plot(
+                self.dividend_history.plot_widget_diff.plot(
                     x,
                     y_diff,
                     name="Estimate - Real: " + str(year) + " years window size",
@@ -255,8 +259,8 @@ class TabWindow(QtGui.QTabWidget):
         self.update_rmsd_bars(visible_averaging_values_key, ticker)
 
     def update_dividend_bars(self):
-        ticker = self.plotting_app.security_cb.currentText()
-        self.plotting_app.bar_plot_widget.clear()
+        ticker = self.dividend_history.security_cb.currentText()
+        self.dividend_history.bar_plot_widget.clear()
         security = self.holdings_dict[ticker]
         x = security["dividends per year"][
             security["dividends per year"].index < self.current_year
@@ -267,12 +271,12 @@ class TabWindow(QtGui.QTabWidget):
         bargraph = pg.BarGraphItem(
             x=x, height=y, width=0.6, brush="g"
         )  # TODO: Ensure that current year does not show in bar graph
-        self.plotting_app.bar_plot_widget.addItem(bargraph)
+        self.dividend_history.bar_plot_widget.addItem(bargraph)
 
     def update_rmsd_bars(self, visible_averaging_values_key, ticker):
-        self.plotting_app.rmsd_plot_widget.clear()
-        if self.plotting_app.rmsd_plot_widget.plotItem.legend is not None:
-            self.plotting_app.rmsd_plot_widget.plotItem.legend.items = []
+        self.dividend_history.rmsd_plot_widget.clear()
+        if self.dividend_history.rmsd_plot_widget.plotItem.legend is not None:
+            self.dividend_history.rmsd_plot_widget.plotItem.legend.items = []
         x = [
             int(key)
             for key in self.holdings_dict[ticker][visible_averaging_values_key][
@@ -283,11 +287,11 @@ class TabWindow(QtGui.QTabWidget):
             self.holdings_dict[ticker][visible_averaging_values_key]["rmsd"].values()
         )
         bargraph_rmsd = pg.BarGraphItem(x=x, height=y, width=0.6, brush="g")
-        self.plotting_app.rmsd_plot_widget.addItem(bargraph_rmsd)
+        self.dividend_history.rmsd_plot_widget.addItem(bargraph_rmsd)
 
     def update_dividend_growth_diff_hist(self):
-        ticker = self.plotting_app.security_cb.currentText()
-        self.plotting_app.histogram_variance_widget.clear()
+        ticker = self.dividend_history.security_cb.currentText()
+        self.dividend_history.histogram_variance_widget.clear()
         security = self.holdings_dict[ticker]
         boolean_vec = (
             security["dividends per year growth diff"].index < self.current_year
@@ -295,7 +299,7 @@ class TabWindow(QtGui.QTabWidget):
         vals = security["dividends per year growth diff"][boolean_vec].values
         y, x = np.histogram(vals, bins=len(vals))
         curve = pg.PlotCurveItem(x, y, stepMode=True, fillLevel=0, brush=(255, 100, 0))
-        self.plotting_app.histogram_variance_widget.addItem(curve)
+        self.dividend_history.histogram_variance_widget.addItem(curve)
 
     @staticmethod
     def get_dividends_per_year(dividends):
@@ -314,7 +318,7 @@ class TabWindow(QtGui.QTabWidget):
         print(self.holdings_dict)
 
 
-class PlottingApp(QtGui.QWidget):
+class DividendHistory(QtGui.QWidget):
     def __init__(
         self,
         combo_list_tickers=[],
