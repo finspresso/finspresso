@@ -24,8 +24,9 @@ pg.setConfigOption("background", "w")
 pg.setConfigOption("foreground", "k")
 
 
-class DividendProjector:
-    def __init__(self, holdings_file="holdings.json"):
+class TabWindow(QtGui.QTabWidget):
+    def __init__(self, holdings_file="holdings.json", parent=None):
+        super(TabWindow, self).__init__(parent)
         self.holdings_file = Path(holdings_file)
         self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
@@ -47,6 +48,7 @@ class DividendProjector:
             "Checkbox"
         ].setChecked(True)
         self.update_plots()
+        self.addTab(self.plotting_app, "Dividend history")
 
     def update_tooltip_dividend(self, evt):
         mousePoint = self.plotting_app.bar_plot_widget.plotItem.vb.mapSceneToView(evt)
@@ -447,8 +449,8 @@ def main():
     )
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
-    dividend_projector = DividendProjector(holdings_file=args.holdings_file)
-    dividend_projector.plotting_app.show()
+    tab_window = TabWindow(holdings_file=args.holdings_file)
+    tab_window.show()
 
     sys.exit(app.exec_())
 
