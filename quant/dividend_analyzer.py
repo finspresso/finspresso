@@ -20,12 +20,10 @@ class DividendAnalyzer:
 
     @classmethod
     def get_SP500_constituents(self):
+        """Downloads S&P 500 constituents from Wikipedia"""
         payload = pd.read_html(
             "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
         )
-        import pdb
-
-        pdb.set_trace()
         sp500_tickers = payload[0]["Symbol"]
         return sp500_tickers
 
