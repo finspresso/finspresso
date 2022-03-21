@@ -1,0 +1,94 @@
+{
+    "securities":[
+                 { "name":"British American Tobaco",
+                   "ticker": "BTI",
+                   "quantity": 400,
+                   "yfinance": true
+                 },
+                 { "name":"Schwab US dividend",
+                    "ticker": "SCHD",
+                    "quantity": 1483,
+                    "yfinance": true
+                 },
+                 { "name":"Schwab US Small cap",
+                    "ticker": "SCHA",
+                    "quantity": 190,
+                    "yfinance": true
+                 },
+                 { "name":"VANGUARD FTSE EMERGING",
+                    "ticker": "VWO",
+                    "quantity": 200,
+                    "yfinance": true
+                 },
+                 { "name":"Vanguard FTSE Developed Europe UCITS ETF",
+                    "ticker": "VEURX",
+                    "quantity": 166,
+                    "yfinance": true
+                 },
+                 { "name":"VANGUARD TOTAL INTL STOCK",
+                    "ticker": "VXUS",
+                    "quantity": 198,
+                    "yfinance": true
+                 },
+                 { "name":"PSPN",
+                    "ticker": "PSPN.SW",
+                    "quantity": 40,
+                    "yfinance": true
+                 },
+                 { "name":"Allreqal",
+                  "ticker": "ALLN.SW",
+                  "quantity": 27,
+                  "yfinance": true
+                },
+                 { "name":"Swissquote",
+                    "ticker": "SQN.SW",
+                    "quantity": 48,
+                    "yfinance": true
+                 },
+                 { "name":"Logitech",
+                    "ticker": "LOGN.SW",
+                    "quantity": 30,
+                    "yfinance": true
+                 },
+                 { "name":"Swiss Prime Site AG",
+                    "ticker": "SPSN.SW",
+                    "quantity": 50,
+                    "yfinance": true
+                 },
+                 { "name":"Vanguard high dividend yield",
+                    "ticker": "VYM",
+                    "quantity": 533,
+                    "yfinance": true
+                 },
+                 { "name":"Vanguard S&P 500",
+                    "ticker": "VOO",
+                    "quantity": 38,
+                    "yfinance": true
+                 },
+                 { "name":"Vanguard total World Stock ETF",
+                    "ticker": "VT",
+                    "quantity": 248,
+                    "yfinance": true
+                 },
+                 { "name":"Vanguard Energy ETF",
+                  "ticker": "VDE",
+                  "quantity": 264,
+                  "yfinance": true
+                },
+                 { "name":"Vanguard Global ex-U.S. Real Estate Index Fund ETF Shares",
+                    "ticker": "VNQI",
+                    "quantity": 183,
+                    "yfinance": true
+                 },
+                 { "name":"Schwab Reit ETF",
+                    "ticker": "SCHH",
+                    "quantity": 254,
+                    "yfinance": true
+                 },
+                 { "name":"Pfizer",
+                    "ticker": "PFE",
+                    "quantity": 1000,
+                    "yfinance": true
+                 }
+            ]
+}
