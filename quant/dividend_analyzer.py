@@ -60,6 +60,8 @@ class DividendAnalyzer:
             self.data_dict[ticker] = dividend_history
 
     def store_data_dict_to_json(self):
+        file_name = "data_dict.json"
+        logger.info("Storing data_dict to %s", file_name)
         data_to_json = {
             key: {
                 "dividends": value["dividends"].to_json()
@@ -68,7 +70,7 @@ class DividendAnalyzer:
             }
             for key, value in self.data_dict.items()
         }
-        file_name = "data_dict.json"
+
         with open(file_name, "w") as file:
             json.dump(data_to_json, file, indent=4)
 
