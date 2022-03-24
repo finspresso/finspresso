@@ -11,6 +11,14 @@
             "cwd": "${workspaceRoot}",
             "args": ["--download_sp_500"],
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/dividend_analyzer.py",
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal"
         }
     ]
 }
