@@ -41,10 +41,14 @@ class DividendAnalyzer:
     def get_dividend_history(self, ticker):
         logger.info("Downloading data for security {}".format(ticker))
         dividend_history = dict()
-        dividend_history["dividends"] = self.yf_object.tickers[ticker].dividends
-        dividend_history["dividends per year"] = self.get_dividends_per_year(
-            dividend_history["dividends"]
-        )
+        dividend_history["dividends"] = pd.Series(dtype=float64)
+        dividend_history["dividends per year"] = pd.Series(dtype=float64)
+        dividends = self.yf_object.tickers[ticker].dividends
+        if len(dividends) > 0:
+            dividend_history["dividends"] = self.yf_object.tickers[ticker].dividends
+            dividend_history["dividends per year"] = self.get_dividends_per_year(
+                dividend_history["dividends"]
+            )
         return dividend_history
 
     def download_dividend_history_multi(self):
@@ -82,7 +86,10 @@ class DividendAnalyzer:
                 dividends_per_year_list.append(
                     dividends[dividends.index.year == year].sum()
                 )
-            dividends_per_year = pd.Series(dividends_per_year_list, index=years_list)
+            if len(dividends_per_year_list) > 0:
+                dividends_per_year = pd.Series(
+                    dividends_per_year_list, index=years_list
+                )
         return dividends_per_year
 
     @classmethod
