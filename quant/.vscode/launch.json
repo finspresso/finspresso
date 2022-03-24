@@ -1,0 +1,16 @@
+
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Download tickers S&P 500",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/dividend_analyzer.py",
+            "cwd": "${workspaceRoot}",
+            "args": ["--download_sp_500"],
+            "console": "integratedTerminal"
+        }
+    ]
+}
