@@ -1,11 +1,15 @@
 import argparse
 import coloredlogs
 import json
+from numpy import float64
 import pandas as pd
 import logging
-import ssl
 
-ssl._create_default_https_context = ssl._create_unverified_context
+
+import yfinance as yf
+
+# import ssl
+# ssl._create_default_https_context = ssl._create_unverified_context
 
 # Global settings
 coloredlogs.install()
@@ -17,12 +21,40 @@ SP_500_TICKER_FILE = "sp_500_tickers.json"
 
 class DividendAnalyzer:
     def __init__(self, tickers, n_security=10, n_portfolio=100):
-        self.tickers = tickers
+        self.yf_object = yf.Tickers(tickers)
+        self.data_dict = dict.fromkeys(tickers, dict())
         self.n_security = n_security
         self.n_portfolio = n_portfolio
 
+    def download_dividend_history(self):
+        for ticker in self.yf_object.tickers.keys():
+            logger.info("Downloading data for security {}".format(ticker))
+            self.data_dict[ticker]["dividends"] = self.yf_object.tickers[
+                ticker
+            ].dividends
+            self.data_dict[ticker]["dividends per year"] = self.get_dividends_per_year(
+                self.data_dict[ticker]["dividends"]
+            )
+
     @classmethod
-    def get_SP500_constituents(self):
+    def get_dividends_per_year(cls, dividends):
+        dividends_per_year = pd.Series(dtype=float64)
+        if len(dividends) > 0:
+            years = range(
+                dividends.index.min().year + 1, dividends.index.max().year + 1
+            )
+            dividends_per_year_list = []
+            years_list = []
+            for year in years:
+                years_list.append(year)
+                dividends_per_year_list.append(
+                    dividends[dividends.index.year == year].sum()
+                )
+            dividends_per_year = pd.Series(dividends_per_year_list, index=years_list)
+        return dividends_per_year
+
+    @classmethod
+    def get_SP500_constituents(cls):
         """Downloads S&P 500 constituents from Wikipedia"""
         logger.info("Downloading all S&P 500 ticker from Wikipedia")
         payload = pd.read_html(
@@ -33,14 +65,14 @@ class DividendAnalyzer:
         return sp500_tickers_dict
 
     @classmethod
-    def store_constituents_to_json(self, constituents_dict, file_name):
+    def store_constituents_to_json(cls, constituents_dict, file_name):
         logger.info("Dumping constituents' ticker dictionary to %s", file_name)
 
         with open(file_name, "w") as file:
             json.dump(constituents_dict, file, indent=4)
 
     @classmethod
-    def load_constituents_from_json(self, file_name):
+    def load_constituents_from_json(cls, file_name):
         logger.info("Loading constituents' ticker from %s", file_name)
 
         with open(file_name, "r") as file:
@@ -74,9 +106,13 @@ def main():
             SP_500_TICKER_FILE
         )
 
-    DividendAnalyzer(
-        sp_500_tickers, n_security=args.n_security, n_portfolio=args.n_portfolio
+    dividend_analyzer = DividendAnalyzer(
+        sp_500_tickers["tickers"],
+        n_security=args.n_security,
+        n_portfolio=args.n_portfolio,
     )
+
+    dividend_analyzer.download_dividend_history()
 
 
 if __name__ == "__main__":
