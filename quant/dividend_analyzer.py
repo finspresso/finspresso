@@ -3,8 +3,9 @@ import coloredlogs
 import datetime
 import json
 from multiprocessing import Pool
-from numpy import float64
+import numpy as np
 import pandas as pd
+
 import logging
 
 
@@ -30,6 +31,24 @@ class DividendAnalyzer:
         self.n_security = n_security
         self.n_portfolio = n_portfolio
 
+    def randomize_portfolios(self):
+        logger.info(
+            "Randomizing %s portfolios with each %s securities",
+            self.n_portfolio,
+            self.n_security,
+        )
+        tickers = pd.Series(self.yf_object.tickers.keys())
+        n_tickers = tickers.shape[0]
+
+        self.portfolios = []
+        while len(self.portfolios) < self.n_portfolio:
+            selected_tickers = tuple(
+                tickers[
+                    np.floor(np.random.rand(self.n_security) * n_tickers).tolist()
+                ].values.tolist()
+            )
+            self.portfolios.append(selected_tickers)
+
     def download_dividend_history_single(self):
         for ticker in self.yf_object.tickers.keys():
             logger.info("Downloading data for security {}".format(ticker))
@@ -43,8 +62,8 @@ class DividendAnalyzer:
     def get_dividend_history(self, ticker):
         logger.info("Downloading data for security {}".format(ticker))
         dividend_history = dict()
-        dividend_history["dividends"] = pd.Series(dtype=float64)
-        dividend_history["dividends per year"] = pd.Series(dtype=float64)
+        dividend_history["dividends"] = pd.Series(dtype=np.float64)
+        dividend_history["dividends per year"] = pd.Series(dtype=np.float64)
         dividends = self.yf_object.tickers[ticker].dividends
         if len(dividends) > 0:
             dividend_history["dividends"] = self.yf_object.tickers[ticker].dividends
@@ -89,18 +108,18 @@ class DividendAnalyzer:
         self.data_dict = {key: dict() for key in self.loaded_dict}
         for key in self.data_dict.keys():
             self.data_dict[key]["dividends"] = pd.Series(
-                eval(self.loaded_dict[key]["dividends"]), dtype=float64
+                eval(self.loaded_dict[key]["dividends"]), dtype=np.float64
             )
             self.data_dict[key]["dividends"].index = self.data_dict[key][
                 "dividends"
             ].index.map(lambda x: datetime.datetime.strptime(x[:10], "%Y-%M-%d"))
             self.data_dict[key]["dividends per year"] = pd.Series(
-                eval(self.loaded_dict[key]["dividends per year"]), dtype=float64
+                eval(self.loaded_dict[key]["dividends per year"]), dtype=np.float64
             )
 
     @classmethod
     def get_dividends_per_year(cls, dividends):
-        dividends_per_year = pd.Series(dtype=float64)
+        dividends_per_year = pd.Series(dtype=np.float64)
         if len(dividends) > 0:
             years = range(
                 dividends.index.min().year + 1, dividends.index.max().year + 1
@@ -195,6 +214,8 @@ def main():
         dividend_analyzer.store_data_dict_to_json()
     else:
         dividend_analyzer.load_data_dict_from_json()
+
+    dividend_analyzer.randomize_portfolios()
 
 
 if __name__ == "__main__":
