@@ -19,6 +19,15 @@
             "program": "${workspaceRoot}/dividend_analyzer.py",
             "cwd": "${workspaceRoot}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Update dividends",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/dividend_analyzer.py",
+            "cwd": "${workspaceRoot}",
+            "args": ["--update_dividends"],
+            "console": "integratedTerminal"
         }
     ]
 }

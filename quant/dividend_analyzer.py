@@ -1,5 +1,6 @@
 import argparse
 import coloredlogs
+import datetime
 import json
 from multiprocessing import Pool
 from numpy import float64
@@ -9,7 +10,7 @@ import logging
 
 import yfinance as yf
 
-# import ssl
+# import ssl # ToDo: Add enabling to optional arguments
 # ssl._create_default_https_context = ssl._create_unverified_context
 
 # Global settings
@@ -18,6 +19,7 @@ logger_name = "dividend_analyzer"
 logger = logging.getLogger(logger_name)
 logging.basicConfig(level=logging.DEBUG)
 SP_500_TICKER_FILE = "sp_500_tickers.json"
+DATA_DICT_FILE = "data_dict.json"
 
 
 class DividendAnalyzer:
@@ -60,19 +62,41 @@ class DividendAnalyzer:
             self.data_dict[ticker] = dividend_history
 
     def store_data_dict_to_json(self):
-        file_name = "data_dict.json"
+        file_name = DATA_DICT_FILE
         logger.info("Storing data_dict to %s", file_name)
         data_to_json = {
             key: {
-                "dividends": value["dividends"].to_json()
+                "dividends": value["dividends"].to_json(date_format="iso")
                 if "dividends" in value.keys()
-                else None
+                else None,
+                "dividends per year": value["dividends per year"].to_json(
+                    date_format="iso"
+                )
+                if "dividends per year" in value.keys()
+                else None,
             }
             for key, value in self.data_dict.items()
         }
 
         with open(file_name, "w") as file:
             json.dump(data_to_json, file, indent=4)
+
+    def load_data_dict_from_json(self):
+        file_name = DATA_DICT_FILE
+        logger.info("loading data_dict to %s", file_name)
+        with open(file_name, "r") as file:
+            self.loaded_dict = json.load(file)
+        self.data_dict = {key: dict() for key in self.loaded_dict}
+        for key in self.data_dict.keys():
+            self.data_dict[key]["dividends"] = pd.Series(
+                eval(self.loaded_dict[key]["dividends"]), dtype=float64
+            )
+            self.data_dict[key]["dividends"].index = self.data_dict[key][
+                "dividends"
+            ].index.map(lambda x: datetime.datetime.strptime(x[:10], "%Y-%M-%d"))
+            self.data_dict[key]["dividends per year"] = pd.Series(
+                eval(self.loaded_dict[key]["dividends per year"]), dtype=float64
+            )
 
     @classmethod
     def get_dividends_per_year(cls, dividends):
@@ -144,6 +168,13 @@ def main():
         type=int,
         default=None,
     )
+    parser.add_argument(
+        "--update_dividends",
+        help="If set, re-downloads all the dividends of the desired tickers and \
+              stores them under data_dict.json. Otherwise loads the data_dict \
+              from data_dict.json ",
+        action="store_true",
+    )
     args = parser.parse_args()
     if args.download_sp_500:
         sp_500_tickers = DividendAnalyzer.get_SP500_constituents()
@@ -159,9 +190,11 @@ def main():
         n_portfolio=args.n_portfolio,
         n_processes=args.j,
     )
-
-    dividend_analyzer.download_dividend_history_multi()
-    dividend_analyzer.store_data_dict_to_json()
+    if args.update_dividends:
+        dividend_analyzer.download_dividend_history_multi()
+        dividend_analyzer.store_data_dict_to_json()
+    else:
+        dividend_analyzer.load_data_dict_from_json()
 
 
 if __name__ == "__main__":
