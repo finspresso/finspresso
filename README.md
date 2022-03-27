@@ -7,6 +7,6 @@ This repository contains the scripts used on the website [finspresso.com](https:
 For correct usage one needs the base package `portfolio_math`. To install it, execute:
 
 ```sh
-python setup.py --install
+python setup.py install
 ```
 Have fun.
