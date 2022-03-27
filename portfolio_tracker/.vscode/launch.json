@@ -7,7 +7,7 @@
             "name": "Run single holdings",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceRoot}/portfolio_tracker.py",
+            "program": "${workspaceRoot}/run.py",
             "cwd": "${workspaceRoot}",
             "args": ["--holdings_file", "holdings_single.json"],
             "console": "integratedTerminal"

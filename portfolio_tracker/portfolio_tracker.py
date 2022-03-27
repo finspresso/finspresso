@@ -10,15 +10,14 @@ import logging
 import coloredlogs
 import sys
 import pandas as pd
-
+from portfolio_math import portfolio_math
 
 from pathlib import Path
 from pyqtgraph.Qt import QtGui
 
 # Global settings
 coloredlogs.install()
-logger_name = "portfolio_tracker"
-logger = logging.getLogger(logger_name)
+logger = logging.getLogger()
 logging.basicConfig(level=logging.DEBUG)
 pg.setConfigOption("background", "w")
 pg.setConfigOption("foreground", "k")
@@ -129,7 +128,7 @@ class TabWindow(QtGui.QTabWidget):
                         "estimate"
                     ][str(year)] = (
                         dividends_per_year.rolling(year)
-                        .apply(lambda x: self.get_geometric_mean(x))
+                        .apply(lambda x: portfolio_math.get_geometric_mean(x))
                         .shift()
                     )
                     security["rolling ema dividend growth per year"]["estimate"][
@@ -137,7 +136,7 @@ class TabWindow(QtGui.QTabWidget):
                     ] = (
                         security["dividends per year growth"]
                         .rolling(year)
-                        .apply(lambda x: self.get_ema(x))
+                        .apply(lambda x: portfolio_math.get_ema(x))
                         .shift()
                     )
                     averaging_names = [
@@ -152,7 +151,7 @@ class TabWindow(QtGui.QTabWidget):
                         )
                         security[averaging_name]["rmsd"][
                             str(year)
-                        ] = self.get_root_mean_square_deviation(
+                        ] = portfolio_math.get_root_mean_square_deviation(
                             security[averaging_name]["deviation"][str(year)]
                         )
 
