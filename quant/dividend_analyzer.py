@@ -11,6 +11,8 @@ import logging
 
 import yfinance as yf
 
+from portfolio_math import portfolio_math
+
 # import ssl # ToDo: Add enabling to optional arguments
 # ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -23,13 +25,93 @@ SP_500_TICKER_FILE = "sp_500_tickers.json"
 DATA_DICT_FILE = "data_dict.json"
 
 
+def compute_dividend_growth_portfolio(portfolio, data_dict, average_years):
+    current_year = datetime.datetime.now().year
+    dividend_dict = {ticker: dict() for ticker in portfolio}
+    for ticker in portfolio:
+        dividends_per_year = data_dict[ticker]["dividends per year"][
+            data_dict[ticker]["dividends per year"].index < current_year
+        ]
+        dividend_dict[ticker]["dividends per year growth"] = (
+            dividends_per_year.diff() / dividends_per_year.shift() * 100
+        )
+        dividend_dict[ticker]["dividends per year growth diff"] = dividend_dict[ticker][
+            "dividends per year growth"
+        ].diff()
+        dividend_dict[ticker][
+            "rolling average dividend growth per year"
+        ] = portfolio_math.construct_estimation_dict()
+        dividend_dict[ticker][
+            "rolling geometric average dividends per year"
+        ] = portfolio_math.construct_estimation_dict()
+        dividend_dict[ticker][
+            "rolling ema dividend growth per year"
+        ] = portfolio_math.construct_estimation_dict()
+        for year in average_years:
+            dividend_dict[ticker]["rolling average dividend growth per year"][
+                "estimate"
+            ][str(year)] = (
+                dividend_dict[ticker]["dividends per year growth"]
+                .rolling(year)
+                .mean()
+                .shift()
+            )
+            dividend_dict[ticker]["rolling geometric average dividends per year"][
+                "estimate"
+            ][str(year)] = (
+                dividends_per_year.rolling(year)
+                .apply(lambda x: portfolio_math.get_geometric_mean(x))
+                .shift()
+            )
+            dividend_dict[ticker]["rolling ema dividend growth per year"]["estimate"][
+                str(year)
+            ] = (
+                dividend_dict[ticker]["dividends per year growth"]
+                .rolling(year)
+                .apply(lambda x: portfolio_math.get_ema(x))
+                .shift()
+            )
+            averaging_names = [
+                "rolling average dividend growth per year",
+                "rolling geometric average dividends per year",
+                "rolling ema dividend growth per year",
+            ]
+            for averaging_name in averaging_names:
+                dividend_dict[ticker][averaging_name]["deviation"][str(year)] = (
+                    dividend_dict[ticker][averaging_name]["estimate"][str(year)]
+                    - dividend_dict[ticker]["dividends per year growth"]
+                )
+                dividend_dict[ticker][averaging_name]["rmsd"][
+                    str(year)
+                ] = portfolio_math.get_root_mean_square_deviation(
+                    dividend_dict[ticker][averaging_name]["deviation"][str(year)]
+                )
+    return dividend_dict
+
+
 class DividendAnalyzer:
-    def __init__(self, tickers, n_security=10, n_portfolio=100, n_processes=None):
+    def __init__(
+        self,
+        tickers,
+        average_years=[1, 2, 3, 4, 5],
+        n_security=10,
+        n_portfolio=100,
+        n_processes=None,
+    ):
         self.yf_object = yf.Tickers(tickers)
         self.n_processes = n_processes
-        self.data_dict = dict.fromkeys(tickers, dict())
+        self.data_dict = {ticker: dict() for ticker in tickers}
         self.n_security = n_security
         self.n_portfolio = n_portfolio
+        self.average_years = average_years
+
+    def compare_growth_estimates(self):
+        self.dividend_dict_portfolios = []
+        for portfolio in self.portfolios:
+            dividend_dict = compute_dividend_growth_portfolio(
+                portfolio, self.data_dict, self.average_years
+            )
+            self.dividend_dict_portfolios.append(dividend_dict)
 
     def randomize_portfolios(self):
         logger.info(
@@ -116,6 +198,9 @@ class DividendAnalyzer:
             self.data_dict[key]["dividends per year"] = pd.Series(
                 eval(self.loaded_dict[key]["dividends per year"]), dtype=np.float64
             )
+            self.data_dict[key]["dividends per year"].index = self.data_dict[key][
+                "dividends per year"
+            ].index.map(int)
 
     @classmethod
     def get_dividends_per_year(cls, dividends):
@@ -216,7 +301,12 @@ def main():
         dividend_analyzer.load_data_dict_from_json()
 
     dividend_analyzer.randomize_portfolios()
+    dividend_analyzer.compare_growth_estimates()
 
 
+# Next:
+# 1) Put compute_dividend_growth_portfolio() into portfolio_math
+# 2) Run computation of best average in multprocesssing
+# 3) Visualize them in scatter plot
 if __name__ == "__main__":
     main()
