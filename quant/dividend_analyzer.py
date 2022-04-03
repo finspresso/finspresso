@@ -26,6 +26,7 @@ DATA_DICT_FILE = "data_dict.json"
 
 
 def compute_dividend_growth_portfolio(portfolio, data_dict, average_years):
+    logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
     current_year = datetime.datetime.now().year
     dividend_dict = {ticker: dict() for ticker in portfolio}
     for ticker in portfolio:
@@ -106,12 +107,31 @@ class DividendAnalyzer:
         self.average_years = average_years
 
     def compare_growth_estimates(self):
+        if self.n_processes == 1:
+            self.compare_growth_estimates_single()
+        else:
+            self.compare_growth_estimates_multi()
+
+    def compare_growth_estimates_single(self):
+        logger.info("Running growth comparison with in single processing mode.")
         self.dividend_dict_portfolios = []
         for portfolio in self.portfolios:
             dividend_dict = compute_dividend_growth_portfolio(
                 portfolio, self.data_dict, self.average_years
             )
             self.dividend_dict_portfolios.append(dividend_dict)
+
+    def compare_growth_estimates_multi(self):
+        logger.info("Running growth comparison with multiprocessing.")
+        input_tuples = [
+            (portfolio, self.data_dict, self.average_years)
+            for portfolio in self.portfolios
+        ]
+        with Pool(processes=self.n_processes) as pool:
+            self.dividend_dict_portfolios = pool.starmap(
+                compute_dividend_growth_portfolio, input_tuples
+            )
+        print(self.dividend_dict_portfolios)
 
     def randomize_portfolios(self):
         logger.info(
@@ -268,7 +288,7 @@ def main():
     )
     parser.add_argument(
         "-j",
-        help="Number of allowed parallel processes for downloading",
+        help="Number of allowed parallel processes for multiprocessing steps",
         type=int,
         default=None,
     )

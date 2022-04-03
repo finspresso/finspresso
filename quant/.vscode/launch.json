@@ -21,6 +21,15 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Test inputs",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/dividend_analyzer.py",
+            "cwd": "${workspaceRoot}",
+            "args": ["--n_portfolio", "5"],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Update dividends",
             "type": "python",
             "request": "launch",
