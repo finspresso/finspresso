@@ -25,6 +25,7 @@ SP_500_TICKER_FILE = "sp_500_tickers.json"
 DATA_DICT_FILE = "data_dict.json"
 
 
+# ToDo: Add this function to portfolio_math library
 def get_dividend_payer_tickers(portfolio, data_dict, n_min, current_year):
     portfolio_dividend_payer = []
     for ticker in portfolio:
@@ -41,11 +42,12 @@ def get_dividend_payer_tickers(portfolio, data_dict, n_min, current_year):
     return portfolio_dividend_payer
 
 
+# ToDo: Add this function to portfolio_math library + check that all estimates have not only the last points in the time as non-nan value e.g [na,na,na,na,10]
 def compute_dividend_growth_portfolio(
     portfolio, data_dict, average_years, averaging_names
 ):
     logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
-    n_min = len(average_years)
+    n_min = len(average_years) + 1
     current_year = datetime.datetime.now().year
     portfolio_dividend_payer = get_dividend_payer_tickers(
         portfolio, data_dict, n_min, current_year
@@ -54,10 +56,9 @@ def compute_dividend_growth_portfolio(
         return None
 
     dividend_dict = {ticker: dict() for ticker in portfolio_dividend_payer}
-    rmsd_averaging_dict = {
-        averaging_name: {str(year): 0 for year in average_years}
-        for averaging_name in averaging_names
-    }
+    rmsd_averaging_df = pd.DataFrame(
+        index=average_years, columns=averaging_names, data=0, dtype=float
+    )
     n_ticker = len(portfolio_dividend_payer)
     for ticker in portfolio_dividend_payer:
         dividends_per_year = data_dict[ticker]["dividends per year"][
@@ -67,6 +68,9 @@ def compute_dividend_growth_portfolio(
         dividend_dict[ticker]["dividends per year growth"] = (
             dividends_per_year.diff() / dividends_per_year.shift() * 100
         )
+        dividend_dict[ticker]["dividends per year growth"] = dividend_dict[ticker][
+            "dividends per year growth"
+        ].iloc[1:]
         dividend_dict[ticker]["dividends per year growth diff"] = dividend_dict[ticker][
             "dividends per year growth"
         ].diff()
@@ -112,9 +116,9 @@ def compute_dividend_growth_portfolio(
                 rmsd = portfolio_math.get_root_mean_square_deviation(
                     dividend_dict[ticker][averaging_name]["deviation"][str(year)]
                 )
-                rmsd_averaging_dict[averaging_name][str(year)] += rmsd / n_ticker
+                rmsd_averaging_df.loc[year, averaging_name] += rmsd / n_ticker
                 dividend_dict[ticker][averaging_name]["rmsd"][str(year)] = rmsd
-    dividend_dict["rmsd portfolio"] = rmsd_averaging_dict
+    dividend_dict["rmsd portfolio"] = rmsd_averaging_df
 
     return dividend_dict
 
@@ -166,7 +170,18 @@ class DividendAnalyzer:
             self.dividend_dict_portfolios = pool.starmap(
                 compute_dividend_growth_portfolio, input_tuples
             )
+        self.compute_histogram()
         print(self.dividend_dict_portfolios)
+
+    def compute_histogram(self):
+        self.count_array = np.zeros(
+            (len(self.average_years), len(self.averaging_names))
+        )
+        for dividend_dict in self.dividend_dict_portfolios:
+            array = np.array(dividend_dict["rmsd portfolio"])
+            ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
+            self.count_array[ind] += 1
+        print(self.count_array)
 
     def randomize_portfolios(self):
         logger.info(
@@ -360,6 +375,6 @@ def main():
 
 
 # Next:
-# 3) Visualize results in three plots for every averaging technic as a histogram and the values of the histogram is which year per portfolio is the best in terms smallest rmd error
+# 1) Make a 2D histgoram of self.count_array to show which strategy is best.
 if __name__ == "__main__":
     main()
