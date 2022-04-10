@@ -26,7 +26,7 @@
             "request": "launch",
             "program": "${workspaceRoot}/dividend_analyzer.py",
             "cwd": "${workspaceRoot}",
-            "args": ["--n_portfolio", "5"],
+            "args": ["--n_portfolio", "5", "-j1"],
             "console": "integratedTerminal"
         },
         {

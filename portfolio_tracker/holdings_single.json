@@ -19,6 +19,16 @@
                     "ticker": "VYM",
                     "quantity": 1000,
                     "yfinance": true
+                 },
+                 { "name":"K company",
+                    "ticker": "K",
+                    "quantity": 1000,
+                    "yfinance": true
+                 },
+                 { "name":"DVN company",
+                    "ticker": "DVN",
+                    "quantity": 1000,
+                    "yfinance": true
                  }
 
             ]

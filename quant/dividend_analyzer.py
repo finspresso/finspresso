@@ -25,13 +25,44 @@ SP_500_TICKER_FILE = "sp_500_tickers.json"
 DATA_DICT_FILE = "data_dict.json"
 
 
-def compute_dividend_growth_portfolio(portfolio, data_dict, average_years):
-    logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
-    current_year = datetime.datetime.now().year
-    dividend_dict = {ticker: dict() for ticker in portfolio}
+def get_dividend_payer_tickers(portfolio, data_dict, n_min, current_year):
+    portfolio_dividend_payer = []
     for ticker in portfolio:
+        if not data_dict[ticker]["dividends per year"].empty:
+            dividends_per_year = data_dict[ticker]["dividends per year"][
+                data_dict[ticker]["dividends per year"] > 0
+            ]
+            if (np.diff(dividends_per_year.index) == 1).all():
+                if (
+                    len(dividends_per_year[dividends_per_year.index < current_year])
+                    > n_min
+                ):
+                    portfolio_dividend_payer.append(ticker)
+    return portfolio_dividend_payer
+
+
+def compute_dividend_growth_portfolio(
+    portfolio, data_dict, average_years, averaging_names
+):
+    logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
+    n_min = len(average_years)
+    current_year = datetime.datetime.now().year
+    portfolio_dividend_payer = get_dividend_payer_tickers(
+        portfolio, data_dict, n_min, current_year
+    )
+    if portfolio_dividend_payer == []:
+        return None
+
+    dividend_dict = {ticker: dict() for ticker in portfolio_dividend_payer}
+    rmsd_averaging_dict = {
+        averaging_name: {str(year): 0 for year in average_years}
+        for averaging_name in averaging_names
+    }
+    n_ticker = len(portfolio_dividend_payer)
+    for ticker in portfolio_dividend_payer:
         dividends_per_year = data_dict[ticker]["dividends per year"][
-            data_dict[ticker]["dividends per year"].index < current_year
+            (data_dict[ticker]["dividends per year"].index < current_year)
+            & (data_dict[ticker]["dividends per year"] > 0)
         ]
         dividend_dict[ticker]["dividends per year growth"] = (
             dividends_per_year.diff() / dividends_per_year.shift() * 100
@@ -72,21 +103,19 @@ def compute_dividend_growth_portfolio(portfolio, data_dict, average_years):
                 .apply(lambda x: portfolio_math.get_ema(x))
                 .shift()
             )
-            averaging_names = [
-                "rolling average dividend growth per year",
-                "rolling geometric average dividends per year",
-                "rolling ema dividend growth per year",
-            ]
+
             for averaging_name in averaging_names:
                 dividend_dict[ticker][averaging_name]["deviation"][str(year)] = (
                     dividend_dict[ticker][averaging_name]["estimate"][str(year)]
                     - dividend_dict[ticker]["dividends per year growth"]
                 )
-                dividend_dict[ticker][averaging_name]["rmsd"][
-                    str(year)
-                ] = portfolio_math.get_root_mean_square_deviation(
+                rmsd = portfolio_math.get_root_mean_square_deviation(
                     dividend_dict[ticker][averaging_name]["deviation"][str(year)]
                 )
+                rmsd_averaging_dict[averaging_name][str(year)] += rmsd / n_ticker
+                dividend_dict[ticker][averaging_name]["rmsd"][str(year)] = rmsd
+    dividend_dict["rmsd portfolio"] = rmsd_averaging_dict
+
     return dividend_dict
 
 
@@ -98,6 +127,11 @@ class DividendAnalyzer:
         n_security=10,
         n_portfolio=100,
         n_processes=None,
+        averaging_names=[
+            "rolling average dividend growth per year",
+            "rolling geometric average dividends per year",
+            "rolling ema dividend growth per year",
+        ],
     ):
         self.yf_object = yf.Tickers(tickers)
         self.n_processes = n_processes
@@ -105,6 +139,7 @@ class DividendAnalyzer:
         self.n_security = n_security
         self.n_portfolio = n_portfolio
         self.average_years = average_years
+        self.averaging_names = averaging_names
 
     def compare_growth_estimates(self):
         if self.n_processes == 1:
@@ -117,14 +152,14 @@ class DividendAnalyzer:
         self.dividend_dict_portfolios = []
         for portfolio in self.portfolios:
             dividend_dict = compute_dividend_growth_portfolio(
-                portfolio, self.data_dict, self.average_years
+                portfolio, self.data_dict, self.average_years, self.averaging_names
             )
             self.dividend_dict_portfolios.append(dividend_dict)
 
     def compare_growth_estimates_multi(self):
         logger.info("Running growth comparison with multiprocessing.")
         input_tuples = [
-            (portfolio, self.data_dict, self.average_years)
+            (portfolio, self.data_dict, self.average_years, self.averaging_names)
             for portfolio in self.portfolios
         ]
         with Pool(processes=self.n_processes) as pool:
@@ -325,8 +360,6 @@ def main():
 
 
 # Next:
-# 1) Put compute_dividend_growth_portfolio() into portfolio_math
-# 2) Run computation of best average in multprocesssing
-# 3) Visualize them in scatter plot
+# 3) Visualize results in three plots for every averaging technic as a histogram and the values of the histogram is which year per portfolio is the best in terms smallest rmd error
 if __name__ == "__main__":
     main()
