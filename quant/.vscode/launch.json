@@ -1,42 +1,48 @@
-
-
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Download tickers S&P 500",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceRoot}/dividend_analyzer.py",
-            "cwd": "${workspaceRoot}",
-            "args": ["--download_sp_500"],
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "Debug",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceRoot}/dividend_analyzer.py",
-            "cwd": "${workspaceRoot}",
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "Test inputs",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceRoot}/dividend_analyzer.py",
-            "cwd": "${workspaceRoot}",
-            "args": ["--n_portfolio", "5", "-j1"],
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "Update dividends",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceRoot}/dividend_analyzer.py",
-            "cwd": "${workspaceRoot}",
-            "args": ["--update_dividends"],
-            "console": "integratedTerminal"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Download tickers S&P 500",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/dividend_analyzer.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--download_sp_500"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/dividend_analyzer.py",
+      "cwd": "${workspaceRoot}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Test inputs",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/dividend_analyzer.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--n_portfolio",
+        "5",
+        "-j1"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Update dividends",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/dividend_analyzer.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--update_dividends"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
 }

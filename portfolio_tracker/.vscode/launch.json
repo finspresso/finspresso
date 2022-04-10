@@ -1,16 +1,17 @@
-
-
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Run single holdings",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceRoot}/run.py",
-            "cwd": "${workspaceRoot}",
-            "args": ["--holdings_file", "holdings_single.json"],
-            "console": "integratedTerminal"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run single holdings",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/run.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--holdings_file",
+        "holdings_single.json"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
 }

@@ -1,35 +1,40 @@
 {
-    "securities":[
-                 { "name":"Pfizer",
-                    "ticker": "PFE",
-                    "quantity": 2000,
-                    "yfinance": true
-                 },
-                 { "name":"British American Tobaco",
-                  "ticker": "BTI",
-                  "quantity": 300,
-                  "yfinance": true
-                 },
-                 { "name":"Schwab US dividend",
-                    "ticker": "SCHD",
-                    "quantity": 1000,
-                    "yfinance": true
-                 },
-                 { "name":"Vanguad high dividend yield",
-                    "ticker": "VYM",
-                    "quantity": 1000,
-                    "yfinance": true
-                 },
-                 { "name":"K company",
-                    "ticker": "K",
-                    "quantity": 1000,
-                    "yfinance": true
-                 },
-                 { "name":"DVN company",
-                    "ticker": "DVN",
-                    "quantity": 1000,
-                    "yfinance": true
-                 }
-
-            ]
+  "securities": [
+    {
+      "name": "Pfizer",
+      "ticker": "PFE",
+      "quantity": 2000,
+      "yfinance": true
+    },
+    {
+      "name": "British American Tobaco",
+      "ticker": "BTI",
+      "quantity": 300,
+      "yfinance": true
+    },
+    {
+      "name": "Schwab US dividend",
+      "ticker": "SCHD",
+      "quantity": 1000,
+      "yfinance": true
+    },
+    {
+      "name": "Vanguad high dividend yield",
+      "ticker": "VYM",
+      "quantity": 1000,
+      "yfinance": true
+    },
+    {
+      "name": "K company",
+      "ticker": "K",
+      "quantity": 1000,
+      "yfinance": true
+    },
+    {
+      "name": "DVN company",
+      "ticker": "DVN",
+      "quantity": 1000,
+      "yfinance": true
+    }
+  ]
 }
