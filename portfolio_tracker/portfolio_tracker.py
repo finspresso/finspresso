@@ -110,7 +110,7 @@ class TabWindow(QtGui.QTabWidget):
                     "rolling average dividend growth per year"
                 ] = self.construct_estimation_dict()
                 security[
-                    "rolling geometric average dividends per year"
+                    "rolling geometric average dividends growth per year"
                 ] = self.construct_estimation_dict()
                 security[
                     "rolling ema dividend growth per year"
@@ -124,7 +124,7 @@ class TabWindow(QtGui.QTabWidget):
                         .mean()
                         .shift()
                     )
-                    security["rolling geometric average dividends per year"][
+                    security["rolling geometric average dividends growth per year"][
                         "estimate"
                     ][str(year)] = (
                         dividends_per_year.rolling(year)
@@ -141,7 +141,7 @@ class TabWindow(QtGui.QTabWidget):
                     )
                     averaging_names = [
                         "rolling average dividend growth per year",
-                        "rolling geometric average dividends per year",
+                        "rolling geometric average dividends growth per year",
                         "rolling ema dividend growth per year",
                     ]
                     for averaging_name in averaging_names:
@@ -214,7 +214,7 @@ class TabWindow(QtGui.QTabWidget):
             visible_averaging_values_key = "rolling average dividend growth per year"
         elif self.dividend_history.averaging_cb.currentText() == "Geometric averaging":
             visible_averaging_values_key = (
-                "rolling geometric average dividends per year"
+                "rolling geometric average dividends growth per year"
             )
         elif (
             self.dividend_history.averaging_cb.currentText()
