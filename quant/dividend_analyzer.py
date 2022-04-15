@@ -2,16 +2,16 @@ import argparse
 import coloredlogs
 import datetime
 import json
+import matplotlib.pyplot as plt
+
 from multiprocessing import Pool
 import numpy as np
 import pandas as pd
-
 import logging
-
-
 import yfinance as yf
 
 from portfolio_math import portfolio_math
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 # import ssl # ToDo: Add enabling to optional arguments
 # ssl._create_default_https_context = ssl._create_unverified_context
@@ -159,6 +159,7 @@ class DividendAnalyzer:
                 portfolio, self.data_dict, self.average_years, self.averaging_names
             )
             self.dividend_dict_portfolios.append(dividend_dict)
+        self.compute_histogram()
 
     def compare_growth_estimates_multi(self):
         logger.info("Running growth comparison with multiprocessing.")
@@ -171,7 +172,38 @@ class DividendAnalyzer:
                 compute_dividend_growth_portfolio, input_tuples
             )
         self.compute_histogram()
-        print(self.dividend_dict_portfolios)
+
+    def plot_count_array(self):
+        logger.info("Plotting count array")
+        fig = plt.figure(figsize=plt.figaspect(0.8))
+        ax = fig.add_subplot(1, 1, 1)
+        divider = make_axes_locatable(ax)
+        ylabel_tick_names = self.averaging_names
+        xlabel_tick_names = [str(name) + "y" for name in self.average_years]
+        nx = len(xlabel_tick_names)
+        ny = len(ylabel_tick_names)
+        lx = nx - 1
+        ly = ny - 1
+        xlabel_tick_positions = [x * lx / (2 * nx) for x in np.arange(1, 2 * nx, 2)]
+        ylabel_tick_positions = [y * ly / (2 * ny) for y in np.arange(1, 2 * ny, 2)]
+
+        img = ax.imshow(
+            self.count_array.transpose(),
+            origin="lower",
+            interpolation="nearest",
+            aspect="equal",
+            alpha=0.6,
+            cmap="plasma",
+            extent=[0, lx, 0, ly],
+        )
+        cax = divider.append_axes("right", size="5%", pad=0.05)
+        plt.colorbar(img, cax=cax)
+        ax.set_xticks(xlabel_tick_positions)
+        ax.set_xticklabels(xlabel_tick_names)
+        ax.set_yticks(ylabel_tick_positions)
+        ax.set_yticklabels(ylabel_tick_names)
+        ax.set_title("Best averaging technique")
+        plt.show()
 
     def compute_histogram(self):
         self.count_array = np.zeros(
@@ -372,9 +404,10 @@ def main():
 
     dividend_analyzer.randomize_portfolios()
     dividend_analyzer.compare_growth_estimates()
+    dividend_analyzer.plot_count_array()
 
 
 # Next:
-# 1) Make a 2D histgoram of self.count_array to show which strategy is best.
+# 1) Check why 1y for rolling geometric average is the best in histogram
 if __name__ == "__main__":
     main()
