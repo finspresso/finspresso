@@ -28,7 +28,7 @@
       "cwd": "${workspaceRoot}",
       "args": [
         "--n_portfolio",
-        "120"
+        "20"
       ],
       "console": "integratedTerminal"
     },

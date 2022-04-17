@@ -65,6 +65,7 @@ def compute_dividend_growth_portfolio(
             (data_dict[ticker]["dividends per year"].index < current_year)
             & (data_dict[ticker]["dividends per year"] > 0)
         ]
+        dividend_dict[ticker]["dividends per year"] = dividends_per_year
         dividend_dict[ticker]["dividends per year growth"] = (
             dividends_per_year.diff() / dividends_per_year.shift() * 100
         )
@@ -78,7 +79,7 @@ def compute_dividend_growth_portfolio(
             "rolling average dividend growth per year"
         ] = portfolio_math.construct_estimation_dict()
         dividend_dict[ticker][
-            "rolling geometric average dividends per year"
+            "rolling geometric average dividends growth per year"
         ] = portfolio_math.construct_estimation_dict()
         dividend_dict[ticker][
             "rolling ema dividend growth per year"
@@ -92,9 +93,9 @@ def compute_dividend_growth_portfolio(
                 .mean()
                 .shift()
             )
-            dividend_dict[ticker]["rolling geometric average dividends per year"][
-                "estimate"
-            ][str(year)] = (
+            dividend_dict[ticker][
+                "rolling geometric average dividends growth per year"
+            ]["estimate"][str(year)] = (
                 dividends_per_year.rolling(year)
                 .apply(lambda x: portfolio_math.get_geometric_mean(x))
                 .shift()
@@ -133,7 +134,7 @@ class DividendAnalyzer:
         n_processes=None,
         averaging_names=[
             "rolling average dividend growth per year",
-            "rolling geometric average dividends per year",
+            "rolling geometric average dividends growth per year",
             "rolling ema dividend growth per year",
         ],
     ):
@@ -408,6 +409,6 @@ def main():
 
 
 # Next:
-# 1) Check why 1y for rolling geometric average is the best in histogram
+# 1) Check why 1y for rolling geometric average is the best in histogram (Sort out bad examples as BKR that suddenly at an extreme jump in dividend yield)
 if __name__ == "__main__":
     main()
