@@ -1,5 +1,9 @@
-# 1. Next make plot that allows
-# 2.Next plot the growths of dividends per holding, Add combobox to get the number of years back + add option for geometric mean
+# 1: Create new option to select window called "RMSD overall" and add plot 2d histogram of rmsd per security # create example image
+# Example:
+# img = pg.ImageItem(image=np.eye(3), levels=(0,1) ) # create example image
+# plot_widget = pg.PlotWidget()
+# plot_widget.addItem(img)
+
 import argparse
 import datetime
 import yfinance as yf
@@ -342,10 +346,11 @@ class DividendHistory(QtGui.QWidget):
         self.second_figure_cb = QtGui.QComboBox()
         self.second_figure_cb.addItems(
             [
-                "Bar chart: Dividens paid",
+                "Bar chart: Dividends paid",
                 "Histogram: Delta dividend growth rate",
                 "Difference: Estimate - Real",
-                "Root-mean-square devation",
+                "Bar chart: Root-mean-square deviation",
+                "RMSD overall",
                 "None",
             ]
         )
@@ -400,13 +405,13 @@ class DividendHistory(QtGui.QWidget):
         self.histogram_variance_widget.showGrid(x=False, y=True, alpha=0.4)
 
         self.second_figure_dict = {
-            "Bar chart: Dividens paid": self.bar_plot_widget,
+            "Bar chart: Dividends paid": self.bar_plot_widget,
             "Histogram: Delta dividend growth rate": self.histogram_variance_widget,
             "Difference: Estimate - Real": self.plot_widget_diff,
-            "Root-mean-square devation": self.rmsd_plot_widget,
+            "Bar chart: Root-mean-square deviation": self.rmsd_plot_widget,
             "None": self.bar_plot_widget,
         }
-        self.current_second_figure = "Bar chart: Dividens paid"
+        self.current_second_figure = "Bar chart: Dividends paid"
         self.setLayout(self.main_layout)
 
     def reenable_autoscale(self):
