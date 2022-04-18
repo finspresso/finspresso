@@ -194,7 +194,10 @@ class DividendAnalyzer:
                 + f"\nnumber of portfolios: {self.n_portfolio}"
                 + f"\nsecurities per portfolio: {self.n_security}"
             ),
-            f"Best averaging technique (single)\n#n: {n_single}",
+            (
+                "Best averaging technique (single)"
+                + f"\nnumber of securities: {n_single}"
+            ),
         ]
         ylabel_tick_names = [
             " ".join(x.split()[:2])
