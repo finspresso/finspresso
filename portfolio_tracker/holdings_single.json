@@ -32,7 +32,7 @@
     },
     {
       "name": "DVN company",
-      "ticker": "DVN",
+      "ticker": "NWL",
       "quantity": 1000,
       "yfinance": true
     }

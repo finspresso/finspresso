@@ -61,6 +61,9 @@ def compute_dividend_growth_portfolio(
     )
     n_ticker = len(portfolio_dividend_payer)
     for ticker in portfolio_dividend_payer:
+        dividend_dict[ticker]["rmsd_df"] = pd.DataFrame(
+            index=average_years, columns=averaging_names, data=0, dtype=float
+        )
         dividends_per_year = data_dict[ticker]["dividends per year"][
             (data_dict[ticker]["dividends per year"].index < current_year)
             & (data_dict[ticker]["dividends per year"] > 0)
@@ -118,6 +121,7 @@ def compute_dividend_growth_portfolio(
                     dividend_dict[ticker][averaging_name]["deviation"][str(year)]
                 )
                 rmsd_averaging_df.loc[year, averaging_name] += rmsd / n_ticker
+                dividend_dict[ticker]["rmsd_df"].loc[year, averaging_name] = rmsd
                 dividend_dict[ticker][averaging_name]["rmsd"][str(year)] = rmsd
     dividend_dict["rmsd portfolio"] = rmsd_averaging_df
 
@@ -160,7 +164,7 @@ class DividendAnalyzer:
                 portfolio, self.data_dict, self.average_years, self.averaging_names
             )
             self.dividend_dict_portfolios.append(dividend_dict)
-        self.compute_histogram()
+        self.compute_histograms()
 
     def compare_growth_estimates_multi(self):
         logger.info("Running growth comparison with multiprocessing.")
@@ -172,49 +176,86 @@ class DividendAnalyzer:
             self.dividend_dict_portfolios = pool.starmap(
                 compute_dividend_growth_portfolio, input_tuples
             )
-        self.compute_histogram()
+        self.compute_histograms()
 
-    def plot_count_array(self):
-        logger.info("Plotting count array")
-        fig = plt.figure(figsize=plt.figaspect(0.8))
-        ax = fig.add_subplot(1, 1, 1)
-        divider = make_axes_locatable(ax)
-        ylabel_tick_names = self.averaging_names
+    def plot_count_arrays(self, save_figures=False):
+        logger.info("Plotting count arrays")
+        figures = [plt.figure(figsize=(17, 8)), plt.figure(figsize=(17, 8))]
+        figure_names = ["portfolio.png", "single.png"]
+        axes = [figures[0].add_subplot(1, 1, 1), figures[1].add_subplot(1, 1, 1)]
+        count_arrays = [
+            self.count_arrays["portfolios"].transpose(),
+            self.count_arrays["single"].transpose(),
+        ]
+        n_single = self.count_arrays["single"].sum()
+        titles = [
+            (
+                "Best averaging technique (portfolio)"
+                + f"\nnumber of portfolios: {self.n_portfolio}"
+                + f"\nsecurities per portfolio: {self.n_security}"
+            ),
+            f"Best averaging technique (single)\n#n: {n_single}",
+        ]
+        ylabel_tick_names = [
+            " ".join(x.split()[:2])
+            + "\n"
+            + " ".join(x.split()[2:4])
+            + "\n"
+            + " ".join(x.split()[4:])
+            for x in self.averaging_names
+        ]
         xlabel_tick_names = [str(name) + "y" for name in self.average_years]
-        nx = len(xlabel_tick_names)
-        ny = len(ylabel_tick_names)
-        lx = nx - 1
-        ly = ny - 1
-        xlabel_tick_positions = [x * lx / (2 * nx) for x in np.arange(1, 2 * nx, 2)]
-        ylabel_tick_positions = [y * ly / (2 * ny) for y in np.arange(1, 2 * ny, 2)]
+        for i in range(2):
+            divider = make_axes_locatable(axes[i])
+            nx = len(xlabel_tick_names)
+            ny = len(ylabel_tick_names)
+            lx = nx - 1
+            ly = ny - 1
+            xlabel_tick_positions = [x * lx / (2 * nx) for x in np.arange(1, 2 * nx, 2)]
+            ylabel_tick_positions = [y * ly / (2 * ny) for y in np.arange(1, 2 * ny, 2)]
 
-        img = ax.imshow(
-            self.count_array.transpose(),
-            origin="lower",
-            interpolation="nearest",
-            aspect="equal",
-            alpha=0.6,
-            cmap="plasma",
-            extent=[0, lx, 0, ly],
-        )
-        cax = divider.append_axes("right", size="5%", pad=0.05)
-        plt.colorbar(img, cax=cax)
-        ax.set_xticks(xlabel_tick_positions)
-        ax.set_xticklabels(xlabel_tick_names)
-        ax.set_yticks(ylabel_tick_positions)
-        ax.set_yticklabels(ylabel_tick_names)
-        ax.set_title("Best averaging technique")
+            img = axes[i].imshow(
+                count_arrays[i],
+                origin="lower",
+                interpolation="nearest",
+                aspect="equal",
+                alpha=0.6,
+                cmap="plasma",
+                extent=[0, lx, 0, ly],
+            )
+            cax = divider.append_axes("right", size="5%", pad=0.05)
+            plt.colorbar(img, cax=cax)
+            axes[i].set_xticks(xlabel_tick_positions)
+            axes[i].set_xticklabels(xlabel_tick_names)
+            axes[i].set_yticks(ylabel_tick_positions)
+            axes[i].set_yticklabels(ylabel_tick_names)
+            axes[i].set_title(titles[i])
+            if save_figures:
+                figures[i].savefig(figure_names[i])
+
         plt.show()
 
-    def compute_histogram(self):
-        self.count_array = np.zeros(
+    def compute_histograms(self):
+        self.count_arrays = dict()
+        self.count_arrays["portfolios"] = np.zeros(
             (len(self.average_years), len(self.averaging_names))
         )
+        self.count_arrays["single"] = np.zeros(
+            (len(self.average_years), len(self.averaging_names))
+        )
+        tickers_included = []
         for dividend_dict in self.dividend_dict_portfolios:
             array = np.array(dividend_dict["rmsd portfolio"])
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
-            self.count_array[ind] += 1
-        print(self.count_array)
+            self.count_arrays["portfolios"][ind] += 1
+            tickers = [key for key in dividend_dict.keys()]
+            tickers = tickers[:-1]
+            for ticker in tickers:
+                if ticker not in tickers_included:
+                    tickers_included.append(ticker)
+                    array = np.array(dividend_dict[ticker]["rmsd_df"])
+                    ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
+                    self.count_arrays["single"][ind] += 1
 
     def randomize_portfolios(self):
         logger.info(
@@ -365,7 +406,7 @@ def main():
     )
     parser.add_argument(
         "--n_portfolio",
-        help="Number of considered portfolios for analysis",
+        help="Number of considered portfolios for analysis.",
         type=int,
         default=100,
     )
@@ -380,6 +421,11 @@ def main():
         help="If set, re-downloads all the dividends of the desired tickers and \
               stores them under data_dict.json. Otherwise loads the data_dict \
               from data_dict.json ",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--save_figures",
+        help="If set, saves the figures in the current directory with portfolio.png and single.png",
         action="store_true",
     )
     args = parser.parse_args()
@@ -405,10 +451,11 @@ def main():
 
     dividend_analyzer.randomize_portfolios()
     dividend_analyzer.compare_growth_estimates()
-    dividend_analyzer.plot_count_array()
+    dividend_analyzer.plot_count_arrays(save_figures=args.save_figures)
 
 
 # Next:
-# 1) Check why 1y for rolling geometric average is the best in histogram (Sort out bad examples as BKR that suddenly at an extreme jump in dividend yield)
+# 1) Make alternative computation that considers single tickes instead of randomized portfolio to see whether the 1y zero growth (geometric growth estiamte) is still the best
+# 2 ) If a different one is the best
 if __name__ == "__main__":
     main()
