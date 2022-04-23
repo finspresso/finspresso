@@ -33,6 +33,8 @@ class TabWindow(QtGui.QTabWidget):
         self.holdings_file = Path(holdings_file)
         self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
+        cm = pg.colormap.get("CET-L9")  # prepare a linear color map
+        self.colorbar = pg.ColorBarItem(cmap=cm)
         self.load_holdings()
         self.download_data_from_yahoo()
         self.tickers = [
@@ -287,10 +289,22 @@ class TabWindow(QtGui.QTabWidget):
         ticker = self.dividend_history.security_cb.currentText()
         security = self.holdings_dict[ticker]
         self.dividend_history.rmsd_plot_widget.clear()
-        img = pg.ImageItem(
-            image=security["rmsd dataframe"].values
-        )  # ToDo: Add colorbar
+        img = pg.ImageItem(image=security["rmsd dataframe"].values)
         self.dividend_history.plot_widget_rmsd_overall.addItem(img)
+        max_val = (
+            security["rmsd dataframe"].replace([np.inf, -np.inf], np.nan).max().max()
+        )
+        min_val = (
+            security["rmsd dataframe"].replace([np.inf, -np.inf], np.nan).min().min()
+        )
+        if not np.isnan(max_val) and not np.isnan(
+            min_val
+        ):  # Next improve color to match the one from quant + axis description as in quant
+            self.colorbar.setLevels(low=min_val, high=max_val)
+            self.colorbar.setImageItem(
+                img,
+                insert_in=self.dividend_history.plot_widget_rmsd_overall.getPlotItem(),
+            )
 
     def update_rmsd_bars(self, visible_averaging_values_key, ticker):
         self.dividend_history.rmsd_plot_widget.clear()
