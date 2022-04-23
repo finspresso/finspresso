@@ -99,7 +99,15 @@ class TabWindow(QtGui.QTabWidget):
         return estimation_dict
 
     def compute_dividend_growth_values(self):
+        averaging_names = [
+            "rolling average dividend growth per year",
+            "rolling geometric average dividends growth per year",
+            "rolling ema dividend growth per year",
+        ]
         for security in self.holdings_dict.values():
+            security["rmsd dataframe"] = pd.DataFrame(
+                index=self.average_years, columns=averaging_names, data=0, dtype=float
+            )
             if security.get("yfinance", False):
                 dividends_per_year = security["dividends per year"][
                     security["dividends per year"].index < self.current_year
@@ -143,11 +151,6 @@ class TabWindow(QtGui.QTabWidget):
                         .apply(lambda x: portfolio_math.get_ema(x))
                         .shift()
                     )
-                    averaging_names = [
-                        "rolling average dividend growth per year",
-                        "rolling geometric average dividends growth per year",
-                        "rolling ema dividend growth per year",
-                    ]
                     for averaging_name in averaging_names:
                         security[averaging_name]["deviation"][str(year)] = (
                             security[averaging_name]["estimate"][str(year)]
@@ -158,6 +161,9 @@ class TabWindow(QtGui.QTabWidget):
                         ] = portfolio_math.get_root_mean_square_deviation(
                             security[averaging_name]["deviation"][str(year)]
                         )
+                        security["rmsd dataframe"].loc[year, averaging_name] = security[
+                            averaging_name
+                        ]["rmsd"][str(year)]
 
     @staticmethod
     def get_root_mean_square_deviation(x):
@@ -189,6 +195,7 @@ class TabWindow(QtGui.QTabWidget):
         self.update_plot_dividend_growth()
         self.update_dividend_bars()
         self.update_dividend_growth_diff_hist()
+        self.update_rmsd_image()
 
     def update_dividend_average_years(self):
         self.update_plot_dividend_growth()
@@ -275,6 +282,15 @@ class TabWindow(QtGui.QTabWidget):
             x=x, height=y, width=0.6, brush="g"
         )  # TODO: Ensure that current year does not show in bar graph
         self.dividend_history.bar_plot_widget.addItem(bargraph)
+
+    def update_rmsd_image(self):
+        ticker = self.dividend_history.security_cb.currentText()
+        security = self.holdings_dict[ticker]
+        self.dividend_history.rmsd_plot_widget.clear()
+        img = pg.ImageItem(
+            image=security["rmsd dataframe"].values
+        )  # ToDo: Add colorbar
+        self.dividend_history.plot_widget_rmsd_overall.addItem(img)
 
     def update_rmsd_bars(self, visible_averaging_values_key, ticker):
         self.dividend_history.rmsd_plot_widget.clear()
@@ -404,12 +420,17 @@ class DividendHistory(QtGui.QWidget):
         self.histogram_variance_widget.setLabel("left", "#")
         self.histogram_variance_widget.showGrid(x=False, y=True, alpha=0.4)
 
+        img = pg.ImageItem(image=np.eye(3), levels=(0, 1))  # create example image
+        self.plot_widget_rmsd_overall = pg.PlotWidget()
+        self.plot_widget_rmsd_overall.addItem(img)
+
         self.second_figure_dict = {
             "Bar chart: Dividends paid": self.bar_plot_widget,
             "Histogram: Delta dividend growth rate": self.histogram_variance_widget,
             "Difference: Estimate - Real": self.plot_widget_diff,
             "Bar chart: Root-mean-square deviation": self.rmsd_plot_widget,
-            "None": self.bar_plot_widget,
+            "RMSD overall": self.plot_widget_rmsd_overall,
+            "None": None,
         }
         self.current_second_figure = "Bar chart: Dividends paid"
         self.setLayout(self.main_layout)
