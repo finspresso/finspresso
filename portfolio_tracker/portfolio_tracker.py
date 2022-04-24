@@ -21,7 +21,7 @@ from pyqtgraph.Qt import QtGui
 
 # Global settings
 coloredlogs.install()
-logger = logging.getLogger()
+logger = logging.getLogger("portfolio_tracker")
 logging.basicConfig(level=logging.DEBUG)
 pg.setConfigOption("background", "w")
 pg.setConfigOption("foreground", "k")
@@ -33,7 +33,8 @@ class TabWindow(QtGui.QTabWidget):
         self.holdings_file = Path(holdings_file)
         self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
-        cm = pg.colormap.get("CET-L9")  # prepare a linear color map
+        cm = pg.colormap.get("plasma")
+        cm.reverse()
         self.colorbar = pg.ColorBarItem(cmap=cm)
         self.load_holdings()
         self.download_data_from_yahoo()
@@ -359,6 +360,11 @@ class DividendHistory(QtGui.QWidget):
         update_average_years_function=None,
         update_mouse_function_dividend=None,
         average_years=[1, 2, 3, 4, 5],
+        averaging_names=[
+            "rolling average dividend growth per year",
+            "rolling geometric average dividends growth per year",
+            "rolling ema dividend growth per year",
+        ],
     ):
         QtGui.QWidget.__init__(self)
         self.setGeometry(100, 100, 1200, 900)
@@ -385,6 +391,8 @@ class DividendHistory(QtGui.QWidget):
             ]
         )
         self.second_figure_cb.currentTextChanged.connect(self.update_second_figure)
+        self.average_years = average_years
+        self.averaging_names = averaging_names
         if combo_list_tickers:
             self.security_cb.addItems(combo_list_tickers)
         self.top_layout.addRow("Security:", self.security_cb)
@@ -434,9 +442,7 @@ class DividendHistory(QtGui.QWidget):
         self.histogram_variance_widget.setLabel("left", "#")
         self.histogram_variance_widget.showGrid(x=False, y=True, alpha=0.4)
 
-        img = pg.ImageItem(image=np.eye(3), levels=(0, 1))  # create example image
-        self.plot_widget_rmsd_overall = pg.PlotWidget()
-        self.plot_widget_rmsd_overall.addItem(img)
+        self.setup_rmsd_overall_plot()
 
         self.second_figure_dict = {
             "Bar chart: Dividends paid": self.bar_plot_widget,
@@ -448,6 +454,45 @@ class DividendHistory(QtGui.QWidget):
         }
         self.current_second_figure = "Bar chart: Dividends paid"
         self.setLayout(self.main_layout)
+
+    def setup_rmsd_overall_plot(self):
+        img = pg.ImageItem(image=np.eye(3), levels=(0, 1))  # create example image
+        self.plot_widget_rmsd_overall = pg.PlotWidget()
+        ax = self.plot_widget_rmsd_overall.getAxis("bottom")
+        ay = self.plot_widget_rmsd_overall.getAxis("left")
+        xlabel_tick_names = [str(name) + "y" for name in self.average_years]
+        ylabel_tick_names = [
+            " ".join(x.split()[:2])
+            + "\n"
+            + " ".join(x.split()[2:4])
+            + "\n"
+            + " ".join(x.split()[4:])
+            for x in self.averaging_names
+        ]
+        nx = len(xlabel_tick_names)
+        ny = len(ylabel_tick_names)
+        xlabel_tick_positions = [x + 0.5 for x in np.arange(nx)]
+        ylabel_tick_positions = [y + 0.5 for y in np.arange(ny)]
+        ax.setTicks(
+            [
+                [
+                    (pos, name)
+                    for pos, name in zip(xlabel_tick_positions, xlabel_tick_names)
+                ]
+            ]
+        )
+        ay.setTicks(
+            [
+                [
+                    (pos, name)
+                    for pos, name in zip(ylabel_tick_positions, ylabel_tick_names)
+                ]
+            ]
+        )
+        self.plot_widget_rmsd_overall.getPlotItem().setTitle(
+            "Root mean square deviation (RMSD)"
+        )
+        self.plot_widget_rmsd_overall.addItem(img)
 
     def reenable_autoscale(self):
         self.plot_widget.enableAutoRange()
