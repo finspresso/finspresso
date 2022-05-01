@@ -28,9 +28,12 @@ pg.setConfigOption("foreground", "k")
 
 
 class TabWindow(QtGui.QTabWidget):
-    def __init__(self, holdings_file="holdings.json", parent=None):
+    def __init__(
+        self, holdings_file="holdings.json", parent=None, rejection_threshold=50
+    ):
         super(TabWindow, self).__init__(parent)
         self.holdings_file = Path(holdings_file)
+        self.rejection_threshold = rejection_threshold
         self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
         cm = pg.colormap.get("plasma")
@@ -101,6 +104,13 @@ class TabWindow(QtGui.QTabWidget):
         estimation_dict = {"estimate": dict(), "deviation": dict(), "rmsd": dict()}
         return estimation_dict
 
+    @staticmethod
+    def outlier_rejection(series, rejection_threshold):
+        series_cleaned = series.copy()
+        outlier = series.abs() > rejection_threshold
+        series_cleaned[outlier] = 0
+        return series_cleaned
+
     def compute_dividend_growth_values(self):
         averaging_names = [
             "rolling average dividend growth per year",
@@ -117,6 +127,11 @@ class TabWindow(QtGui.QTabWidget):
                 ]
                 security["dividends per year growth"] = (
                     dividends_per_year.diff() / dividends_per_year.shift() * 100
+                )
+                security[
+                    "dividends per year growth (without outlier)"
+                ] = self.outlier_rejection(
+                    security["dividends per year growth"], self.rejection_threshold
                 )
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
@@ -390,6 +405,9 @@ class DividendHistory(QtGui.QWidget):
                 "None",
             ]
         )
+        self.outlier_rejection_checkbox = QtGui.QCheckBox(
+            "Show outlier rejection"
+        )  # Next make connection such that dividend growth graph with outlier rejection is shown
         self.second_figure_cb.currentTextChanged.connect(self.update_second_figure)
         self.average_years = average_years
         self.averaging_names = averaging_names
@@ -399,6 +417,7 @@ class DividendHistory(QtGui.QWidget):
         self.top_layout.addRow("Averaging method:", self.averaging_cb)
         self.create_average_layout(average_years, update_average_years_function)
         self.top_layout.addRow("Averaging years:", self.average_years_layout)
+        self.top_layout.addRow("Outlier Rejection:", self.outlier_rejection_checkbox)
         self.top_layout.addRow("Second figure:", self.second_figure_cb)
         self.plot_widget = pg.PlotWidget()
         label_style = {"font-size": "20px"}
