@@ -101,7 +101,12 @@ class TabWindow(QtGui.QTabWidget):
 
     @staticmethod
     def construct_estimation_dict():
-        estimation_dict = {"estimate": dict(), "deviation": dict(), "rmsd": dict()}
+        estimation_dict = {
+            "estimate": dict(),
+            "estimate (outlier rejection)": dict(),
+            "deviation": dict(),
+            "rmsd": dict(),
+        }
         return estimation_dict
 
     @staticmethod
@@ -129,10 +134,11 @@ class TabWindow(QtGui.QTabWidget):
                     dividends_per_year.diff() / dividends_per_year.shift() * 100
                 )
                 security[
-                    "dividends per year growth (without outlier)"
+                    "dividends per year growth (outlier rejection)"
                 ] = self.outlier_rejection(
                     security["dividends per year growth"], self.rejection_threshold
                 )
+                dividends_per_year_without_outlier = dividends_per_year
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
@@ -154,10 +160,25 @@ class TabWindow(QtGui.QTabWidget):
                         .mean()
                         .shift()
                     )
+                    security["rolling average dividend growth per year"][
+                        "estimate (outlier rejection)"
+                    ][str(year)] = (
+                        security["dividends per year growth (outlier rejection)"]
+                        .rolling(year)
+                        .mean()
+                        .shift()
+                    )
                     security["rolling geometric average dividends growth per year"][
                         "estimate"
                     ][str(year)] = (
                         dividends_per_year.rolling(year)
+                        .apply(lambda x: portfolio_math.get_geometric_mean(x))
+                        .shift()
+                    )
+                    security["rolling geometric average dividends growth per year"][
+                        "estimate (outlier rejection)"
+                    ][str(year)] = (
+                        dividends_per_year_without_outlier.rolling(year)
                         .apply(lambda x: portfolio_math.get_geometric_mean(x))
                         .shift()
                     )
@@ -169,6 +190,18 @@ class TabWindow(QtGui.QTabWidget):
                         .apply(lambda x: portfolio_math.get_ema(x))
                         .shift()
                     )
+
+                    security["rolling ema dividend growth per year"][
+                        "estimate (outlier rejection)"
+                    ][str(year)] = (
+                        security["dividends per year growth (outlier rejection)"]
+                        .rolling(year)
+                        .apply(lambda x: portfolio_math.get_ema(x))
+                        .shift()
+                    )
+                    # Next 1)Compute dividends_per_year_without_outlier that does not take into account dividends that were rejected in growth model
+                    # 2) Deviation and rmsd with outlier rejection
+                    # 3) Add this quant to check whether this rmsd would be the beset
                     for averaging_name in averaging_names:
                         security[averaging_name]["deviation"][str(year)] = (
                             security[averaging_name]["estimate"][str(year)]
@@ -240,15 +273,15 @@ class TabWindow(QtGui.QTabWidget):
             symbolSize=6,
         )
         if self.dividend_history.outlier_rejection_checkbox.isChecked():
-            pen = pg.mkPen(color="blue", width=2, style=QtCore.Qt.DotLine)
+            pen = pg.mkPen(color="red", width=2, style=QtCore.Qt.DotLine)
             self.dividend_history.plot_widget.plot(
                 self.holdings_dict[ticker][
-                    "dividends per year growth (without outlier)"
+                    "dividends per year growth (outlier rejection)"
                 ].index.values,
                 self.holdings_dict[ticker][
-                    "dividends per year growth (without outlier)"
+                    "dividends per year growth (outlier rejection)"
                 ].values,
-                name="Real dividend growth (without outlier)",
+                name="Real dividend growth (outlier rejection)",
                 pen=pen,
                 symbol="o",
                 symbolSize=6,
@@ -288,6 +321,30 @@ class TabWindow(QtGui.QTabWidget):
                     symbol="o",
                     symbolSize=6,
                 )
+                if self.dividend_history.outlier_rejection_checkbox.isChecked():
+                    x = self.holdings_dict[ticker][visible_averaging_values_key][
+                        "estimate (outlier rejection)"
+                    ][str(year)].index.values
+                    y = self.holdings_dict[ticker][visible_averaging_values_key][
+                        "estimate (outlier rejection)"
+                    ][str(year)].values
+                    pen = pg.mkPen(
+                        color=self.dividend_history.average_years_checkbox[year][
+                            "Color"
+                        ],
+                        width=2,
+                        style=QtCore.Qt.DotLine,
+                    )
+                    self.dividend_history.plot_widget.plot(
+                        x,
+                        y,
+                        name="Estimate (outlier rejection): "
+                        + str(year)
+                        + " years window size",
+                        pen=pen,
+                        symbol="o",
+                        symbolSize=6,
+                    )
                 y_diff = self.holdings_dict[ticker][visible_averaging_values_key][
                     "deviation"
                 ][str(year)].values
@@ -420,9 +477,7 @@ class DividendHistory(QtGui.QWidget):
                 "None",
             ]
         )
-        self.outlier_rejection_checkbox = QtGui.QCheckBox(
-            "Show outlier rejection"
-        )  # Next make connection such that dividend growth graph with outlier rejection is shown
+        self.outlier_rejection_checkbox = QtGui.QCheckBox("Show outlier rejection")
         self.second_figure_cb.currentTextChanged.connect(self.update_second_figure)
         self.average_years = average_years
         self.averaging_names = averaging_names
