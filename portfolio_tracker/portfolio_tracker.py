@@ -17,7 +17,7 @@ import pandas as pd
 from portfolio_math import portfolio_math
 
 from pathlib import Path
-from pyqtgraph.Qt import QtGui
+from pyqtgraph.Qt import QtGui, QtCore
 
 # Global settings
 coloredlogs.install()
@@ -240,10 +240,7 @@ class TabWindow(QtGui.QTabWidget):
             symbolSize=6,
         )
         if self.dividend_history.outlier_rejection_checkbox.isChecked():
-            pen = pg.mkPen(
-                color="blue",
-                width=4,
-            )
+            pen = pg.mkPen(color="blue", width=2, style=QtCore.Qt.DotLine)
             self.dividend_history.plot_widget.plot(
                 self.holdings_dict[ticker][
                     "dividends per year growth (without outlier)"
