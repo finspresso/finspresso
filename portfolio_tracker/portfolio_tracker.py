@@ -239,6 +239,24 @@ class TabWindow(QtGui.QTabWidget):
             symbol="o",
             symbolSize=6,
         )
+        if self.dividend_history.outlier_rejection_checkbox.isChecked():
+            pen = pg.mkPen(
+                color="blue",
+                width=4,
+            )
+            self.dividend_history.plot_widget.plot(
+                self.holdings_dict[ticker][
+                    "dividends per year growth (without outlier)"
+                ].index.values,
+                self.holdings_dict[ticker][
+                    "dividends per year growth (without outlier)"
+                ].values,
+                name="Real dividend growth (without outlier)",
+                pen=pen,
+                symbol="o",
+                symbolSize=6,
+            )
+
         if self.dividend_history.averaging_cb.currentText() == "Simple averaging":
             visible_averaging_values_key = "rolling average dividend growth per year"
         elif self.dividend_history.averaging_cb.currentText() == "Geometric averaging":
@@ -447,6 +465,7 @@ class DividendHistory(QtGui.QWidget):
         if update_function is not None:
             self.security_cb.currentTextChanged.connect(update_function)
             self.averaging_cb.currentTextChanged.connect(update_function)
+            self.outlier_rejection_checkbox.stateChanged.connect(update_function)
         self.main_layout.addLayout(self.top_layout)
         self.main_layout.addWidget(self.plot_widget)
         self.main_layout.addWidget(self.bar_plot_widget)
