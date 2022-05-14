@@ -138,7 +138,19 @@ class TabWindow(QtGui.QTabWidget):
                 ] = self.outlier_rejection(
                     security["dividends per year growth"], self.rejection_threshold
                 )
-                dividends_per_year_without_outlier = dividends_per_year
+                growth_series = (
+                    security["dividends per year growth (outlier rejection)"].iloc[1:]
+                    / 100
+                    + 1
+                )
+                security["dividends per year (without outlier)"] = (
+                    growth_series.cumprod()
+                    * dividends_per_year[
+                        security["dividends per year growth (outlier rejection)"].index[
+                            0
+                        ]
+                    ]
+                )
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
@@ -178,7 +190,8 @@ class TabWindow(QtGui.QTabWidget):
                     security["rolling geometric average dividends growth per year"][
                         "estimate (outlier rejection)"
                     ][str(year)] = (
-                        dividends_per_year_without_outlier.rolling(year)
+                        security["dividends per year (without outlier)"]
+                        .rolling(year)
                         .apply(lambda x: portfolio_math.get_geometric_mean(x))
                         .shift()
                     )
@@ -199,7 +212,7 @@ class TabWindow(QtGui.QTabWidget):
                         .apply(lambda x: portfolio_math.get_ema(x))
                         .shift()
                     )
-                    # Next 1)Compute dividends_per_year_without_outlier that does not take into account dividends that were rejected in growth model
+                    # Next 1) A) Make legend in dividend paid bar chart B) Compute dividends_per_year_without_outlier that does not take into account dividends that were rejected in growth model but do not only take year init but every year
                     # 2) Deviation and rmsd with outlier rejection
                     # 3) Add this quant to check whether this rmsd would be the beset
                     for averaging_name in averaging_names:
@@ -345,6 +358,9 @@ class TabWindow(QtGui.QTabWidget):
                         symbol="o",
                         symbolSize=6,
                     )
+                x = self.holdings_dict[ticker][visible_averaging_values_key][
+                    "deviation"
+                ][str(year)].index.values
                 y_diff = self.holdings_dict[ticker][visible_averaging_values_key][
                     "deviation"
                 ][str(year)].values
@@ -362,6 +378,9 @@ class TabWindow(QtGui.QTabWidget):
         ticker = self.dividend_history.security_cb.currentText()
         self.dividend_history.bar_plot_widget.clear()
         security = self.holdings_dict[ticker]
+        desired_width = 0.6
+        if self.dividend_history.outlier_rejection_checkbox.isChecked():
+            desired_width = 0.3
         x = security["dividends per year"][
             security["dividends per year"].index < self.current_year
         ].index.values
@@ -369,9 +388,23 @@ class TabWindow(QtGui.QTabWidget):
             security["dividends per year"].index < self.current_year
         ].values
         bargraph = pg.BarGraphItem(
-            x=x, height=y, width=0.6, brush="g"
+            x=x, height=y, width=desired_width, brush="g"
         )  # TODO: Ensure that current year does not show in bar graph
         self.dividend_history.bar_plot_widget.addItem(bargraph)
+        if self.dividend_history.outlier_rejection_checkbox.isChecked():
+            x = security["dividends per year (without outlier)"][
+                security["dividends per year (without outlier)"].index
+                < self.current_year
+            ].index.values
+            x = x + 0.33
+            y = security["dividends per year (without outlier)"][
+                security["dividends per year (without outlier)"].index
+                < self.current_year
+            ].values
+            bargraph2 = pg.BarGraphItem(
+                x=x, height=y, width=desired_width, brush="r"
+            )  # TODO: Ensure that current year does not show in bar graph
+            self.dividend_history.bar_plot_widget.addItem(bargraph2)
 
     def update_rmsd_image(self):
         ticker = self.dividend_history.security_cb.currentText()
