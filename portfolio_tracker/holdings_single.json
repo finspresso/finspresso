@@ -19,14 +19,14 @@
       "yfinance": true
     },
     {
-      "name": "Vanguad high dividend yield",
+      "name": "Vanguard high dividend yield",
       "ticker": "VYM",
       "quantity": 1000,
       "yfinance": true
     },
     {
-      "name": "K company",
-      "ticker": "K",
+      "name": "Exxon Mobile",
+      "ticker": "XOM",
       "quantity": 1000,
       "yfinance": true
     },

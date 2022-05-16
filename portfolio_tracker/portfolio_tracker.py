@@ -110,11 +110,21 @@ class TabWindow(QtGui.QTabWidget):
         return estimation_dict
 
     @staticmethod
-    def outlier_rejection(series, rejection_threshold):
-        series_cleaned = series.copy()
-        outlier = series.abs() > rejection_threshold
-        series_cleaned[outlier] = 0
-        return series_cleaned
+    def dividend_outlier_rejection(dividends, rejection_threshold):
+        dividends_without_outlier = dividends.copy()
+        for year in dividends.index[1:]:
+            dividends_without_outlier.loc[year] = dividends_without_outlier.loc[
+                year - 1
+            ]
+            if dividends.loc[year - 1] > 0:
+                growth = (
+                    (dividends.loc[year] - dividends.loc[year - 1])
+                    / dividends.loc[year - 1]
+                    * 100
+                )
+                if np.abs(growth) <= rejection_threshold:
+                    dividends_without_outlier.loc[year] = dividends.loc[year]
+        return dividends_without_outlier
 
     def compute_dividend_growth_values(self):
         averaging_names = [
@@ -134,22 +144,14 @@ class TabWindow(QtGui.QTabWidget):
                     dividends_per_year.diff() / dividends_per_year.shift() * 100
                 )
                 security[
-                    "dividends per year growth (outlier rejection)"
-                ] = self.outlier_rejection(
-                    security["dividends per year growth"], self.rejection_threshold
+                    "dividends per year (without outlier)"
+                ] = self.dividend_outlier_rejection(
+                    dividends_per_year, self.rejection_threshold
                 )
-                growth_series = (
-                    security["dividends per year growth (outlier rejection)"].iloc[1:]
-                    / 100
-                    + 1
-                )
-                security["dividends per year (without outlier)"] = (
-                    growth_series.cumprod()
-                    * dividends_per_year[
-                        security["dividends per year growth (outlier rejection)"].index[
-                            0
-                        ]
-                    ]
+                security["dividends per year growth (outlier rejection)"] = (
+                    security["dividends per year (without outlier)"].diff()
+                    / security["dividends per year (without outlier)"].shift()
+                    * 100
                 )
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
@@ -212,7 +214,7 @@ class TabWindow(QtGui.QTabWidget):
                         .apply(lambda x: portfolio_math.get_ema(x))
                         .shift()
                     )
-                    # Next 1) A) Make legend in dividend paid bar chart B) Compute dividends_per_year_without_outlier that does not take into account dividends that were rejected in growth model but do not only take year init but every year
+                    # Next 1) Compute dividends_per_year_without_outlier that does not take into account dividends that were rejected in growth model but do not only take year init but every year
                     # 2) Deviation and rmsd with outlier rejection
                     # 3) Add this quant to check whether this rmsd would be the beset
                     for averaging_name in averaging_names:
