@@ -270,6 +270,8 @@ class TabWindow(QtGui.QTabWidget):
         self.dividend_history.plot_widget.plotItem.legend.items = []
         self.dividend_history.plot_widget_diff.clear()
         self.dividend_history.plot_widget_diff.plotItem.legend.items = []
+        # self.dividend_history.bar_plot_widget.clear()
+        # self.dividend_history.bar_plot_widget.plotItem.legend.items = []
         # from PyQt5.QtCore import pyqtRemoveInputHook
         # pyqtRemoveInputHook()
         # import pdb; pdb.set_trace()
@@ -388,7 +390,7 @@ class TabWindow(QtGui.QTabWidget):
             security["dividends per year"].index < self.current_year
         ].values
         bargraph = pg.BarGraphItem(
-            x=x, height=y, width=desired_width, brush="g"
+            x=x, height=y, width=desired_width, brush="g", name="Dividends"
         )  # TODO: Ensure that current year does not show in bar graph
         self.dividend_history.bar_plot_widget.addItem(bargraph)
         if self.dividend_history.outlier_rejection_checkbox.isChecked():
@@ -402,7 +404,11 @@ class TabWindow(QtGui.QTabWidget):
                 < self.current_year
             ].values
             bargraph2 = pg.BarGraphItem(
-                x=x, height=y, width=desired_width, brush="r"
+                x=x,
+                height=y,
+                width=desired_width,
+                brush="r",
+                name="Dividends (without outlier)",
             )  # TODO: Ensure that current year does not show in bar graph
             self.dividend_history.bar_plot_widget.addItem(bargraph2)
 
@@ -538,8 +544,9 @@ class DividendHistory(QtGui.QWidget):
         self.bar_plot_widget = pg.PlotWidget()
         self.bar_plot_widget.setLabel("bottom", "Year", **label_style)
         self.bar_plot_widget.setLabel(
-            "left", "absolute dividend [USD]", **label_style
+            "left", "[USD]", **label_style
         )  # TODO: Make it adaptive depending on currency
+        self.bar_plot_widget.addLegend(labelTextSize="14pt", offset=(10, 10))
         self.bar_plot_widget.showGrid(x=False, y=True, alpha=0.4)
         self.rmsd_plot_widget = pg.PlotWidget()
         self.rmsd_plot_widget.setLabel("bottom", "Averaging Years", **label_style)
