@@ -28,7 +28,7 @@
       "cwd": "${workspaceRoot}",
       "args": [
         "--n_portfolio",
-        "100",
+        "10",
         "--save_figures"
       ],
       "console": "integratedTerminal"

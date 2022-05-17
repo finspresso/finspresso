@@ -94,3 +94,18 @@ def compute_dividend_growth_portfolio(portfolio, data_dict, average_years):
                     dividend_dict[ticker][averaging_name]["deviation"][str(year)]
                 )
     return dividend_dict
+
+
+def dividend_outlier_rejection(dividends, rejection_threshold):
+    dividends_without_outlier = dividends.copy()
+    for year in dividends.index[1:]:
+        dividends_without_outlier.loc[year] = dividends_without_outlier.loc[year - 1]
+        if dividends.loc[year - 1] > 0:
+            growth = (
+                (dividends.loc[year] - dividends.loc[year - 1])
+                / dividends.loc[year - 1]
+                * 100
+            )
+            if np.abs(growth) <= rejection_threshold:
+                dividends_without_outlier.loc[year] = dividends.loc[year]
+    return dividends_without_outlier

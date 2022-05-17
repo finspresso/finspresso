@@ -150,13 +150,13 @@ class TabWindow(QtGui.QTabWidget):
                     dividends_per_year.diff() / dividends_per_year.shift() * 100
                 )
                 security[
-                    "dividends per year (without outlier)"
+                    "dividends per year (outlier rejection)"
                 ] = self.dividend_outlier_rejection(
                     dividends_per_year, self.rejection_threshold
                 )
                 security["dividends per year growth (outlier rejection)"] = (
-                    security["dividends per year (without outlier)"].diff()
-                    / security["dividends per year (without outlier)"].shift()
+                    security["dividends per year (outlier rejection)"].diff()
+                    / security["dividends per year (outlier rejection)"].shift()
                     * 100
                 )
                 security["dividends per year growth diff"] = security[
@@ -193,7 +193,7 @@ class TabWindow(QtGui.QTabWidget):
                     security[
                         "rolling geometric average dividends growth per year (outlier rejection)"
                     ]["estimate"][str(year)] = (
-                        security["dividends per year (without outlier)"]
+                        security["dividends per year (outlier rejection)"]
                         .rolling(year)
                         .apply(lambda x: portfolio_math.get_geometric_mean(x))
                         .shift()
@@ -216,7 +216,6 @@ class TabWindow(QtGui.QTabWidget):
                         .shift()
                     )
                     # Next
-                    # 2) Deviation and rmsd with outlier rejection
                     # 3) Add this quant to check whether this rmsd would be the beset
                     for averaging_name in self.averaging_names:
                         security[averaging_name]["deviation"][str(year)] = (
@@ -406,13 +405,13 @@ class TabWindow(QtGui.QTabWidget):
         )  # TODO: Ensure that current year does not show in bar graph
         self.dividend_history.bar_plot_widget.addItem(bargraph)
         if self.dividend_history.outlier_rejection_checkbox.isChecked():
-            x = security["dividends per year (without outlier)"][
-                security["dividends per year (without outlier)"].index
+            x = security["dividends per year (outlier rejection)"][
+                security["dividends per year (outlier rejection)"].index
                 < self.current_year
             ].index.values
             x = x + 0.33
-            y = security["dividends per year (without outlier)"][
-                security["dividends per year (without outlier)"].index
+            y = security["dividends per year (outlier rejection)"][
+                security["dividends per year (outlier rejection)"].index
                 < self.current_year
             ].values
             bargraph2 = pg.BarGraphItem(
@@ -420,7 +419,7 @@ class TabWindow(QtGui.QTabWidget):
                 height=y,
                 width=desired_width,
                 brush="r",
-                name="Dividends (without outlier)",
+                name="Dividends (outlier rejection)",
             )  # TODO: Ensure that current year does not show in bar graph
             self.dividend_history.bar_plot_widget.addItem(bargraph2)
 

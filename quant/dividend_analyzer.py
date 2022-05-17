@@ -44,7 +44,7 @@ def get_dividend_payer_tickers(portfolio, data_dict, n_min, current_year):
 
 # ToDo: Add this function to portfolio_math library + check that all estimates have not only the last points in the time as non-nan value e.g [na,na,na,na,10]
 def compute_dividend_growth_portfolio(
-    portfolio, data_dict, average_years, averaging_names
+    portfolio, data_dict, average_years, averaging_names, rejection_threshold
 ):
     logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
     n_min = len(average_years) + 1
@@ -75,23 +75,42 @@ def compute_dividend_growth_portfolio(
         dividend_dict[ticker]["dividends per year growth"] = dividend_dict[ticker][
             "dividends per year growth"
         ].iloc[1:]
+        dividend_dict[ticker][
+            "dividends per year (outlier rejection)"
+        ] = portfolio_math.dividend_outlier_rejection(
+            dividends_per_year, rejection_threshold
+        )
+        dividend_dict[ticker]["dividends per year growth (outlier rejection)"] = (
+            dividend_dict[ticker]["dividends per year (outlier rejection)"].diff()
+            / dividend_dict[ticker]["dividends per year (outlier rejection)"].shift()
+            * 100
+        )
+        dividend_dict[ticker][
+            "dividends per year growth (outlier rejection)"
+        ] = dividend_dict[ticker]["dividends per year growth (outlier rejection)"].iloc[
+            1:
+        ]
         dividend_dict[ticker]["dividends per year growth diff"] = dividend_dict[ticker][
             "dividends per year growth"
         ].diff()
-        dividend_dict[ticker][
-            "rolling average dividend growth per year"
-        ] = portfolio_math.construct_estimation_dict()
-        dividend_dict[ticker][
-            "rolling geometric average dividends growth per year"
-        ] = portfolio_math.construct_estimation_dict()
-        dividend_dict[ticker][
-            "rolling ema dividend growth per year"
-        ] = portfolio_math.construct_estimation_dict()
+
+        for averaging_name in averaging_names:
+            dividend_dict[ticker][
+                averaging_name
+            ] = portfolio_math.construct_estimation_dict()
         for year in average_years:
             dividend_dict[ticker]["rolling average dividend growth per year"][
                 "estimate"
             ][str(year)] = (
                 dividend_dict[ticker]["dividends per year growth"]
+                .rolling(year)
+                .mean()
+                .shift()
+            )
+            dividend_dict[ticker][
+                "rolling average dividend growth per year (outlier rejection)"
+            ]["estimate"][str(year)] = (
+                dividend_dict[ticker]["dividends per year growth (outlier rejection)"]
                 .rolling(year)
                 .mean()
                 .shift()
@@ -103,10 +122,27 @@ def compute_dividend_growth_portfolio(
                 .apply(lambda x: portfolio_math.get_geometric_mean(x))
                 .shift()
             )
+            dividend_dict[ticker][
+                "rolling geometric average dividends growth per year (outlier rejection)"
+            ]["estimate"][str(year)] = (
+                dividend_dict[ticker]["dividends per year (outlier rejection)"]
+                .rolling(year)
+                .apply(lambda x: portfolio_math.get_geometric_mean(x))
+                .shift()
+            )
             dividend_dict[ticker]["rolling ema dividend growth per year"]["estimate"][
                 str(year)
             ] = (
                 dividend_dict[ticker]["dividends per year growth"]
+                .rolling(year)
+                .apply(lambda x: portfolio_math.get_ema(x))
+                .shift()
+            )
+
+            dividend_dict[ticker][
+                "rolling ema dividend growth per year (outlier rejection)"
+            ]["estimate"][str(year)] = (
+                dividend_dict[ticker]["dividends per year growth (outlier rejection)"]
                 .rolling(year)
                 .apply(lambda x: portfolio_math.get_ema(x))
                 .shift()
@@ -138,9 +174,13 @@ class DividendAnalyzer:
         n_processes=None,
         averaging_names=[
             "rolling average dividend growth per year",
+            "rolling average dividend growth per year (outlier rejection)",
             "rolling geometric average dividends growth per year",
+            "rolling geometric average dividends growth per year (outlier rejection)",
             "rolling ema dividend growth per year",
+            "rolling ema dividend growth per year (outlier rejection)",
         ],
+        rejection_threshold=50,
     ):
         self.yf_object = yf.Tickers(tickers)
         self.n_processes = n_processes
@@ -149,6 +189,7 @@ class DividendAnalyzer:
         self.n_portfolio = n_portfolio
         self.average_years = average_years
         self.averaging_names = averaging_names
+        self.rejection_threshold = rejection_threshold
 
     def compare_growth_estimates(self):
         if self.n_processes == 1:
@@ -161,7 +202,11 @@ class DividendAnalyzer:
         self.dividend_dict_portfolios = []
         for portfolio in self.portfolios:
             dividend_dict = compute_dividend_growth_portfolio(
-                portfolio, self.data_dict, self.average_years, self.averaging_names
+                portfolio,
+                self.data_dict,
+                self.average_years,
+                self.averaging_names,
+                self.rejection_threshold,
             )
             self.dividend_dict_portfolios.append(dividend_dict)
         self.compute_histograms()
@@ -169,7 +214,13 @@ class DividendAnalyzer:
     def compare_growth_estimates_multi(self):
         logger.info("Running growth comparison with multiprocessing.")
         input_tuples = [
-            (portfolio, self.data_dict, self.average_years, self.averaging_names)
+            (
+                portfolio,
+                self.data_dict,
+                self.average_years,
+                self.averaging_names,
+                self.rejection_threshold,
+            )
             for portfolio in self.portfolios
         ]
         with Pool(processes=self.n_processes) as pool:
