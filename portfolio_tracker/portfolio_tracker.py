@@ -32,6 +32,14 @@ class TabWindow(QtGui.QTabWidget):
         self, holdings_file="holdings.json", parent=None, rejection_threshold=50
     ):
         super(TabWindow, self).__init__(parent)
+        self.averaging_names = [
+            "rolling average dividend growth per year",
+            "rolling average dividend growth per year (outlier rejection)",
+            "rolling geometric average dividends growth per year",
+            "rolling geometric average dividends growth per year (outlier rejection)",
+            "rolling ema dividend growth per year",
+            "rolling ema dividend growth per year (outlier rejection)",
+        ]
         self.holdings_file = Path(holdings_file)
         self.rejection_threshold = rejection_threshold
         self.current_year = datetime.datetime.now().year
@@ -52,6 +60,7 @@ class TabWindow(QtGui.QTabWidget):
             update_average_years_function=self.update_dividend_average_years,
             update_mouse_function_dividend=self.update_tooltip_dividend,
             average_years=self.average_years,
+            averaging_names=self.averaging_names,
         )
         self.dividend_history.average_years_checkbox[self.average_years[0]][
             "Checkbox"
@@ -103,7 +112,6 @@ class TabWindow(QtGui.QTabWidget):
     def construct_estimation_dict():
         estimation_dict = {
             "estimate": dict(),
-            "estimate (outlier rejection)": dict(),
             "deviation": dict(),
             "rmsd": dict(),
         }
@@ -127,14 +135,12 @@ class TabWindow(QtGui.QTabWidget):
         return dividends_without_outlier
 
     def compute_dividend_growth_values(self):
-        averaging_names = [
-            "rolling average dividend growth per year",
-            "rolling geometric average dividends growth per year",
-            "rolling ema dividend growth per year",
-        ]
         for security in self.holdings_dict.values():
             security["rmsd dataframe"] = pd.DataFrame(
-                index=self.average_years, columns=averaging_names, data=0, dtype=float
+                index=self.average_years,
+                columns=self.averaging_names,
+                data=0,
+                dtype=float,
             )
             if security.get("yfinance", False):
                 dividends_per_year = security["dividends per year"][
@@ -156,15 +162,9 @@ class TabWindow(QtGui.QTabWidget):
                 security["dividends per year growth diff"] = security[
                     "dividends per year growth"
                 ].diff()
-                security[
-                    "rolling average dividend growth per year"
-                ] = self.construct_estimation_dict()
-                security[
-                    "rolling geometric average dividends growth per year"
-                ] = self.construct_estimation_dict()
-                security[
-                    "rolling ema dividend growth per year"
-                ] = self.construct_estimation_dict()
+
+                for averaging_name in self.averaging_names:
+                    security[averaging_name] = self.construct_estimation_dict()
                 for year in self.average_years:
                     security["rolling average dividend growth per year"]["estimate"][
                         str(year)
@@ -174,14 +174,15 @@ class TabWindow(QtGui.QTabWidget):
                         .mean()
                         .shift()
                     )
-                    security["rolling average dividend growth per year"][
-                        "estimate (outlier rejection)"
-                    ][str(year)] = (
+                    security[
+                        "rolling average dividend growth per year (outlier rejection)"
+                    ]["estimate"][str(year)] = (
                         security["dividends per year growth (outlier rejection)"]
                         .rolling(year)
                         .mean()
                         .shift()
                     )
+
                     security["rolling geometric average dividends growth per year"][
                         "estimate"
                     ][str(year)] = (
@@ -189,9 +190,9 @@ class TabWindow(QtGui.QTabWidget):
                         .apply(lambda x: portfolio_math.get_geometric_mean(x))
                         .shift()
                     )
-                    security["rolling geometric average dividends growth per year"][
-                        "estimate (outlier rejection)"
-                    ][str(year)] = (
+                    security[
+                        "rolling geometric average dividends growth per year (outlier rejection)"
+                    ]["estimate"][str(year)] = (
                         security["dividends per year (without outlier)"]
                         .rolling(year)
                         .apply(lambda x: portfolio_math.get_geometric_mean(x))
@@ -206,18 +207,27 @@ class TabWindow(QtGui.QTabWidget):
                         .shift()
                     )
 
-                    security["rolling ema dividend growth per year"][
-                        "estimate (outlier rejection)"
-                    ][str(year)] = (
+                    security[
+                        "rolling ema dividend growth per year (outlier rejection)"
+                    ]["estimate"][str(year)] = (
                         security["dividends per year growth (outlier rejection)"]
                         .rolling(year)
                         .apply(lambda x: portfolio_math.get_ema(x))
                         .shift()
                     )
-                    # Next 1) Compute dividends_per_year_without_outlier that does not take into account dividends that were rejected in growth model but do not only take year init but every year
+                    # Next
                     # 2) Deviation and rmsd with outlier rejection
                     # 3) Add this quant to check whether this rmsd would be the beset
-                    for averaging_name in averaging_names:
+                    for averaging_name in self.averaging_names:
+                        security[averaging_name]["deviation"][str(year)] = (
+                            security[averaging_name]["estimate"][str(year)]
+                            - security["dividends per year growth"]
+                        )
+                        security[averaging_name]["rmsd"][
+                            str(year)
+                        ] = portfolio_math.get_root_mean_square_deviation(
+                            security[averaging_name]["deviation"][str(year)]
+                        )
                         security[averaging_name]["deviation"][str(year)] = (
                             security[averaging_name]["estimate"][str(year)]
                             - security["dividends per year growth"]
@@ -339,12 +349,12 @@ class TabWindow(QtGui.QTabWidget):
                     symbolSize=6,
                 )
                 if self.dividend_history.outlier_rejection_checkbox.isChecked():
-                    x = self.holdings_dict[ticker][visible_averaging_values_key][
-                        "estimate (outlier rejection)"
-                    ][str(year)].index.values
-                    y = self.holdings_dict[ticker][visible_averaging_values_key][
-                        "estimate (outlier rejection)"
-                    ][str(year)].values
+                    x = self.holdings_dict[ticker][
+                        visible_averaging_values_key + " (outlier rejection)"
+                    ]["estimate"][str(year)].index.values
+                    y = self.holdings_dict[ticker][
+                        visible_averaging_values_key + " (outlier rejection)"
+                    ]["estimate"][str(year)].values
                     pen = pg.mkPen(
                         color=self.dividend_history.average_years_checkbox[year][
                             "Color"
@@ -488,11 +498,7 @@ class DividendHistory(QtGui.QWidget):
         update_average_years_function=None,
         update_mouse_function_dividend=None,
         average_years=[1, 2, 3, 4, 5],
-        averaging_names=[
-            "rolling average dividend growth per year",
-            "rolling geometric average dividends growth per year",
-            "rolling ema dividend growth per year",
-        ],
+        averaging_names=[""],
     ):
         QtGui.QWidget.__init__(self)
         self.setGeometry(100, 100, 1200, 900)
