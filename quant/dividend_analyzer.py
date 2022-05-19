@@ -26,9 +26,9 @@ DATA_DICT_FILE = "data_dict.json"
 
 
 # ToDo: Add this function to portfolio_math library
-def get_dividend_payer_tickers(portfolio, data_dict, n_min, current_year):
-    portfolio_dividend_payer = []
-    for ticker in portfolio:
+def get_dividend_payer_tickers(tickers, data_dict, n_min, current_year):
+    dividend_payer = []
+    for ticker in tickers:
         if not data_dict[ticker]["dividends per year"].empty:
             dividends_per_year = data_dict[ticker]["dividends per year"][
                 data_dict[ticker]["dividends per year"] > 0
@@ -38,8 +38,8 @@ def get_dividend_payer_tickers(portfolio, data_dict, n_min, current_year):
                     len(dividends_per_year[dividends_per_year.index < current_year])
                     > n_min
                 ):
-                    portfolio_dividend_payer.append(ticker)
-    return portfolio_dividend_payer
+                    dividend_payer.append(ticker)
+    return dividend_payer
 
 
 # ToDo: Add this function to portfolio_math library + check that all estimates have not only the last points in the time as non-nan value e.g [na,na,na,na,10]
@@ -52,20 +52,13 @@ def compute_dividend_growth_portfolio(
     mixed_names,
 ):
     logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
-    n_min = len(average_years) + 1
     current_year = datetime.datetime.now().year
-    portfolio_dividend_payer = get_dividend_payer_tickers(
-        portfolio, data_dict, n_min, current_year
-    )
-    if portfolio_dividend_payer == []:
-        return None
-
-    dividend_dict = {ticker: dict() for ticker in portfolio_dividend_payer}
+    dividend_dict = {ticker: dict() for ticker in portfolio}
     rmsd_averaging_df = pd.DataFrame(
         index=average_years, columns=averaging_names, data=0, dtype=float
     )
-    n_ticker = len(portfolio_dividend_payer)
-    for ticker in portfolio_dividend_payer:
+    n_ticker = len(portfolio)
+    for ticker in portfolio:
         dividend_dict[ticker]["rmsd_df"] = pd.DataFrame(
             index=average_years, columns=averaging_names, data=0, dtype=float
         )
@@ -209,7 +202,7 @@ class DividendAnalyzer:
         ],
         rejection_threshold=50,
     ):
-        self.yf_object = yf.Tickers(tickers)
+        self.n_min = len(average_years) + 1
         self.n_processes = n_processes
         self.data_dict = {ticker: dict() for ticker in tickers}
         self.n_security = n_security
@@ -482,6 +475,13 @@ class DividendAnalyzer:
                 "dividends per year"
             ].index.map(int)
 
+    def presort_stocks(self):
+        current_year = datetime.datetime.now().year
+        self.dividend_payer = get_dividend_payer_tickers(
+            self.data_dict.keys(), self.data_dict, self.n_min, current_year
+        )
+        self.yf_object = yf.Tickers(self.dividend_payer)
+
     @classmethod
     def get_dividends_per_year(cls, dividends):
         dividends_per_year = pd.Series(dtype=np.float64)
@@ -584,6 +584,8 @@ def main():
         dividend_analyzer.store_data_dict_to_json()
     else:
         dividend_analyzer.load_data_dict_from_json()
+
+    dividend_analyzer.presort_stocks()
 
     dividend_analyzer.randomize_portfolios()
     dividend_analyzer.compare_growth_estimates()
