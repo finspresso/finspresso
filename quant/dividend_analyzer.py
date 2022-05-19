@@ -44,7 +44,12 @@ def get_dividend_payer_tickers(portfolio, data_dict, n_min, current_year):
 
 # ToDo: Add this function to portfolio_math library + check that all estimates have not only the last points in the time as non-nan value e.g [na,na,na,na,10]
 def compute_dividend_growth_portfolio(
-    portfolio, data_dict, average_years, averaging_names, rejection_threshold
+    portfolio,
+    data_dict,
+    average_years,
+    averaging_names,
+    rejection_threshold,
+    mixed_names,
 ):
     logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
     n_min = len(average_years) + 1
@@ -63,6 +68,9 @@ def compute_dividend_growth_portfolio(
     for ticker in portfolio_dividend_payer:
         dividend_dict[ticker]["rmsd_df"] = pd.DataFrame(
             index=average_years, columns=averaging_names, data=0, dtype=float
+        )
+        dividend_dict[ticker]["rmsd_df_mixed"] = pd.DataFrame(
+            index=average_years, columns=mixed_names, data=0, dtype=float
         )
         dividends_per_year = data_dict[ticker]["dividends per year"][
             (data_dict[ticker]["dividends per year"].index < current_year)
@@ -159,9 +167,28 @@ def compute_dividend_growth_portfolio(
                 rmsd_averaging_df.loc[year, averaging_name] += rmsd / n_ticker
                 dividend_dict[ticker]["rmsd_df"].loc[year, averaging_name] = rmsd
                 dividend_dict[ticker][averaging_name]["rmsd"][str(year)] = rmsd
+            dividend_dict[ticker]["rmsd_df_mixed"] = get_rmsd_mixed(
+                dividend_dict[ticker]["rmsd_df"], mixed_names
+            )
     dividend_dict["rmsd portfolio"] = rmsd_averaging_df
+    dividend_dict["rmsd portfolio mixed"] = get_rmsd_mixed(
+        dividend_dict["rmsd portfolio"], mixed_names
+    )
 
     return dividend_dict
+
+
+def get_rmsd_mixed(rmsd, mixed_names):
+    rmsd_mixed = pd.DataFrame(columns=mixed_names, index=rmsd.index, data=0)
+    pairs = {name: [] for name in mixed_names}
+    for name in mixed_names:
+        for column in rmsd.columns:
+            if name in column:
+                pairs[name].append(column)
+    for key, pair_names in pairs.items():
+        rmsd_mixed.loc[:, key] = rmsd[pair_names].min(axis=1)
+
+    return rmsd_mixed
 
 
 class DividendAnalyzer:
@@ -189,6 +216,9 @@ class DividendAnalyzer:
         self.n_portfolio = n_portfolio
         self.average_years = average_years
         self.averaging_names = averaging_names
+        self.mixed_names = [
+            name for name in self.averaging_names if "outlier" not in name
+        ]
         self.rejection_threshold = rejection_threshold
 
     def compare_growth_estimates(self):
@@ -207,6 +237,7 @@ class DividendAnalyzer:
                 self.average_years,
                 self.averaging_names,
                 self.rejection_threshold,
+                self.mixed_names,
             )
             self.dividend_dict_portfolios.append(dividend_dict)
         self.compute_histograms()
@@ -220,6 +251,7 @@ class DividendAnalyzer:
                 self.average_years,
                 self.averaging_names,
                 self.rejection_threshold,
+                self.mixed_names,
             )
             for portfolio in self.portfolios
         ]
@@ -231,14 +263,31 @@ class DividendAnalyzer:
 
     def plot_count_arrays(self, save_figures=False):
         logger.info("Plotting count arrays")
-        figures = [plt.figure(figsize=(17, 8)), plt.figure(figsize=(17, 8))]
-        figure_names = ["portfolio.png", "single.png"]
-        axes = [figures[0].add_subplot(1, 1, 1), figures[1].add_subplot(1, 1, 1)]
-        count_arrays = [
-            self.count_arrays["portfolios"].transpose(),
-            self.count_arrays["single"].transpose(),
+        figures = [
+            plt.figure(figsize=(17, 8)),
+            plt.figure(figsize=(17, 8)),
+            plt.figure(figsize=(17, 8)),
+            plt.figure(figsize=(17, 8)),
         ]
-        n_single = self.count_arrays["single"].sum()
+        figure_names = [
+            "portfolio.png",
+            "single.png",
+            "portfolio_mixed.png",
+            "single_mixed.png",
+        ]
+        axes = [
+            figures[0].add_subplot(1, 1, 1),
+            figures[1].add_subplot(1, 1, 1),
+            figures[2].add_subplot(1, 1, 1),
+            figures[3].add_subplot(1, 1, 1),
+        ]
+        count_arrays = [
+            self.count_arrays["portfolios"]["all"].transpose(),
+            self.count_arrays["single"]["all"].transpose(),
+            self.count_arrays["portfolios"]["mixed"].transpose(),
+            self.count_arrays["single"]["mixed"].transpose(),
+        ]
+        n_single = self.count_arrays["single"]["all"].sum()
         titles = [
             (
                 "Best averaging technique (portfolio)"
@@ -249,20 +298,41 @@ class DividendAnalyzer:
                 "Best averaging technique (single)"
                 + f"\nnumber of securities: {n_single}"
             ),
+            (
+                "Best averaging mixed technique (portfolio)"
+                + f"\nnumber of portfolios: {self.n_portfolio}"
+                + f"\nsecurities per portfolio: {self.n_security}"
+            ),
+            (
+                "Best averaging mixed technique (single)"
+                + f"\nnumber of securities: {n_single}"
+            ),
         ]
         ylabel_tick_names = [
+            [
+                " ".join(x.split()[:2])
+                + "\n"
+                + " ".join(x.split()[2:4])
+                + "\n"
+                + " ".join(x.split()[4:])
+                for x in self.averaging_names
+            ]
+        ]
+        ylabel_tick_names.append(ylabel_tick_names[0])
+        ylabel_tick_names_mixed = [
             " ".join(x.split()[:2])
             + "\n"
             + " ".join(x.split()[2:4])
             + "\n"
             + " ".join(x.split()[4:])
-            for x in self.averaging_names
+            for x in self.mixed_names
         ]
+        ylabel_tick_names.extend([ylabel_tick_names_mixed, ylabel_tick_names_mixed])
         xlabel_tick_names = [str(name) + "y" for name in self.average_years]
-        for i in range(2):
+        for i in range(4):
             divider = make_axes_locatable(axes[i])
             nx = len(xlabel_tick_names)
-            ny = len(ylabel_tick_names)
+            ny = len(ylabel_tick_names[i])
             lx = nx - 1
             ly = ny - 1
             xlabel_tick_positions = [x * lx / (2 * nx) for x in np.arange(1, 2 * nx, 2)]
@@ -282,7 +352,7 @@ class DividendAnalyzer:
             axes[i].set_xticks(xlabel_tick_positions)
             axes[i].set_xticklabels(xlabel_tick_names)
             axes[i].set_yticks(ylabel_tick_positions)
-            axes[i].set_yticklabels(ylabel_tick_names)
+            axes[i].set_yticklabels(ylabel_tick_names[i])
             axes[i].set_title(titles[i])
             if save_figures:
                 figures[i].savefig(figure_names[i])
@@ -290,26 +360,38 @@ class DividendAnalyzer:
         plt.show()
 
     def compute_histograms(self):
-        self.count_arrays = dict()
-        self.count_arrays["portfolios"] = np.zeros(
+        self.count_arrays = {"portfolios": dict(), "single": dict()}
+        self.count_arrays["portfolios"]["all"] = np.zeros(
             (len(self.average_years), len(self.averaging_names))
         )
-        self.count_arrays["single"] = np.zeros(
+        self.count_arrays["single"]["all"] = np.zeros(
             (len(self.average_years), len(self.averaging_names))
+        )
+        self.count_arrays["portfolios"]["mixed"] = np.zeros(
+            (len(self.average_years), len(self.mixed_names))
+        )
+        self.count_arrays["single"]["mixed"] = np.zeros(
+            (len(self.average_years), len(self.mixed_names))
         )
         tickers_included = []
         for dividend_dict in self.dividend_dict_portfolios:
             array = np.array(dividend_dict["rmsd portfolio"])
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
-            self.count_arrays["portfolios"][ind] += 1
-            tickers = [key for key in dividend_dict.keys()]
+            self.count_arrays["portfolios"]["all"][ind] += 1
+            array = np.array(dividend_dict["rmsd portfolio mixed"])
+            ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
+            self.count_arrays["portfolios"]["mixed"][ind] += 1
+            tickers = [key for key in dividend_dict.keys() if "rmsd" not in key]
             tickers = tickers[:-1]
             for ticker in tickers:
                 if ticker not in tickers_included:
                     tickers_included.append(ticker)
                     array = np.array(dividend_dict[ticker]["rmsd_df"])
                     ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
-                    self.count_arrays["single"][ind] += 1
+                    self.count_arrays["single"]["all"][ind] += 1
+                    array = np.array(dividend_dict[ticker]["rmsd_df_mixed"])
+                    ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
+                    self.count_arrays["single"]["mixed"][ind] += 1
 
     def randomize_portfolios(self):
         logger.info(
