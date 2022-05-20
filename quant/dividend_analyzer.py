@@ -385,18 +385,38 @@ class DividendAnalyzer:
             self.n_security,
         )
         tickers = pd.Series(self.yf_object.tickers.keys())
-        n_tickers = tickers.shape[0]
 
         self.portfolios = []
         tickers_included = []
         while len(self.portfolios) < self.n_portfolio:
-            selected_tickers = tuple(
-                tickers[
-                    np.floor(np.random.rand(self.n_security) * n_tickers).tolist()
-                ].values.tolist()
-            )
-            self.portfolios.append(selected_tickers)
-            tickers_included.extend(selected_tickers)
+            selected_tickers = []
+            tickers_pool = pd.Series(self.yf_object.tickers.keys())
+            n_pool = len(tickers_pool)
+            n_draw = self.n_security
+            counter = 0
+            while True:
+                if counter >= 40:
+                    logger.warning("Aborting drawing securities")
+                    break
+                selected_tickers_candidate = tuple(
+                    tickers_pool[
+                        np.floor(np.random.rand(n_draw) * n_pool).tolist()
+                    ].values.tolist()
+                )
+                selected_tickers = set(selected_tickers).union(
+                    selected_tickers_candidate
+                )
+                tickers_pool = pd.Series(list(set(tickers) - selected_tickers))
+                n_pool = len(tickers_pool)
+                if len(selected_tickers) < self.n_security:
+                    n_draw = self.n_security - len(selected_tickers)
+                    counter += 1
+                    logger.warning("Redraw %s tickers because not unique", n_draw)
+                else:
+                    break
+
+            self.portfolios.append(list(selected_tickers))
+            tickers_included.extend(list(selected_tickers))
         self.tickers_included = set(tickers_included)
 
     def download_dividend_history_single(self):
