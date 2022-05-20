@@ -42,133 +42,130 @@ def get_dividend_payer_tickers(tickers, data_dict, n_min, current_year):
     return dividend_payer
 
 
-# ToDo: Add this function to portfolio_math library + check that all estimates have not only the last points in the time as non-nan value e.g [na,na,na,na,10]
-def compute_dividend_growth_portfolio(
-    portfolio,
+def compute_dividend_growth(
+    ticker,
     data_dict,
     average_years,
     averaging_names,
     rejection_threshold,
     mixed_names,
 ):
-    logger.info("Compute growth estimates for protfolio tickers %s", portfolio)
+    logger.info("Compute growth estimates for ticker %s", ticker)
     current_year = datetime.datetime.now().year
-    dividend_dict = {ticker: dict() for ticker in portfolio}
+    dividend_dict = dict()
+    dividend_dict["rmsd_df"] = pd.DataFrame(
+        index=average_years, columns=averaging_names, data=0, dtype=float
+    )
+    dividend_dict["rmsd_df_mixed"] = pd.DataFrame(
+        index=average_years, columns=mixed_names, data=0, dtype=float
+    )
+    dividends_per_year = data_dict[ticker]["dividends per year"][
+        (data_dict[ticker]["dividends per year"].index < current_year)
+        & (data_dict[ticker]["dividends per year"] > 0)
+    ]
+    dividend_dict["dividends per year"] = dividends_per_year
+    dividend_dict["dividends per year growth"] = (
+        dividends_per_year.diff() / dividends_per_year.shift() * 100
+    )
+    dividend_dict["dividends per year growth"] = dividend_dict[
+        "dividends per year growth"
+    ].iloc[1:]
+    dividend_dict[
+        "dividends per year (outlier rejection)"
+    ] = portfolio_math.dividend_outlier_rejection(
+        dividends_per_year, rejection_threshold
+    )
+    dividend_dict["dividends per year growth (outlier rejection)"] = (
+        dividend_dict["dividends per year (outlier rejection)"].diff()
+        / dividend_dict["dividends per year (outlier rejection)"].shift()
+        * 100
+    )
+    dividend_dict["dividends per year growth (outlier rejection)"] = dividend_dict[
+        "dividends per year growth (outlier rejection)"
+    ].iloc[1:]
+    dividend_dict["dividends per year growth diff"] = dividend_dict[
+        "dividends per year growth"
+    ].diff()
+
+    for averaging_name in averaging_names:
+        dividend_dict[averaging_name] = portfolio_math.construct_estimation_dict()
+    for year in average_years:
+        dividend_dict["rolling average dividend growth per year"]["estimate"][
+            str(year)
+        ] = (dividend_dict["dividends per year growth"].rolling(year).mean().shift())
+        dividend_dict["rolling average dividend growth per year (outlier rejection)"][
+            "estimate"
+        ][str(year)] = (
+            dividend_dict["dividends per year growth (outlier rejection)"]
+            .rolling(year)
+            .mean()
+            .shift()
+        )
+        dividend_dict["rolling geometric average dividends growth per year"][
+            "estimate"
+        ][str(year)] = (
+            dividends_per_year.rolling(year)
+            .apply(lambda x: portfolio_math.get_geometric_mean(x))
+            .shift()
+        )
+        dividend_dict[
+            "rolling geometric average dividends growth per year (outlier rejection)"
+        ]["estimate"][str(year)] = (
+            dividend_dict["dividends per year (outlier rejection)"]
+            .rolling(year)
+            .apply(lambda x: portfolio_math.get_geometric_mean(x))
+            .shift()
+        )
+        dividend_dict["rolling ema dividend growth per year"]["estimate"][str(year)] = (
+            dividend_dict["dividends per year growth"]
+            .rolling(year)
+            .apply(lambda x: portfolio_math.get_ema(x))
+            .shift()
+        )
+
+        dividend_dict["rolling ema dividend growth per year (outlier rejection)"][
+            "estimate"
+        ][str(year)] = (
+            dividend_dict["dividends per year growth (outlier rejection)"]
+            .rolling(year)
+            .apply(lambda x: portfolio_math.get_ema(x))
+            .shift()
+        )
+
+        for averaging_name in averaging_names:
+            dividend_dict[averaging_name]["deviation"][str(year)] = (
+                dividend_dict[averaging_name]["estimate"][str(year)]
+                - dividend_dict["dividends per year growth"]
+            )
+            rmsd = portfolio_math.get_root_mean_square_deviation(
+                dividend_dict[averaging_name]["deviation"][str(year)]
+            )
+            dividend_dict["rmsd_df"].loc[year, averaging_name] = rmsd
+            dividend_dict[averaging_name]["rmsd"][str(year)] = rmsd
+        dividend_dict["rmsd_df_mixed"] = get_rmsd_mixed(
+            dividend_dict["rmsd_df"], mixed_names
+        )
+
+    return dividend_dict
+
+
+def get_rmsd_portfolio(
+    portfolio, dividend_growth_dict, average_years, averaging_names, mixed_names
+):
+    logger.info("Computing rmsd for portfolio %s", portfolio)
     rmsd_averaging_df = pd.DataFrame(
         index=average_years, columns=averaging_names, data=0, dtype=float
     )
-    n_ticker = len(portfolio)
+    rmsd_dict = dict()
     for ticker in portfolio:
-        dividend_dict[ticker]["rmsd_df"] = pd.DataFrame(
-            index=average_years, columns=averaging_names, data=0, dtype=float
-        )
-        dividend_dict[ticker]["rmsd_df_mixed"] = pd.DataFrame(
-            index=average_years, columns=mixed_names, data=0, dtype=float
-        )
-        dividends_per_year = data_dict[ticker]["dividends per year"][
-            (data_dict[ticker]["dividends per year"].index < current_year)
-            & (data_dict[ticker]["dividends per year"] > 0)
-        ]
-        dividend_dict[ticker]["dividends per year"] = dividends_per_year
-        dividend_dict[ticker]["dividends per year growth"] = (
-            dividends_per_year.diff() / dividends_per_year.shift() * 100
-        )
-        dividend_dict[ticker]["dividends per year growth"] = dividend_dict[ticker][
-            "dividends per year growth"
-        ].iloc[1:]
-        dividend_dict[ticker][
-            "dividends per year (outlier rejection)"
-        ] = portfolio_math.dividend_outlier_rejection(
-            dividends_per_year, rejection_threshold
-        )
-        dividend_dict[ticker]["dividends per year growth (outlier rejection)"] = (
-            dividend_dict[ticker]["dividends per year (outlier rejection)"].diff()
-            / dividend_dict[ticker]["dividends per year (outlier rejection)"].shift()
-            * 100
-        )
-        dividend_dict[ticker][
-            "dividends per year growth (outlier rejection)"
-        ] = dividend_dict[ticker]["dividends per year growth (outlier rejection)"].iloc[
-            1:
-        ]
-        dividend_dict[ticker]["dividends per year growth diff"] = dividend_dict[ticker][
-            "dividends per year growth"
-        ].diff()
+        rmsd_averaging_df = rmsd_averaging_df + dividend_growth_dict[ticker]["rmsd_df"]
 
-        for averaging_name in averaging_names:
-            dividend_dict[ticker][
-                averaging_name
-            ] = portfolio_math.construct_estimation_dict()
-        for year in average_years:
-            dividend_dict[ticker]["rolling average dividend growth per year"][
-                "estimate"
-            ][str(year)] = (
-                dividend_dict[ticker]["dividends per year growth"]
-                .rolling(year)
-                .mean()
-                .shift()
-            )
-            dividend_dict[ticker][
-                "rolling average dividend growth per year (outlier rejection)"
-            ]["estimate"][str(year)] = (
-                dividend_dict[ticker]["dividends per year growth (outlier rejection)"]
-                .rolling(year)
-                .mean()
-                .shift()
-            )
-            dividend_dict[ticker][
-                "rolling geometric average dividends growth per year"
-            ]["estimate"][str(year)] = (
-                dividends_per_year.rolling(year)
-                .apply(lambda x: portfolio_math.get_geometric_mean(x))
-                .shift()
-            )
-            dividend_dict[ticker][
-                "rolling geometric average dividends growth per year (outlier rejection)"
-            ]["estimate"][str(year)] = (
-                dividend_dict[ticker]["dividends per year (outlier rejection)"]
-                .rolling(year)
-                .apply(lambda x: portfolio_math.get_geometric_mean(x))
-                .shift()
-            )
-            dividend_dict[ticker]["rolling ema dividend growth per year"]["estimate"][
-                str(year)
-            ] = (
-                dividend_dict[ticker]["dividends per year growth"]
-                .rolling(year)
-                .apply(lambda x: portfolio_math.get_ema(x))
-                .shift()
-            )
-
-            dividend_dict[ticker][
-                "rolling ema dividend growth per year (outlier rejection)"
-            ]["estimate"][str(year)] = (
-                dividend_dict[ticker]["dividends per year growth (outlier rejection)"]
-                .rolling(year)
-                .apply(lambda x: portfolio_math.get_ema(x))
-                .shift()
-            )
-
-            for averaging_name in averaging_names:
-                dividend_dict[ticker][averaging_name]["deviation"][str(year)] = (
-                    dividend_dict[ticker][averaging_name]["estimate"][str(year)]
-                    - dividend_dict[ticker]["dividends per year growth"]
-                )
-                rmsd = portfolio_math.get_root_mean_square_deviation(
-                    dividend_dict[ticker][averaging_name]["deviation"][str(year)]
-                )
-                rmsd_averaging_df.loc[year, averaging_name] += rmsd / n_ticker
-                dividend_dict[ticker]["rmsd_df"].loc[year, averaging_name] = rmsd
-                dividend_dict[ticker][averaging_name]["rmsd"][str(year)] = rmsd
-            dividend_dict[ticker]["rmsd_df_mixed"] = get_rmsd_mixed(
-                dividend_dict[ticker]["rmsd_df"], mixed_names
-            )
-    dividend_dict["rmsd portfolio"] = rmsd_averaging_df
-    dividend_dict["rmsd portfolio mixed"] = get_rmsd_mixed(
-        dividend_dict["rmsd portfolio"], mixed_names
+    rmsd_dict["rmsd portfolio"] = rmsd_averaging_df
+    rmsd_dict["rmsd portfolio mixed"] = get_rmsd_mixed(
+        rmsd_dict["rmsd portfolio"], mixed_names
     )
 
-    return dividend_dict
+    return rmsd_dict
 
 
 def get_rmsd_mixed(rmsd, mixed_names):
@@ -218,21 +215,21 @@ class DividendAnalyzer:
         if self.n_processes == 1:
             self.compare_growth_estimates_single()
         else:
-            self.compare_growth_estimates_multi()
+            self.compare_growth_estimates_single()  # Single processing is here faster
+            # self.compare_growth_estimates_multi()
 
     def compare_growth_estimates_single(self):
         logger.info("Running growth comparison with in single processing mode.")
-        self.dividend_dict_portfolios = []
+        self.rmsd_dict_portfolios = []
         for portfolio in self.portfolios:
-            dividend_dict = compute_dividend_growth_portfolio(
+            rmsd_dict = get_rmsd_portfolio(
                 portfolio,
-                self.data_dict,
+                self.dividend_growth_dict,
                 self.average_years,
                 self.averaging_names,
-                self.rejection_threshold,
                 self.mixed_names,
             )
-            self.dividend_dict_portfolios.append(dividend_dict)
+            self.rmsd_dict_portfolios.append(rmsd_dict)
         self.compute_histograms()
 
     def compare_growth_estimates_multi(self):
@@ -240,18 +237,16 @@ class DividendAnalyzer:
         input_tuples = [
             (
                 portfolio,
-                self.data_dict,
+                self.dividend_growth_dict,
                 self.average_years,
                 self.averaging_names,
-                self.rejection_threshold,
                 self.mixed_names,
             )
             for portfolio in self.portfolios
         ]
+
         with Pool(processes=self.n_processes) as pool:
-            self.dividend_dict_portfolios = pool.starmap(
-                compute_dividend_growth_portfolio, input_tuples
-            )
+            self.rmsd_dict_portfolios = pool.starmap(get_rmsd_portfolio, input_tuples)
         self.compute_histograms()
 
     def plot_count_arrays(self, save_figures=False):
@@ -366,25 +361,22 @@ class DividendAnalyzer:
         self.count_arrays["single"]["mixed"] = np.zeros(
             (len(self.average_years), len(self.mixed_names))
         )
-        tickers_included = []
-        for dividend_dict in self.dividend_dict_portfolios:
-            array = np.array(dividend_dict["rmsd portfolio"])
+
+        for rmsd_dict in self.rmsd_dict_portfolios:
+            array = np.array(rmsd_dict["rmsd portfolio"])
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.count_arrays["portfolios"]["all"][ind] += 1
-            array = np.array(dividend_dict["rmsd portfolio mixed"])
+            array = np.array(rmsd_dict["rmsd portfolio mixed"])
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.count_arrays["portfolios"]["mixed"][ind] += 1
-            tickers = [key for key in dividend_dict.keys() if "rmsd" not in key]
-            tickers = tickers[:-1]
-            for ticker in tickers:
-                if ticker not in tickers_included:
-                    tickers_included.append(ticker)
-                    array = np.array(dividend_dict[ticker]["rmsd_df"])
-                    ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
-                    self.count_arrays["single"]["all"][ind] += 1
-                    array = np.array(dividend_dict[ticker]["rmsd_df_mixed"])
-                    ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
-                    self.count_arrays["single"]["mixed"][ind] += 1
+
+        for ticker in self.tickers_included:
+            array = np.array(self.dividend_growth_dict[ticker]["rmsd_df"])
+            ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
+            self.count_arrays["single"]["all"][ind] += 1
+            array = np.array(self.dividend_growth_dict[ticker]["rmsd_df_mixed"])
+            ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
+            self.count_arrays["single"]["mixed"][ind] += 1
 
     def randomize_portfolios(self):
         logger.info(
@@ -396,6 +388,7 @@ class DividendAnalyzer:
         n_tickers = tickers.shape[0]
 
         self.portfolios = []
+        tickers_included = []
         while len(self.portfolios) < self.n_portfolio:
             selected_tickers = tuple(
                 tickers[
@@ -403,6 +396,8 @@ class DividendAnalyzer:
                 ].values.tolist()
             )
             self.portfolios.append(selected_tickers)
+            tickers_included.extend(selected_tickers)
+        self.tickers_included = set(tickers_included)
 
     def download_dividend_history_single(self):
         for ticker in self.yf_object.tickers.keys():
@@ -481,6 +476,47 @@ class DividendAnalyzer:
             self.data_dict.keys(), self.data_dict, self.n_min, current_year
         )
         self.yf_object = yf.Tickers(self.dividend_payer)
+
+    def compute_dividend_growth(self):
+        if self.n_processes == 1:
+            self.compute_dividend_growth_single()
+        else:
+            self.compute_dividend_growth_multi()
+
+    def compute_dividend_growth_multi(self):
+        logger.info("Computing dividend growth values with multiprocessing")
+        input_tuples = [
+            (
+                ticker,
+                self.data_dict,
+                self.average_years,
+                self.averaging_names,
+                self.rejection_threshold,
+                self.mixed_names,
+            )
+            for ticker in self.tickers_included
+        ]
+        with Pool(processes=self.n_processes) as pool:
+            computed_dividend_list = pool.starmap(compute_dividend_growth, input_tuples)
+        self.dividend_growth_dict = {
+            ticker: dividend_dict
+            for ticker, dividend_dict in zip(
+                self.tickers_included, computed_dividend_list
+            )
+        }
+
+    def compute_dividend_growth_single(self):
+        logger.info("Computing dividend growth values")
+        self.dividend_growth_dict = dict()
+        for ticker in self.tickers_included:
+            self.dividend_growth_dict[ticker] = compute_dividend_growth(
+                ticker,
+                self.data_dict,
+                self.average_years,
+                self.averaging_names,
+                self.rejection_threshold,
+                self.mixed_names,
+            )
 
     @classmethod
     def get_dividends_per_year(cls, dividends):
@@ -586,8 +622,9 @@ def main():
         dividend_analyzer.load_data_dict_from_json()
 
     dividend_analyzer.presort_stocks()
-
     dividend_analyzer.randomize_portfolios()
+    dividend_analyzer.compute_dividend_growth()
+
     dividend_analyzer.compare_growth_estimates()
     dividend_analyzer.plot_count_arrays(save_figures=args.save_figures)
 
