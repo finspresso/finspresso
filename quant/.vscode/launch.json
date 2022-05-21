@@ -31,7 +31,8 @@
         "1",
         "--n_security",
         "200",
-        "--save_figures"
+        "--save_figures",
+        "--sort_oscillation"
       ],
       "console": "integratedTerminal"
     },

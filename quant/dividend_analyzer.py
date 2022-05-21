@@ -370,13 +370,37 @@ class DividendAnalyzer:
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.count_arrays["portfolios"]["mixed"][ind] += 1
 
+        self.rmsd_df_min_dict = self.get_empty_rmsd_df_min_dict()
         for ticker in self.tickers_included:
-            array = np.array(self.dividend_growth_dict[ticker]["rmsd_df"])
+            rmsd_df = self.dividend_growth_dict[ticker]["rmsd_df"]
+            array = np.array(rmsd_df)
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
+            self.rmsd_df_min_dict[rmsd_df.columns[ind[1]]][
+                rmsd_df.index[ind[0]]
+            ].append(ticker)
             self.count_arrays["single"]["all"][ind] += 1
             array = np.array(self.dividend_growth_dict[ticker]["rmsd_df_mixed"])
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.count_arrays["single"]["mixed"][ind] += 1
+
+        self.store_rmsd_df_min_to_json()
+
+    def store_rmsd_df_min_to_json(self):
+        file_name = "rmsd_df_min_dict.json"
+        with open(file_name, "w") as file:
+            json.dump(self.rmsd_df_min_dict, file, indent=4)
+
+    def get_empty_rmsd_df_min_dict(self):
+        rmsd_df_min_dict = {}
+        for averaging_name in self.averaging_names:
+            rmsd_df_min_dict[averaging_name] = {
+                averaging_year: [] for averaging_year in self.average_years
+            }
+        for mixed_name in self.mixed_names:
+            rmsd_df_min_dict[mixed_name] = {
+                averaging_year: [] for averaging_year in self.average_years
+            }
+        return rmsd_df_min_dict
 
     def randomize_portfolios(self):
         logger.info(
@@ -395,7 +419,7 @@ class DividendAnalyzer:
             n_draw = self.n_security
             counter = 0
             while True:
-                if counter >= 40:
+                if tickers_pool.empty or counter >= 40:
                     logger.warning("Aborting drawing securities")
                     break
                 selected_tickers_candidate = tuple(
@@ -490,12 +514,43 @@ class DividendAnalyzer:
                 "dividends per year"
             ].index.map(int)
 
-    def presort_stocks(self):
+    def filter_growth_oscillation(self, current_year, zero_crossings_threshold=2):
+        self.non_oscillation_payers = []
+        logger.info("Sorting for non-oscillation dividend payer")
+        for ticker in self.dividend_payer:
+            dividends_per_year = self.data_dict[ticker]["dividends per year"][
+                (self.data_dict[ticker]["dividends per year"].index < current_year)
+                & (self.data_dict[ticker]["dividends per year"] > 0)
+            ]
+            self.data_dict[ticker]["dividends per year (filtered)"] = dividends_per_year
+            self.data_dict[ticker]["dividends per year growth"] = (
+                dividends_per_year.diff() / dividends_per_year.shift() * 100
+            )
+            self.data_dict[ticker]["dividends per year growth"] = self.data_dict[
+                ticker
+            ]["dividends per year growth"].iloc[1:]
+            zero_crossings = (
+                self.data_dict[ticker]["dividends per year growth"]
+                + self.data_dict[ticker]["dividends per year growth"].diff().shift(-1)
+            ) < 0
+            if zero_crossings.sum() < zero_crossings_threshold:
+                self.non_oscillation_payers.append(ticker)
+            else:
+                logger.warning(
+                    "Sorting out ticker %s due to oscillatory dividend paying behavior",
+                    ticker,
+                )
+
+    def presort_stocks(self, sort_oscillation=True):
         current_year = datetime.datetime.now().year
         self.dividend_payer = get_dividend_payer_tickers(
             self.data_dict.keys(), self.data_dict, self.n_min, current_year
         )
-        self.yf_object = yf.Tickers(self.dividend_payer)
+        if sort_oscillation:
+            self.filter_growth_oscillation(current_year, zero_crossings_threshold=2)
+            self.yf_object = yf.Tickers(self.non_oscillation_payers)
+        else:
+            self.yf_object = yf.Tickers(self.dividend_payer)
 
     def compute_dividend_growth(self):
         if self.n_processes == 1:
@@ -620,6 +675,11 @@ def main():
         help="If set, saves the figures in the current directory with portfolio.png and single.png",
         action="store_true",
     )
+    parser.add_argument(
+        "--sort_oscillation",
+        help="If set, sorts out securities that exhibit a oscillatory dividend paying behavior.",
+        action="store_true",
+    )
     args = parser.parse_args()
     if args.download_sp_500:
         sp_500_tickers = DividendAnalyzer.get_SP500_constituents()
@@ -641,7 +701,7 @@ def main():
     else:
         dividend_analyzer.load_data_dict_from_json()
 
-    dividend_analyzer.presort_stocks()
+    dividend_analyzer.presort_stocks(sort_oscillation=args.sort_oscillation)
     dividend_analyzer.randomize_portfolios()
     dividend_analyzer.compute_dividend_growth()
 

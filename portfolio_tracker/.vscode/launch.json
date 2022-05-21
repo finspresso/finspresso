@@ -12,6 +12,18 @@
         "holdings_single.json"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Run oscillation holdings",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/run.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--holdings_file",
+        "holdings_osci.json"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
