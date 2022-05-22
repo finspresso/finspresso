@@ -657,7 +657,8 @@ class DividendHistory(QtGui.QWidget):
 
     def update_second_figure(self, desired_plot):
         logger.debug(f"Second plot changed to {desired_plot}")
-        self.second_figure_dict[self.current_second_figure].setParent(None)
+        if self.second_figure_dict[self.current_second_figure] is not None:
+            self.second_figure_dict[self.current_second_figure].setParent(None)
         self.current_second_figure = desired_plot
         if desired_plot != "None":
             self.main_layout.addWidget(
