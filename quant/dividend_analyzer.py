@@ -529,10 +529,15 @@ class DividendAnalyzer:
             self.data_dict[ticker]["dividends per year growth"] = self.data_dict[
                 ticker
             ]["dividends per year growth"].iloc[1:]
+            growth_diff = self.data_dict[ticker][
+                "dividends per year growth"
+            ] + self.data_dict[ticker]["dividends per year growth"].diff().shift(-1)
             zero_crossings = (
-                self.data_dict[ticker]["dividends per year growth"]
-                + self.data_dict[ticker]["dividends per year growth"].diff().shift(-1)
-            ) < 0
+                growth_diff[
+                    self.data_dict[ticker]["dividends per year growth"].values > 0
+                ]
+                < 0
+            )
             if zero_crossings.sum() < zero_crossings_threshold:
                 self.non_oscillation_payers.append(ticker)
             else:
