@@ -44,9 +44,7 @@ class TabWindow(QtGui.QTabWidget):
         self.rejection_threshold = rejection_threshold
         self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
-        cm = pg.colormap.get("plasma")
-        cm.reverse()
-        self.colorbar = pg.ColorBarItem(cmap=cm)
+        self.colorbar = None
         self.load_holdings()
         self.download_data_from_yahoo()
         self.tickers = [
@@ -424,25 +422,35 @@ class TabWindow(QtGui.QTabWidget):
             self.dividend_history.bar_plot_widget.addItem(bargraph2)
 
     def update_rmsd_image(self):
+        self.dividend_history.plot_widget_rmsd_overall.clear()
         ticker = self.dividend_history.security_cb.currentText()
         security = self.holdings_dict[ticker]
         self.dividend_history.rmsd_plot_widget.clear()
-        img = pg.ImageItem(image=security["rmsd dataframe"].values)
+        considered_names = security["rmsd dataframe"].columns
+        if not self.dividend_history.outlier_rejection_checkbox.isChecked():
+            considered_names = [
+                col
+                for col in security["rmsd dataframe"].columns
+                if "outlier" not in col
+            ]
+        rmsd_overall = security["rmsd dataframe"][considered_names]
+        self.dividend_history.setup_rmsd_overall_plot(considered_names)
+        img = pg.ImageItem(image=rmsd_overall.values)
         self.dividend_history.plot_widget_rmsd_overall.addItem(img)
-        max_val = (
-            security["rmsd dataframe"].replace([np.inf, -np.inf], np.nan).max().max()
-        )
-        min_val = (
-            security["rmsd dataframe"].replace([np.inf, -np.inf], np.nan).min().min()
-        )
+        max_val = rmsd_overall.replace([np.inf, -np.inf], np.nan).max().max()
+        min_val = rmsd_overall.replace([np.inf, -np.inf], np.nan).min().min()
         if not np.isnan(max_val) and not np.isnan(
             min_val
         ):  # Next improve color to match the one from quant + axis description as in quant
-            self.colorbar.setLevels(low=min_val, high=max_val)
+            if self.colorbar is None:
+                cm = pg.colormap.get("plasma")
+                cm.reverse()
+                self.colorbar = pg.ColorBarItem(cmap=cm)
             self.colorbar.setImageItem(
                 img,
                 insert_in=self.dividend_history.plot_widget_rmsd_overall.getPlotItem(),
             )
+            self.colorbar.setLevels(low=min_val, high=max_val)
 
     def update_rmsd_bars(self, visible_averaging_values_key, ticker):
         self.dividend_history.rmsd_plot_widget.clear()
@@ -579,7 +587,7 @@ class DividendHistory(QtGui.QWidget):
         self.histogram_variance_widget.setLabel("left", "#")
         self.histogram_variance_widget.showGrid(x=False, y=True, alpha=0.4)
 
-        self.setup_rmsd_overall_plot()
+        self.plot_widget_rmsd_overall = pg.PlotWidget()
 
         self.second_figure_dict = {
             "Bar chart: Dividends paid": self.bar_plot_widget,
@@ -592,9 +600,7 @@ class DividendHistory(QtGui.QWidget):
         self.current_second_figure = "Bar chart: Dividends paid"
         self.setLayout(self.main_layout)
 
-    def setup_rmsd_overall_plot(self):
-        img = pg.ImageItem(image=np.eye(3), levels=(0, 1))  # create example image
-        self.plot_widget_rmsd_overall = pg.PlotWidget()
+    def setup_rmsd_overall_plot(self, considered_names):
         ax = self.plot_widget_rmsd_overall.getAxis("bottom")
         ay = self.plot_widget_rmsd_overall.getAxis("left")
         xlabel_tick_names = [str(name) + "y" for name in self.average_years]
@@ -604,7 +610,7 @@ class DividendHistory(QtGui.QWidget):
             + " ".join(x.split()[2:4])
             + "\n"
             + " ".join(x.split()[4:])
-            for x in self.averaging_names
+            for x in considered_names
         ]
         nx = len(xlabel_tick_names)
         ny = len(ylabel_tick_names)
@@ -629,7 +635,6 @@ class DividendHistory(QtGui.QWidget):
         self.plot_widget_rmsd_overall.getPlotItem().setTitle(
             "Root mean square deviation (RMSD)"
         )
-        self.plot_widget_rmsd_overall.addItem(img)
 
     def reenable_autoscale(self):
         self.plot_widget.enableAutoRange()
