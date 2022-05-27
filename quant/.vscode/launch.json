@@ -21,7 +21,7 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "Test inputs",
+      "name": "Without outlier rejection",
       "type": "python",
       "request": "launch",
       "program": "${workspaceRoot}/dividend_analyzer.py",
@@ -36,6 +36,38 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "With outlier rejection",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/dividend_analyzer.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--n_portfolio",
+        "100",
+        "--n_security",
+        "10",
+        "--save_figures",
+        "--outlier_rejection"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Test inputs",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/dividend_analyzer.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--n_portfolio",
+        "100",
+        "--n_security",
+        "10",
+        "--save_figures",
+        "--outlier_rejection"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Test oscillation",
       "type": "python",
       "request": "launch",
@@ -43,9 +75,9 @@
       "cwd": "${workspaceRoot}",
       "args": [
         "--n_portfolio",
-        "1",
+        "100",
         "--n_security",
-        "200",
+        "10",
         "--save_figures",
         "--sort_oscillation"
       ],
