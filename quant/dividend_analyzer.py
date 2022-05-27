@@ -198,6 +198,7 @@ class DividendAnalyzer:
             "rolling ema dividend growth per year (outlier rejection)",
         ],
         rejection_threshold=50,
+        outlier_rejection=False,
     ):
         self.n_min = len(average_years) + 1
         self.n_processes = n_processes
@@ -206,10 +207,20 @@ class DividendAnalyzer:
         self.n_portfolio = n_portfolio
         self.average_years = average_years
         self.averaging_names = averaging_names
+        self.outlier_rejection = outlier_rejection
         self.mixed_names = [
             name for name in self.averaging_names if "outlier" not in name
         ]
         self.rejection_threshold = rejection_threshold
+        self.considered_names = self.averaging_names
+        self.considered_names_mixed = self.mixed_names
+        if not self.outlier_rejection:
+            self.considered_names = [
+                name for name in self.considered_names if "outlier" not in name
+            ]
+            self.considered_names_mixed = [
+                name for name in self.considered_names_mixed if "outlier" not in name
+            ]
 
     def compare_growth_estimates(self):
         if self.n_processes == 1:
@@ -303,7 +314,7 @@ class DividendAnalyzer:
                 + " ".join(x.split()[2:4])
                 + "\n"
                 + " ".join(x.split()[4:])
-                for x in self.averaging_names
+                for x in self.considered_names
             ]
         ]
         ylabel_tick_names.append(ylabel_tick_names[0])
@@ -313,7 +324,7 @@ class DividendAnalyzer:
             + " ".join(x.split()[2:4])
             + "\n"
             + " ".join(x.split()[4:])
-            for x in self.mixed_names
+            for x in self.considered_names_mixed
         ]
         ylabel_tick_names.extend([ylabel_tick_names_mixed, ylabel_tick_names_mixed])
         xlabel_tick_names = [str(name) + "y" for name in self.average_years]
@@ -350,36 +361,43 @@ class DividendAnalyzer:
     def compute_histograms(self):
         self.count_arrays = {"portfolios": dict(), "single": dict()}
         self.count_arrays["portfolios"]["all"] = np.zeros(
-            (len(self.average_years), len(self.averaging_names))
+            (len(self.average_years), len(self.considered_names))
         )
         self.count_arrays["single"]["all"] = np.zeros(
-            (len(self.average_years), len(self.averaging_names))
+            (len(self.average_years), len(self.considered_names))
         )
         self.count_arrays["portfolios"]["mixed"] = np.zeros(
-            (len(self.average_years), len(self.mixed_names))
+            (len(self.average_years), len(self.considered_names_mixed))
         )
         self.count_arrays["single"]["mixed"] = np.zeros(
-            (len(self.average_years), len(self.mixed_names))
+            (len(self.average_years), len(self.considered_names_mixed))
         )
-
         for rmsd_dict in self.rmsd_dict_portfolios:
-            array = np.array(rmsd_dict["rmsd portfolio"])
+            array = np.array(rmsd_dict["rmsd portfolio"][self.considered_names])
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.count_arrays["portfolios"]["all"][ind] += 1
-            array = np.array(rmsd_dict["rmsd portfolio mixed"])
+            array = np.array(
+                rmsd_dict["rmsd portfolio mixed"][self.considered_names_mixed]
+            )
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.count_arrays["portfolios"]["mixed"][ind] += 1
 
         self.rmsd_df_min_dict = self.get_empty_rmsd_df_min_dict()
         for ticker in self.tickers_included:
-            rmsd_df = self.dividend_growth_dict[ticker]["rmsd_df"]
+            rmsd_df = self.dividend_growth_dict[ticker]["rmsd_df"][
+                self.considered_names
+            ]
             array = np.array(rmsd_df)
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.rmsd_df_min_dict[rmsd_df.columns[ind[1]]][
                 rmsd_df.index[ind[0]]
             ].append(ticker)
             self.count_arrays["single"]["all"][ind] += 1
-            array = np.array(self.dividend_growth_dict[ticker]["rmsd_df_mixed"])
+            array = np.array(
+                self.dividend_growth_dict[ticker]["rmsd_df_mixed"][
+                    self.considered_names_mixed
+                ]
+            )
             ind = np.unravel_index(np.argmin(array, axis=None), array.shape)
             self.count_arrays["single"]["mixed"][ind] += 1
 
@@ -392,11 +410,11 @@ class DividendAnalyzer:
 
     def get_empty_rmsd_df_min_dict(self):
         rmsd_df_min_dict = {}
-        for averaging_name in self.averaging_names:
+        for averaging_name in self.considered_names:
             rmsd_df_min_dict[averaging_name] = {
                 averaging_year: [] for averaging_year in self.average_years
             }
-        for mixed_name in self.mixed_names:
+        for mixed_name in self.considered_names_mixed:
             rmsd_df_min_dict[mixed_name] = {
                 averaging_year: [] for averaging_year in self.average_years
             }
@@ -685,6 +703,11 @@ def main():
         help="If set, sorts out securities that exhibit a oscillatory dividend paying behavior.",
         action="store_true",
     )
+    parser.add_argument(
+        "--outlier_rejection",
+        help="If set, considers also outlier_rejecton techniques for averaging",
+        action="store_true",
+    )
     args = parser.parse_args()
     if args.download_sp_500:
         sp_500_tickers = DividendAnalyzer.get_SP500_constituents()
@@ -699,6 +722,7 @@ def main():
         n_security=args.n_security,
         n_portfolio=args.n_portfolio,
         n_processes=args.j,
+        outlier_rejection=args.outlier_rejection,
     )
     if args.update_dividends:
         dividend_analyzer.download_dividend_history_multi()
