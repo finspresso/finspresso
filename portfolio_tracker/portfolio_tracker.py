@@ -132,6 +132,14 @@ class TabWindow(QtGui.QTabWidget):
                     dividends_without_outlier.loc[year] = dividends.loc[year]
         return dividends_without_outlier
 
+    @staticmethod
+    def get_growth_zero_crossings(dividends_per_year):
+        growth = dividends_per_year.diff() / dividends_per_year.shift() * 100
+        growth = growth.iloc[1:]
+        growth_diff = growth + growth.diff().shift(-1)
+        zero_crossings = growth_diff[growth.values > 0] < 0
+        return zero_crossings
+
     def compute_dividend_growth_values(self):
         for security in self.holdings_dict.values():
             security["rmsd dataframe"] = pd.DataFrame(
@@ -144,6 +152,9 @@ class TabWindow(QtGui.QTabWidget):
                 dividends_per_year = security["dividends per year"][
                     security["dividends per year"].index < self.current_year
                 ]
+                security["zero crossings"] = self.get_growth_zero_crossings(
+                    dividends_per_year
+                )
                 security["dividends per year growth"] = (
                     dividends_per_year.diff() / dividends_per_year.shift() * 100
                 )
@@ -688,3 +699,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Next: Make adaptive approach based on zero crossigns
