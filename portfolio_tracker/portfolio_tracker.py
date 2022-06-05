@@ -138,6 +138,9 @@ class TabWindow(QtGui.QTabWidget):
         growth = growth.iloc[1:]
         growth_diff = growth + growth.diff().shift(-1)
         zero_crossings = growth_diff[growth.values > 0] < 0
+        zero_crossings = zero_crossings[zero_crossings]
+        zero_crossings[:] = 0.0
+        zero_crossings = zero_crossings.astype(float)
         return zero_crossings
 
     def compute_dividend_growth_values(self):
@@ -307,6 +310,16 @@ class TabWindow(QtGui.QTabWidget):
             symbol="o",
             symbolSize=6,
         )
+        if not self.holdings_dict[ticker]["zero crossings"].empty:
+            self.plot_dividend_growth = self.dividend_history.plot_widget.plot(
+                self.holdings_dict[ticker]["zero crossings"].index.values,
+                self.holdings_dict[ticker]["zero crossings"].values,
+                name="Zero crossings",
+                pen=None,
+                symbol="x",
+                symbolPen="k",
+                symbolSize=8,
+            )
         if self.dividend_history.outlier_rejection_checkbox.isChecked():
             pen = pg.mkPen(color="red", width=2, style=QtCore.Qt.DotLine)
             self.dividend_history.plot_widget.plot(
