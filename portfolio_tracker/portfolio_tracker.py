@@ -60,10 +60,12 @@ class TabWindow(QtGui.QTabWidget):
             average_years=self.average_years,
             averaging_names=self.averaging_names,
         )
+        self.portfolio_widget = Portfolio(self.holdings_dict)
         self.dividend_history.average_years_checkbox[self.average_years[0]][
             "Checkbox"
         ].setChecked(True)
         self.update_plots()
+        self.addTab(self.portfolio_widget, "Portfolio")
         self.addTab(self.dividend_history, "Dividend history")
 
     def update_tooltip_dividend(self, evt):
@@ -519,6 +521,41 @@ class TabWindow(QtGui.QTabWidget):
 
     def print(self):
         print(self.holdings_dict)
+
+
+class Portfolio(QtGui.QWidget):
+    def __init__(self, holdings_dict):
+        self.holdings_dict = holdings_dict
+        QtGui.QWidget.__init__(self)
+
+        self.create_table_widget()
+        self.main_layout = QtGui.QVBoxLayout()
+        self.main_layout.addWidget(self.table_widget)
+        self.setLayout(self.main_layout)
+
+    def create_table_widget(self):
+        self.table_widget = QtGui.QTableWidget(self)
+        self.table_widget.setMinimumWidth(500)
+        self.table_widget.setMinimumHeight(500)
+        self.table_widget.setRowCount(len(self.holdings_dict.keys()))
+        self.table_widget.setColumnCount(3)
+        self.table_widget.setHorizontalHeaderLabels(["Name", "Ticker", "quantity"])
+        row = 0
+        for security in self.holdings_dict.values():
+            for col in range(3):
+                self.table_widget.setItem(
+                    row, 0, QtGui.QTableWidgetItem(security["name"])
+                )
+                self.table_widget.setItem(
+                    row, 1, QtGui.QTableWidgetItem(security["ticker"])
+                )
+                self.table_widget.setItem(
+                    row, 2, QtGui.QTableWidgetItem(str(security["quantity"]))
+                )
+            row += 1
+        self.table_widget.resizeColumnsToContents()
+        self.table_widget.resizeRowsToContents()
+        self.table_widget.show()
 
 
 class DividendHistory(QtGui.QWidget):

@@ -14,6 +14,18 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Run small holdings",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/run.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--holdings_file",
+        "holdings_one.json"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Run oscillation holdings",
       "type": "python",
       "request": "launch",
