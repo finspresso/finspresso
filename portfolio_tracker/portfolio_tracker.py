@@ -108,9 +108,10 @@ class TabWindow(QtGui.QTabWidget):
     def download_data_from_yahoo(self):
         if self.async_download:
             yahoo_data = asyncio.run(self.download_data_from_yahoo_async())
-            for ticker, dividends, dividends_per_year in yahoo_data:
+            for ticker, dividends, dividends_per_year, last_price in yahoo_data:
                 self.holdings_dict[ticker]["dividends"] = dividends
                 self.holdings_dict[ticker]["dividends per year"] = dividends_per_year
+                self.holdings_dict[ticker]["last price"] = last_price
         else:
             self.download_data_from_yahoo_list()
 
@@ -126,7 +127,8 @@ class TabWindow(QtGui.QTabWidget):
         logger.info("Downloading data for ticker {}".format(ticker))
         dividends = yf.Ticker(ticker).dividends
         dividends_per_year = self.get_dividends_per_year(dividends)
-        return ticker, dividends, dividends_per_year
+        last_price = self.get_last_price_yahoo(ticker)
+        return ticker, dividends, dividends_per_year, last_price
 
     def download_data_from_yahoo_list(self):
         for security in self.holdings_dict.values():
@@ -136,6 +138,11 @@ class TabWindow(QtGui.QTabWidget):
                 security["dividends per year"] = self.get_dividends_per_year(
                     security["dividends"]
                 )
+                security["last price"] = self.get_last_price_yahoo(security["ticker"])
+
+    def get_last_price_yahoo(self, ticker):
+        last_price = yf.Ticker(ticker).history(period="1d")["Close"]
+        return last_price
 
     @staticmethod
     def construct_estimation_dict():
@@ -567,20 +574,31 @@ class Portfolio(QtGui.QWidget):
         self.table_widget.setMinimumWidth(500)
         self.table_widget.setMinimumHeight(500)
         self.table_widget.setRowCount(len(self.holdings_dict.keys()))
-        self.table_widget.setColumnCount(3)
-        self.table_widget.setHorizontalHeaderLabels(["Name", "Ticker", "quantity"])
+        self.table_widget.setColumnCount(5)
+        self.table_widget.setHorizontalHeaderLabels(
+            ["Name", "Ticker", "quantity", "last price", "last trading day"]
+        )
         row = 0
         for security in self.holdings_dict.values():
-            for col in range(3):
-                self.table_widget.setItem(
-                    row, 0, QtGui.QTableWidgetItem(security["name"])
-                )
-                self.table_widget.setItem(
-                    row, 1, QtGui.QTableWidgetItem(security["ticker"])
-                )
-                self.table_widget.setItem(
-                    row, 2, QtGui.QTableWidgetItem(str(security["quantity"]))
-                )
+            self.table_widget.setItem(row, 0, QtGui.QTableWidgetItem(security["name"]))
+            self.table_widget.setItem(
+                row, 1, QtGui.QTableWidgetItem(security["ticker"])
+            )
+            self.table_widget.setItem(
+                row, 2, QtGui.QTableWidgetItem(str(security["quantity"]))
+            )
+            self.table_widget.setItem(
+                row,
+                3,
+                QtGui.QTableWidgetItem(str(round(security["last price"].values[0], 2))),
+            )
+            self.table_widget.setItem(
+                row,
+                4,
+                QtGui.QTableWidgetItem(
+                    security["last price"].index[0].strftime("%Y-%m-%d")
+                ),
+            )
             row += 1
         self.table_widget.resizeColumnsToContents()
         self.table_widget.resizeRowsToContents()
