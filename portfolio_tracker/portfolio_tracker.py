@@ -5,6 +5,7 @@
 # plot_widget.addItem(img)
 
 import argparse
+import asyncio
 import datetime
 import yfinance as yf
 import pyqtgraph as pg
@@ -29,7 +30,11 @@ pg.setConfigOption("foreground", "k")
 
 class TabWindow(QtGui.QTabWidget):
     def __init__(
-        self, holdings_file="holdings.json", parent=None, rejection_threshold=50
+        self,
+        holdings_file="holdings.json",
+        parent=None,
+        rejection_threshold=50,
+        async_download=True,
     ):
         super(TabWindow, self).__init__(parent)
         self.averaging_names = [
@@ -45,8 +50,10 @@ class TabWindow(QtGui.QTabWidget):
         self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
         self.colorbar = None
+        self.async_download = async_download
         self.load_holdings()
         self.download_data_from_yahoo()
+        self.compute_dividend_growth_values()
         self.tickers = [
             security["ticker"]
             for security in self.holdings_dict.values()
@@ -99,6 +106,29 @@ class TabWindow(QtGui.QTabWidget):
             }
 
     def download_data_from_yahoo(self):
+        if self.async_download:
+            yahoo_data = asyncio.run(self.download_data_from_yahoo_async())
+            for ticker, dividends, dividends_per_year in yahoo_data:
+                self.holdings_dict[ticker]["dividends"] = dividends
+                self.holdings_dict[ticker]["dividends per year"] = dividends_per_year
+        else:
+            self.download_data_from_yahoo_list()
+
+    async def download_data_from_yahoo_async(self):
+        tasks = []
+        for security in self.holdings_dict.values():
+            if security.get("yfinance", False):
+                tasks.append(self.download_data_from_yahoo_single(security["ticker"]))
+        yahoo_data = await asyncio.gather(*tasks)
+        return yahoo_data
+
+    async def download_data_from_yahoo_single(self, ticker):
+        logger.info("Downloading data for ticker {}".format(ticker))
+        dividends = yf.Ticker(ticker).dividends
+        dividends_per_year = self.get_dividends_per_year(dividends)
+        return ticker, dividends, dividends_per_year
+
+    def download_data_from_yahoo_list(self):
         for security in self.holdings_dict.values():
             if security.get("yfinance", False):
                 logger.info("Downloading data for security {}".format(security["name"]))
@@ -106,7 +136,6 @@ class TabWindow(QtGui.QTabWidget):
                 security["dividends per year"] = self.get_dividends_per_year(
                     security["dividends"]
                 )
-        self.compute_dividend_growth_values()
 
     @staticmethod
     def construct_estimation_dict():
