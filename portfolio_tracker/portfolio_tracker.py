@@ -11,6 +11,7 @@ import yfinance as yf
 import pyqtgraph as pg
 import numpy as np
 import json
+import locale
 import logging
 import coloredlogs
 import sys
@@ -607,12 +608,12 @@ class Portfolio(QtGui.QWidget):
             [
                 "Name",
                 "Ticker",
-                "quantity",
-                "last price",
-                "last trading day",
-                "market value",
-                "TTM dividend paid/share",
-                "TTM aggregated dividend",
+                "Quantity",
+                "Last price",
+                "Last trading day",
+                "Market value",
+                "Dividend paid/share (TTM)",
+                "Aggregated dividend (TTM)",
                 "Dividend yield (TTM)",
             ]
         )
@@ -640,7 +641,9 @@ class Portfolio(QtGui.QWidget):
             self.table_widget.setItem(
                 row,
                 5,
-                QtGui.QTableWidgetItem(str(round(security["market value"].values[0]))),
+                QtGui.QTableWidgetItem(
+                    locale.format("%.0f", security["market value"].values[0], True)
+                ),
             )
             dividend_trailing = security["dividends TTM"]
             dividend_yield_trailing = (
