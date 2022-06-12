@@ -588,7 +588,43 @@ class TabWindow(QtGui.QTabWidget):
         print(self.holdings_dict)
 
 
-class Portfolio(QtGui.QWidget):
+class Portfolio(QtGui.QTabWidget):
+    def __init__(self, holdings_dict, parent=None):
+        super(Portfolio, self).__init__(parent)
+        self.holdings_dict = holdings_dict
+        self.portfolio_widget = PortfolioHoldings(self.holdings_dict)
+        self.portfolio_overview = PortfolioOverview(
+            number_holdings=len(self.holdings_dict.keys())
+        )
+        self.addTab(self.portfolio_overview, "Portfolio Overview")
+        self.addTab(self.portfolio_widget, "Portfolio Holdings")
+
+
+class PortfolioOverview(QtGui.QWidget):
+    def __init__(self, number_holdings=0):
+        QtGui.QWidget.__init__(self)
+        self.number_holdings = number_holdings
+        self.create_table_widget_overview()
+        self.main_layout_overview = QtGui.QVBoxLayout()
+        self.main_layout_overview.addWidget(self.table_widget_overview)
+        self.setLayout(self.main_layout_overview)
+
+    def create_table_widget_overview(self):
+        self.table_widget_overview = QtGui.QTableWidget(self)
+        self.table_widget_overview.setMinimumWidth(2000)
+        self.table_widget_overview.setMinimumHeight(500)
+        self.table_widget_overview.setRowCount(1)
+        self.table_widget_overview.setColumnCount(2)
+        self.table_widget_overview.setVerticalHeaderLabels(["Number of securities"])
+        self.table_widget_overview.setItem(
+            0, 1, QtGui.QTableWidgetItem(str(self.number_holdings))
+        )
+        self.table_widget_overview.resizeColumnsToContents()
+        self.table_widget_overview.resizeRowsToContents()
+        self.table_widget_overview.show()
+
+
+class PortfolioHoldings(QtGui.QWidget):
     def __init__(self, holdings_dict):
         self.holdings_dict = holdings_dict
         QtGui.QWidget.__init__(self)
