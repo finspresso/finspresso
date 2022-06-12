@@ -3,6 +3,7 @@ quant/data_dict.json
 quant/*.png
 build
 dist
+portfolio_tracker/holdings_own.json
 index.html
 portfolio_math.egg-info
 __pycache__
