@@ -56,6 +56,7 @@ class TabWindow(QtGui.QTabWidget):
         self.async_download = async_download
         self.load_holdings()
         self.download_data_from_yahoo()
+        self.get_portfolio_overview()
         self.compute_dividend_growth_values()
         self.tickers = [
             security["ticker"]
@@ -70,7 +71,9 @@ class TabWindow(QtGui.QTabWidget):
             average_years=self.average_years,
             averaging_names=self.averaging_names,
         )
-        self.portfolio_widget = Portfolio(self.holdings_dict)
+        self.portfolio_widget = Portfolio(
+            self.holdings_dict, self.portfolio_overview_dict
+        )
         self.dividend_history.average_years_checkbox[self.average_years[0]][
             "Checkbox"
         ].setChecked(True)
@@ -123,11 +126,43 @@ class TabWindow(QtGui.QTabWidget):
                 self.holdings_dict[ticker]["dividends TTM"] = dividends_trailing
                 self.holdings_dict[ticker]["last price"] = last_price
                 self.holdings_dict[ticker]["last price"] = last_price
+                self.holdings_dict[ticker]["dividend yield TTM"] = (
+                    self.holdings_dict[ticker]["dividends TTM"]
+                    / self.holdings_dict[ticker]["last price"].values[0]
+                )
+                self.holdings_dict[ticker]["aggregated dividends TTM"] = (
+                    self.holdings_dict[ticker]["dividends TTM"]
+                    * self.holdings_dict[ticker]["quantity"]
+                )
                 self.holdings_dict[ticker]["market value"] = (
                     last_price * self.holdings_dict[ticker]["quantity"]
                 )
         else:
             self.download_data_from_yahoo_list()
+
+    def get_portfolio_overview(self):
+        self.portfolio_overview_dict = {
+            "market value": 0,
+            "weighted dividend yield (TTM)": 0,
+            "aggregated dividends (TTM)": 0,
+            "n_holdings": len(self.holdings_dict.keys()),
+        }
+        for ticker in self.holdings_dict.keys():
+            self.portfolio_overview_dict["market value"] += self.holdings_dict[ticker][
+                "market value"
+            ]
+            self.portfolio_overview_dict["weighted dividend yield (TTM)"] += (
+                self.holdings_dict[ticker]["market value"]
+                * self.holdings_dict[ticker]["dividend yield TTM"]
+            )
+            self.portfolio_overview_dict[
+                "aggregated dividends (TTM)"
+            ] += self.holdings_dict[ticker]["aggregated dividends TTM"]
+        self.portfolio_overview_dict["weighted dividend yield (TTM)"] = (
+            self.portfolio_overview_dict["weighted dividend yield (TTM)"]
+            / self.portfolio_overview_dict["market value"]
+            * 100
+        )
 
     async def download_data_from_yahoo_async(self):
         tasks = []
@@ -589,21 +624,20 @@ class TabWindow(QtGui.QTabWidget):
 
 
 class Portfolio(QtGui.QTabWidget):
-    def __init__(self, holdings_dict, parent=None):
+    def __init__(self, holdings_dict, portfolio_overview_dict, parent=None):
         super(Portfolio, self).__init__(parent)
         self.holdings_dict = holdings_dict
+        self.portfolio_overview_dict = portfolio_overview_dict
         self.portfolio_widget = PortfolioHoldings(self.holdings_dict)
-        self.portfolio_overview = PortfolioOverview(
-            number_holdings=len(self.holdings_dict.keys())
-        )
+        self.portfolio_overview = PortfolioOverview(self.portfolio_overview_dict)
         self.addTab(self.portfolio_overview, "Portfolio Overview")
         self.addTab(self.portfolio_widget, "Portfolio Holdings")
 
 
 class PortfolioOverview(QtGui.QWidget):
-    def __init__(self, number_holdings=0):
+    def __init__(self, portfolio_overview_dict):
         QtGui.QWidget.__init__(self)
-        self.number_holdings = number_holdings
+        self.portfolio_overview_dict = portfolio_overview_dict
         self.create_table_widget_overview()
         self.main_layout_overview = QtGui.QVBoxLayout()
         self.main_layout_overview.addWidget(self.table_widget_overview)
@@ -613,11 +647,51 @@ class PortfolioOverview(QtGui.QWidget):
         self.table_widget_overview = QtGui.QTableWidget(self)
         self.table_widget_overview.setMinimumWidth(2000)
         self.table_widget_overview.setMinimumHeight(500)
-        self.table_widget_overview.setRowCount(1)
-        self.table_widget_overview.setColumnCount(2)
-        self.table_widget_overview.setVerticalHeaderLabels(["Number of securities"])
+        self.table_widget_overview.setRowCount(4)
+        self.table_widget_overview.setColumnCount(1)
+        self.table_widget_overview.setVerticalHeaderLabels(
+            [
+                "Number of securities",
+                "Market value",
+                "Weighted dividend yield (TTM)",
+                "Aggregated dividends (TTM)",
+            ]
+        )
+        # self.portfolio_overview_dict = {"market value": 0, "weighted dividend yield (TTM)":0, "aggregated dividends (TTM)":0, "n_holdings":len(self.holdings_dict.keys())}
         self.table_widget_overview.setItem(
-            0, 1, QtGui.QTableWidgetItem(str(self.number_holdings))
+            0,
+            0,
+            QtGui.QTableWidgetItem(str(self.portfolio_overview_dict["n_holdings"])),
+        )
+        self.table_widget_overview.setItem(
+            1,
+            0,
+            QtGui.QTableWidgetItem(
+                str(round(self.portfolio_overview_dict["market value"].values[0], 1))
+            ),
+        )
+        self.table_widget_overview.setItem(
+            2,
+            0,
+            QtGui.QTableWidgetItem(
+                str(
+                    round(
+                        self.portfolio_overview_dict[
+                            "weighted dividend yield (TTM)"
+                        ].values[0],
+                        2,
+                    )
+                )
+            ),
+        )
+        self.table_widget_overview.setItem(
+            3,
+            0,
+            QtGui.QTableWidgetItem(
+                str(
+                    round(self.portfolio_overview_dict["aggregated dividends (TTM)"], 2)
+                )
+            ),
         )
         self.table_widget_overview.resizeColumnsToContents()
         self.table_widget_overview.resizeRowsToContents()
@@ -685,7 +759,7 @@ class PortfolioHoldings(QtGui.QWidget):
             dividend_yield_trailing = (
                 security["dividends TTM"] / security["last price"].values[0]
             )
-            trailing_aggregated_dividend = dividend_trailing * security["quantity"]
+            trailing_aggregated_dividend = security["aggregated dividends TTM"]
             self.table_widget.setItem(
                 row,
                 6,
