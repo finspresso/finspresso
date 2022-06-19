@@ -112,6 +112,7 @@ class TabWindow(QtGui.QTabWidget):
             }
 
     def download_data_from_yahoo(self):
+        self.get_conversion_rates()
         if self.async_download:
             yahoo_data = asyncio.run(self.download_data_from_yahoo_async())
             for (
@@ -121,11 +122,17 @@ class TabWindow(QtGui.QTabWidget):
                 dividends_trailing,
                 last_price,
             ) in yahoo_data:
-                self.holdings_dict[ticker]["dividends"] = dividends
-                self.holdings_dict[ticker]["dividends per year"] = dividends_per_year
-                self.holdings_dict[ticker]["dividends TTM"] = dividends_trailing
-                self.holdings_dict[ticker]["last price"] = last_price
-                self.holdings_dict[ticker]["last price"] = last_price
+                conversion_rate = 1
+                if self.holdings_dict[ticker]["currency"] == "USD":
+                    conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
+                self.holdings_dict[ticker]["dividends"] = dividends * conversion_rate
+                self.holdings_dict[ticker]["dividends per year"] = (
+                    dividends_per_year * conversion_rate
+                )
+                self.holdings_dict[ticker]["dividends TTM"] = (
+                    dividends_trailing * conversion_rate
+                )
+                self.holdings_dict[ticker]["last price"] = last_price * conversion_rate
                 self.holdings_dict[ticker]["dividend yield TTM"] = (
                     self.holdings_dict[ticker]["dividends TTM"]
                     / self.holdings_dict[ticker]["last price"].values[0]
@@ -133,12 +140,20 @@ class TabWindow(QtGui.QTabWidget):
                 self.holdings_dict[ticker]["aggregated dividends TTM"] = (
                     self.holdings_dict[ticker]["dividends TTM"]
                     * self.holdings_dict[ticker]["quantity"]
+                    * conversion_rate
                 )
                 self.holdings_dict[ticker]["market value"] = (
-                    last_price * self.holdings_dict[ticker]["quantity"]
+                    last_price
+                    * self.holdings_dict[ticker]["quantity"]
+                    * conversion_rate
                 )
         else:
             self.download_data_from_yahoo_list()
+
+    def get_conversion_rates(self):
+        self.conversion_rate_dict = {"CHF-USD": 1}
+        self.conversion_rate_dict["CHF-USD"] = self.get_last_price_yahoo("CHFUSD=X")
+        self.conversion_rate_dict["EUR-USD"] = self.get_last_price_yahoo("EURUSD=X")
 
     def get_portfolio_overview(self):
         self.portfolio_overview_dict = {
@@ -174,24 +189,42 @@ class TabWindow(QtGui.QTabWidget):
 
     async def download_data_from_yahoo_single(self, ticker):
         logger.info("Downloading data for ticker {}".format(ticker))
-        dividends = yf.Ticker(ticker).dividends
+        yf_ticker = yf.Ticker(ticker)
+        dividends = yf_ticker.dividends
         dividends_per_year = self.get_dividends_per_year(dividends)
         dividends_trailing = self.get_trailing_dividends(dividends, trailing_days=365)
         last_price = self.get_last_price_yahoo(ticker)
-        return ticker, dividends, dividends_per_year, dividends_trailing, last_price
+        return (
+            ticker,
+            dividends,
+            dividends_per_year,
+            dividends_trailing,
+            last_price,
+        )
 
     def download_data_from_yahoo_list(self):
         for security in self.holdings_dict.values():
+            conversion_rate = 1
+            if security["currency"] == "CHF":
+                conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
+            elif security["currency"] == "EUR":
+                conversion_rate = self.conversion_rate_dict["EUR-USD"].values[0]
             if security.get("yfinance", False):
                 logger.info("Downloading data for security {}".format(security["name"]))
-                security["dividends"] = yf.Ticker(security["ticker"]).dividends
-                security["dividends per year"] = self.get_dividends_per_year(
-                    security["dividends"]
+                yf_ticker = yf.Ticker(security["ticker"])
+                security["dividends"] = yf_ticker.dividends * conversion_rate
+                security["dividends per year"] = (
+                    self.get_dividends_per_year(security["dividends"]) * conversion_rate
                 )
-                security["dividends TTM"] = self.get_trailing_dividends(
-                    security["dividends"], trailing_days=365
+                security["dividends TTM"] = (
+                    self.get_trailing_dividends(
+                        security["dividends"], trailing_days=365
+                    )
+                    * conversion_rate
                 )
-                security["last price"] = self.get_last_price_yahoo(security["ticker"])
+                security["last price"] = (
+                    self.get_last_price_yahoo(security["ticker"]) * conversion_rate
+                )
 
     def get_last_price_yahoo(self, ticker):
         last_price = yf.Ticker(ticker).history(period="1d")["Close"]
@@ -597,15 +630,19 @@ class TabWindow(QtGui.QTabWidget):
 
     @staticmethod
     def get_dividends_per_year(dividends):
-        years = range(dividends.index.min().year + 1, dividends.index.max().year + 1)
-        dividends_per_year_list = []
-        years_list = []
-        for year in years:
-            years_list.append(year)
-            dividends_per_year_list.append(
-                dividends[dividends.index.year == year].sum()
+        dividends_per_year = NA
+        if not dividends.empty:
+            years = range(
+                dividends.index.min().year + 1, dividends.index.max().year + 1
             )
-        dividends_per_year = pd.Series(dividends_per_year_list, index=years_list)
+            dividends_per_year_list = []
+            years_list = []
+            for year in years:
+                years_list.append(year)
+                dividends_per_year_list.append(
+                    dividends[dividends.index.year == year].sum()
+                )
+            dividends_per_year = pd.Series(dividends_per_year_list, index=years_list)
         return dividends_per_year
 
     @staticmethod
@@ -652,12 +689,11 @@ class PortfolioOverview(QtGui.QWidget):
         self.table_widget_overview.setVerticalHeaderLabels(
             [
                 "Number of securities",
-                "Market value",
-                "Weighted dividend yield (TTM)",
-                "Aggregated dividends (TTM)",
+                "Market value [USD]",
+                "Weighted dividend yield (TTM) [%]",
+                "Aggregated dividends (TTM) [USD]",
             ]
         )
-        # self.portfolio_overview_dict = {"market value": 0, "weighted dividend yield (TTM)":0, "aggregated dividends (TTM)":0, "n_holdings":len(self.holdings_dict.keys())}
         self.table_widget_overview.setItem(
             0,
             0,
@@ -667,7 +703,11 @@ class PortfolioOverview(QtGui.QWidget):
             1,
             0,
             QtGui.QTableWidgetItem(
-                str(round(self.portfolio_overview_dict["market value"].values[0], 1))
+                locale.format_string(
+                    "%.0f",
+                    self.portfolio_overview_dict["market value"].values[0],
+                    grouping=True,
+                )
             ),
         )
         self.table_widget_overview.setItem(
@@ -688,8 +728,10 @@ class PortfolioOverview(QtGui.QWidget):
             3,
             0,
             QtGui.QTableWidgetItem(
-                str(
-                    round(self.portfolio_overview_dict["aggregated dividends (TTM)"], 2)
+                locale.format_string(
+                    "%.0f",
+                    self.portfolio_overview_dict["aggregated dividends (TTM)"],
+                    grouping=True,
                 )
             ),
         )
@@ -713,17 +755,18 @@ class PortfolioHoldings(QtGui.QWidget):
         self.table_widget.setMinimumWidth(2000)
         self.table_widget.setMinimumHeight(500)
         self.table_widget.setRowCount(len(self.holdings_dict.keys()))
-        self.table_widget.setColumnCount(9)
+        self.table_widget.setColumnCount(10)
         self.table_widget.setHorizontalHeaderLabels(
             [
                 "Name",
                 "Ticker",
+                "Currency",
                 "Quantity",
-                "Last price",
+                "Last price [USD]",
                 "Last trading day",
-                "Market value",
-                "Dividend paid/share (TTM)",
-                "Aggregated dividend (TTM)",
+                "Market value [USD]",
+                "Dividend paid/share (TTM) [USD]",
+                "Aggregated dividend (TTM) [USD]",
                 "Dividend yield (TTM)",
             ]
         )
@@ -734,25 +777,30 @@ class PortfolioHoldings(QtGui.QWidget):
                 row, 1, QtGui.QTableWidgetItem(security["ticker"])
             )
             self.table_widget.setItem(
-                row, 2, QtGui.QTableWidgetItem(str(security["quantity"]))
+                row, 2, QtGui.QTableWidgetItem(security["currency"])
             )
             self.table_widget.setItem(
-                row,
-                3,
-                QtGui.QTableWidgetItem(str(round(security["last price"].values[0], 2))),
+                row, 3, QtGui.QTableWidgetItem(str(security["quantity"]))
             )
             self.table_widget.setItem(
                 row,
                 4,
+                QtGui.QTableWidgetItem(str(round(security["last price"].values[0], 2))),
+            )
+            self.table_widget.setItem(
+                row,
+                5,
                 QtGui.QTableWidgetItem(
                     security["last price"].index[0].strftime("%Y-%m-%d")
                 ),
             )
             self.table_widget.setItem(
                 row,
-                5,
+                6,
                 QtGui.QTableWidgetItem(
-                    locale.format("%.0f", security["market value"].values[0], True)
+                    locale.format_string(
+                        "%.0f", security["market value"].values[0], grouping=True
+                    )
                 ),
             )
             dividend_trailing = security["dividends TTM"]
@@ -762,17 +810,21 @@ class PortfolioHoldings(QtGui.QWidget):
             trailing_aggregated_dividend = security["aggregated dividends TTM"]
             self.table_widget.setItem(
                 row,
-                6,
+                7,
                 QtGui.QTableWidgetItem(str(round(dividend_trailing, 4))),
             )
             self.table_widget.setItem(
                 row,
-                7,
-                QtGui.QTableWidgetItem(str(round(trailing_aggregated_dividend, 4))),
+                8,
+                QtGui.QTableWidgetItem(
+                    locale.format_string(
+                        "%.1f", trailing_aggregated_dividend, grouping=True
+                    )
+                ),
             )
             self.table_widget.setItem(
                 row,
-                8,
+                9,
                 QtGui.QTableWidgetItem(
                     str(round(dividend_yield_trailing * 100, 2)) + "%"
                 ),
