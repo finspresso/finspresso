@@ -58,11 +58,7 @@ class TabWindow(QtGui.QTabWidget):
         self.download_data_from_yahoo()
         self.get_portfolio_overview()
         self.compute_dividend_growth_values()
-        self.tickers = [
-            security["ticker"]
-            for security in self.holdings_dict.values()
-            if security["yfinance"]
-        ]
+        self.tickers = [security["ticker"] for security in self.holdings_dict.values()]
         self.dividend_history = DividendHistory(
             combo_list_tickers=self.tickers,
             update_function=self.update_plots,
@@ -182,8 +178,7 @@ class TabWindow(QtGui.QTabWidget):
     async def download_data_from_yahoo_async(self):
         tasks = []
         for security in self.holdings_dict.values():
-            if security.get("yfinance", False):
-                tasks.append(self.download_data_from_yahoo_single(security["ticker"]))
+            tasks.append(self.download_data_from_yahoo_single(security["ticker"]))
         yahoo_data = await asyncio.gather(*tasks)
         return yahoo_data
 
@@ -209,22 +204,19 @@ class TabWindow(QtGui.QTabWidget):
                 conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
             elif security["currency"] == "EUR":
                 conversion_rate = self.conversion_rate_dict["EUR-USD"].values[0]
-            if security.get("yfinance", False):
-                logger.info("Downloading data for security {}".format(security["name"]))
-                yf_ticker = yf.Ticker(security["ticker"])
-                security["dividends"] = yf_ticker.dividends * conversion_rate
-                security["dividends per year"] = (
-                    self.get_dividends_per_year(security["dividends"]) * conversion_rate
-                )
-                security["dividends TTM"] = (
-                    self.get_trailing_dividends(
-                        security["dividends"], trailing_days=365
-                    )
-                    * conversion_rate
-                )
-                security["last price"] = (
-                    self.get_last_price_yahoo(security["ticker"]) * conversion_rate
-                )
+            logger.info("Downloading data for security {}".format(security["name"]))
+            yf_ticker = yf.Ticker(security["ticker"])
+            security["dividends"] = yf_ticker.dividends * conversion_rate
+            security["dividends per year"] = (
+                self.get_dividends_per_year(security["dividends"]) * conversion_rate
+            )
+            security["dividends TTM"] = (
+                self.get_trailing_dividends(security["dividends"], trailing_days=365)
+                * conversion_rate
+            )
+            security["last price"] = (
+                self.get_last_price_yahoo(security["ticker"]) * conversion_rate
+            )
 
     def get_last_price_yahoo(self, ticker):
         last_price = yf.Ticker(ticker).history(period="1d")["Close"]
@@ -275,106 +267,100 @@ class TabWindow(QtGui.QTabWidget):
                 data=0,
                 dtype=float,
             )
-            if security.get("yfinance", False):
-                dividends_per_year = security["dividends per year"][
-                    security["dividends per year"].index < self.current_year
-                ]
-                security["zero crossings"] = self.get_growth_zero_crossings(
-                    dividends_per_year
+            dividends_per_year = security["dividends per year"][
+                security["dividends per year"].index < self.current_year
+            ]
+            security["zero crossings"] = self.get_growth_zero_crossings(
+                dividends_per_year
+            )
+            security["dividends per year growth"] = (
+                dividends_per_year.diff() / dividends_per_year.shift() * 100
+            )
+            security[
+                "dividends per year (outlier rejection)"
+            ] = self.dividend_outlier_rejection(
+                dividends_per_year, self.rejection_threshold
+            )
+            security["dividends per year growth (outlier rejection)"] = (
+                security["dividends per year (outlier rejection)"].diff()
+                / security["dividends per year (outlier rejection)"].shift()
+                * 100
+            )
+            security["dividends per year growth diff"] = security[
+                "dividends per year growth"
+            ].diff()
+
+            for averaging_name in self.averaging_names:
+                security[averaging_name] = self.construct_estimation_dict()
+            for year in self.average_years:
+                security["rolling average dividend growth per year"]["estimate"][
+                    str(year)
+                ] = (security["dividends per year growth"].rolling(year).mean().shift())
+                security[
+                    "rolling average dividend growth per year (outlier rejection)"
+                ]["estimate"][str(year)] = (
+                    security["dividends per year growth (outlier rejection)"]
+                    .rolling(year)
+                    .mean()
+                    .shift()
                 )
-                security["dividends per year growth"] = (
-                    dividends_per_year.diff() / dividends_per_year.shift() * 100
+
+                security["rolling geometric average dividends growth per year"][
+                    "estimate"
+                ][str(year)] = (
+                    dividends_per_year.rolling(year)
+                    .apply(lambda x: portfolio_math.get_geometric_mean(x))
+                    .shift()
                 )
                 security[
-                    "dividends per year (outlier rejection)"
-                ] = self.dividend_outlier_rejection(
-                    dividends_per_year, self.rejection_threshold
+                    "rolling geometric average dividends growth per year (outlier rejection)"
+                ]["estimate"][str(year)] = (
+                    security["dividends per year (outlier rejection)"]
+                    .rolling(year)
+                    .apply(lambda x: portfolio_math.get_geometric_mean(x))
+                    .shift()
                 )
-                security["dividends per year growth (outlier rejection)"] = (
-                    security["dividends per year (outlier rejection)"].diff()
-                    / security["dividends per year (outlier rejection)"].shift()
-                    * 100
+                security["rolling ema dividend growth per year"]["estimate"][
+                    str(year)
+                ] = (
+                    security["dividends per year growth"]
+                    .rolling(year)
+                    .apply(lambda x: portfolio_math.get_ema(x))
+                    .shift()
                 )
-                security["dividends per year growth diff"] = security[
-                    "dividends per year growth"
-                ].diff()
 
+                security["rolling ema dividend growth per year (outlier rejection)"][
+                    "estimate"
+                ][str(year)] = (
+                    security["dividends per year growth (outlier rejection)"]
+                    .rolling(year)
+                    .apply(lambda x: portfolio_math.get_ema(x))
+                    .shift()
+                )
+                # Next
+                # 3) Add this quant to check whether this rmsd would be the beset
                 for averaging_name in self.averaging_names:
-                    security[averaging_name] = self.construct_estimation_dict()
-                for year in self.average_years:
-                    security["rolling average dividend growth per year"]["estimate"][
+                    security[averaging_name]["deviation"][str(year)] = (
+                        security[averaging_name]["estimate"][str(year)]
+                        - security["dividends per year growth"]
+                    )
+                    security[averaging_name]["rmsd"][
                         str(year)
-                    ] = (
-                        security["dividends per year growth"]
-                        .rolling(year)
-                        .mean()
-                        .shift()
+                    ] = portfolio_math.get_root_mean_square_deviation(
+                        security[averaging_name]["deviation"][str(year)]
                     )
-                    security[
-                        "rolling average dividend growth per year (outlier rejection)"
-                    ]["estimate"][str(year)] = (
-                        security["dividends per year growth (outlier rejection)"]
-                        .rolling(year)
-                        .mean()
-                        .shift()
+                    security[averaging_name]["deviation"][str(year)] = (
+                        security[averaging_name]["estimate"][str(year)]
+                        - security["dividends per year growth"]
                     )
-
-                    security["rolling geometric average dividends growth per year"][
-                        "estimate"
-                    ][str(year)] = (
-                        dividends_per_year.rolling(year)
-                        .apply(lambda x: portfolio_math.get_geometric_mean(x))
-                        .shift()
-                    )
-                    security[
-                        "rolling geometric average dividends growth per year (outlier rejection)"
-                    ]["estimate"][str(year)] = (
-                        security["dividends per year (outlier rejection)"]
-                        .rolling(year)
-                        .apply(lambda x: portfolio_math.get_geometric_mean(x))
-                        .shift()
-                    )
-                    security["rolling ema dividend growth per year"]["estimate"][
+                    security[averaging_name]["rmsd"][
                         str(year)
-                    ] = (
-                        security["dividends per year growth"]
-                        .rolling(year)
-                        .apply(lambda x: portfolio_math.get_ema(x))
-                        .shift()
+                    ] = portfolio_math.get_root_mean_square_deviation(
+                        security[averaging_name]["deviation"][str(year)]
                     )
-
-                    security[
-                        "rolling ema dividend growth per year (outlier rejection)"
-                    ]["estimate"][str(year)] = (
-                        security["dividends per year growth (outlier rejection)"]
-                        .rolling(year)
-                        .apply(lambda x: portfolio_math.get_ema(x))
-                        .shift()
-                    )
-                    # Next
-                    # 3) Add this quant to check whether this rmsd would be the beset
-                    for averaging_name in self.averaging_names:
-                        security[averaging_name]["deviation"][str(year)] = (
-                            security[averaging_name]["estimate"][str(year)]
-                            - security["dividends per year growth"]
-                        )
-                        security[averaging_name]["rmsd"][
-                            str(year)
-                        ] = portfolio_math.get_root_mean_square_deviation(
-                            security[averaging_name]["deviation"][str(year)]
-                        )
-                        security[averaging_name]["deviation"][str(year)] = (
-                            security[averaging_name]["estimate"][str(year)]
-                            - security["dividends per year growth"]
-                        )
-                        security[averaging_name]["rmsd"][
-                            str(year)
-                        ] = portfolio_math.get_root_mean_square_deviation(
-                            security[averaging_name]["deviation"][str(year)]
-                        )
-                        security["rmsd dataframe"].loc[year, averaging_name] = security[
-                            averaging_name
-                        ]["rmsd"][str(year)]
+                    security["rmsd dataframe"].loc[year, averaging_name] = security[
+                        averaging_name
+                    ]["rmsd"][str(year)]
 
     @staticmethod
     def get_root_mean_square_deviation(x):
@@ -1027,4 +1013,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# Next: Make GUI that shows dividend for portfolio and estimate of next year based on filter technique
+# Next: 1) Add option to include offline dividend inputs value via .json2)Make GUI that shows dividend for portfolio and estimate of next year based on filter technique
