@@ -186,14 +186,21 @@ class TabWindow(QtGui.QTabWidget):
     async def download_data_from_yahoo_async(self):
         tasks = []
         for security in self.holdings_dict.values():
-            tasks.append(self.download_data_from_yahoo_single(security["ticker"]))
+            tasks.append(
+                self.download_data_from_yahoo_single(
+                    security["ticker"], security["dividend_history"]
+                )
+            )
         yahoo_data = await asyncio.gather(*tasks)
         return yahoo_data
 
-    async def download_data_from_yahoo_single(self, ticker):
+    async def download_data_from_yahoo_single(self, ticker, dividend_history):
         logger.info("Downloading data for ticker {}".format(ticker))
         yf_ticker = yf.Ticker(ticker)
-        dividends = yf_ticker.dividends
+        if dividend_history == "yfinance":
+            dividends = yf_ticker.dividends
+        else:
+            dividends = self.load_dividends_from_file(dividend_history)
         dividends_per_year = self.get_dividends_per_year(dividends)
         dividends_trailing = self.get_trailing_dividends(dividends, trailing_days=365)
         last_price = self.get_last_price_yahoo(ticker)
@@ -204,6 +211,20 @@ class TabWindow(QtGui.QTabWidget):
             dividends_trailing,
             last_price,
         )
+
+    @staticmethod
+    def load_dividends_from_file(dividend_history):
+        with open(dividend_history, "r") as file:
+            dividend_dict = json.load(file)
+        index = [
+            datetime.datetime.strptime(x["payable_date"], "%Y-%m-%d")
+            for x in dividend_dict["dividend_history"]
+        ]
+        values = [
+            x["distribution per share"] for x in dividend_dict["dividend_history"]
+        ]
+        dividends = pd.Series(values, index=index)
+        return dividends
 
     def download_data_from_yahoo_list(self):
         for security in self.holdings_dict.values():
