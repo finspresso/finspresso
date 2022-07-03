@@ -121,23 +121,31 @@ class TabWindow(QtGui.QTabWidget):
                 conversion_rate = 1
                 if self.holdings_dict[ticker]["currency"] == "USD":
                     conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
-                self.holdings_dict[ticker]["dividends"] = dividends * conversion_rate
-                self.holdings_dict[ticker]["dividends per year"] = (
-                    dividends_per_year * conversion_rate
-                )
-                self.holdings_dict[ticker]["dividends TTM"] = (
-                    dividends_trailing * conversion_rate
-                )
                 self.holdings_dict[ticker]["last price"] = last_price * conversion_rate
-                self.holdings_dict[ticker]["dividend yield TTM"] = (
-                    self.holdings_dict[ticker]["dividends TTM"]
-                    / self.holdings_dict[ticker]["last price"].values[0]
-                )
-                self.holdings_dict[ticker]["aggregated dividends TTM"] = (
-                    self.holdings_dict[ticker]["dividends TTM"]
-                    * self.holdings_dict[ticker]["quantity"]
-                    * conversion_rate
-                )
+                self.holdings_dict[ticker]["dividends"] = 0.0
+                self.holdings_dict[ticker]["dividends per year"] = 0.0
+                self.holdings_dict[ticker]["dividends TTM"] = 0.0
+                self.holdings_dict[ticker]["dividend yield TTM"] = 0.0
+                self.holdings_dict[ticker]["aggregated dividends TTM"] = 0.0
+                if not dividends_per_year.empty:
+                    self.holdings_dict[ticker]["dividends"] = (
+                        dividends * conversion_rate
+                    )
+                    self.holdings_dict[ticker]["dividends per year"] = (
+                        dividends_per_year * conversion_rate
+                    )
+                    self.holdings_dict[ticker]["dividends TTM"] = (
+                        dividends_trailing * conversion_rate
+                    )
+                    self.holdings_dict[ticker]["dividend yield TTM"] = (
+                        self.holdings_dict[ticker]["dividends TTM"]
+                        / self.holdings_dict[ticker]["last price"].values[0]
+                    )
+                    self.holdings_dict[ticker]["aggregated dividends TTM"] = (
+                        self.holdings_dict[ticker]["dividends TTM"]
+                        * self.holdings_dict[ticker]["quantity"]
+                        * conversion_rate
+                    )
                 self.holdings_dict[ticker]["market value"] = (
                     last_price
                     * self.holdings_dict[ticker]["quantity"]
@@ -616,7 +624,8 @@ class TabWindow(QtGui.QTabWidget):
 
     @staticmethod
     def get_dividends_per_year(dividends):
-        dividends_per_year = NA
+        current_year = datetime.datetime.now().year
+        dividends_per_year = pd.Series(0.0, index=[current_year])
         if not dividends.empty:
             years = range(
                 dividends.index.min().year + 1, dividends.index.max().year + 1
