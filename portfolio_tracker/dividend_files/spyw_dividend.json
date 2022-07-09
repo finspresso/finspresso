@@ -1,0 +1,76 @@
+{
+  "dividend_history": [
+    {
+      "payable_date": "2022-03-29",
+      "distribution per share": 0.0631
+    },
+    {
+      "payable_date": "2022-09-28",
+      "distribution per share": 0.5681
+    },
+    {
+      "payable_date": "2021-03-30",
+      "distribution per share": 0.0879
+    },
+    {
+      "payable_date": "2020-09-29",
+      "distribution per share": 0.5936
+    },
+    {
+      "payable_date": "2020-09-29",
+      "distribution per share": 0.5936
+    },
+    {
+      "payable_date": "2020-03-31",
+      "distribution per share": 0.0477
+    },
+    {
+      "payable_date": "2019-09-30",
+      "distribution per share": 0.691
+    },
+    {
+      "payable_date": "2019-09-29",
+      "distribution per share": 0.0712
+    },
+    {
+      "payable_date": "2018-10-02",
+      "distribution per share": 0.7005
+    },
+    {
+      "payable_date": "2018-03-29",
+      "distribution per share": 0.0711
+    },
+    {
+      "payable_date": "2017-10-02",
+      "distribution per share": 0.6839
+    },
+    {
+      "payable_date": "2017-03-31",
+      "distribution per share": 0.0515
+    },
+    {
+      "payable_date": "2016-10-03",
+      "distribution per share": 0.5745
+    },
+    {
+      "payable_date": "2016-04-04",
+      "distribution per share": 0.0685
+    },
+    {
+      "payable_date": "2015-10-05",
+      "distribution per share": 0.5568
+    },
+    {
+      "payable_date": "2015-04-07",
+      "distribution per share": 0.0573
+    },
+    {
+      "payable_date": "2014-10-06",
+      "distribution per share": 0.6307
+    },
+    {
+      "payable_date": "2014-04-07",
+      "distribution per share": 0.0493
+    }
+  ]
+}
