@@ -29,6 +29,7 @@ pg.setConfigOption("background", "w")
 pg.setConfigOption("foreground", "k")
 
 NA = "NA"
+ALLOWED_BASE_CURRENCIES = ["USD", "CHF"]
 
 
 class TabWindow(QtGui.QTabWidget):
@@ -66,6 +67,7 @@ class TabWindow(QtGui.QTabWidget):
             update_mouse_function_dividend=self.update_tooltip_dividend,
             average_years=self.average_years,
             averaging_names=self.averaging_names,
+            base_currency=self.portfolio_overview_dict["base_currency"],
         )
         self.portfolio_widget = Portfolio(
             self.holdings_dict, self.portfolio_overview_dict
@@ -106,6 +108,14 @@ class TabWindow(QtGui.QTabWidget):
                 security["ticker"]: security
                 for security in holdings_dict_loaded["securities"]
             }
+            self.base_currency = holdings_dict_loaded.get("base_currency", "USD")
+            if self.base_currency not in ALLOWED_BASE_CURRENCIES:
+                logger.warning(
+                    "Desired based currency %s not in allowed base currency %s. Using USD instead",
+                    self.base_currency,
+                    str(ALLOWED_BASE_CURRENCIES),
+                )
+                self.base_currency = "USD"
 
     def download_data_from_yahoo(self):
         self.get_conversion_rates()
@@ -119,8 +129,16 @@ class TabWindow(QtGui.QTabWidget):
                 last_price,
             ) in yahoo_data:
                 conversion_rate = 1
-                if self.holdings_dict[ticker]["currency"] == "USD":
-                    conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
+                if self.base_currency == "USD":
+                    if self.holdings_dict[ticker]["currency"] == "CHF":
+                        conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
+                    elif self.holdings_dict[ticker]["currency"] == "EUR":
+                        conversion_rate = self.conversion_rate_dict["EUR-USD"].values[0]
+                elif self.base_currency == "CHF":
+                    if self.holdings_dict[ticker]["currency"] == "USD":
+                        conversion_rate = self.conversion_rate_dict["USD-CHF"].values[0]
+                    elif self.holdings_dict[ticker]["currency"] == "EUR":
+                        conversion_rate = self.conversion_rate_dict["EUR-CHF"].values[0]
                 self.holdings_dict[ticker]["last price"] = last_price * conversion_rate
                 self.holdings_dict[ticker]["dividends"] = 0.0
                 self.holdings_dict[ticker]["dividends per year"] = 0.0
@@ -158,6 +176,8 @@ class TabWindow(QtGui.QTabWidget):
         self.conversion_rate_dict = {"CHF-USD": 1}
         self.conversion_rate_dict["CHF-USD"] = self.get_last_price_yahoo("CHFUSD=X")
         self.conversion_rate_dict["EUR-USD"] = self.get_last_price_yahoo("EURUSD=X")
+        self.conversion_rate_dict["USD-CHF"] = self.get_last_price_yahoo("USDCHF=X")
+        self.conversion_rate_dict["EUR-CHF"] = self.get_last_price_yahoo("EURCHF=X")
 
     def get_portfolio_overview(self):
         self.portfolio_overview_dict = {
@@ -165,6 +185,7 @@ class TabWindow(QtGui.QTabWidget):
             "weighted dividend yield (TTM)": 0,
             "aggregated dividends (TTM)": 0,
             "n_holdings": len(self.holdings_dict.keys()),
+            "base_currency": self.base_currency,
         }
         for ticker in self.holdings_dict.keys():
             self.portfolio_overview_dict["market value"] += self.holdings_dict[ticker][
@@ -229,10 +250,17 @@ class TabWindow(QtGui.QTabWidget):
     def download_data_from_yahoo_list(self):
         for security in self.holdings_dict.values():
             conversion_rate = 1
-            if security["currency"] == "CHF":
-                conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
-            elif security["currency"] == "EUR":
-                conversion_rate = self.conversion_rate_dict["EUR-USD"].values[0]
+            if self.base_currency == "USD":
+                if security["currency"] == "CHF":
+                    conversion_rate = self.conversion_rate_dict["CHF-USD"].values[0]
+                elif security["currency"] == "EUR":
+                    conversion_rate = self.conversion_rate_dict["EUR-USD"].values[0]
+            elif self.base_currency == "CHF":
+                if security["currency"] == "USD":
+                    conversion_rate = self.conversion_rate_dict["USD-CHF"].values[0]
+                elif security["currency"] == "EUR":
+                    conversion_rate = self.conversion_rate_dict["EUR-CHF"].values[0]
+
             logger.info("Downloading data for security {}".format(security["name"]))
             yf_ticker = yf.Ticker(security["ticker"])
             security["dividends"] = yf_ticker.dividends * conversion_rate
@@ -681,7 +709,9 @@ class Portfolio(QtGui.QTabWidget):
         super(Portfolio, self).__init__(parent)
         self.holdings_dict = holdings_dict
         self.portfolio_overview_dict = portfolio_overview_dict
-        self.portfolio_widget = PortfolioHoldings(self.holdings_dict)
+        self.portfolio_widget = PortfolioHoldings(
+            self.holdings_dict, portfolio_overview_dict["base_currency"]
+        )
         self.portfolio_overview = PortfolioOverview(self.portfolio_overview_dict)
         self.addTab(self.portfolio_overview, "Portfolio Overview")
         self.addTab(self.portfolio_widget, "Portfolio Holdings")
@@ -697,6 +727,7 @@ class PortfolioOverview(QtGui.QWidget):
         self.setLayout(self.main_layout_overview)
 
     def create_table_widget_overview(self):
+        currency_string = "[" + self.portfolio_overview_dict["base_currency"] + "]"
         self.table_widget_overview = QtGui.QTableWidget(self)
         self.table_widget_overview.setMinimumWidth(2000)
         self.table_widget_overview.setMinimumHeight(500)
@@ -705,9 +736,9 @@ class PortfolioOverview(QtGui.QWidget):
         self.table_widget_overview.setVerticalHeaderLabels(
             [
                 "Number of securities",
-                "Market value [USD]",
+                "Market value " + currency_string,
                 "Weighted dividend yield (TTM) [%]",
-                "Aggregated dividends (TTM) [USD]",
+                "Aggregated dividends (TTM) " + currency_string,
             ]
         )
         self.table_widget_overview.setItem(
@@ -757,8 +788,9 @@ class PortfolioOverview(QtGui.QWidget):
 
 
 class PortfolioHoldings(QtGui.QWidget):
-    def __init__(self, holdings_dict):
+    def __init__(self, holdings_dict, base_currency):
         self.holdings_dict = holdings_dict
+        self.base_currency = base_currency
         QtGui.QWidget.__init__(self)
 
         self.create_table_widget()
@@ -767,6 +799,7 @@ class PortfolioHoldings(QtGui.QWidget):
         self.setLayout(self.main_layout)
 
     def create_table_widget(self):
+        currency_string = "[" + self.base_currency + "]"
         self.table_widget = QtGui.QTableWidget(self)
         self.table_widget.setMinimumWidth(2000)
         self.table_widget.setMinimumHeight(500)
@@ -778,11 +811,11 @@ class PortfolioHoldings(QtGui.QWidget):
                 "Ticker",
                 "Currency",
                 "Quantity",
-                "Last price [USD]",
+                "Last price " + currency_string,
                 "Last trading day",
-                "Market value [USD]",
-                "Dividend paid/share (TTM) [USD]",
-                "Aggregated dividend (TTM) [USD]",
+                "Market value " + currency_string,
+                "Dividend paid/share (TTM) " + currency_string,
+                "Aggregated dividend (TTM) " + currency_string,
                 "Dividend yield (TTM)",
             ]
         )
@@ -860,6 +893,7 @@ class DividendHistory(QtGui.QWidget):
         update_mouse_function_dividend=None,
         average_years=[1, 2, 3, 4, 5],
         averaging_names=[""],
+        base_currency="USD",
     ):
         QtGui.QWidget.__init__(self)
         self.setGeometry(100, 100, 1200, 900)
@@ -913,7 +947,7 @@ class DividendHistory(QtGui.QWidget):
         self.bar_plot_widget = pg.PlotWidget()
         self.bar_plot_widget.setLabel("bottom", "Year", **label_style)
         self.bar_plot_widget.setLabel(
-            "left", "[USD]", **label_style
+            "left", "[" + base_currency + "]", **label_style
         )  # TODO: Make it adaptive depending on currency
         self.bar_plot_widget.addLegend(labelTextSize="14pt", offset=(10, 10))
         self.bar_plot_widget.showGrid(x=False, y=True, alpha=0.4)
