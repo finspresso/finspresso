@@ -143,8 +143,10 @@ class TabWindow(QtGui.QTabWidget):
                 self.holdings_dict[ticker]["dividends"] = 0.0
                 self.holdings_dict[ticker]["dividends per year"] = 0.0
                 self.holdings_dict[ticker]["dividends TTM"] = 0.0
+                self.holdings_dict[ticker]["withhold tax TTM"] = 0
                 self.holdings_dict[ticker]["dividend yield TTM"] = 0.0
                 self.holdings_dict[ticker]["aggregated dividends TTM"] = 0.0
+                self.holdings_dict[ticker]["aggregated dividends collected TTM"] = 0.0
                 if not dividends_per_year.empty:
                     self.holdings_dict[ticker]["dividends"] = (
                         dividends * conversion_rate
@@ -163,6 +165,15 @@ class TabWindow(QtGui.QTabWidget):
                         self.holdings_dict[ticker]["dividends TTM"]
                         * self.holdings_dict[ticker]["quantity"]
                         * conversion_rate
+                    )
+                    self.holdings_dict[ticker]["withhold tax TTM"] = self.holdings_dict[
+                        ticker
+                    ]["aggregated dividends TTM"] * self.holdings_dict[ticker].get(
+                        "withholding_tax_rate", 0
+                    )
+                    self.holdings_dict[ticker]["aggregated dividends collected TTM"] = (
+                        self.holdings_dict[ticker]["aggregated dividends TTM"]
+                        - self.holdings_dict[ticker]["withhold tax TTM"]
                     )
                 self.holdings_dict[ticker]["market value"] = (
                     last_price
@@ -184,6 +195,7 @@ class TabWindow(QtGui.QTabWidget):
             "market value": 0,
             "weighted dividend yield (TTM)": 0,
             "aggregated dividends (TTM)": 0,
+            "aggregated dividends collected (TTM)": 0,
             "n_holdings": len(self.holdings_dict.keys()),
             "base_currency": self.base_currency,
         }
@@ -198,6 +210,9 @@ class TabWindow(QtGui.QTabWidget):
             self.portfolio_overview_dict[
                 "aggregated dividends (TTM)"
             ] += self.holdings_dict[ticker]["aggregated dividends TTM"]
+            self.portfolio_overview_dict[
+                "aggregated dividends collected (TTM)"
+            ] += self.holdings_dict[ticker]["aggregated dividends collected TTM"]
         self.portfolio_overview_dict["weighted dividend yield (TTM)"] = (
             self.portfolio_overview_dict["weighted dividend yield (TTM)"]
             / self.portfolio_overview_dict["market value"]
@@ -731,7 +746,7 @@ class PortfolioOverview(QtGui.QWidget):
         self.table_widget_overview = QtGui.QTableWidget(self)
         self.table_widget_overview.setMinimumWidth(2000)
         self.table_widget_overview.setMinimumHeight(500)
-        self.table_widget_overview.setRowCount(4)
+        self.table_widget_overview.setRowCount(5)
         self.table_widget_overview.setColumnCount(1)
         self.table_widget_overview.setVerticalHeaderLabels(
             [
@@ -739,6 +754,7 @@ class PortfolioOverview(QtGui.QWidget):
                 "Market value " + currency_string,
                 "Weighted dividend yield (TTM) [%]",
                 "Aggregated dividends (TTM) " + currency_string,
+                "Aggregated dividends collected (TTM) " + currency_string,
             ]
         )
         self.table_widget_overview.setItem(
@@ -782,6 +798,19 @@ class PortfolioOverview(QtGui.QWidget):
                 )
             ),
         )
+        self.table_widget_overview.setItem(
+            4,
+            0,
+            QtGui.QTableWidgetItem(
+                locale.format_string(
+                    "%.0f",
+                    self.portfolio_overview_dict[
+                        "aggregated dividends collected (TTM)"
+                    ],
+                    grouping=True,
+                )
+            ),
+        )
         self.table_widget_overview.resizeColumnsToContents()
         self.table_widget_overview.resizeRowsToContents()
         self.table_widget_overview.show()
@@ -804,7 +833,7 @@ class PortfolioHoldings(QtGui.QWidget):
         self.table_widget.setMinimumWidth(2000)
         self.table_widget.setMinimumHeight(500)
         self.table_widget.setRowCount(len(self.holdings_dict.keys()))
-        self.table_widget.setColumnCount(10)
+        self.table_widget.setColumnCount(11)
         self.table_widget.setHorizontalHeaderLabels(
             [
                 "Name",
@@ -816,6 +845,7 @@ class PortfolioHoldings(QtGui.QWidget):
                 "Market value " + currency_string,
                 "Dividend paid/share (TTM) " + currency_string,
                 "Aggregated dividend (TTM) " + currency_string,
+                "Aggregated dividend collected (TTM) " + currency_string,
                 "Dividend yield (TTM)",
             ]
         )
@@ -853,6 +883,7 @@ class PortfolioHoldings(QtGui.QWidget):
                 ),
             )
             dividend_trailing = security["dividends TTM"]
+            dividend_collected_trailing = security["aggregated dividends collected TTM"]
             dividend_yield_trailing = (
                 security["dividends TTM"] / security["last price"].values[0]
             )
@@ -874,6 +905,15 @@ class PortfolioHoldings(QtGui.QWidget):
             self.table_widget.setItem(
                 row,
                 9,
+                QtGui.QTableWidgetItem(
+                    locale.format_string(
+                        "%.1f", dividend_collected_trailing, grouping=True
+                    )
+                ),
+            )
+            self.table_widget.setItem(
+                row,
+                10,
                 QtGui.QTableWidgetItem(
                     str(round(dividend_yield_trailing * 100, 2)) + "%"
                 ),

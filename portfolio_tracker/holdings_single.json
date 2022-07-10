@@ -1,52 +1,20 @@
 {
   "securities": [
     {
-      "name": "Pfizer",
-      "ticker": "PFE",
-      "quantity": 2000,
-      "yfinance": true
-    },
-    {
-      "name": "British American Tobaco",
-      "ticker": "BTI",
-      "quantity": 300,
-      "yfinance": true
-    },
-    {
       "name": "Schwab US dividend",
       "ticker": "SCHD",
       "quantity": 1000,
-      "yfinance": true
+      "dividend_history": "yfinance",
+      "currency": "USD",
+      "withholding_tax_rate": 0.15
     },
     {
       "name": "Vanguard high dividend yield",
       "ticker": "VYM",
       "quantity": 1000,
-      "yfinance": true
-    },
-    {
-      "name": "Exxon Mobile",
-      "ticker": "XOM",
-      "quantity": 1000,
-      "yfinance": true
-    },
-    {
-      "name": "DVN company",
-      "ticker": "NWL",
-      "quantity": 1000,
-      "yfinance": true
-    },
-    {
-      "name": "MC Donalds",
-      "ticker": "MCD",
-      "quantity": 1000,
-      "yfinance": true
-    },
-    {
-      "name": "IBM",
-      "ticker": "IBM",
-      "quantity": 1000,
-      "yfinance": true
+      "dividend_history": "yfinance",
+      "currency": "USD",
+      "withholding_tax_rate": 0.15
     }
   ]
 }
