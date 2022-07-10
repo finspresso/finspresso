@@ -144,6 +144,7 @@ class TabWindow(QtGui.QTabWidget):
                 self.holdings_dict[ticker]["dividends per year"] = 0.0
                 self.holdings_dict[ticker]["dividends TTM"] = 0.0
                 self.holdings_dict[ticker]["withhold tax TTM"] = 0
+                self.holdings_dict[ticker]["withhold tax TTM recoverable"] = 0
                 self.holdings_dict[ticker]["dividend yield TTM"] = 0.0
                 self.holdings_dict[ticker]["aggregated dividends TTM"] = 0.0
                 self.holdings_dict[ticker]["aggregated dividends collected TTM"] = 0.0
@@ -166,10 +167,19 @@ class TabWindow(QtGui.QTabWidget):
                         * self.holdings_dict[ticker]["quantity"]
                         * conversion_rate
                     )
-                    self.holdings_dict[ticker]["withhold tax TTM"] = self.holdings_dict[
-                        ticker
-                    ]["aggregated dividends TTM"] * self.holdings_dict[ticker].get(
+                    withholding_tax_rate = self.holdings_dict[ticker].get(
                         "withholding_tax_rate", 0
+                    )
+                    recoverable_tax_rate = self.holdings_dict[ticker].get(
+                        "withholding_tax_rate_recoverable", withholding_tax_rate
+                    )
+                    self.holdings_dict[ticker]["withhold tax TTM"] = (
+                        self.holdings_dict[ticker]["aggregated dividends TTM"]
+                        * withholding_tax_rate
+                    )
+                    self.holdings_dict[ticker]["withhold tax TTM recoverable"] = (
+                        self.holdings_dict[ticker]["aggregated dividends TTM"]
+                        * recoverable_tax_rate
                     )
                     self.holdings_dict[ticker]["aggregated dividends collected TTM"] = (
                         self.holdings_dict[ticker]["aggregated dividends TTM"]
@@ -196,6 +206,7 @@ class TabWindow(QtGui.QTabWidget):
             "weighted dividend yield (TTM)": 0,
             "aggregated dividends (TTM)": 0,
             "aggregated dividends collected (TTM)": 0,
+            "aggregated recoverable withholding tax (TTM)": 0,
             "n_holdings": len(self.holdings_dict.keys()),
             "base_currency": self.base_currency,
         }
@@ -213,6 +224,9 @@ class TabWindow(QtGui.QTabWidget):
             self.portfolio_overview_dict[
                 "aggregated dividends collected (TTM)"
             ] += self.holdings_dict[ticker]["aggregated dividends collected TTM"]
+            self.portfolio_overview_dict[
+                "aggregated recoverable withholding tax (TTM)"
+            ] += self.holdings_dict[ticker]["withhold tax TTM recoverable"]
         self.portfolio_overview_dict["weighted dividend yield (TTM)"] = (
             self.portfolio_overview_dict["weighted dividend yield (TTM)"]
             / self.portfolio_overview_dict["market value"]
@@ -746,7 +760,7 @@ class PortfolioOverview(QtGui.QWidget):
         self.table_widget_overview = QtGui.QTableWidget(self)
         self.table_widget_overview.setMinimumWidth(2000)
         self.table_widget_overview.setMinimumHeight(500)
-        self.table_widget_overview.setRowCount(5)
+        self.table_widget_overview.setRowCount(6)
         self.table_widget_overview.setColumnCount(1)
         self.table_widget_overview.setVerticalHeaderLabels(
             [
@@ -755,6 +769,7 @@ class PortfolioOverview(QtGui.QWidget):
                 "Weighted dividend yield (TTM) [%]",
                 "Aggregated dividends (TTM) " + currency_string,
                 "Aggregated dividends collected (TTM) " + currency_string,
+                "Aggregated recoverable withholding tax (TTM) " + currency_string,
             ]
         )
         self.table_widget_overview.setItem(
@@ -811,6 +826,19 @@ class PortfolioOverview(QtGui.QWidget):
                 )
             ),
         )
+        self.table_widget_overview.setItem(
+            5,
+            0,
+            QtGui.QTableWidgetItem(
+                locale.format_string(
+                    "%.0f",
+                    self.portfolio_overview_dict[
+                        "aggregated recoverable withholding tax (TTM)"
+                    ],
+                    grouping=True,
+                )
+            ),
+        )
         self.table_widget_overview.resizeColumnsToContents()
         self.table_widget_overview.resizeRowsToContents()
         self.table_widget_overview.show()
@@ -833,7 +861,7 @@ class PortfolioHoldings(QtGui.QWidget):
         self.table_widget.setMinimumWidth(2000)
         self.table_widget.setMinimumHeight(500)
         self.table_widget.setRowCount(len(self.holdings_dict.keys()))
-        self.table_widget.setColumnCount(11)
+        self.table_widget.setColumnCount(12)
         self.table_widget.setHorizontalHeaderLabels(
             [
                 "Name",
@@ -846,6 +874,7 @@ class PortfolioHoldings(QtGui.QWidget):
                 "Dividend paid/share (TTM) " + currency_string,
                 "Aggregated dividend (TTM) " + currency_string,
                 "Aggregated dividend collected (TTM) " + currency_string,
+                "Aggregated recoverable tax (TTM) " + currency_string,
                 "Dividend yield (TTM)",
             ]
         )
@@ -884,6 +913,7 @@ class PortfolioHoldings(QtGui.QWidget):
             )
             dividend_trailing = security["dividends TTM"]
             dividend_collected_trailing = security["aggregated dividends collected TTM"]
+            withhold_tax_recoverable = security["withhold tax TTM recoverable"]
             dividend_yield_trailing = (
                 security["dividends TTM"] / security["last price"].values[0]
             )
@@ -914,6 +944,15 @@ class PortfolioHoldings(QtGui.QWidget):
             self.table_widget.setItem(
                 row,
                 10,
+                QtGui.QTableWidgetItem(
+                    locale.format_string(
+                        "%.1f", withhold_tax_recoverable, grouping=True
+                    )
+                ),
+            )
+            self.table_widget.setItem(
+                row,
+                11,
                 QtGui.QTableWidgetItem(
                     str(round(dividend_yield_trailing * 100, 2)) + "%"
                 ),
