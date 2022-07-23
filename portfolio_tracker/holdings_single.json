@@ -15,6 +15,54 @@
       "dividend_history": "yfinance",
       "currency": "USD",
       "withholding_tax_rate": 0.15
+    },
+    {
+      "name": "Vanguard high dividend yield ex-US",
+      "ticker": "VYMI",
+      "quantity": 1000,
+      "dividend_history": "yfinance",
+      "currency": "USD",
+      "withholding_tax_rate": 0.15
+    },
+    {
+      "name": "Vanguard high dividend growth",
+      "ticker": "VIG",
+      "quantity": 1000,
+      "dividend_history": "yfinance",
+      "currency": "USD",
+      "withholding_tax_rate": 0.15
+    },
+    {
+      "name": "Vanguard high dividend growth ex US",
+      "ticker": "VIGI",
+      "quantity": 1000,
+      "dividend_history": "yfinance",
+      "currency": "USD",
+      "withholding_tax_rate": 0.15
+    },
+    {
+      "name": "SPDR S&P Euro Dividend Aristocrats UCITS ETF",
+      "ticker": "SPYW.DE",
+      "quantity": 570,
+      "currency": "EUR",
+      "dividend_history": "dividend_files/spyw_dividend.json",
+      "withholding_tax_rate": 0.0
+    },
+    {
+      "name": "Vanguard Information Technology Index Fund ETF",
+      "ticker": "VGT",
+      "quantity": 100,
+      "currency": "USD",
+      "dividend_history": "yfinance",
+      "withholding_tax_rate": 0.0
+    },
+    {
+      "name": "Vanguard All world",
+      "ticker": "VT",
+      "quantity": 100,
+      "currency": "USD",
+      "dividend_history": "yfinance",
+      "withholding_tax_rate": 0.0
     }
   ]
 }

@@ -620,8 +620,26 @@ class TabWindow(QtGui.QTabWidget):
         ].values
         bargraph = pg.BarGraphItem(
             x=x, height=y, width=desired_width, brush="g", name="Dividends"
-        )  # TODO: Ensure that current year does not show in bar graph
+        )
         self.dividend_history.bar_plot_widget.addItem(bargraph)
+        x = security["dividends per year"][
+            security["dividends per year"].index == self.current_year
+        ].index.values
+        if len(x) > 0:
+            y = security["dividends per year"][
+                security["dividends per year"].index == self.current_year
+            ].values
+        else:
+            x = self.current_year
+            y = 0.0
+        bargraph_current_year = pg.BarGraphItem(
+            x=x,
+            height=y,
+            width=desired_width,
+            brush="b",
+            name="Dividends (current year)",
+        )
+        self.dividend_history.bar_plot_widget.addItem(bargraph_current_year)
         if self.dividend_history.outlier_rejection_checkbox.isChecked():
             x = security["dividends per year (outlier rejection)"][
                 security["dividends per year (outlier rejection)"].index
@@ -1156,4 +1174,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# Next: 1) Add option to include offline dividend inputs value via .json2)Make GUI that shows dividend for portfolio and estimate of next year based on filter technique
+# Next: 1) Add option to include offline dividend inputs value via .json2)Make GUI that shows dividend for portfolio and estimate of next year based on filter technique + dividend growth of past
