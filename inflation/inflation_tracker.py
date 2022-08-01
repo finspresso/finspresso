@@ -2,6 +2,7 @@ import argparse
 import pandas as pd
 import logging
 import coloredlogs
+import re
 
 # Global settings
 coloredlogs.install()
@@ -16,8 +17,21 @@ class InflationTracker:
 
     def get_lik_data(self, source_file):
         # Next create dictionary based on subcategory which can be read of from empty spaces
-        df = pd.read_excel(source_file, index_col=6, sheet_name="LIK2020")
+        df = pd.read_excel(source_file, index_col=5, sheet_name="LIK2020")
+
+        empty_spaces_list = df.index.map(self.count_empty_spaces)
+        df.loc[:, "empty space"] = empty_spaces_list
         return df
+
+    @staticmethod
+    def count_empty_spaces(name_raw):
+        empty_spaces = 0
+        name = str(name_raw)
+        mask = "( *)\w"
+        match = re.search(mask, name)
+        if match:
+            empty_spaces = len(match.group(1))
+        return empty_spaces
 
 
 def main():
