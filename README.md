@@ -3,6 +3,7 @@ This repository contains the scripts used on the website [finspresso.com](https:
 * [portfolio_tracker](https://github.com/finspresso/finspresso/tree/master/portfolio_tracker)
 * [tax](https://github.com/finspresso/finspresso/tree/master/tax)
 * [quant](https://github.com/finspresso/finspresso/tree/master/quant)
+* [inflation](https://github.com/finspresso/finspresso/tree/master/inflation)
 
 ## Base package installation
 For correct usage one needs the base package `portfolio_math`. To install it, execute:
