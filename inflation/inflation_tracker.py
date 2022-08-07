@@ -2,7 +2,7 @@ import argparse
 import pandas as pd
 import logging
 import coloredlogs
-import re
+from pyqtgraph.Qt import QtGui
 
 # Global settings
 coloredlogs.install()
@@ -10,28 +10,28 @@ logger = logging.getLogger("portfolio_tracker")
 logging.basicConfig(level=logging.DEBUG)
 
 
-class InflationTracker:
+class LIK(QtGui.QWidget):
     def __init__(self, lik_source):
-        self.df_lik = self.get_lik_data(lik_source)
-        print(self.df_lik)
+        QtGui.QWidget.__init__(self)
+        self.main_layout = QtGui.QVBoxLayout()
+        self.setLayout(self.main_layout)
+        self.main_dict = dict()
+        self.main_dict["LIK2020"] = self.get_lik_data(lik_source, "LIK2020")
+        self.main_dict["LIK2015"] = self.get_lik_data(lik_source, "LIK2015")
 
-    def get_lik_data(self, source_file):
-        # Next create dictionary based on subcategory which can be read of from empty spaces
-        df = pd.read_excel(source_file, index_col=5, sheet_name="LIK2020")
-
-        empty_spaces_list = df.index.map(self.count_empty_spaces)
-        df.loc[:, "empty space"] = empty_spaces_list
+    def get_lik_data(self, source_file, sheet_name):
+        # Make interactive plot showing pie for LIK weights in 2015 and 2020. Use matplotlib pyqt integration https://www.pythonguis.com/tutorials/plotting-matplotlib/
+        df_raw = pd.read_excel(source_file, index_col=5, sheet_name=sheet_name)
+        df = df_raw.iloc[4:, :]
+        df.columns = df_raw.iloc[2, :]
         return df
 
-    @staticmethod
-    def count_empty_spaces(name_raw):
-        empty_spaces = 0
-        name = str(name_raw)
-        mask = "( *)\w"
-        match = re.search(mask, name)
-        if match:
-            empty_spaces = len(match.group(1))
-        return empty_spaces
+
+class InflationTracker(QtGui.QTabWidget):
+    def __init__(self, parent=None, source_lik=""):
+        super(InflationTracker, self).__init__(parent)
+        self.lik = LIK(source_lik)
+        self.addTab(self.lik, "LIK")
 
 
 def main():
@@ -43,8 +43,8 @@ def main():
     )
 
     args = parser.parse_args()
-    inflation_tracker = InflationTracker(args.lik_data)
-    print(inflation_tracker.df_lik)
+    inflation_tracker = InflationTracker(source_lik=args.lik_data)
+    print(inflation_tracker)
 
 
 if __name__ == "__main__":
