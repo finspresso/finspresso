@@ -24,23 +24,36 @@ class LIK(QtGui.QWidget):
     def __init__(self, lik_source):
         QtGui.QWidget.__init__(self)
         self.main_layout = QtGui.QVBoxLayout()
+
         self.setLayout(self.main_layout)
         self.main_dict = dict()
         self.main_dict["LIK2020"] = self.get_lik_data(lik_source, "LIK2020")
         self.main_dict["LIK2015"] = self.get_lik_data(lik_source, "LIK2015")
-        self.current_pie_data = self.get_weights(self.main_dict["LIK2020"], 2, 2022)
+        current_year = "2022"
         self.sc = MplCanvas(self, width=5, height=4, dpi=100)
-        self.plot_pie_chart()
-        # sc.axes.plot([0,1,2,3,4], [10,1,20,3,40])
+        self.create_year_combobox(["2017", "2022"], current_year)
+        self.update_pie_chart(current_year)
+        self.main_layout.addWidget(self.year_cb)
         self.main_layout.addWidget(self.sc)
 
-    def plot_pie_chart(self):
+    def create_year_combobox(self, cb_list, current_text):
+        self.year_cb = QtGui.QComboBox()
+        self.year_cb.addItems(cb_list)
+        self.year_cb.currentTextChanged.connect(self.update_pie_chart)
+        self.year_cb.setCurrentText(current_text)
+
+    def update_pie_chart(self, text):
+        self.current_pie_data = self.get_weights(
+            self.main_dict["LIK" + str(int(text) - 2)], 2, int(text)
+        )
+        self.sc.axes.cla()
         sizes = self.current_pie_data.values
         labels = self.current_pie_data.index.values
         self.sc.axes.pie(
             sizes, labels=labels, autopct="%1.1f%%", shadow=True, startangle=90
         )
-        # self.sc.axes.axis('equal')
+        self.sc.axes.axis("equal")
+        self.sc.draw()
 
     def get_weights(self, df, level, year):
         weights = df[df["Level"] == level][year]
