@@ -30,6 +30,22 @@ class LIK(QtGui.QWidget):
         self.main_dict = dict()
         self.main_dict["LIK2020"] = self.get_lik_data(lik_source, "LIK2020")
         self.main_dict["LIK2015"] = self.get_lik_data(lik_source, "LIK2015")
+        self.main_dict["LIK2010"] = self.get_lik_data(
+            lik_source,
+            "LIK2010",
+            index_col=3,
+            start_row=4,
+            column_row=2,
+            rename_level_col="Pos",
+        )
+        self.main_dict["LIK2005"] = self.get_lik_data(
+            lik_source,
+            "LIK2005",
+            index_col=3,
+            start_row=4,
+            column_row=2,
+            rename_level_col="Pos",
+        )
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
         self.sc = MplCanvas(self, width=5, height=4, dpi=100)
@@ -70,15 +86,25 @@ class LIK(QtGui.QWidget):
                 if year <= current_year:
                     self.lik_dict[str(int(year))] = df[df["Level"] == level][year]
 
-    def get_lik_data(self, source_file, sheet_name):
+    def get_lik_data(
+        self,
+        source_file,
+        sheet_name,
+        index_col=5,
+        start_row=4,
+        column_row=2,
+        rename_level_col="Level",
+    ):
         # Make interactive plot showing pie for LIK weights in 2015 and 2020. Use matplotlib pyqt integration https://www.pythonguis.com/tutorials/plotting-matplotlib/
         # 2. Make Pie chart's year combobox select between 2015 and 2022
         # 3. Add option to select which change was biggest
-        df_raw = pd.read_excel(source_file, index_col=5, sheet_name=sheet_name)
-        df = df_raw.iloc[4:, :]
-        df.columns = df_raw.iloc[2, :]
-        df = df.iloc[: df.index.isna().argmax(), :]
+        df_raw = pd.read_excel(source_file, index_col=index_col, sheet_name=sheet_name)
+        df = df_raw.iloc[start_row:, :]
+        df.columns = df_raw.iloc[column_row, :]
+        df = df.rename(columns={rename_level_col: "Level"})
+        df = df.iloc[: df["Level"].isna().argmax(), :]
         df.index = df.index.map(self.remove_empty_spaces)
+
         return df
 
     @staticmethod
