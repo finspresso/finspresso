@@ -2,6 +2,7 @@ import argparse
 import pandas as pd
 import logging
 import coloredlogs
+import datetime
 import sys
 from pyqtgraph.Qt import QtGui
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
@@ -29,9 +30,12 @@ class LIK(QtGui.QWidget):
         self.main_dict = dict()
         self.main_dict["LIK2020"] = self.get_lik_data(lik_source, "LIK2020")
         self.main_dict["LIK2015"] = self.get_lik_data(lik_source, "LIK2015")
-        current_year = "2022"
+        self.create_lik_dict()
+        current_year = str(datetime.datetime.now().year)
         self.sc = MplCanvas(self, width=5, height=4, dpi=100)
-        self.create_year_combobox(["2017", "2022"], current_year)
+        self.create_year_combobox(
+            sorted(self.lik_dict.keys(), reverse=True), current_year
+        )
         self.update_pie_chart(current_year)
         self.main_layout.addWidget(self.year_cb)
         self.main_layout.addWidget(self.sc)
@@ -43,14 +47,12 @@ class LIK(QtGui.QWidget):
         self.year_cb.setCurrentText(current_text)
 
     def update_pie_chart(self, text):
-        self.current_pie_data = self.get_weights(
-            self.main_dict["LIK" + str(int(text) - 2)], 2, int(text)
-        )
+        self.current_pie_data = self.lik_dict[text]
         self.sc.axes.cla()
         sizes = self.current_pie_data.values
         labels = self.current_pie_data.index.values
         self.sc.axes.pie(
-            sizes, labels=labels, autopct="%1.1f%%", shadow=True, startangle=90
+            sizes, labels=labels, autopct="%1.1f%%", shadow=False, startangle=90
         )
         self.sc.axes.axis("equal")
         self.sc.draw()
@@ -59,8 +61,19 @@ class LIK(QtGui.QWidget):
         weights = df[df["Level"] == level][year]
         return weights
 
+    def create_lik_dict(self, level=2):
+        self.lik_dict = dict()
+        current_year = datetime.datetime.now().year
+        for df in self.main_dict.values():
+            years = [x for x in df.columns if type(x) is not str]
+            for year in years:
+                if year <= current_year:
+                    self.lik_dict[str(int(year))] = df[df["Level"] == level][year]
+
     def get_lik_data(self, source_file, sheet_name):
         # Make interactive plot showing pie for LIK weights in 2015 and 2020. Use matplotlib pyqt integration https://www.pythonguis.com/tutorials/plotting-matplotlib/
+        # 2. Make Pie chart's year combobox select between 2015 and 2022
+        # 3. Add option to select which change was biggest
         df_raw = pd.read_excel(source_file, index_col=5, sheet_name=sheet_name)
         df = df_raw.iloc[4:, :]
         df.columns = df_raw.iloc[2, :]
