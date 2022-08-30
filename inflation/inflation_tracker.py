@@ -4,6 +4,7 @@ import logging
 import coloredlogs
 import datetime
 import sys
+import re
 from pyqtgraph.Qt import QtGui
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
@@ -36,7 +37,7 @@ class LIK(QtGui.QWidget):
             index_col=3,
             start_row=4,
             column_row=2,
-            rename_level_col="Pos",
+            level_col="Pos",
         )
         self.main_dict["LIK2005"] = self.get_lik_data(
             lik_source,
@@ -44,7 +45,16 @@ class LIK(QtGui.QWidget):
             index_col=3,
             start_row=4,
             column_row=2,
-            rename_level_col="Pos",
+            level_col="Pos",
+        )
+        self.main_dict["LIK2000"] = self.get_lik_data(
+            lik_source,
+            "LIK2000",
+            index_col=2,
+            start_row=4,
+            column_row=2,
+            level_col="Nr. ",
+            create_level_col=True,
         )
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
@@ -93,7 +103,8 @@ class LIK(QtGui.QWidget):
         index_col=5,
         start_row=4,
         column_row=2,
-        rename_level_col="Level",
+        level_col="Level",
+        create_level_col=False,
     ):
         # Make interactive plot showing pie for LIK weights in 2015 and 2020. Use matplotlib pyqt integration https://www.pythonguis.com/tutorials/plotting-matplotlib/
         # 2. Make Pie chart's year combobox select between 2015 and 2022
@@ -101,11 +112,25 @@ class LIK(QtGui.QWidget):
         df_raw = pd.read_excel(source_file, index_col=index_col, sheet_name=sheet_name)
         df = df_raw.iloc[start_row:, :]
         df.columns = df_raw.iloc[column_row, :]
-        df = df.rename(columns={rename_level_col: "Level"})
-        df = df.iloc[: df["Level"].isna().argmax(), :]
+        if create_level_col:
+            df["Level"] = df[level_col].apply(self.check_for_level)
+        else:
+            df = df.rename(columns={level_col: "Level"})
+        nan_index = df["Level"].isna().argmax()
+        if nan_index > 0:
+            df = df.iloc[:nan_index, :]
         df.index = df.index.map(self.remove_empty_spaces)
 
         return df
+
+    @staticmethod
+    def check_for_level(x, level=2):
+        mask = r"^[0-9]{1,2}\b$"
+        match = re.search(mask, str(x))
+        level_assigned = -1
+        if match:
+            level_assigned = level
+        return level_assigned
 
     @staticmethod
     def remove_empty_spaces(value):
