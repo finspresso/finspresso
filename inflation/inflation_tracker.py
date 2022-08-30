@@ -14,6 +14,11 @@ coloredlogs.install()
 logger = logging.getLogger("portfolio_tracker")
 logging.basicConfig(level=logging.DEBUG)
 
+# Next: Add all translation strings
+TRANSLATION_DICT = {
+    "Nahrungsmittel und alkoholfreie Getränke": "Staples and non-alcoholic beverages"
+}
+
 
 class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
@@ -62,8 +67,10 @@ class LIK(QtGui.QWidget):
         self.create_year_combobox(
             sorted(self.lik_dict.keys(), reverse=True), current_year
         )
+        self.create_language_combobox(["German", "English"], "German")
         self.update_pie_chart(current_year)
         self.main_layout.addWidget(self.year_cb)
+        self.main_layout.addWidget(self.language_cb)
         self.main_layout.addWidget(self.sc)
 
     def create_year_combobox(self, cb_list, current_text):
@@ -72,16 +79,39 @@ class LIK(QtGui.QWidget):
         self.year_cb.currentTextChanged.connect(self.update_pie_chart)
         self.year_cb.setCurrentText(current_text)
 
+    def create_language_combobox(self, cb_list, current_text):
+        self.language_cb = QtGui.QComboBox()
+        self.language_cb.addItems(cb_list)
+        self.language_cb.currentTextChanged.connect(self.update_pie_chart)
+        self.language_cb.setCurrentText(current_text)
+
     def update_pie_chart(self, text):
-        self.current_pie_data = self.lik_dict[text]
+        selected_year = str(self.year_cb.currentText())
+        selected_language = str(self.language_cb.currentText())
+        self.current_pie_data = self.lik_dict[selected_year]
         self.sc.axes.cla()
         sizes = self.current_pie_data.values
         labels = self.current_pie_data.index.values
+        labels_translated = self.translate_labels(labels, language=selected_language)
         self.sc.axes.pie(
-            sizes, labels=labels, autopct="%1.1f%%", shadow=False, startangle=90
+            sizes,
+            labels=labels_translated,
+            autopct="%1.1f%%",
+            shadow=False,
+            startangle=90,
         )
         self.sc.axes.axis("equal")
         self.sc.draw()
+
+    def translate_labels(self, labels, language="English"):
+        labels_translated = labels
+        if language == "English":
+            labels_translated = [self.get_translation(word) for word in labels]
+        return labels_translated
+
+    def get_translation(self, word):
+        word_translated = TRANSLATION_DICT.get(word, word)
+        return word_translated
 
     def get_weights(self, df, level, year):
         weights = df[df["Level"] == level][year]
@@ -113,7 +143,7 @@ class LIK(QtGui.QWidget):
         df = df_raw.iloc[start_row:, :]
         df.columns = df_raw.iloc[column_row, :]
         if create_level_col:
-            df["Level"] = df[level_col].apply(self.check_for_level)
+            df.loc[:, "Level"] = df[level_col].apply(self.check_for_level)
         else:
             df = df.rename(columns={level_col: "Level"})
         nan_index = df["Level"].isna().argmax()
