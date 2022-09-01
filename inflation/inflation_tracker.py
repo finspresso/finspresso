@@ -14,10 +14,6 @@ coloredlogs.install()
 logger = logging.getLogger("portfolio_tracker")
 logging.basicConfig(level=logging.DEBUG)
 
-# Next: Add all translation strings
-TRANSLATION_DICT = {
-    "Nahrungsmittel und alkoholfreie Getränke": "Staples and non-alcoholic beverages"
-}
 
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Nahrungsmittel und alkoholfreie Getränke")
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Alkoholische Getränke und Tabak")
@@ -122,8 +118,7 @@ class LIK(QtGui.QWidget):
     def translate_labels(self, labels, language="English"):
         labels_translated = labels
         if language == "English":
-            pass
-        labels_translated = [self.get_translation(word) for word in labels]
+            labels_translated = [self.get_translation(word) for word in labels]
         return labels_translated
 
     @staticmethod

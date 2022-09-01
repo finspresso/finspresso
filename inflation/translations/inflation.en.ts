@@ -69,7 +69,7 @@
     <message>
         <location filename="../inflation_tracker.py" line="33"/>
         <source>Sonstige Waren und Dienstleistungen</source>
-        <translation>Furhter services</translation>
+        <translation type="unfinished">Further services</translation>
     </message>
 </context>
 </TS>
