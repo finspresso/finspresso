@@ -5,7 +5,7 @@ import coloredlogs
 import datetime
 import sys
 import re
-from pyqtgraph.Qt import QtGui
+from pyqtgraph.Qt import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
@@ -19,6 +19,19 @@ TRANSLATION_DICT = {
     "Nahrungsmittel und alkoholfreie Getränke": "Staples and non-alcoholic beverages"
 }
 
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Nahrungsmittel und alkoholfreie Getränke")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Alkoholische Getränke und Tabak")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Wohnen und Energie")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Bekleidung und Schuhe")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Hausrat und Haushaltsführung")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Gesundheitspflege")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Verkehr")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Nachrichtenübermittlung")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Freizeit und Kultur")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Unterricht")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Restaurants und Hotels")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Sonstige Waren und Dienstleistungen")
+
 
 class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
@@ -30,6 +43,9 @@ class MplCanvas(FigureCanvasQTAgg):
 class LIK(QtGui.QWidget):
     def __init__(self, lik_source):
         QtGui.QWidget.__init__(self)
+        self.trans = QtCore.QTranslator(self)
+        if self.trans.load("translations/inflation.en.qm"):
+            QtGui.QApplication.instance().installTranslator(self.trans)
         self.main_layout = QtGui.QVBoxLayout()
 
         self.setLayout(self.main_layout)
@@ -106,11 +122,16 @@ class LIK(QtGui.QWidget):
     def translate_labels(self, labels, language="English"):
         labels_translated = labels
         if language == "English":
-            labels_translated = [self.get_translation(word) for word in labels]
+            pass
+        labels_translated = [self.get_translation(word) for word in labels]
         return labels_translated
 
+    @staticmethod
+    def qt_translate(context, word):
+        return QtCore.QCoreApplication.translate(context, word)
+
     def get_translation(self, word):
-        word_translated = TRANSLATION_DICT.get(word, word)
+        word_translated = self.qt_translate("get_translation", word)
         return word_translated
 
     def get_weights(self, df, level, year):
