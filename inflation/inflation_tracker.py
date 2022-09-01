@@ -83,9 +83,11 @@ class LIK(QtGui.QWidget):
         )
         self.create_language_combobox(["German", "English"], "German")
         self.update_pie_chart(current_year)
+        self.create_category_combobox(self.lik_df.index, self.lik_df.index[0])
         self.main_layout.addWidget(self.year_cb)
         self.main_layout.addWidget(self.language_cb)
         self.main_layout.addWidget(self.sc)
+        self.main_layout.addWidget(self.category_cb)
 
     def create_year_combobox(self, cb_list, current_text):
         self.year_cb = QtGui.QComboBox()
@@ -98,6 +100,15 @@ class LIK(QtGui.QWidget):
         self.language_cb.addItems(cb_list)
         self.language_cb.currentTextChanged.connect(self.update_pie_chart)
         self.language_cb.setCurrentText(current_text)
+
+    def create_category_combobox(self, cb_list, current_text):
+        self.category_cb = QtGui.QComboBox()
+        self.category_cb.addItems(cb_list)
+        self.category_cb.currentTextChanged.connect(self.update_category_chart)
+        self.category_cb.setCurrentText(current_text)
+
+    def update_category_chart(self):
+        pass  # TODO: Make it update plot
 
     def update_pie_chart(self, text):
         selected_year = str(self.year_cb.currentText())
@@ -137,12 +148,14 @@ class LIK(QtGui.QWidget):
 
     def create_lik_dict(self, level=2):
         self.lik_dict = dict()
+        self.lik_df = pd.DataFrame()
         current_year = datetime.datetime.now().year
         for df in self.main_dict.values():
             years = [x for x in df.columns if type(x) is not str]
             for year in years:
                 if year <= current_year:
                     self.lik_dict[str(int(year))] = df[df["Level"] == level][year]
+                    self.lik_df[int(year)] = df[df["Level"] == level][year]
 
     def get_lik_data(
         self,
