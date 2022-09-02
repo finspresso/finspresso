@@ -31,6 +31,12 @@ QtCore.QT_TRANSLATE_NOOP("get_translation", "Restaurants und Hotels")
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Sonstige Waren und Dienstleistungen")
 
 
+NAME_MAPPING_DICT = {
+    "Hausrat und laufende Haushaltsführung": "Hausrat und Haushaltsführung",
+    "Erziehung und Unterricht": "Unterricht",
+}
+
+
 class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
@@ -77,17 +83,20 @@ class LIK(QtGui.QWidget):
         )
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
-        self.sc = MplCanvas(self, width=5, height=4, dpi=100)
+        self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.category_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.create_year_combobox(
             sorted(self.lik_dict.keys(), reverse=True), current_year
         )
         self.create_language_combobox(["German", "English"], "German")
         self.update_pie_chart(current_year)
         self.create_category_combobox(self.lik_df.index, self.lik_df.index[0])
+        self.update_category_chart()
         self.main_layout.addWidget(self.year_cb)
         self.main_layout.addWidget(self.language_cb)
-        self.main_layout.addWidget(self.sc)
+        self.main_layout.addWidget(self.pie_chart_canvas)
         self.main_layout.addWidget(self.category_cb)
+        self.main_layout.addWidget(self.category_chart_canvas)
 
     def create_year_combobox(self, cb_list, current_text):
         self.year_cb = QtGui.QComboBox()
@@ -108,25 +117,34 @@ class LIK(QtGui.QWidget):
         self.category_cb.setCurrentText(current_text)
 
     def update_category_chart(self):
-        pass  # TODO: Make it update plot
+        selected_category = self.category_cb.currentText()
+        x = self.lik_df.loc[selected_category].index
+        y = self.lik_df.loc[selected_category].values
+        self.category_chart_canvas.axes.cla()
+        self.category_chart_canvas.axes.plot(x, y)
+        self.category_chart_canvas.axes.set_xticks(x)
+        # self.category_chart_canvas.axes.set_xticklabels(averaging_names)
+        self.category_chart_canvas.axes.set_xlabel("Year")
+        self.category_chart_canvas.axes.set_ylabel("%")
+        self.category_chart_canvas.draw()
 
     def update_pie_chart(self, text):
         selected_year = str(self.year_cb.currentText())
         selected_language = str(self.language_cb.currentText())
         self.current_pie_data = self.lik_dict[selected_year]
-        self.sc.axes.cla()
+        self.pie_chart_canvas.axes.cla()
         sizes = self.current_pie_data.values
         labels = self.current_pie_data.index.values
         labels_translated = self.translate_labels(labels, language=selected_language)
-        self.sc.axes.pie(
+        self.pie_chart_canvas.axes.pie(
             sizes,
             labels=labels_translated,
             autopct="%1.1f%%",
             shadow=False,
             startangle=90,
         )
-        self.sc.axes.axis("equal")
-        self.sc.draw()
+        self.pie_chart_canvas.axes.axis("equal")
+        self.pie_chart_canvas.draw()
 
     def translate_labels(self, labels, language="English"):
         labels_translated = labels
@@ -156,6 +174,7 @@ class LIK(QtGui.QWidget):
                 if year <= current_year:
                     self.lik_dict[str(int(year))] = df[df["Level"] == level][year]
                     self.lik_df[int(year)] = df[df["Level"] == level][year]
+        self.lik_df = self.lik_df[self.lik_df.columns.sort_values()]
 
     def get_lik_data(
         self,
@@ -172,7 +191,10 @@ class LIK(QtGui.QWidget):
         # 3. Add option to select which change was biggest
         df_raw = pd.read_excel(source_file, index_col=index_col, sheet_name=sheet_name)
         df = df_raw.iloc[start_row:, :]
-        df.columns = df_raw.iloc[column_row, :]
+        df.columns = self.transform_type(df_raw.iloc[column_row, :])
+        if "2000/01" in df.columns:
+            df.rename(columns={"2000/01": 2000}, inplace=True)
+            df[2001] = df[2000]
         if create_level_col:
             df.loc[:, "Level"] = df[level_col].apply(self.check_for_level)
         else:
@@ -183,6 +205,22 @@ class LIK(QtGui.QWidget):
         df.index = df.index.map(self.remove_empty_spaces)
 
         return df
+
+    @staticmethod
+    def transform_type(column):
+        column_cast = []
+        for value in column:
+            if type(value) is str:
+                if (
+                    re.search("[0-9]{4}", value)
+                    and re.search("[a-zA-Z]|/", value) is None
+                ):
+                    column_cast.append(int(value))
+                else:
+                    column_cast.append(value)
+            else:
+                column_cast.append(value)
+        return column_cast
 
     @staticmethod
     def check_for_level(x, level=2):
@@ -198,6 +236,7 @@ class LIK(QtGui.QWidget):
         return_value = value
         if isinstance(value, str):
             return_value = value.strip()
+        return_value = NAME_MAPPING_DICT.get(return_value, return_value)
         return return_value
 
 
@@ -222,6 +261,8 @@ def main():
     inflation_tracker.show()
     sys.exit(app.exec_())
 
+
+# Next: English translation of dropdown for second plot + update README with plot and datasource
 
 if __name__ == "__main__":
     main()
