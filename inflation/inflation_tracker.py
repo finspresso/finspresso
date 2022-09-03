@@ -33,6 +33,7 @@ QtCore.QT_TRANSLATE_NOOP("get_translation", "Sonstige Waren und Dienstleistungen
 
 NAME_MAPPING_DICT = {
     "Hausrat und laufende Haushaltsführung": "Hausrat und Haushaltsführung",
+    "Hausrat und laufende Haushaltführung": "Hausrat und Haushaltsführung",
     "Erziehung und Unterricht": "Unterricht",
 }
 
@@ -107,6 +108,7 @@ class LIK(QtGui.QWidget):
     def create_language_combobox(self, cb_list, current_text):
         self.language_cb = QtGui.QComboBox()
         self.language_cb.addItems(cb_list)
+        self.language_cb.currentTextChanged.connect(self.translate_lik_df)
         self.language_cb.currentTextChanged.connect(self.update_pie_chart)
         self.language_cb.setCurrentText(current_text)
 
@@ -116,17 +118,30 @@ class LIK(QtGui.QWidget):
         self.category_cb.currentTextChanged.connect(self.update_category_chart)
         self.category_cb.setCurrentText(current_text)
 
+    def translate_lik_df(self):
+        selected_language = str(self.language_cb.currentText())
+        self.lik_df.index = self.translate_labels(
+            self.lik_df_orginal_index, language=selected_language
+        )
+        self.update_category_combobox()
+
+    def update_category_combobox(self):
+        current_index = self.category_cb.currentIndex()
+        self.category_cb.clear()
+        self.category_cb.addItems(self.lik_df.index)
+        self.category_cb.setCurrentText(self.lik_df.index[current_index])
+
     def update_category_chart(self):
         selected_category = self.category_cb.currentText()
-        x = self.lik_df.loc[selected_category].index
-        y = self.lik_df.loc[selected_category].values
-        self.category_chart_canvas.axes.cla()
-        self.category_chart_canvas.axes.plot(x, y)
-        self.category_chart_canvas.axes.set_xticks(x)
-        # self.category_chart_canvas.axes.set_xticklabels(averaging_names)
-        self.category_chart_canvas.axes.set_xlabel("Year")
-        self.category_chart_canvas.axes.set_ylabel("%")
-        self.category_chart_canvas.draw()
+        if selected_category != "":
+            x = self.lik_df.loc[selected_category].index
+            y = self.lik_df.loc[selected_category].values
+            self.category_chart_canvas.axes.cla()
+            self.category_chart_canvas.axes.plot(x, y)
+            self.category_chart_canvas.axes.set_xticks(x)
+            self.category_chart_canvas.axes.set_xlabel("Year")
+            self.category_chart_canvas.axes.set_ylabel("%")
+            self.category_chart_canvas.draw()
 
     def update_pie_chart(self, text):
         selected_year = str(self.year_cb.currentText())
@@ -161,7 +176,7 @@ class LIK(QtGui.QWidget):
         return word_translated
 
     def get_weights(self, df, level, year):
-        weights = df[df["Level"] == level][year]
+        weights = df[df["Level"] == level].loc[:, year]
         return weights
 
     def create_lik_dict(self, level=2):
@@ -172,9 +187,14 @@ class LIK(QtGui.QWidget):
             years = [x for x in df.columns if type(x) is not str]
             for year in years:
                 if year <= current_year:
-                    self.lik_dict[str(int(year))] = df[df["Level"] == level][year]
-                    self.lik_df[int(year)] = df[df["Level"] == level][year]
+                    self.lik_dict[str(int(year))] = df[df["Level"] == level].loc[
+                        :, year
+                    ]
+                    self.lik_df.loc[:, int(year)] = df[df["Level"] == level].loc[
+                        :, year
+                    ]
         self.lik_df = self.lik_df[self.lik_df.columns.sort_values()]
+        self.lik_df_orginal_index = self.lik_df.index
 
     def get_lik_data(
         self,
@@ -193,8 +213,8 @@ class LIK(QtGui.QWidget):
         df = df_raw.iloc[start_row:, :]
         df.columns = self.transform_type(df_raw.iloc[column_row, :])
         if "2000/01" in df.columns:
-            df.rename(columns={"2000/01": 2000}, inplace=True)
-            df[2001] = df[2000]
+            df = df.rename(columns={"2000/01": 2000})
+            df.loc[:, 2001] = df.loc[:, 2000]
         if create_level_col:
             df.loc[:, "Level"] = df[level_col].apply(self.check_for_level)
         else:
