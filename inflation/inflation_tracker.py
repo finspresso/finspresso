@@ -85,7 +85,7 @@ class LIK(QtGui.QWidget):
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
         self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.category_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.category_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.create_year_combobox(
             sorted(self.lik_dict.keys(), reverse=True), current_year
         )
@@ -140,7 +140,10 @@ class LIK(QtGui.QWidget):
             y = self.lik_df.loc[selected_category].values
             self.category_chart_canvas.axes.cla()
             self.category_chart_canvas.axes.plot(x, y)
-            self.category_chart_canvas.axes.set_xticks(x)
+            self.category_chart_canvas.axes.set_xticks(x, rotation=45)
+            self.category_chart_canvas.axes.set_xticklabels(
+                self.category_chart_canvas.axes.get_xticks(), rotation=80
+            )
             self.category_chart_canvas.axes.set_xlabel("Year")
             self.category_chart_canvas.axes.set_ylabel("%")
             self.category_chart_canvas.draw()
@@ -265,6 +268,7 @@ class LIK(QtGui.QWidget):
 class InflationTracker(QtGui.QTabWidget):
     def __init__(self, parent=None, source_lik=""):
         super(InflationTracker, self).__init__(parent)
+        self.setGeometry(100, 10, 900, 1200)
         self.lik = LIK(source_lik)
         self.addTab(self.lik, "LIK")
 
