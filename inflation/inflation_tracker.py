@@ -98,7 +98,9 @@ class LIK(QtGui.QWidget):
         self.top_layout.addRow("Language", self.language_cb)
         self.main_layout.addLayout(self.top_layout)
         self.main_layout.addWidget(self.pie_chart_canvas)
-        self.main_layout.addWidget(self.category_cb)
+        self.bottom_layout = QtGui.QFormLayout()
+        self.bottom_layout.addRow("Category", self.category_cb)
+        self.main_layout.addLayout(self.bottom_layout)
         self.main_layout.addWidget(self.category_chart_canvas)
 
     def create_year_combobox(self, cb_list, current_text):
@@ -139,13 +141,15 @@ class LIK(QtGui.QWidget):
             x = self.lik_df.loc[selected_category].index
             y = self.lik_df.loc[selected_category].values
             self.category_chart_canvas.axes.cla()
-            self.category_chart_canvas.axes.plot(x, y)
+            self.category_chart_canvas.axes.plot(x, y, label=selected_category)
             self.category_chart_canvas.axes.set_xticks(x, rotation=45)
             self.category_chart_canvas.axes.set_xticklabels(
                 self.category_chart_canvas.axes.get_xticks(), rotation=80
             )
             self.category_chart_canvas.axes.set_xlabel("Year")
             self.category_chart_canvas.axes.set_ylabel("%")
+            self.category_chart_canvas.axes.legend()
+            self.category_chart_canvas.axes.grid()
             self.category_chart_canvas.draw()
 
     def update_pie_chart(self, text):
