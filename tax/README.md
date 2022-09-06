@@ -25,7 +25,7 @@ Please note, in order for the webbrowser to be able to access the data in the .j
 
 - Set up an apache server on Ubuntu PC that serves https requests. Explained in [here](https://techexpert.tips/apache/enable-https-apache/). Please note, I selected the IP address `192.168.43.60` of the apache server. If you select an other IP, you need to adapt this number in the file `withholding.html` accordingly.
 - I had to set Access-Control-Allow-Origin (CORS) Headers in apache according to [this](https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/)
-- Finally, I created a soft link in the apache folder that points to the `storage_json` folder of this repo: `sudo ln -s $PWD/storage_json /var/www/html/storage_json`
+- Finally, I created a soft link in the apache folder that points to the `storage_json` folder of this repo: `sudo ln -s $PWD/storage_json /var/www/html/storage_json`. Please note, in order for this to work it is required that any parent path in the directory $PWD/storage_json needs to be accessible by any other user i.e. `drwxr-x--x`. Please be careful by changing the permission of your folder structure in order to prevent any security breach. If for testing purposes only you can always copy the folder storage_json to `/var/www/html/`.
 
 Afterwards, if you open up `witholding.html` via your webbrower it should look like below. In the dropdown menu you can select the desired municipality e.g. Seegräben. In the upper plot you can see how much tax you need to pay in total, for the municipality, canton and federal. In the lower plot you can see the tax rate per taxable income (x-axis).
 

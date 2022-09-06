@@ -1,0 +1,63 @@
+<!doctype html>
+<head>
+    <style type="text/css">
+        .select-selected {
+        width:200px;
+        }
+    </style>
+    <style type="text/css">
+        .chartBox {
+            width:900px;
+        }
+    </style>
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+    <div class="select-selected">
+        <select id=year>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+        </select>
+    </div>
+    <div class="chartBox">
+		<canvas id="pieChartLIK"></canvas>
+	</div>
+    <script>
+        const baseURL = 'https://127.0.0.1/storage_json'
+        var chartColors = {
+        red: 'rgb(255, 0, 0)',
+        green: 'rgb(0, 255, 0)',
+        blue: 'rgb(0, 0, 235)',
+        black: 'rgb(0, 0, 0)'
+        };
+
+        var color = Chart.helpers.color;
+        var configValue = {
+            type: 'pie',
+            data: {
+                    datasets: [{
+                         data: [10, 20, 30]
+                    }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: [
+                        'Red',
+                        'Yellow',
+                        'Blue'
+                    ]
+            }
+        };
+       var ctxLIKPie = document.getElementById('pieChartLIK').getContext('2d');
+       pieChartLIK = new Chart(ctxLIKPie, configValue);
+
+        const year = document.getElementById('year');
+        year.addEventListener('change', updateYear);
+        function updateYear() {
+            const label = year.options[year.selectedIndex].text;
+            console.log("updateYear() called")
+        }
+    </script>
+</body>
+</html>
