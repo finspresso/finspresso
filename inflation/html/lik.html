@@ -25,30 +25,42 @@
 		<canvas id="pieChartLIK"></canvas>
 	</div>
     <script>
-        const baseURL = 'https://127.0.0.1/storage_json'
-        var chartColors = {
-        red: 'rgb(255, 0, 0)',
-        green: 'rgb(0, 255, 0)',
-        blue: 'rgb(0, 0, 235)',
-        black: 'rgb(0, 0, 0)'
-        };
+        const baseURL = 'https://127.0.0.1/storage_json_inflation'
 
         var color = Chart.helpers.color;
+        const data = {
+                    datasets: [{
+                        backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+        };
         var configValue = {
             type: 'pie',
-            data: {
-                    datasets: [{
-                         data: [10, 20, 30]
-                    }],
+            data: data,
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'LIK Weights'
+                },
+                plugins: {
+                        datasource: {
+                            type: 'json',
+                            url: baseURL + '/weights_2022.json',
+                            rowMapping: 'dataset',
+                            indexLabels: 'labels',
+                            datasetLabels: 'datasets[*].label',
+                            data: 'datasets[*].data'
+                        }
+                    }
+                }
 
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
-                    ]
-            }
         };
+
        var ctxLIKPie = document.getElementById('pieChartLIK').getContext('2d');
        pieChartLIK = new Chart(ctxLIKPie, configValue);
 
@@ -56,7 +68,9 @@
         year.addEventListener('change', updateYear);
         function updateYear() {
             const label = year.options[year.selectedIndex].text;
-            console.log("updateYear() called")
+            console.log("updateYear() called" , label)
+            pieChartLIK.options.plugins.datasource.url = baseURL +'/weights_' + label +'.json';
+            pieChartLIK.update()
         }
     </script>
 </body>

@@ -1,0 +1,17 @@
+{
+  "labels": [
+    "cat 1",
+    "cat 2",
+    "cat 3"
+  ],
+  "datasets": [
+    {
+      "label": "Sample",
+      "data": [
+        20,
+        100,
+        300
+      ]
+    }
+  ]
+}
