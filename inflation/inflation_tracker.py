@@ -1,10 +1,12 @@
 import argparse
+import json
 import pandas as pd
 import logging
 import coloredlogs
 import datetime
 import sys
 import re
+from pathlib import Path
 from pyqtgraph.Qt import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
@@ -236,6 +238,26 @@ class LIK(QtGui.QWidget):
         return df
 
     @staticmethod
+    def store_dict_to_json(dict_to_store, file_name):
+        with open(file_name, "w") as file:
+            json.dump(dict_to_store, file, indent=4)
+
+    def store_weights_to_json(self, language="English"):
+        self.language_cb.setCurrentText(language)
+        self.translate_lik_df()
+        target_dir = "lik_json_files"
+        filepath = Path.cwd() / target_dir
+        filepath.mkdir(parents=True, exist_ok=True)
+        for year in self.lik_df.columns:
+            dict_to_store = {
+                "labels": self.lik_df.loc[:, year].index.values.tolist(),
+                "datasets": [{"data": self.lik_df.loc[:, year].values.tolist()}],
+            }
+            self.store_dict_to_json(
+                dict_to_store, target_dir + "/" + "weights_" + str(year) + ".json"
+            )
+
+    @staticmethod
     def transform_type(column):
         column_cast = []
         for value in column:
@@ -276,6 +298,9 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik = LIK(source_lik)
         self.addTab(self.lik, "LIK")
 
+    def store_data_to_json(self):
+        self.lik.store_weights_to_json()
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -284,12 +309,20 @@ def main():
         help="xlsx file containing LIK weights",
         default="data/lik.xlsx",  # ToDo: Automate downlaod of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/erhebungen/lik/warenkorb.assetdetail.21484892.html
     )
+    parser.add_argument(
+        "--json",
+        help="If selected the data will not be visualized but it will store all the relevant tax rates in .json file",
+        action="store_true",
+    )
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
     inflation_tracker = InflationTracker(source_lik=args.lik_data)
-    inflation_tracker.show()
-    sys.exit(app.exec_())
+    if not args.json:
+        inflation_tracker.show()
+        sys.exit(app.exec_())
+    else:
+        inflation_tracker.store_data_to_json()
 
 
 # Next: English translation of dropdown for second plot + update README with plot and datasource

@@ -12,6 +12,19 @@
         "data/lik.xlsx"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Store data to json files",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--lik_data",
+        "data/lik.xlsx",
+        "--json"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
