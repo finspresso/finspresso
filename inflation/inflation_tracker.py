@@ -1,5 +1,6 @@
 import argparse
 import json
+from math import floor
 import numpy as np
 import pandas as pd
 import logging
@@ -268,6 +269,26 @@ class LIK(QtGui.QWidget):
                 dict_to_store, target_dir + "/" + "weights_" + str(year) + ".json"
             )
 
+    def store_color_to_json(self):
+        color_string_list = []
+        target_dir = "lik_json_files"
+        filepath = Path.cwd() / target_dir
+        filepath.mkdir(parents=True, exist_ok=True)
+        for color in self.pie_chart_colors:
+            color_string_list.append(
+                "rgb("
+                + str(floor(255 * color[0]))
+                + ","
+                + str(floor(255 * color[1]))
+                + ","
+                + str(floor(255 * color[2]))
+                + ")"
+            )
+        pie_chart_color_dict = {"pie_chart_colors": color_string_list}
+        self.store_dict_to_json(
+            pie_chart_color_dict, target_dir + "/" + "pie_chart_color.json"
+        )
+
     @staticmethod
     def transform_type(column):
         column_cast = []
@@ -311,6 +332,7 @@ class InflationTracker(QtGui.QTabWidget):
 
     def store_data_to_json(self):
         self.lik.store_weights_to_json()
+        self.lik.store_color_to_json()
 
 
 def main():
@@ -335,8 +357,6 @@ def main():
     else:
         inflation_tracker.store_data_to_json()
 
-
-# Next: English translation of dropdown for second plot + update README with plot and datasource
 
 if __name__ == "__main__":
     main()
