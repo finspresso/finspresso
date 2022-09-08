@@ -179,8 +179,10 @@ class LIK(QtGui.QWidget):
             autopct="%1.1f%%",
             shadow=False,
             startangle=90,
+            counterclock=False,
             colors=self.pie_chart_colors,
         )
+        self.pie_chart_canvas.axes.set_title("LIK Weights")
         self.pie_chart_canvas.axes.axis("equal")
         self.pie_chart_canvas.draw()
 
