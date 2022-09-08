@@ -1,5 +1,6 @@
 import argparse
 import json
+import numpy as np
 import pandas as pd
 import logging
 import coloredlogs
@@ -92,6 +93,7 @@ class LIK(QtGui.QWidget):
             sorted(self.lik_dict.keys(), reverse=True), current_year
         )
         self.create_language_combobox(["German", "English"], "German")
+        self.create_pie_chart_colors()
         self.update_pie_chart(current_year)
         self.create_category_combobox(self.lik_df.index, self.lik_df.index[0])
         self.update_category_chart()
@@ -140,10 +142,14 @@ class LIK(QtGui.QWidget):
     def update_category_chart(self):
         selected_category = self.category_cb.currentText()
         if selected_category != "":
+            current_index = self.category_cb.currentIndex()
+            color = self.pie_chart_colors[current_index]
             x = self.lik_df.loc[selected_category].index
             y = self.lik_df.loc[selected_category].values
             self.category_chart_canvas.axes.cla()
-            self.category_chart_canvas.axes.plot(x, y, label=selected_category)
+            self.category_chart_canvas.axes.plot(
+                x, y, color=color, label=selected_category
+            )
             self.category_chart_canvas.axes.set_xticks(x, rotation=45)
             self.category_chart_canvas.axes.set_xticklabels(
                 self.category_chart_canvas.axes.get_xticks(), rotation=80
@@ -153,6 +159,10 @@ class LIK(QtGui.QWidget):
             self.category_chart_canvas.axes.legend()
             self.category_chart_canvas.axes.grid()
             self.category_chart_canvas.draw()
+
+    def create_pie_chart_colors(self):
+        rng = np.random.default_rng(12345)
+        self.pie_chart_colors = rng.uniform(0, 1, (self.lik_df.shape[0], 3))
 
     def update_pie_chart(self, text):
         selected_year = str(self.year_cb.currentText())
@@ -168,6 +178,7 @@ class LIK(QtGui.QWidget):
             autopct="%1.1f%%",
             shadow=False,
             startangle=90,
+            colors=self.pie_chart_colors,
         )
         self.pie_chart_canvas.axes.axis("equal")
         self.pie_chart_canvas.draw()
