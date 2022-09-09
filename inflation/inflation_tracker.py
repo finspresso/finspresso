@@ -252,9 +252,9 @@ class LIK(QtGui.QWidget):
         return df
 
     @staticmethod
-    def store_dict_to_json(dict_to_store, file_name):
+    def store_var_to_json(variable_to_store, file_name):
         with open(file_name, "w") as file:
-            json.dump(dict_to_store, file, indent=4)
+            json.dump(variable_to_store, file, indent=4)
 
     def store_weights_to_json(self, language="English"):
         self.language_cb.setCurrentText(language)
@@ -267,7 +267,7 @@ class LIK(QtGui.QWidget):
                 "labels": self.lik_df.loc[:, year].index.values.tolist(),
                 "datasets": [{"data": self.lik_df.loc[:, year].values.tolist()}],
             }
-            self.store_dict_to_json(
+            self.store_var_to_json(
                 dict_to_store, target_dir + "/" + "weights_" + str(year) + ".json"
             )
 
@@ -287,9 +287,18 @@ class LIK(QtGui.QWidget):
                 + ")"
             )
         pie_chart_color_dict = {"pie_chart_colors": color_string_list}
-        self.store_dict_to_json(
+        self.store_var_to_json(
             pie_chart_color_dict, target_dir + "/" + "pie_chart_color.json"
         )
+
+    def store_categories_to_json(self):
+        category_list = []
+        target_dir = "lik_json_files"
+        filepath = Path.cwd() / target_dir
+        filepath.mkdir(parents=True, exist_ok=True)
+        for category in self.lik_df.index:
+            category_list.append({"name": category, "abbreviation": category})
+        self.store_var_to_json(category_list, target_dir + "/" + "categories.json")
 
     @staticmethod
     def transform_type(column):
@@ -335,6 +344,7 @@ class InflationTracker(QtGui.QTabWidget):
     def store_data_to_json(self):
         self.lik.store_weights_to_json()
         self.lik.store_color_to_json()
+        self.lik.store_categories_to_json()
 
 
 def main():

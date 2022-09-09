@@ -45,6 +45,51 @@
     <div class="chartBox">
 		<canvas id="pieChartLIK"></canvas>
 	</div>
+
+    <select id="locality-dropdown" name="locality">
+    </select>
+
+    <script>
+        let dropdown = document.getElementById('locality-dropdown');
+        dropdown.length = 0;
+
+        //let defaultOption = document.createElement('option');
+        //defaultOption.text = 'Choose State/Province';
+
+        //dropdown.add(defaultOption);
+        dropdown.selectedIndex = 0;
+
+        const url = 'https://127.0.0.1/storage_json_inflation/categories.json';
+
+        const request = new XMLHttpRequest();
+        request.open('GET', url, true);
+
+        request.onload = function() {
+            if (request.status === 200) {
+                const data = JSON.parse(request.responseText);
+                let option;
+                for (let i = 0; i < data.length; i++) {
+                    option = document.createElement('option');
+                    option.text = data[i].name;
+                    option.value = data[i].abbreviation;
+                    dropdown.add(option);
+                }
+            } else {
+                // Reached the server, but it returned an error
+            }
+        }
+
+        request.onerror = function() {
+            console.error('An error occurred fetching the JSON from ' + url);
+        };
+
+        request.send();
+    </script>
+
+
+    <div class="chartBox">
+		<canvas id="chartCategoryLIK"></canvas>
+	</div>
     <script>
         const baseURL = 'https://127.0.0.1/storage_json_inflation'
 
@@ -68,7 +113,7 @@
                         hoverOffset: 4
                     }]
         };
-        var configValue = {
+        var configWeights = {
             type: 'pie',
             data: data,
             plugins: [ChartDataSource],
@@ -95,11 +140,64 @@
 
                     },
                 }
+        };
 
+        var configCategory = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    yAxisID: 'category_lik',
+                    backgroundColor: 'transparent',
+                    borderColor: 'rgb(57,80,203)',
+                    pointBackgroundColor: 'rgb(57,80,203)',
+                    tension: 0,
+                    fill: false
+                }]
+            },
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'Category'
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Year'
+                        }
+                    }],
+                    yAxes: [{
+                        id: 'category_lik',
+                        gridLines: {
+                            drawOnChartArea: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: '%'
+                        },
+                        ticks: {
+                            max: 30
+                        }
+                    }]
+                },
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: baseURL + '/category_lik/cat_sample.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        datasetLabels: 'datasets[*].label',
+                        data: 'datasets[*].data'
+                    }
+                }
+            }
         };
 
        var ctxLIKPie = document.getElementById('pieChartLIK').getContext('2d');
-       pieChartLIK = new Chart(ctxLIKPie, configValue);
+       pieChartLIK = new Chart(ctxLIKPie, configWeights);
+       var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
+       chartCategoryLIK = new Chart(ctxCategory, configCategory)
 
         const year = document.getElementById('year');
         year.addEventListener('change', updateYear);
