@@ -1,20 +1,22 @@
 <!doctype html>
+
 <head>
     <style type="text/css">
         .select-selected {
-        width:200px;
+            width: 200px;
         }
     </style>
     <style type="text/css">
         .chartBox {
-            width:900px;
+            width: 900px;
         }
     </style>
 
 </head>
+
 <body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
     <div class="select-selected">
         <select id=year>
             <option value="2022">2022</option>
@@ -43,14 +45,14 @@
         </select>
     </div>
     <div class="chartBox">
-		<canvas id="pieChartLIK"></canvas>
-	</div>
-
-    <select id="locality-dropdown" name="locality">
+        <canvas id="pieChartLIK"></canvas>
+    </div>
+    <select id="category-dropdown" name="category">
     </select>
 
+
     <script>
-        let dropdown = document.getElementById('locality-dropdown');
+        let dropdown = document.getElementById("category-dropdown");
         dropdown.length = 0;
 
         //let defaultOption = document.createElement('option');
@@ -64,7 +66,7 @@
         const request = new XMLHttpRequest();
         request.open('GET', url, true);
 
-        request.onload = function() {
+        request.onload = function () {
             if (request.status === 200) {
                 const data = JSON.parse(request.responseText);
                 let option;
@@ -79,7 +81,7 @@
             }
         }
 
-        request.onerror = function() {
+        request.onerror = function () {
             console.error('An error occurred fetching the JSON from ' + url);
         };
 
@@ -88,30 +90,30 @@
 
 
     <div class="chartBox">
-		<canvas id="chartCategoryLIK"></canvas>
-	</div>
+        <canvas id="chartCategoryLIK"></canvas>
+    </div>
     <script>
         const baseURL = 'https://127.0.0.1/storage_json_inflation'
 
         var color = Chart.helpers.color;
         const data = {
-                    datasets: [{
-                        backgroundColor: [
-                            "rgb(57,80,203)",
-                            "rgb(172,99,84)",
-                            "rgb(152,47,171)",
-                            "rgb(240,63,241)",
-                            "rgb(170,24,112)",
-                            "rgb(226,177,83)",
-                            "rgb(187,56,20)",
-                            "rgb(40,86,118)",
-                            "rgb(67,208,49)",
-                            "rgb(33,23,152)",
-                            "rgb(217,153,237)",
-                            "rgb(184,219,236)"
-                        ],
-                        hoverOffset: 4
-                    }]
+            datasets: [{
+                backgroundColor: [
+                    "rgb(57,80,203)",
+                    "rgb(172,99,84)",
+                    "rgb(152,47,171)",
+                    "rgb(240,63,241)",
+                    "rgb(170,24,112)",
+                    "rgb(226,177,83)",
+                    "rgb(187,56,20)",
+                    "rgb(40,86,118)",
+                    "rgb(67,208,49)",
+                    "rgb(33,23,152)",
+                    "rgb(217,153,237)",
+                    "rgb(184,219,236)"
+                ],
+                hoverOffset: 4
+            }]
         };
         var configWeights = {
             type: 'pie',
@@ -130,16 +132,16 @@
                 },
 
                 plugins: {
-                        datasource: {
-                            type: 'json',
-                            url: baseURL + '/weights_2022.json',
-                            rowMapping: 'dataset',
-                            indexLabels: 'labels',
-                            data: 'datasets[*].data'
-                        },
-
+                    datasource: {
+                        type: 'json',
+                        url: baseURL + '/weights_2022.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        data: 'datasets[*].data'
                     },
-                }
+
+                },
+            }
         };
 
         var configCategory = {
@@ -194,19 +196,26 @@
             }
         };
 
-       var ctxLIKPie = document.getElementById('pieChartLIK').getContext('2d');
-       pieChartLIK = new Chart(ctxLIKPie, configWeights);
-       var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
-       chartCategoryLIK = new Chart(ctxCategory, configCategory)
+        var ctxLIKPie = document.getElementById('pieChartLIK').getContext('2d');
+        pieChartLIK = new Chart(ctxLIKPie, configWeights);
+        var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
+        chartCategoryLIK = new Chart(ctxCategory, configCategory)
 
         const year = document.getElementById('year');
+        const category = document.getElementById('category-dropdown')
+        category.addEventListener('change', updateTitle)
         year.addEventListener('change', updateYear);
         function updateYear() {
             const label = year.options[year.selectedIndex].text;
-            console.log("updateYear() called" , label)
-            pieChartLIK.options.plugins.datasource.url = baseURL +'/weights_' + label +'.json';
+            console.log("updateYear() called", label)
+            pieChartLIK.options.plugins.datasource.url = baseURL + '/weights_' + label + '.json';
             pieChartLIK.update()
+        }
+        function updateTitle() {
+            chartCategoryLIK.options.title.text = category.options[category.selectedIndex].text;
+            chartCategoryLIK.update()
         }
     </script>
 </body>
+
 </html>
