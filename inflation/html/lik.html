@@ -177,16 +177,13 @@
                         scaleLabel: {
                             display: true,
                             labelString: '%'
-                        },
-                        ticks: {
-                            max: 30
                         }
                     }]
                 },
                 plugins: {
                     datasource: {
                         type: 'json',
-                        url: baseURL + '/category_lik/cat_sample.json',
+                        url: baseURL + '/category_lik/Alcoholic_beverages_and_tobacco.json',
                         rowMapping: 'dataset',
                         indexLabels: 'labels',
                         datasetLabels: 'datasets[*].label',

@@ -293,11 +293,21 @@ class LIK(QtGui.QWidget):
 
     def store_categories_to_json(self):
         category_list = []
-        target_dir = "lik_json_files"
+        target_dir = "lik_json_files/category_lik"
         filepath = Path.cwd() / target_dir
         filepath.mkdir(parents=True, exist_ok=True)
+        years = self.lik_df.columns.values.tolist()
+        evolution_dict = {"labels": years, "datasets": [{"label": "N/A", "data": []}]}
         for category in self.lik_df.index:
-            category_list.append({"name": category, "abbreviation": category})
+            abbreviation = category.replace(" ", "_")
+            evolution_dict["datasets"][0]["label"] = category
+            evolution_dict["datasets"][0]["data"] = self.lik_df.loc[
+                category, :
+            ].values.tolist()
+            self.store_var_to_json(
+                evolution_dict, target_dir + "/" + abbreviation + ".json"
+            )
+            category_list.append({"name": category, "abbreviation": abbreviation})
         self.store_var_to_json(category_list, target_dir + "/" + "categories.json")
 
     @staticmethod
