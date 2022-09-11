@@ -61,7 +61,7 @@
         //dropdown.add(defaultOption);
         dropdown.selectedIndex = 0;
 
-        const url = 'https://127.0.0.1/storage_json_inflation/categories.json';
+        const url = 'https://127.0.0.1/storage_json_inflation/category_lik/categories.json';
 
         const request = new XMLHttpRequest();
         request.open('GET', url, true);
@@ -183,7 +183,7 @@
                 plugins: {
                     datasource: {
                         type: 'json',
-                        url: baseURL + '/category_lik/Alcoholic_beverages_and_tobacco.json',
+                        url: baseURL + '/category_lik/cat_sample.json',
                         rowMapping: 'dataset',
                         indexLabels: 'labels',
                         datasetLabels: 'datasets[*].label',
@@ -200,7 +200,7 @@
 
         const year = document.getElementById('year');
         const category = document.getElementById('category-dropdown')
-        category.addEventListener('change', updateTitle)
+        category.addEventListener('change', updateCategory)
         year.addEventListener('change', updateYear);
         function updateYear() {
             const label = year.options[year.selectedIndex].text;
@@ -208,8 +208,10 @@
             pieChartLIK.options.plugins.datasource.url = baseURL + '/weights_' + label + '.json';
             pieChartLIK.update()
         }
-        function updateTitle() {
-            chartCategoryLIK.options.title.text = category.options[category.selectedIndex].text;
+        function updateCategory() {
+            const category_current = category.options[category.selectedIndex].value;
+            console.log("updateCategory() called", category_current)
+            chartCategoryLIK.options.plugins.datasource.url = baseURL + '/category_lik/' + category_current + '.json';
             chartCategoryLIK.update()
         }
     </script>
