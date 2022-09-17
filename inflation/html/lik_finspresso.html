@@ -1,0 +1,237 @@
+<!doctype html>
+
+<head>
+    <style type="text/css">
+        .select-selected {
+            width: 200px;
+        }
+    </style>
+    <style type="text/css">
+        .chartBox {
+            width: 900px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+    <div class="select-selected">
+        <select id=year>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="2000">2000</option>
+        </select>
+    </div>
+    <div class="chartBox">
+        <canvas id="pieChartLIK"></canvas>
+    </div>
+    <select id="category-dropdown" name="category">
+    </select>
+
+
+    <script>
+        var plotColors = [
+            "rgb(57,80,203)",
+            "rgb(172,99,84)",
+            "rgb(152,47,171)",
+            "rgb(240,63,241)",
+            "rgb(170,24,112)",
+            "rgb(226,177,83)",
+            "rgb(187,56,20)",
+            "rgb(40,86,118)",
+            "rgb(67,208,49)",
+            "rgb(33,23,152)",
+            "rgb(217,153,237)",
+            "rgb(184,219,236)"
+        ];
+
+        let dropdown = document.getElementById("category-dropdown");
+        dropdown.length = 0;
+        dropdown.selectedIndex = 0;
+        const url = 'https://www.finspresso.com/wp-content/uploads/storage_json_inflation/category_lik/categories.json';
+        function updateCategory() {
+            const category_current = category.options[category.selectedIndex].value;
+            chartCategoryLIK.options.plugins.datasource.url = baseURL + '/category_lik/' + category_current + '.json';
+            chartCategoryLIK.data.datasets[0].borderColor = plotColors[category.selectedIndex];
+            chartCategoryLIK.data.datasets[0].pointBackgroundColor = plotColors[category.selectedIndex];
+            chartCategoryLIK.update()
+        }
+        const request = new XMLHttpRequest();
+        request.open('GET', url, true);
+
+        request.onload = function () {
+            if (request.status === 200) {
+                const data = JSON.parse(request.responseText);
+                let option;
+                for (let i = 0; i < data.length; i++) {
+                    option = document.createElement('option');
+                    option.text = data[i].name;
+                    option.value = data[i].abbreviation;
+                    dropdown.add(option);
+                }
+            } else {
+                // Reached the server, but it returned an error
+            }
+
+            var configCategory = {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        yAxisID: 'category_lik',
+                        backgroundColor: 'transparent',
+                        borderColor: plotColors[category.selectedIndex], //'rgb(57,80,203)',
+                        pointBackgroundColor: plotColors[category.selectedIndex],//'rgb(57,80,203)',
+                        tension: 0,
+                        fill: false
+                    }]
+                },
+                plugins: [ChartDataSource],
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Category'
+                    },
+                    scales: {
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Year'
+                            }
+                        }],
+                        yAxes: [{
+                            id: 'category_lik',
+                            gridLines: {
+                                drawOnChartArea: true
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: '%'
+                            }
+                        }]
+                    },
+                    plugins: {
+                        datasource: {
+                            type: 'json',
+                            url: baseURL + '/category_lik/' + category.options[category.selectedIndex].value + '.json',
+                            rowMapping: 'dataset',
+                            indexLabels: 'labels',
+                            datasetLabels: 'datasets[*].label',
+                            data: 'datasets[*].data'
+                        }
+                    }
+                }
+            };
+            var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
+            chartCategoryLIK = new Chart(ctxCategory, configCategory);
+            category.addEventListener('change', updateCategory);
+
+
+        }
+
+        request.onerror = function () {
+            console.error('An error occurred fetching the JSON from ' + url);
+        };
+
+        request.send();
+        const year = document.getElementById('year');
+        const category = document.getElementById('category-dropdown')
+        const baseURL = 'https://www.finspresso.com/wp-content/uploads/storage_json_inflation'
+
+        var color = Chart.helpers.color;
+        const data = {
+            datasets: [{
+                backgroundColor: [
+                    "rgb(57,80,203)",
+                    "rgb(172,99,84)",
+                    "rgb(152,47,171)",
+                    "rgb(240,63,241)",
+                    "rgb(170,24,112)",
+                    "rgb(226,177,83)",
+                    "rgb(187,56,20)",
+                    "rgb(40,86,118)",
+                    "rgb(67,208,49)",
+                    "rgb(33,23,152)",
+                    "rgb(217,153,237)",
+                    "rgb(184,219,236)"
+                ],
+                hoverOffset: 4
+            }]
+        };
+        var configWeights = {
+            type: 'pie',
+            data: data,
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'LIK Weights',
+                    position: 'top'
+
+                },
+                legend: {
+                    display: true,
+                    position: 'right'
+                },
+
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: baseURL + '/weights_2022.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        data: 'datasets[*].data'
+                    },
+
+                },
+            }
+        };
+
+        var ctxLIKPie = document.getElementById('pieChartLIK').getContext('2d');
+        pieChartLIK = new Chart(ctxLIKPie, configWeights);
+        year.addEventListener('change', updateYear);
+        function updateYear() {
+            const label = year.options[year.selectedIndex].text;
+
+            pieChartLIK.options.plugins.datasource.url = baseURL + '/weights_' + label + '.json';
+            pieChartLIK.update()
+        }
+        function pieHover(move) {
+            const points = pieChartLIK.getElementsAtEventForMode(move, 'nearest', { intersect: true }, true);
+            if (points[0]) {
+                let dropdown = document.getElementById("category-dropdown");
+                dropdown.selectedIndex = points[0]._index;
+                updateCategory();
+            }
+        }
+        pieChartLIK.canvas.onmousemove = pieHover;
+    </script>
+
+
+    <div class="chartBox">
+        <canvas id="chartCategoryLIK"></canvas>
+    </div>
+</body>
+
+</html>

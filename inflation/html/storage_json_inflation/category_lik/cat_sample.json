@@ -1,0 +1,19 @@
+{
+  "labels": [
+    2000,
+    2001,
+    2002,
+    2003
+  ],
+  "datasets": [
+    {
+      "label": "Tax municipality rate",
+      "data": [
+        5.2,
+        3.4,
+        10.1,
+        12.0
+      ]
+    }
+  ]
+}

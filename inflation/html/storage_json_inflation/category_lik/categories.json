@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Staples and non-alcoholic beverages",
+    "abbreviation": "Staples_and_non-alcoholic_beverages"
+  },
+  {
+    "name": "Alcoholic beverages and tobacco",
+    "abbreviation": "Alcoholic_beverages_and_tobacco"
+  },
+  {
+    "name": "Apparel and shoes",
+    "abbreviation": "Apparel_and_shoes"
+  },
+  {
+    "name": "Living and energy",
+    "abbreviation": "Living_and_energy"
+  },
+  {
+    "name": "Furniture and housekeeping",
+    "abbreviation": "Furniture_and_housekeeping"
+  },
+  {
+    "name": "Health",
+    "abbreviation": "Health"
+  },
+  {
+    "name": "Transportation",
+    "abbreviation": "Transportation"
+  },
+  {
+    "name": "Communication",
+    "abbreviation": "Communication"
+  },
+  {
+    "name": "Leisure and culture",
+    "abbreviation": "Leisure_and_culture"
+  },
+  {
+    "name": "Education",
+    "abbreviation": "Education"
+  },
+  {
+    "name": "Restaurants and hotels",
+    "abbreviation": "Restaurants_and_hotels"
+  },
+  {
+    "name": "Further services",
+    "abbreviation": "Further_services"
+  }
+]
