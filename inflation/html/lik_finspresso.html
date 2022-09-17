@@ -49,9 +49,16 @@
     </div>
     <select id="category-dropdown" name="category">
     </select>
+    <div class="chartBox">
+        <canvas id="chartCategoryLIK"></canvas>
+    </div>
 
 
     <script>
+        const year = document.getElementById('year');
+        const category = document.getElementById('category-dropdown')
+        const baseURL = 'https://www.finspresso.com/wp-content/uploads/storage_json_inflation'
+        //const url = 'https://127.0.0.1/storage_json_inflation/category_lik/categories.json';
         var plotColors = [
             "rgb(57,80,203)",
             "rgb(172,99,84)",
@@ -73,7 +80,9 @@
         const url = 'https://www.finspresso.com/wp-content/uploads/storage_json_inflation/category_lik/categories.json';
         function updateCategory() {
             const category_current = category.options[category.selectedIndex].value;
+            console.log("category_current", category_current);
             chartCategoryLIK.options.plugins.datasource.url = baseURL + '/category_lik/' + category_current + '.json';
+            console.log(chartCategoryLIK.options.plugins.datasource.url);
             chartCategoryLIK.data.datasets[0].borderColor = plotColors[category.selectedIndex];
             chartCategoryLIK.data.datasets[0].pointBackgroundColor = plotColors[category.selectedIndex];
             chartCategoryLIK.update()
@@ -91,63 +100,10 @@
                     option.value = data[i].abbreviation;
                     dropdown.add(option);
                 }
+                updateCategory();
             } else {
                 // Reached the server, but it returned an error
             }
-
-            var configCategory = {
-                type: 'line',
-                data: {
-                    datasets: [{
-                        yAxisID: 'category_lik',
-                        backgroundColor: 'transparent',
-                        borderColor: plotColors[category.selectedIndex], //'rgb(57,80,203)',
-                        pointBackgroundColor: plotColors[category.selectedIndex],//'rgb(57,80,203)',
-                        tension: 0,
-                        fill: false
-                    }]
-                },
-                plugins: [ChartDataSource],
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Category'
-                    },
-                    scales: {
-                        xAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Year'
-                            }
-                        }],
-                        yAxes: [{
-                            id: 'category_lik',
-                            gridLines: {
-                                drawOnChartArea: true
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: '%'
-                            }
-                        }]
-                    },
-                    plugins: {
-                        datasource: {
-                            type: 'json',
-                            url: baseURL + '/category_lik/' + category.options[category.selectedIndex].value + '.json',
-                            rowMapping: 'dataset',
-                            indexLabels: 'labels',
-                            datasetLabels: 'datasets[*].label',
-                            data: 'datasets[*].data'
-                        }
-                    }
-                }
-            };
-            var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
-            chartCategoryLIK = new Chart(ctxCategory, configCategory);
-            category.addEventListener('change', updateCategory);
-
-
         }
 
         request.onerror = function () {
@@ -155,9 +111,57 @@
         };
 
         request.send();
-        const year = document.getElementById('year');
-        const category = document.getElementById('category-dropdown')
-        const baseURL = 'https://www.finspresso.com/wp-content/uploads/storage_json_inflation'
+        var configCategory = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    yAxisID: 'category_lik',
+                    backgroundColor: 'transparent',
+                    borderColor: plotColors[category.selectedIndex], //'rgb(57,80,203)',
+                    pointBackgroundColor: plotColors[category.selectedIndex],//'rgb(57,80,203)',
+                    tension: 0,
+                    fill: false
+                }]
+            },
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'Category'
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Year'
+                        }
+                    }],
+                    yAxes: [{
+                        id: 'category_lik',
+                        gridLines: {
+                            drawOnChartArea: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: '%'
+                        }
+                    }]
+                },
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: baseURL + '/category_lik/Health.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        datasetLabels: 'datasets[*].label',
+                        data: 'datasets[*].data'
+                    }
+                }
+            }
+        };
+        var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
+        chartCategoryLIK = new Chart(ctxCategory, configCategory);
+        category.addEventListener('change', updateCategory);
 
         var color = Chart.helpers.color;
         const data = {
@@ -216,6 +220,7 @@
 
             pieChartLIK.options.plugins.datasource.url = baseURL + '/weights_' + label + '.json';
             pieChartLIK.update()
+            chartCategoryLIK.update()
         }
         function pieHover(move) {
             const points = pieChartLIK.getElementsAtEventForMode(move, 'nearest', { intersect: true }, true);
@@ -227,11 +232,6 @@
         }
         pieChartLIK.canvas.onmousemove = pieHover;
     </script>
-
-
-    <div class="chartBox">
-        <canvas id="chartCategoryLIK"></canvas>
-    </div>
 </body>
 
 </html>
