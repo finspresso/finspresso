@@ -382,3 +382,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Next: make comparison which category grew the most https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
