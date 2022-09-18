@@ -360,10 +360,11 @@ class InflationTracker(QtGui.QTabWidget):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--lik_data",
+        "--lik_weights",
         help="xlsx file containing LIK weights",
-        default="data/lik.xlsx",  # ToDo: Automate downlaod of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/erhebungen/lik/warenkorb.assetdetail.21484892.html
+        default="data/lik_weights.xlsx",  # ToDo: Automate downlaod of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/erhebungen/lik/warenkorb.assetdetail.21484892.html
     )
+
     parser.add_argument(
         "--json",
         help="If selected the data will not be visualized but it will store all the relevant tax rates in .json file",
@@ -372,7 +373,7 @@ def main():
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
-    inflation_tracker = InflationTracker(source_lik=args.lik_data)
+    inflation_tracker = InflationTracker(source_lik=args.lik_weights)
     if not args.json:
         inflation_tracker.show()
         sys.exit(app.exec_())
