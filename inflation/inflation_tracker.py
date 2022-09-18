@@ -50,7 +50,7 @@ class MplCanvas(FigureCanvasQTAgg):
 
 
 class LIK(QtGui.QWidget):
-    def __init__(self, lik_source):
+    def __init__(self, lik_weight_source, lik_evolution_source):
         QtGui.QWidget.__init__(self)
         self.trans = QtCore.QTranslator(self)
         if self.trans.load("translations/inflation.en.qm"):
@@ -59,26 +59,30 @@ class LIK(QtGui.QWidget):
 
         self.setLayout(self.main_layout)
         self.main_dict = dict()
-        self.main_dict["LIK2020"] = self.get_lik_data(lik_source, "LIK2020")
-        self.main_dict["LIK2015"] = self.get_lik_data(lik_source, "LIK2015")
-        self.main_dict["LIK2010"] = self.get_lik_data(
-            lik_source,
+        self.main_dict["LIK2020"] = self.get_lik_weight_data(
+            lik_weight_source, "LIK2020"
+        )
+        self.main_dict["LIK2015"] = self.get_lik_weight_data(
+            lik_weight_source, "LIK2015"
+        )
+        self.main_dict["LIK2010"] = self.get_lik_weight_data(
+            lik_weight_source,
             "LIK2010",
             index_col=3,
             start_row=4,
             column_row=2,
             level_col="Pos",
         )
-        self.main_dict["LIK2005"] = self.get_lik_data(
-            lik_source,
+        self.main_dict["LIK2005"] = self.get_lik_weight_data(
+            lik_weight_source,
             "LIK2005",
             index_col=3,
             start_row=4,
             column_row=2,
             level_col="Pos",
         )
-        self.main_dict["LIK2000"] = self.get_lik_data(
-            lik_source,
+        self.main_dict["LIK2000"] = self.get_lik_weight_data(
+            lik_weight_source,
             "LIK2000",
             index_col=2,
             start_row=4,
@@ -86,6 +90,7 @@ class LIK(QtGui.QWidget):
             level_col="Nr. ",
             create_level_col=True,
         )
+        self.get_lik_evolution_data(lik_evolution_source)
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
         self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
@@ -221,7 +226,7 @@ class LIK(QtGui.QWidget):
         self.lik_df = self.lik_df[self.lik_df.columns.sort_values()]
         self.lik_df_orginal_index = self.lik_df.index
 
-    def get_lik_data(
+    def get_lik_weight_data(
         self,
         source_file,
         sheet_name,
@@ -250,6 +255,11 @@ class LIK(QtGui.QWidget):
         df.index = df.index.map(self.remove_empty_spaces)
 
         return df
+
+    def get_lik_evolution_data(self, source_file):
+        logger.info("Loading %s...", source_file)
+        df_raw = pd.read_excel(source_file)
+        print(df_raw)
 
     @staticmethod
     def store_var_to_json(variable_to_store, file_name):
@@ -345,10 +355,10 @@ class LIK(QtGui.QWidget):
 
 
 class InflationTracker(QtGui.QTabWidget):
-    def __init__(self, parent=None, source_lik=""):
+    def __init__(self, parent=None, source_lik_weights="", source_lik_evolution=""):
         super(InflationTracker, self).__init__(parent)
         self.setGeometry(100, 10, 900, 1200)
-        self.lik = LIK(source_lik)
+        self.lik = LIK(source_lik_weights, source_lik_evolution)
         self.addTab(self.lik, "LIK")
 
     def store_data_to_json(self):
@@ -364,6 +374,11 @@ def main():
         help="xlsx file containing LIK weights",
         default="data/lik_weights.xlsx",  # ToDo: Automate downlaod of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/erhebungen/lik/warenkorb.assetdetail.21484892.html
     )
+    parser.add_argument(
+        "--lik_evolution",
+        help="xlsx file containing LIK evolution over time",
+        default="data/lik_evolution.xlsx",  # ToDo: Automate downlaod of .xlsx file fromttps://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
+    )
 
     parser.add_argument(
         "--json",
@@ -373,7 +388,9 @@ def main():
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
-    inflation_tracker = InflationTracker(source_lik=args.lik_weights)
+    inflation_tracker = InflationTracker(
+        source_lik_weights=args.lik_weights, source_lik_evolution=args.lik_evolution
+    )
     if not args.json:
         inflation_tracker.show()
         sys.exit(app.exec_())

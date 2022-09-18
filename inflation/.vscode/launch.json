@@ -9,7 +9,9 @@
       "cwd": "${workspaceRoot}",
       "args": [
         "--lik_weights",
-        "data/lik_weights.xlsx"
+        "data/lik_weights.xlsx",
+        "--lik_evolution",
+        "data/lik_evolution.xlsx"
       ],
       "console": "integratedTerminal"
     },
