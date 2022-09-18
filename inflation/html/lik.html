@@ -76,7 +76,7 @@
         let dropdown = document.getElementById("category-dropdown");
         dropdown.length = 0;
         dropdown.selectedIndex = 0;
-        const url = 'https://127.0.0.1/storage_json_inflation/category_lik/categories.json';
+        const url = 'https://192.168.187.229/storage_json_inflation/category_lik/categories.json';
         function updateCategory() {
             const category_current = category.options[category.selectedIndex].value;
             console.log("category_current", category_current);
@@ -90,6 +90,7 @@
         request.open('GET', url, true);
 
         request.onload = function () {
+            console.log("Got data")
             if (request.status === 200) {
                 const data = JSON.parse(request.responseText);
                 let option;
