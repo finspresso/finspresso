@@ -49,8 +49,54 @@ class MplCanvas(FigureCanvasQTAgg):
         super(MplCanvas, self).__init__(fig)
 
 
-class LIK(QtGui.QWidget):
-    def __init__(self, lik_weight_source, lik_evolution_source):
+class LIK(QtGui.QTabWidget):
+    def __init__(self, source_lik_weights="", source_lik_evolution=""):
+        super().__init__()
+        self.setGeometry(100, 10, 900, 1200)
+        self.lik_weights = LIKWeights(source_lik_weights)
+        self.lik_evolution = LIKEvolution(source_lik_evolution)
+        self.addTab(self.lik_evolution, "Evolution")
+        self.addTab(self.lik_weights, "Weights")
+
+
+class LIKEvolution(QtGui.QWidget):
+    def __init__(self, lik_evolution_source):
+        QtGui.QWidget.__init__(self)
+        self.main_layout = QtGui.QVBoxLayout()
+        self.setLayout(self.main_layout)
+        self.get_lik_evolution_data(lik_evolution_source)
+        self.evolution_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
+        self.update_evolution_chart()
+        self.main_layout.addWidget(self.evolution_chart_canvas)
+
+    def get_lik_evolution_data(self, source_file):
+        logger.info("Loading %s...", source_file)
+        df_raw = pd.read_excel(source_file)
+        self.df_lik_evolution = pd.DataFrame(
+            index=df_raw.iloc[422:434, 5],
+            columns=df_raw.iloc[2, 14:],
+            data=df_raw.iloc[422:434, 14:].values,
+        )
+
+    def update_evolution_chart(self):
+        selected_category = "Total"
+        color = "blue"
+        x = self.df_lik_evolution.columns
+        y = self.df_lik_evolution.loc[selected_category].values
+        self.evolution_chart_canvas.axes.cla()
+        self.evolution_chart_canvas.axes.plot(
+            x, y, color=color, label=selected_category
+        )
+        # self.evolution_chart_canvas.axes.set_xticks(x, rotation=45)
+        # self.evolution_chart_canvas.axes.set_xticklabels(
+        #     self.evolution_chart_canvas.axes.get_xticks(), rotation=80
+        # )
+        self.evolution_chart_canvas.axes.grid()
+        self.evolution_chart_canvas.draw()
+
+
+class LIKWeights(QtGui.QWidget):
+    def __init__(self, lik_weight_source):
         QtGui.QWidget.__init__(self)
         self.trans = QtCore.QTranslator(self)
         if self.trans.load("translations/inflation.en.qm"):
@@ -90,7 +136,6 @@ class LIK(QtGui.QWidget):
             level_col="Nr. ",
             create_level_col=True,
         )
-        self.get_lik_evolution_data(lik_evolution_source)
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
         self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
@@ -255,11 +300,6 @@ class LIK(QtGui.QWidget):
         df.index = df.index.map(self.remove_empty_spaces)
 
         return df
-
-    def get_lik_evolution_data(self, source_file):
-        logger.info("Loading %s...", source_file)
-        df_raw = pd.read_excel(source_file)
-        print(df_raw)
 
     @staticmethod
     def store_var_to_json(variable_to_store, file_name):
