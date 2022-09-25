@@ -52,17 +52,19 @@ class MplCanvas(FigureCanvasQTAgg):
 
 
 class LIK(QtGui.QTabWidget):
-    def __init__(self, source_lik_weights="", source_lik_evolution=""):
+    def __init__(
+        self, source_lik_weights="", source_lik_evolution="", languageChanged=None
+    ):
         super().__init__()
         self.setGeometry(100, 10, 900, 1200)
-        self.lik_weights = LIKWeights(source_lik_weights)
-        self.lik_evolution = LIKEvolution(source_lik_evolution)
+        self.lik_weights = LIKWeights(source_lik_weights, languageChanged)
+        self.lik_evolution = LIKEvolution(source_lik_evolution, languageChanged)
         self.addTab(self.lik_evolution, "Evolution")
         self.addTab(self.lik_weights, "Weights")
 
 
 class LIKEvolution(QtGui.QWidget):
-    def __init__(self, lik_evolution_source):
+    def __init__(self, lik_evolution_source, languageChanged):
         QtGui.QWidget.__init__(self)
         self.main_layout = QtGui.QVBoxLayout()
         self.setLayout(self.main_layout)
@@ -111,8 +113,9 @@ class LIKEvolution(QtGui.QWidget):
 
 
 class LIKWeights(QtGui.QWidget):
-    def __init__(self, lik_weight_source):
+    def __init__(self, lik_weight_source, languageChanged):
         QtGui.QWidget.__init__(self)
+        languageChanged.connect(self.update_language)
         self.main_layout = QtGui.QVBoxLayout()
 
         self.setLayout(self.main_layout)
@@ -150,19 +153,18 @@ class LIKWeights(QtGui.QWidget):
         )
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
+        self.current_language = "German"
         self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.category_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.create_year_combobox(
             sorted(self.lik_dict.keys(), reverse=True), current_year
         )
-        self.create_language_combobox(["German", "English"], "German")
         self.create_pie_chart_colors()
-        self.update_pie_chart(current_year)
+        self.update_pie_chart()
         self.create_category_combobox(self.lik_df.index, self.lik_df.index[0])
         self.update_category_chart()
         self.top_layout = QtGui.QFormLayout()
         self.top_layout.addRow("Year", self.year_cb)
-        self.top_layout.addRow("Language", self.language_cb)
         self.main_layout.addLayout(self.top_layout)
         self.main_layout.addWidget(self.pie_chart_canvas)
         self.bottom_layout = QtGui.QFormLayout()
@@ -170,18 +172,17 @@ class LIKWeights(QtGui.QWidget):
         self.main_layout.addLayout(self.bottom_layout)
         self.main_layout.addWidget(self.category_chart_canvas)
 
+    def update_language(self, language):
+        if self.current_language != language:
+            self.current_language = language
+            self.translate_lik_df()
+            self.update_pie_chart()
+
     def create_year_combobox(self, cb_list, current_text):
         self.year_cb = QtGui.QComboBox()
         self.year_cb.addItems(cb_list)
         self.year_cb.currentTextChanged.connect(self.update_pie_chart)
         self.year_cb.setCurrentText(current_text)
-
-    def create_language_combobox(self, cb_list, current_text):
-        self.language_cb = QtGui.QComboBox()
-        self.language_cb.addItems(cb_list)
-        self.language_cb.currentTextChanged.connect(self.translate_lik_df)
-        self.language_cb.currentTextChanged.connect(self.update_pie_chart)
-        self.language_cb.setCurrentText(current_text)
 
     def create_category_combobox(self, cb_list, current_text):
         self.category_cb = QtGui.QComboBox()
@@ -190,7 +191,7 @@ class LIKWeights(QtGui.QWidget):
         self.category_cb.setCurrentText(current_text)
 
     def translate_lik_df(self):
-        selected_language = str(self.language_cb.currentText())
+        selected_language = self.current_language
         self.lik_df.index = self.translate_labels(
             self.lik_df_orginal_index, language=selected_language
         )
@@ -227,9 +228,9 @@ class LIKWeights(QtGui.QWidget):
         rng = np.random.default_rng(12345)
         self.pie_chart_colors = rng.uniform(0, 1, (self.lik_df.shape[0], 3))
 
-    def update_pie_chart(self, text):
+    def update_pie_chart(self):
         selected_year = str(self.year_cb.currentText())
-        selected_language = str(self.language_cb.currentText())
+        selected_language = self.current_language
         self.current_pie_data = self.lik_dict[selected_year]
         self.pie_chart_canvas.axes.cla()
         sizes = self.current_pie_data.values
@@ -401,10 +402,16 @@ class LIKWeights(QtGui.QWidget):
 
 
 class InflationTracker(QtGui.QTabWidget):
-    def __init__(self, parent=None, source_lik_weights="", source_lik_evolution=""):
+    def __init__(
+        self,
+        parent=None,
+        source_lik_weights="",
+        source_lik_evolution="",
+        languageChanged=None,
+    ):
         super(InflationTracker, self).__init__(parent)
         self.setGeometry(100, 10, 900, 1200)
-        self.lik = LIK(source_lik_weights, source_lik_evolution)
+        self.lik = LIK(source_lik_weights, source_lik_evolution, languageChanged)
         self.addTab(self.lik, "LIK")
 
     def store_data_to_json(self):
@@ -421,6 +428,50 @@ def setup_translation():
     global trans
     if trans.load("translations/inflation.en.qm"):
         QtGui.QApplication.instance().installTranslator(trans)
+
+
+class MainWindow(QtGui.QMainWindow):
+    """Main Window."""
+
+    languageChanged = QtCore.pyqtSignal(str)
+
+    def __init__(self, source_lik_weights="", source_lik_evolution=""):
+        super().__init__()
+
+        inflation_tracker = InflationTracker(
+            source_lik_weights=source_lik_weights,
+            source_lik_evolution=source_lik_evolution,
+            languageChanged=self.languageChanged,
+        )
+        self.currentLanguage = "German"
+        self.setWindowTitle("Inflation tracker")
+        self.setGeometry(100, 10, 950, 1250)
+        self.setCentralWidget(inflation_tracker)
+        self._createMenuBar()
+
+    def _createMenuBar(self):
+        menuBar = self.menuBar()
+        languageMenu = QtGui.QMenu("&Language", self)
+        selectLanguageMenu = languageMenu.addMenu("&Select")
+        self.selectEnglishAction = QtGui.QAction("English", self)
+        self.selectEnglishAction.triggered.connect(self._changeToEnglish)
+        self.selectGermanAction = QtGui.QAction("German", self)
+        self.selectGermanAction.triggered.connect(self._changeToGerman)
+        selectLanguageMenu.addAction(self.selectEnglishAction)
+        selectLanguageMenu.addAction(self.selectGermanAction)
+        menuBar.addMenu(languageMenu)
+
+    def _changeToEnglish(self):
+        if self.currentLanguage != "English":
+            self.currentLanguage = "English"
+            logger.info("Change current language to English")
+            self.languageChanged.emit(self.currentLanguage)
+
+    def _changeToGerman(self):
+        if self.currentLanguage != "German":
+            self.currentLanguage = "German"
+            logger.info("Change current language to German")
+            self.languageChanged.emit(self.currentLanguage)
 
 
 def main():
@@ -445,17 +496,18 @@ def main():
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
     setup_translation()
-    inflation_tracker = InflationTracker(
+    main_window = MainWindow(
         source_lik_weights=args.lik_weights, source_lik_evolution=args.lik_evolution
     )
     if not args.json:
-        inflation_tracker.show()
+        main_window.show()
         sys.exit(app.exec_())
     else:
-        inflation_tracker.store_data_to_json()
+        main_window.inflation_tracker.store_data_to_json()
 
 
 if __name__ == "__main__":
     main()
 
 # Next: make comparison which category grew the most https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
+# Make the language a global setting
