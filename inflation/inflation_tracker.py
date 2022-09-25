@@ -53,18 +53,18 @@ class MplCanvas(FigureCanvasQTAgg):
 
 class LIK(QtGui.QTabWidget):
     def __init__(
-        self, source_lik_weights="", source_lik_evolution="", languageChanged=None
+        self, source_lik_weights="", source_lik_evolution="", language_changed=None
     ):
         super().__init__()
         self.setGeometry(100, 10, 900, 1200)
-        self.lik_weights = LIKWeights(source_lik_weights, languageChanged)
-        self.lik_evolution = LIKEvolution(source_lik_evolution, languageChanged)
+        self.lik_weights = LIKWeights(source_lik_weights, language_changed)
+        self.lik_evolution = LIKEvolution(source_lik_evolution, language_changed)
         self.addTab(self.lik_evolution, "Evolution")
         self.addTab(self.lik_weights, "Weights")
 
 
 class LIKEvolution(QtGui.QWidget):
-    def __init__(self, lik_evolution_source, languageChanged):
+    def __init__(self, lik_evolution_source, language_changed):
         QtGui.QWidget.__init__(self)
         self.main_layout = QtGui.QVBoxLayout()
         self.setLayout(self.main_layout)
@@ -113,9 +113,9 @@ class LIKEvolution(QtGui.QWidget):
 
 
 class LIKWeights(QtGui.QWidget):
-    def __init__(self, lik_weight_source, languageChanged):
+    def __init__(self, lik_weight_source, language_changed):
         QtGui.QWidget.__init__(self)
-        languageChanged.connect(self.update_language)
+        language_changed.connect(self.update_language)
         self.main_layout = QtGui.QVBoxLayout()
 
         self.setLayout(self.main_layout)
@@ -407,11 +407,11 @@ class InflationTracker(QtGui.QTabWidget):
         parent=None,
         source_lik_weights="",
         source_lik_evolution="",
-        languageChanged=None,
+        language_changed=None,
     ):
         super(InflationTracker, self).__init__(parent)
         self.setGeometry(100, 10, 900, 1200)
-        self.lik = LIK(source_lik_weights, source_lik_evolution, languageChanged)
+        self.lik = LIK(source_lik_weights, source_lik_evolution, language_changed)
         self.addTab(self.lik, "LIK")
 
     def store_data_to_json(self):
@@ -433,7 +433,7 @@ def setup_translation():
 class MainWindow(QtGui.QMainWindow):
     """Main Window."""
 
-    languageChanged = QtCore.pyqtSignal(str)
+    language_changed = QtCore.pyqtSignal(str)
 
     def __init__(self, source_lik_weights="", source_lik_evolution=""):
         super().__init__()
@@ -441,7 +441,7 @@ class MainWindow(QtGui.QMainWindow):
         inflation_tracker = InflationTracker(
             source_lik_weights=source_lik_weights,
             source_lik_evolution=source_lik_evolution,
-            languageChanged=self.languageChanged,
+            language_changed=self.language_changed,
         )
         self.currentLanguage = "German"
         self.setWindowTitle("Inflation tracker")
@@ -465,13 +465,13 @@ class MainWindow(QtGui.QMainWindow):
         if self.currentLanguage != "English":
             self.currentLanguage = "English"
             logger.info("Change current language to English")
-            self.languageChanged.emit(self.currentLanguage)
+            self.language_changed.emit(self.currentLanguage)
 
     def _changeToGerman(self):
         if self.currentLanguage != "German":
             self.currentLanguage = "German"
             logger.info("Change current language to German")
-            self.languageChanged.emit(self.currentLanguage)
+            self.language_changed.emit(self.currentLanguage)
 
 
 def main():
@@ -510,4 +510,4 @@ if __name__ == "__main__":
     main()
 
 # Next: make comparison which category grew the most https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
-# Make the language a global setting
+# Add tick to language that is currently active in menu bar and then add categories to evolution plot
