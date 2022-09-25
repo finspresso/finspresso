@@ -18,6 +18,8 @@ coloredlogs.install()
 logger = logging.getLogger("portfolio_tracker")
 logging.basicConfig(level=logging.DEBUG)
 
+trans = QtCore.QTranslator()
+
 
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Nahrungsmittel und alkoholfreie Getränke")
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Alkoholische Getränke und Tabak")
@@ -111,9 +113,6 @@ class LIKEvolution(QtGui.QWidget):
 class LIKWeights(QtGui.QWidget):
     def __init__(self, lik_weight_source):
         QtGui.QWidget.__init__(self)
-        self.trans = QtCore.QTranslator(self)
-        if self.trans.load("translations/inflation.en.qm"):
-            QtGui.QApplication.instance().installTranslator(self.trans)
         self.main_layout = QtGui.QVBoxLayout()
 
         self.setLayout(self.main_layout)
@@ -252,16 +251,10 @@ class LIKWeights(QtGui.QWidget):
     def translate_labels(self, labels, language="English"):
         labels_translated = labels
         if language == "English":
-            labels_translated = [self.get_translation(word) for word in labels]
+            labels_translated = [
+                qt_translate("get_translation", word) for word in labels
+            ]
         return labels_translated
-
-    @staticmethod
-    def qt_translate(context, word):
-        return QtCore.QCoreApplication.translate(context, word)
-
-    def get_translation(self, word):
-        word_translated = self.qt_translate("get_translation", word)
-        return word_translated
 
     def get_weights(self, df, level, year):
         weights = df[df["Level"] == level].loc[:, year]
@@ -420,6 +413,16 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik.store_categories_to_json()
 
 
+def qt_translate(context, word):
+    return QtCore.QCoreApplication.translate(context, word)
+
+
+def setup_translation():
+    global trans
+    if trans.load("translations/inflation.en.qm"):
+        QtGui.QApplication.instance().installTranslator(trans)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -441,6 +444,7 @@ def main():
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
+    setup_translation()
     inflation_tracker = InflationTracker(
         source_lik_weights=args.lik_weights, source_lik_evolution=args.lik_evolution
     )
