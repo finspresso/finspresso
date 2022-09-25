@@ -67,16 +67,29 @@ class LIKEvolution(QtGui.QWidget):
         self.get_lik_evolution_data(lik_evolution_source)
         self.evolution_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.update_evolution_chart()
+        self.create_category_combobox_evolution(
+            self.df_lik_evolution.index, self.df_lik_evolution.index[0]
+        )
+        self.main_layout.addWidget(self.category_cb_evolution)
         self.main_layout.addWidget(self.evolution_chart_canvas)
 
     def get_lik_evolution_data(self, source_file):
         logger.info("Loading %s...", source_file)
         df_raw = pd.read_excel(source_file)
+        category_names = [name.lstrip() for name in df_raw.iloc[422:434, 5]]
         self.df_lik_evolution = pd.DataFrame(
-            index=df_raw.iloc[422:434, 5],
+            index=category_names,
             columns=df_raw.iloc[2, 14:],
             data=df_raw.iloc[422:434, 14:].values,
         )
+
+    def create_category_combobox_evolution(self, cb_list, current_text):
+        self.category_cb_evolution = QtGui.QComboBox()
+        self.category_cb_evolution.addItems(cb_list)
+        self.category_cb_evolution.currentTextChanged.connect(
+            self.update_evolution_chart
+        )
+        self.category_cb_evolution.setCurrentText(current_text)
 
     def update_evolution_chart(self):
         selected_category = "Total"
