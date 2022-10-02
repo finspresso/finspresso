@@ -454,8 +454,12 @@ class MainWindow(QtGui.QMainWindow):
         languageMenu = QtGui.QMenu("&Language", self)
         selectLanguageMenu = languageMenu.addMenu("&Select")
         self.selectEnglishAction = QtGui.QAction("English", self)
+        self.selectEnglishAction.setCheckable(True)
+        self.selectEnglishAction.setChecked(True)
         self.selectEnglishAction.triggered.connect(self._changeToEnglish)
         self.selectGermanAction = QtGui.QAction("German", self)
+        self.selectGermanAction.setCheckable(True)
+        self.selectGermanAction.setChecked(False)
         self.selectGermanAction.triggered.connect(self._changeToGerman)
         selectLanguageMenu.addAction(self.selectEnglishAction)
         selectLanguageMenu.addAction(self.selectGermanAction)
@@ -466,12 +470,16 @@ class MainWindow(QtGui.QMainWindow):
             self.currentLanguage = "English"
             logger.info("Change current language to English")
             self.language_changed.emit(self.currentLanguage)
+            self.selectGermanAction.setChecked(False)
+            self.selectEnglishAction.setChecked(True)
 
     def _changeToGerman(self):
         if self.currentLanguage != "German":
             self.currentLanguage = "German"
             logger.info("Change current language to German")
             self.language_changed.emit(self.currentLanguage)
+            self.selectGermanAction.setChecked(True)
+            self.selectEnglishAction.setChecked(False)
 
 
 def main():
@@ -489,7 +497,7 @@ def main():
 
     parser.add_argument(
         "--json",
-        help="If selected the data will not be visualized but it will store all the relevant tax rates in .json file",
+        help="If selected the data will not be visualized but it will store all the relevant tax rates in .json files",
         action="store_true",
     )
 
