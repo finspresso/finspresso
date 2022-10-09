@@ -1,6 +1,10 @@
 {
   "dividend_history": [
     {
+      "payable_date": "2022-09-27",
+      "distribution per share": 0.6594
+    },
+    {
       "payable_date": "2022-03-29",
       "distribution per share": 0.0631
     },

@@ -44,6 +44,23 @@ NAME_MAPPING_DICT = {
 }
 
 
+def qt_translate(context, word):
+    return QtCore.QCoreApplication.translate(context, word)
+
+
+def setup_translation():
+    global trans
+    if trans.load("translations/inflation.en.qm"):
+        QtGui.QApplication.instance().installTranslator(trans)
+
+
+def translate_labels(labels, language="English"):
+    labels_translated = labels
+    if language == "English":
+        labels_translated = [qt_translate("get_translation", word) for word in labels]
+    return labels_translated
+
+
 class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
@@ -53,19 +70,23 @@ class MplCanvas(FigureCanvasQTAgg):
 
 class LIK(QtGui.QTabWidget):
     def __init__(
-        self, source_lik_weights="", source_lik_evolution="", language_changed=None
+        self,
+        source_lik_weights="",
+        source_lik_evolution="",
+        current_language="",
     ):
         super().__init__()
         self.setGeometry(100, 10, 900, 1200)
-        self.lik_weights = LIKWeights(source_lik_weights, language_changed)
-        self.lik_evolution = LIKEvolution(source_lik_evolution, language_changed)
+        self.lik_weights = LIKWeights(source_lik_weights, current_language)
+        self.lik_evolution = LIKEvolution(source_lik_evolution, current_language)
         self.addTab(self.lik_evolution, "Evolution")
         self.addTab(self.lik_weights, "Weights")
 
 
 class LIKEvolution(QtGui.QWidget):
-    def __init__(self, lik_evolution_source, language_changed):
+    def __init__(self, lik_evolution_source, current_language):
         QtGui.QWidget.__init__(self)
+        self.current_language = current_language
         self.main_layout = QtGui.QVBoxLayout()
         self.setLayout(self.main_layout)
         self.get_lik_evolution_data(lik_evolution_source)
@@ -76,6 +97,27 @@ class LIKEvolution(QtGui.QWidget):
         )
         self.main_layout.addWidget(self.category_cb_evolution)
         self.main_layout.addWidget(self.evolution_chart_canvas)
+
+    def update_language(self, language):
+        if self.current_language != language:
+            self.current_language = language
+            self.translate_lik_evolution_df()
+            logger.info("Updating language")
+
+    def translate_lik_evolution_df(self):
+        selected_language = self.current_language
+        self.df_lik_evolution.index = translate_labels(
+            self.df_lik_evolution.index, language=selected_language
+        )
+        self.update_category_combobox_evolution()
+
+    def update_category_combobox_evolution(self):
+        current_index = self.category_cb_evolution.currentIndex()
+        self.category_cb_evolution.clear()
+        self.category_cb_evolution.addItems(self.df_lik_evolution.index)
+        self.category_cb_evolution.setCurrentText(
+            self.df_lik_evolution.index[current_index]
+        )
 
     def get_lik_evolution_data(self, source_file):
         logger.info("Loading %s...", source_file)
@@ -113,9 +155,8 @@ class LIKEvolution(QtGui.QWidget):
 
 
 class LIKWeights(QtGui.QWidget):
-    def __init__(self, lik_weight_source, language_changed):
+    def __init__(self, lik_weight_source, current_language):
         QtGui.QWidget.__init__(self)
-        language_changed.connect(self.update_language)
         self.main_layout = QtGui.QVBoxLayout()
 
         self.setLayout(self.main_layout)
@@ -153,7 +194,7 @@ class LIKWeights(QtGui.QWidget):
         )
         self.create_lik_dict()
         current_year = str(datetime.datetime.now().year)
-        self.current_language = "German"
+        self.current_language = current_language
         self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.category_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.create_year_combobox(
@@ -192,7 +233,7 @@ class LIKWeights(QtGui.QWidget):
 
     def translate_lik_df(self):
         selected_language = self.current_language
-        self.lik_df.index = self.translate_labels(
+        self.lik_df.index = translate_labels(
             self.lik_df_orginal_index, language=selected_language
         )
         self.update_category_combobox()
@@ -235,7 +276,7 @@ class LIKWeights(QtGui.QWidget):
         self.pie_chart_canvas.axes.cla()
         sizes = self.current_pie_data.values
         labels = self.current_pie_data.index.values
-        labels_translated = self.translate_labels(labels, language=selected_language)
+        labels_translated = translate_labels(labels, language=selected_language)
         self.pie_chart_canvas.axes.pie(
             sizes,
             labels=labels_translated,
@@ -248,14 +289,6 @@ class LIKWeights(QtGui.QWidget):
         self.pie_chart_canvas.axes.set_title("LIK Weights")
         self.pie_chart_canvas.axes.axis("equal")
         self.pie_chart_canvas.draw()
-
-    def translate_labels(self, labels, language="English"):
-        labels_translated = labels
-        if language == "English":
-            labels_translated = [
-                qt_translate("get_translation", word) for word in labels
-            ]
-        return labels_translated
 
     def get_weights(self, df, level, year):
         weights = df[df["Level"] == level].loc[:, year]
@@ -407,27 +440,17 @@ class InflationTracker(QtGui.QTabWidget):
         parent=None,
         source_lik_weights="",
         source_lik_evolution="",
-        language_changed=None,
+        current_language="",
     ):
         super(InflationTracker, self).__init__(parent)
         self.setGeometry(100, 10, 900, 1200)
-        self.lik = LIK(source_lik_weights, source_lik_evolution, language_changed)
+        self.lik = LIK(source_lik_weights, source_lik_evolution, current_language)
         self.addTab(self.lik, "LIK")
 
     def store_data_to_json(self):
         self.lik.store_weights_to_json()
         self.lik.store_color_to_json()
         self.lik.store_categories_to_json()
-
-
-def qt_translate(context, word):
-    return QtCore.QCoreApplication.translate(context, word)
-
-
-def setup_translation():
-    global trans
-    if trans.load("translations/inflation.en.qm"):
-        QtGui.QApplication.instance().installTranslator(trans)
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -438,48 +461,54 @@ class MainWindow(QtGui.QMainWindow):
     def __init__(self, source_lik_weights="", source_lik_evolution=""):
         super().__init__()
 
-        inflation_tracker = InflationTracker(
+        self.current_language = "German"
+        self.inflation_tracker = InflationTracker(
             source_lik_weights=source_lik_weights,
             source_lik_evolution=source_lik_evolution,
-            language_changed=self.language_changed,
+            current_language=self.current_language,
         )
-        self.currentLanguage = "German"
+        self.language_changed.connect(self._update_language)
+
         self.setWindowTitle("Inflation tracker")
         self.setGeometry(100, 10, 950, 1250)
-        self.setCentralWidget(inflation_tracker)
-        self._createMenuBar()
+        self.setCentralWidget(self.inflation_tracker)
+        self._create_menu_bar()
 
-    def _createMenuBar(self):
-        menuBar = self.menuBar()
-        languageMenu = QtGui.QMenu("&Language", self)
-        selectLanguageMenu = languageMenu.addMenu("&Select")
-        self.selectEnglishAction = QtGui.QAction("English", self)
-        self.selectEnglishAction.setCheckable(True)
-        self.selectEnglishAction.setChecked(True)
-        self.selectEnglishAction.triggered.connect(self._changeToEnglish)
-        self.selectGermanAction = QtGui.QAction("German", self)
-        self.selectGermanAction.setCheckable(True)
-        self.selectGermanAction.setChecked(False)
-        self.selectGermanAction.triggered.connect(self._changeToGerman)
-        selectLanguageMenu.addAction(self.selectEnglishAction)
-        selectLanguageMenu.addAction(self.selectGermanAction)
-        menuBar.addMenu(languageMenu)
+    def _update_language(self, language):
+        self.inflation_tracker.lik.lik_weights.update_language(language)
+        self.inflation_tracker.lik.lik_evolution.update_language(language)
 
-    def _changeToEnglish(self):
-        if self.currentLanguage != "English":
-            self.currentLanguage = "English"
+    def _create_menu_bar(self):
+        menu_bar = self.menuBar()
+        language_menu = QtGui.QMenu("&Language", self)
+        select_language_menu = language_menu.addMenu("&Select")
+        self.select_english_action = QtGui.QAction("English", self)
+        self.select_english_action.setCheckable(True)
+        self.select_english_action.setChecked(False)
+        self.select_english_action.triggered.connect(self._create_to_english)
+        self.select_german_action = QtGui.QAction("German", self)
+        self.select_german_action.setCheckable(True)
+        self.select_german_action.setChecked(True)
+        self.select_german_action.triggered.connect(self._change_to_german)
+        select_language_menu.addAction(self.select_english_action)
+        select_language_menu.addAction(self.select_german_action)
+        menu_bar.addMenu(language_menu)
+
+    def _create_to_english(self):
+        if self.current_language != "English":
+            self.current_language = "English"
             logger.info("Change current language to English")
-            self.language_changed.emit(self.currentLanguage)
-            self.selectGermanAction.setChecked(False)
-            self.selectEnglishAction.setChecked(True)
+            self.language_changed.emit(self.current_language)
+            self.select_german_action.setChecked(False)
+            self.select_english_action.setChecked(True)
 
-    def _changeToGerman(self):
-        if self.currentLanguage != "German":
-            self.currentLanguage = "German"
+    def _change_to_german(self):
+        if self.current_language != "German":
+            self.current_language = "German"
             logger.info("Change current language to German")
-            self.language_changed.emit(self.currentLanguage)
-            self.selectGermanAction.setChecked(True)
-            self.selectEnglishAction.setChecked(False)
+            self.language_changed.emit(self.current_language)
+            self.select_german_action.setChecked(True)
+            self.select_english_action.setChecked(False)
 
 
 def main():
