@@ -43,6 +43,33 @@ NAME_MAPPING_DICT = {
     "Erziehung und Unterricht": "Unterricht",
 }
 
+LIK_CATEGORY_LIST = [
+    "Nahrungsmittel und alkoholfreie Getränke",
+    "Alkoholische Getränke und Tabak",
+    "Wohnen und Energie",
+    "Bekleidung und Schuhe",
+    "Hausrat und Haushaltsführung",
+    "Hausrat und laufende Haushaltführung",
+    "Gesundheitspflege",
+    "Verkehr",
+    "Nachrichtenübermittlung",
+    "Freizeit und Kultur",
+    "Unterricht",
+    "Erziehung und Unterricht",
+    "Restaurants und Hotels",
+    "Sonstige Waren und Dienstleistungen",
+    "Total",
+]
+
+
+def create_color_dict(init_value=12345):
+    rng = np.random.default_rng(init_value)
+    colors = rng.uniform(0, 1, (len(LIK_CATEGORY_LIST), 3))
+    color_dict = {
+        LIK_CATEGORY_LIST[i]: colors[i, :] for i in range(len(LIK_CATEGORY_LIST))
+    }
+    return color_dict
+
 
 def qt_translate(context, word):
     return QtCore.QCoreApplication.translate(context, word)
@@ -76,25 +103,31 @@ class LIK(QtGui.QTabWidget):
         current_language="",
     ):
         super().__init__()
+        self.color_dict_lik = create_color_dict()
         self.setGeometry(100, 10, 900, 1200)
-        self.lik_weights = LIKWeights(source_lik_weights, current_language)
-        self.lik_evolution = LIKEvolution(source_lik_evolution, current_language)
+        self.lik_weights = LIKWeights(
+            source_lik_weights, current_language, self.color_dict_lik
+        )
+        self.lik_evolution = LIKEvolution(
+            source_lik_evolution, current_language, self.color_dict_lik
+        )
         self.addTab(self.lik_evolution, "Evolution")
         self.addTab(self.lik_weights, "Weights")
 
 
 class LIKEvolution(QtGui.QWidget):
-    def __init__(self, lik_evolution_source, current_language):
+    def __init__(self, lik_evolution_source, current_language, color_dict_lik):
         QtGui.QWidget.__init__(self)
+        self.color_dict_lik = color_dict_lik
         self.current_language = current_language
         self.main_layout = QtGui.QVBoxLayout()
         self.setLayout(self.main_layout)
         self.get_lik_evolution_data(lik_evolution_source)
         self.evolution_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
-        self.update_evolution_chart()
         self.create_category_combobox_evolution(
             self.df_lik_evolution.index, self.df_lik_evolution.index[0]
         )
+        self.update_evolution_chart()
         self.main_layout.addWidget(self.category_cb_evolution)
         self.main_layout.addWidget(self.evolution_chart_canvas)
 
@@ -106,7 +139,7 @@ class LIKEvolution(QtGui.QWidget):
 
     def translate_lik_evolution_df(self):
         selected_language = self.current_language
-        self.df_lik_evolution.index = translate_labels(
+        self.translated_index = translate_labels(
             self.df_lik_evolution.index, language=selected_language
         )
         self.update_category_combobox_evolution()
@@ -114,10 +147,8 @@ class LIKEvolution(QtGui.QWidget):
     def update_category_combobox_evolution(self):
         current_index = self.category_cb_evolution.currentIndex()
         self.category_cb_evolution.clear()
-        self.category_cb_evolution.addItems(self.df_lik_evolution.index)
-        self.category_cb_evolution.setCurrentText(
-            self.df_lik_evolution.index[current_index]
-        )
+        self.category_cb_evolution.addItems(self.translated_index)
+        self.category_cb_evolution.setCurrentText(self.translated_index[current_index])
 
     def get_lik_evolution_data(self, source_file):
         logger.info("Loading %s...", source_file)
@@ -128,6 +159,7 @@ class LIKEvolution(QtGui.QWidget):
             columns=df_raw.iloc[2, 14:],
             data=df_raw.iloc[422:434, 14:].values,
         )
+        self.translated_index = self.df_lik_evolution.index.values.tolist()
 
     def create_category_combobox_evolution(self, cb_list, current_text):
         self.category_cb_evolution = QtGui.QComboBox()
@@ -138,25 +170,28 @@ class LIKEvolution(QtGui.QWidget):
         self.category_cb_evolution.setCurrentText(current_text)
 
     def update_evolution_chart(self):
-        selected_category = "Total"
-        color = "blue"
-        x = self.df_lik_evolution.columns
-        y = self.df_lik_evolution.loc[selected_category].values
-        self.evolution_chart_canvas.axes.cla()
-        self.evolution_chart_canvas.axes.plot(
-            x, y, color=color, label=selected_category
-        )
-        # self.evolution_chart_canvas.axes.set_xticks(x, rotation=45)
-        # self.evolution_chart_canvas.axes.set_xticklabels(
-        #     self.evolution_chart_canvas.axes.get_xticks(), rotation=80
-        # )
-        self.evolution_chart_canvas.axes.grid()
-        self.evolution_chart_canvas.draw()
+        selected_category = self.category_cb_evolution.currentText()
+        if selected_category != "":
+            idx = self.translated_index.index(selected_category)
+            color = self.color_dict_lik[self.df_lik_evolution.index[idx]]
+            x = self.df_lik_evolution.columns
+            y = self.df_lik_evolution.iloc[idx].values
+            self.evolution_chart_canvas.axes.cla()
+            self.evolution_chart_canvas.axes.plot(
+                x, y, color=color, label=selected_category
+            )
+            # self.evolution_chart_canvas.axes.set_xticks(x, rotation=45)
+            # self.evolution_chart_canvas.axes.set_xticklabels(
+            #     self.evolution_chart_canvas.axes.get_xticks(), rotation=80
+            # )
+            self.evolution_chart_canvas.axes.grid()
+            self.evolution_chart_canvas.draw()
 
 
 class LIKWeights(QtGui.QWidget):
-    def __init__(self, lik_weight_source, current_language):
+    def __init__(self, lik_weight_source, current_language, color_dict_lik):
         QtGui.QWidget.__init__(self)
+        self.color_dict_lik = color_dict_lik
         self.main_layout = QtGui.QVBoxLayout()
 
         self.setLayout(self.main_layout)
@@ -202,7 +237,7 @@ class LIKWeights(QtGui.QWidget):
         )
         self.create_pie_chart_colors()
         self.update_pie_chart()
-        self.create_category_combobox(self.lik_df.index, self.lik_df.index[0])
+        self.create_category_combobox(self.translated_index, self.translated_index[0])
         self.update_category_chart()
         self.top_layout = QtGui.QFormLayout()
         self.top_layout.addRow("Year", self.year_cb)
@@ -233,24 +268,26 @@ class LIKWeights(QtGui.QWidget):
 
     def translate_lik_df(self):
         selected_language = self.current_language
-        self.lik_df.index = translate_labels(
-            self.lik_df_orginal_index, language=selected_language
+        self.translated_index = translate_labels(
+            self.lik_df.index, language=selected_language
         )
         self.update_category_combobox()
 
     def update_category_combobox(self):
         current_index = self.category_cb.currentIndex()
         self.category_cb.clear()
-        self.category_cb.addItems(self.lik_df.index)
-        self.category_cb.setCurrentText(self.lik_df.index[current_index])
+        self.category_cb.addItems(self.translated_index)
+        self.category_cb.setCurrentText(self.translated_index[current_index])
 
     def update_category_chart(self):
         selected_category = self.category_cb.currentText()
         if selected_category != "":
-            current_index = self.category_cb.currentIndex()
-            color = self.pie_chart_colors[current_index]
-            x = self.lik_df.loc[selected_category].index
-            y = self.lik_df.loc[selected_category].values
+            idx = self.translated_index.index(selected_category)
+            # current_index = self.category_cb.currentIndex()
+            color = self.color_dict_lik[self.lik_df.index[idx]]
+            # color = self.pie_chart_colors[current_index]
+            x = self.lik_df.iloc[idx].index
+            y = self.lik_df.iloc[idx].values
             self.category_chart_canvas.axes.cla()
             self.category_chart_canvas.axes.plot(
                 x, y, color=color, label=selected_category
@@ -266,8 +303,9 @@ class LIKWeights(QtGui.QWidget):
             self.category_chart_canvas.draw()
 
     def create_pie_chart_colors(self):
-        rng = np.random.default_rng(12345)
-        self.pie_chart_colors = rng.uniform(0, 1, (self.lik_df.shape[0], 3))
+        self.pie_chart_colors = [
+            self.color_dict_lik[category] for category in self.lik_df.index
+        ]
 
     def update_pie_chart(self):
         selected_year = str(self.year_cb.currentText())
@@ -309,7 +347,7 @@ class LIKWeights(QtGui.QWidget):
                         :, year
                     ]
         self.lik_df = self.lik_df[self.lik_df.columns.sort_values()]
-        self.lik_df_orginal_index = self.lik_df.index
+        self.translated_index = self.lik_df.index.values.tolist()
 
     def get_lik_weight_data(
         self,
