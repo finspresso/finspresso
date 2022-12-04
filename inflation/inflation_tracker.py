@@ -554,12 +554,12 @@ def main():
     parser.add_argument(
         "--lik_weights",
         help="xlsx file containing LIK weights",
-        default="data/lik_weights.xlsx",  # ToDo: Automate downlaod of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/erhebungen/lik/warenkorb.assetdetail.21484892.html
+        default="data/lik_weights.xlsx",  # ToDo: Automate download of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/erhebungen/lik/warenkorb.assetdetail.21484892.html
     )
     parser.add_argument(
         "--lik_evolution",
         help="xlsx file containing LIK evolution over time",
-        default="data/lik_evolution.xlsx",  # ToDo: Automate downlaod of .xlsx file fromttps://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
+        default="data/lik_evolution.xlsx",  # ToDo: Automate download of .xlsx file fromttps://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
     )
 
     parser.add_argument(
@@ -583,6 +583,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+# Next: Viszualize inflation evolvment directly from SQL database e.g. MYSQL. Tutorial here https://dyclassroom.com/chartjs/chartjs-how-to-draw-bar-graph-using-data-from-mysql-table-and-php
+# Next: Install XAMPP according to https://undsgn.com/xampp-tutorial/
 # Next: make comparison which category grew the most https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
-# Add tick to language that is currently active in menu bar and then add categories to evolution plot
+# Next: Make second plot with first level of subcategories. Especially considering health costs very interesting graph. -> Could also be then the post after the next

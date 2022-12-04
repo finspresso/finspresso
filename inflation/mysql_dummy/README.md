@@ -18,7 +18,7 @@ sudo /opt/lampp/manager-linux-x64.run
 - Create a softlink to the `mysql_dummy` folder to the Apache data folder in your XAMPP folder
 
 ```sh
-sudo ln -s $PWD/../mysql_dummy /opt/lampp/projects/
+sudo ln -s $PWD/../mysql_dummy /opt/lampp/htdocs/projects/
 ```
 
 - Check that you can access the files with your browser at address
