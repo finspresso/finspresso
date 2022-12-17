@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: application/json');
 define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
@@ -11,22 +10,29 @@ if($mysqli->connect_error) {
 }
 
 $desired_category = $_GET['q'];
-$query = sprintf("SELECT id, $desired_category FROM inflation_lik ORDER BY id");
+$query = sprintf("SELECT id, $desired_category, year FROM inflation_lik");
 $result = $mysqli->query($query);
-//loop through the returned data
+
+echo "<table>";
+echo "<tr>";
+  echo "<th> ID </th>";
+  echo "<th> Value </th>";
+  echo "<th> Year </th>";
+echo "</tr>";
 $data = array();
 foreach ($result as $row) {
 	$data[] = $row;
+  echo "<tr>";
+    echo "<td>" . $row["id"] . "</td>";
+    echo "<td>" . $row[$desired_category] . "</td>";
+    echo "<td>" . $row["year"] . "</td>";
+  echo "</tr>";
 }
+echo "</table>";
 
 //free memory associated with result
 $result->close();
 
 //close connection
 $mysqli->close();
-
-//now print the data
-//echo "This is data.php"
-//print("Hello world!");
-print json_encode($data);
 ?>
