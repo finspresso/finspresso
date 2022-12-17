@@ -10,7 +10,7 @@ if($mysqli->connect_error) {
 }
 
 $desired_category = $_GET['q'];
-$query = sprintf("SELECT id, health, year FROM inflation_lik");
+$query = sprintf("SELECT id, $desired_category, year FROM inflation_lik");
 //$query = "SELECT $desired_categoryi, year FROM inflation_lik";
 //execute query
 $result = $mysqli->query($query);
@@ -25,7 +25,7 @@ foreach ($result as $row) {
 	$data[] = $row;
   echo "<tr>";
     echo "<td>" . $row["id"] . "</td>";
-    echo "<td>" . $row["health"] . "</td>";
+    echo "<td>" . $row[$desired_category] . "</td>";
     echo "<td>" . $row["year"] . "</td>";
   echo "</tr>";
 }
