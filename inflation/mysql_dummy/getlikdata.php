@@ -11,7 +11,7 @@ if($mysqli->connect_error) {
 }
 
 $desired_category = $_GET['q'];
-$query = sprintf("SELECT id, $desired_category FROM inflation_lik ORDER BY id");
+$query = sprintf("SELECT id, $desired_category, year FROM inflation_lik ORDER BY year");
 $result = $mysqli->query($query);
 //loop through the returned data
 $data = array();
