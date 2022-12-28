@@ -9,12 +9,20 @@ logger = logging.getLogger("db_interace")
 
 
 class DBInterface:
-    def __init__(self):
+    def __init__(self, print_all_tables=False):
         self.engine = create_engine("mysql://root:@127.0.0.1/dummy", echo=True)
-        # print(self.engine.table_names())
+        self.conn = self.engine.connect()
+        if print_all_tables:
+            self.print_all_tables()
 
     def create_table(self, meta):
         meta.create_all(self.engine)
+
+    def print_all_tables(self):
+        meta = MetaData()
+        meta.reflect(bind=self.engine)
+        for table_name in meta.tables.keys():
+            logger.info("Found table %s", table_name)
 
 
 def setup_logger(config_path):
@@ -26,12 +34,13 @@ def setup_logger(config_path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--create_test_table", action="store_true")
+    parser.add_argument("--print_all_tables", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
-    logger.info("test")
-    db_interface = DBInterface()
+    db_interface = DBInterface(print_all_tables=args.print_all_tables)
     if args.create_test_table:
         create_test_table(db_interface)
+    insert_test_record(db_interface)
 
 
 def create_test_table(db_interface):
@@ -45,6 +54,14 @@ def create_test_table(db_interface):
         Column("lastname", String(12)),
     )
     db_interface.create_table(meta)
+
+
+def insert_test_record(db_interface, test_table_name="test_table"):
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    ins = meta.tables[test_table_name].insert().values(name="John", lastname="Doe")
+    print(ins)
+    db_interface.conn.execute(ins)
 
 
 if __name__ == "__main__":

@@ -27,6 +27,28 @@
         "--json"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Create test table (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--create_test_table"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Print all tables (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--print_all_tables"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
