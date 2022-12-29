@@ -90,6 +90,28 @@
         "--text_test"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Test alias (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--test_alias"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Test update (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--test_update"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }

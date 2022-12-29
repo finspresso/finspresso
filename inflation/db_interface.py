@@ -3,7 +3,7 @@ import json
 import logging.config
 
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData
-from sqlalchemy.sql import text
+from sqlalchemy.sql import text, select
 
 logger = logging.getLogger("db_interace")
 # logger.setLevel(logging.DEBUG)
@@ -39,6 +39,8 @@ def main():
     parser.add_argument("--insert_test_records", action="store_true")
     parser.add_argument("--select_test_records", action="store_true")
     parser.add_argument("--text_test", action="store_true")
+    parser.add_argument("--test_alias", action="store_true")
+    parser.add_argument("--test_update", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
     db_interface = DBInterface(print_all_tables=args.print_all_tables)
@@ -51,6 +53,10 @@ def main():
         select_test_records(db_interface)
     if args.text_test:
         text_test_call(db_interface)
+    if args.test_alias:
+        test_aliases(db_interface)
+    if args.test_update:
+        test_update(db_interface)
 
 
 def create_test_table(db_interface):
@@ -111,6 +117,30 @@ def text_test_call(db_interface, test_table_name="test_table"):
     result = db_interface.conn.execute(text_call, x="I", y="K")
     for row in result:
         logger.info(row)
+
+
+def test_aliases(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_aliases on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name].alias("a")
+    result = db_interface.conn.execute(
+        select([test_table]).where(test_table.c.id > 2)
+    ).fetchall()
+    logger.info(result)
+
+
+def test_update(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_update on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    test_call = (
+        test_table.update().where(test_table.c.name == "John").values(name="Jane")
+    )
+    db_interface.conn.execute(test_call)
+    result = db_interface.conn.execute(test_table.select()).fetchall()
+    logger.info(result)
 
 
 if __name__ == "__main__":
