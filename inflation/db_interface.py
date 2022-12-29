@@ -3,6 +3,7 @@ import json
 import logging.config
 
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData
+from sqlalchemy.sql import text
 
 logger = logging.getLogger("db_interace")
 # logger.setLevel(logging.DEBUG)
@@ -37,6 +38,7 @@ def main():
     parser.add_argument("--print_all_tables", action="store_true")
     parser.add_argument("--insert_test_records", action="store_true")
     parser.add_argument("--select_test_records", action="store_true")
+    parser.add_argument("--text_test", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
     db_interface = DBInterface(print_all_tables=args.print_all_tables)
@@ -47,6 +49,8 @@ def main():
         insert_multiple_test_records(db_interface)
     if args.select_test_records:
         select_test_records(db_interface)
+    if args.text_test:
+        text_test_call(db_interface)
 
 
 def create_test_table(db_interface):
@@ -93,6 +97,18 @@ def select_test_records(db_interface, test_table_name="test_table", id_where=2):
     result = db_interface.conn.execute(
         test_table.select().where(test_table.c.id > id_where)
     )
+    for row in result:
+        logger.info(row)
+
+
+def text_test_call(db_interface, test_table_name="test_table"):
+    logger.info("Calling text_test_call on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    text_call = text(
+        f"select {test_table_name}.name, {test_table_name}.lastname from {test_table_name} where {test_table_name}.name between :x and :y"
+    )
+    result = db_interface.conn.execute(text_call, x="I", y="K")
     for row in result:
         logger.info(row)
 
