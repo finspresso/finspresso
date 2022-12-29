@@ -36,6 +36,7 @@ def main():
     parser.add_argument("--create_test_table", action="store_true")
     parser.add_argument("--print_all_tables", action="store_true")
     parser.add_argument("--insert_test_records", action="store_true")
+    parser.add_argument("--select_test_records", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
     db_interface = DBInterface(print_all_tables=args.print_all_tables)
@@ -44,6 +45,8 @@ def main():
     if args.insert_test_records:
         insert_test_record(db_interface)
         insert_multiple_test_records(db_interface)
+    if args.select_test_records:
+        select_test_records(db_interface)
 
 
 def create_test_table(db_interface):
@@ -80,6 +83,18 @@ def insert_multiple_test_records(db_interface, test_table_name="test_table"):
             {"name": "Priya", "lastname": "Rajhans"},
         ],
     )
+
+
+def select_test_records(db_interface, test_table_name="test_table", id_where=2):
+    logger.info("Calling select_test_records on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    result = db_interface.conn.execute(
+        test_table.select().where(test_table.c.id > id_where)
+    )
+    for row in result:
+        logger.info(row)
 
 
 if __name__ == "__main__":

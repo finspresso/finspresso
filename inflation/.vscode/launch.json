@@ -60,6 +60,17 @@
         "--insert_test_records"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Select test records (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--select_test_records"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
