@@ -49,6 +49,17 @@
         "--print_all_tables"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Insert test records (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--insert_test_records"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }

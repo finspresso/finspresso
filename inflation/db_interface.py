@@ -35,12 +35,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--create_test_table", action="store_true")
     parser.add_argument("--print_all_tables", action="store_true")
+    parser.add_argument("--insert_test_records", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
     db_interface = DBInterface(print_all_tables=args.print_all_tables)
     if args.create_test_table:
         create_test_table(db_interface)
-    insert_test_record(db_interface)
+    if args.insert_test_records:
+        insert_test_record(db_interface)
+        insert_multiple_test_records(db_interface)
 
 
 def create_test_table(db_interface):
@@ -57,11 +60,26 @@ def create_test_table(db_interface):
 
 
 def insert_test_record(db_interface, test_table_name="test_table"):
+    logger.info("Calling insert_test_record on table %s", test_table_name)
     meta = MetaData()
     meta.reflect(bind=db_interface.engine)
     ins = meta.tables[test_table_name].insert().values(name="John", lastname="Doe")
-    print(ins)
     db_interface.conn.execute(ins)
+
+
+def insert_multiple_test_records(db_interface, test_table_name="test_table"):
+    logger.info("Calling insert_multiple_test_records on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    db_interface.conn.execute(
+        meta.tables[test_table_name].insert(),
+        [
+            {"name": "Rajiv", "lastname": "Khanna"},
+            {"name": "Komal", "lastname": "Bhandari"},
+            {"name": "Abdul", "lastname": "Sattar"},
+            {"name": "Priya", "lastname": "Rajhans"},
+        ],
+    )
 
 
 if __name__ == "__main__":
