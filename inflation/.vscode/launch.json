@@ -112,6 +112,17 @@
         "--test_update"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Test delete (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--test_delete"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }

@@ -41,6 +41,7 @@ def main():
     parser.add_argument("--text_test", action="store_true")
     parser.add_argument("--test_alias", action="store_true")
     parser.add_argument("--test_update", action="store_true")
+    parser.add_argument("--test_delete", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
     db_interface = DBInterface(print_all_tables=args.print_all_tables)
@@ -57,6 +58,8 @@ def main():
         test_aliases(db_interface)
     if args.test_update:
         test_update(db_interface)
+    if args.test_delete:
+        test_delete(db_interface)
 
 
 def create_test_table(db_interface):
@@ -84,8 +87,9 @@ def insert_multiple_test_records(db_interface, test_table_name="test_table"):
     logger.info("Calling insert_multiple_test_records on table %s", test_table_name)
     meta = MetaData()
     meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
     db_interface.conn.execute(
-        meta.tables[test_table_name].insert(),
+        test_table.insert(),
         [
             {"name": "Rajiv", "lastname": "Khanna"},
             {"name": "Komal", "lastname": "Bhandari"},
@@ -93,6 +97,8 @@ def insert_multiple_test_records(db_interface, test_table_name="test_table"):
             {"name": "Priya", "lastname": "Rajhans"},
         ],
     )
+    result = db_interface.conn.execute(test_table.select()).fetchall()
+    logger.info(result)
 
 
 def select_test_records(db_interface, test_table_name="test_table", id_where=2):
@@ -130,6 +136,17 @@ def test_aliases(db_interface, test_table_name="test_table"):
     logger.info(result)
 
 
+def test_delete(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_delete on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    sql_call = test_table.delete().where(test_table.c.id > 2)
+    db_interface.conn.execute(sql_call)
+    result = db_interface.conn.execute(test_table.select()).fetchall()
+    logger.info(result)
+
+
 def test_update(db_interface, test_table_name="test_table"):
     logger.info("Calling test_update on table %s", test_table_name)
     meta = MetaData()
@@ -145,3 +162,5 @@ def test_update(db_interface, test_table_name="test_table"):
 
 if __name__ == "__main__":
     main()
+
+# Next: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_using_delete_expression.html
