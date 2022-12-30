@@ -2,7 +2,15 @@ import argparse
 import json
 import logging.config
 
-from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData
+from sqlalchemy import (
+    create_engine,
+    Table,
+    Column,
+    Integer,
+    String,
+    MetaData,
+    ForeignKey,
+)
 from sqlalchemy.sql import text, select
 
 logger = logging.getLogger("db_interace")
@@ -63,7 +71,7 @@ def main():
 
 
 def create_test_table(db_interface):
-    logger.info("Creating test table")
+    logger.info("Creating test tables")
     meta = MetaData()
     Table(
         "test_table",
@@ -72,7 +80,15 @@ def create_test_table(db_interface):
         Column("name", String(12)),
         Column("lastname", String(12)),
     )
-    db_interface.create_table(meta)
+    Table(
+        "test_table_addresses",
+        meta,
+        Column("id", Integer, primary_key=True),
+        Column("st_id", Integer, ForeignKey("test_table.id")),
+        Column("postal_add", String(40)),
+        Column("email_add", String(25)),
+    )
+    meta.create_all(db_interface.engine)
 
 
 def insert_test_record(db_interface, test_table_name="test_table"):
@@ -97,6 +113,38 @@ def insert_multiple_test_records(db_interface, test_table_name="test_table"):
             {"name": "Priya", "lastname": "Rajhans"},
         ],
     )
+
+    test_table_addresses = meta.tables[test_table_name + "_addresses"]
+    db_interface.conn.execute(
+        test_table_addresses.insert(),
+        [
+            {
+                "st_id": 1,
+                "postal_add": "Shivajinagar Pune",
+                "email_add": "ravi@gmail.com",
+            },
+            {
+                "st_id": 1,
+                "postal_add": "ChurchGate Mumbai",
+                "email_add": "kapoor@gmail.com",
+            },
+            {
+                "st_id": 3,
+                "postal_add": "Jubilee Hills Hyderabad",
+                "email_add": "komal@gmail.com",
+            },
+            {
+                "st_id": 5,
+                "postal_add": "MG Road Bangaluru",
+                "email_add": "as@yahoo.com",
+            },
+            {
+                "st_id": 2,
+                "postal_add": "Cannought Place new Delhi",
+                "email_add": "admin@khanna.com",
+            },
+        ],
+    )
     result = db_interface.conn.execute(test_table.select()).fetchall()
     logger.info(result)
 
@@ -109,6 +157,13 @@ def select_test_records(db_interface, test_table_name="test_table", id_where=2):
     result = db_interface.conn.execute(
         test_table.select().where(test_table.c.id > id_where)
     )
+    for row in result:
+        logger.info(row)
+    test_table_addresses = meta.tables[test_table_name + "_addresses"]
+    sql_call = select([test_table, test_table_addresses]).where(
+        test_table.c.id == test_table_addresses.c.st_id
+    )
+    result = db_interface.conn.execute(sql_call)
     for row in result:
         logger.info(row)
 
@@ -163,4 +218,4 @@ def test_update(db_interface, test_table_name="test_table"):
 if __name__ == "__main__":
     main()
 
-# Next: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_using_delete_expression.html
+# Next: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_using_multiple_tables.htm
