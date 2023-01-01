@@ -123,6 +123,17 @@
         "--test_delete"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Test join (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--test_join"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }

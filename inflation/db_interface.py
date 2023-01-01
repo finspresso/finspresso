@@ -40,36 +40,6 @@ def setup_logger(config_path):
         logging.config.dictConfig(config)
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--create_test_table", action="store_true")
-    parser.add_argument("--print_all_tables", action="store_true")
-    parser.add_argument("--insert_test_records", action="store_true")
-    parser.add_argument("--select_test_records", action="store_true")
-    parser.add_argument("--text_test", action="store_true")
-    parser.add_argument("--test_alias", action="store_true")
-    parser.add_argument("--test_update", action="store_true")
-    parser.add_argument("--test_delete", action="store_true")
-    args = parser.parse_args()
-    setup_logger("logging_config.json")
-    db_interface = DBInterface(print_all_tables=args.print_all_tables)
-    if args.create_test_table:
-        create_test_table(db_interface)
-    if args.insert_test_records:
-        insert_test_record(db_interface)
-        insert_multiple_test_records(db_interface)
-    if args.select_test_records:
-        select_test_records(db_interface)
-    if args.text_test:
-        text_test_call(db_interface)
-    if args.test_alias:
-        test_aliases(db_interface)
-    if args.test_update:
-        test_update(db_interface)
-    if args.test_delete:
-        test_delete(db_interface)
-
-
 def create_test_table(db_interface):
     logger.info("Creating test tables")
     meta = MetaData()
@@ -215,7 +185,76 @@ def test_update(db_interface, test_table_name="test_table"):
     logger.info(result)
 
 
+def test_update_multiple(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_update on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    test_table_addresses = meta.tables[test_table_name + "_addresses"]
+    sql_call = (
+        test_table.delete()
+        .where(test_table.c.id == test_table_addresses.c.id)
+        .where(test_table_addresses.c.email_add.startswith("kapoor%"))
+    )
+    db_interface.conn.execute(sql_call)
+    result = db_interface.conn.execute(test_table.select()).fetchall()
+    logger.info(result)
+
+
+def test_join(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_join on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    test_table_addresses = meta.tables[test_table_name + "_addresses"]
+    join_sql_call = test_table.join(
+        test_table_addresses,
+        test_table.c.id == test_table_addresses.c.st_id,
+        isouter=True,
+    )
+    sql_call = select(
+        [test_table.c.name, test_table.c.lastname, test_table_addresses.c.postal_add]
+    ).select_from(join_sql_call)
+    result = db_interface.conn.execute(sql_call)
+    for row in result:
+        logger.info(row)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--create_test_table", action="store_true")
+    parser.add_argument("--print_all_tables", action="store_true")
+    parser.add_argument("--insert_test_records", action="store_true")
+    parser.add_argument("--select_test_records", action="store_true")
+    parser.add_argument("--text_test", action="store_true")
+    parser.add_argument("--test_alias", action="store_true")
+    parser.add_argument("--test_update", action="store_true")
+    parser.add_argument("--test_delete", action="store_true")
+    parser.add_argument("--test_join", action="store_true")
+    args = parser.parse_args()
+    setup_logger("logging_config.json")
+    db_interface = DBInterface(print_all_tables=args.print_all_tables)
+    if args.create_test_table:
+        create_test_table(db_interface)
+    if args.insert_test_records:
+        insert_test_record(db_interface)
+        insert_multiple_test_records(db_interface)
+    if args.select_test_records:
+        select_test_records(db_interface)
+    if args.text_test:
+        text_test_call(db_interface)
+    if args.test_alias:
+        test_aliases(db_interface)
+    if args.test_update:
+        test_update(db_interface)
+        test_update_multiple(db_interface)
+    if args.test_delete:
+        test_delete(db_interface)
+    if args.test_join:
+        test_join(db_interface)
+
+
 if __name__ == "__main__":
     main()
 
-# Next: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_using_multiple_tables.htm
+# Next: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_using_multiple_table_updates.htm
