@@ -134,6 +134,17 @@
         "--test_join"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Test conjunctive (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--test_conjunctive"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }

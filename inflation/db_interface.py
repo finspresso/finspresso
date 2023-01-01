@@ -10,11 +10,12 @@ from sqlalchemy import (
     String,
     MetaData,
     ForeignKey,
+    and_,
+    or_,
 )
 from sqlalchemy.sql import text, select
 
 logger = logging.getLogger("db_interace")
-# logger.setLevel(logging.DEBUG)
 
 
 class DBInterface:
@@ -220,6 +221,32 @@ def test_join(db_interface, test_table_name="test_table"):
         logger.info(row)
 
 
+def test_and_conjunctive(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_and_conjunctive on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    sql_call = select([test_table]).where(
+        and_(test_table.c.name == "Hans", test_table.c.id < 12)
+    )
+    result = db_interface.conn.execute(sql_call)
+    for row in result:
+        logger.info(row)
+
+
+def test_or_conjunctive(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_or_conjunctive on table %s", test_table_name)
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    sql_call = select([test_table]).where(
+        or_(test_table.c.name == "Hans", test_table.c.id < 1)
+    )
+    result = db_interface.conn.execute(sql_call)
+    for row in result:
+        logger.info(row)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--create_test_table", action="store_true")
@@ -231,6 +258,7 @@ def main():
     parser.add_argument("--test_update", action="store_true")
     parser.add_argument("--test_delete", action="store_true")
     parser.add_argument("--test_join", action="store_true")
+    parser.add_argument("--test_conjunctive", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
     db_interface = DBInterface(print_all_tables=args.print_all_tables)
@@ -252,9 +280,12 @@ def main():
         test_delete(db_interface)
     if args.test_join:
         test_join(db_interface)
+    if args.test_conjunctive:
+        test_and_conjunctive(db_interface)
+        test_or_conjunctive(db_interface)
 
 
 if __name__ == "__main__":
     main()
 
-# Next: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_using_multiple_table_updates.htm
+# Next: https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_core_using_conjunctions.htm
