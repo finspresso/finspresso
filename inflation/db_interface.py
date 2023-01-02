@@ -13,7 +13,7 @@ from sqlalchemy import (
     and_,
     or_,
 )
-from sqlalchemy.sql import text, select
+from sqlalchemy.sql import text, select, func
 
 logger = logging.getLogger("db_interace")
 
@@ -247,6 +247,18 @@ def test_or_conjunctive(db_interface, test_table_name="test_table"):
         logger.info(row)
 
 
+def test_sqlalchemy_func(db_interface, test_table_name="test_table"):
+    logger.info("Calling test_sqlalchemy_func on table %s", test_table_name)
+    result = db_interface.conn.execute(select([func.now()]))
+    logger.info(result.fetchone())
+    meta = MetaData()
+    meta.reflect(bind=db_interface.engine)
+    test_table = meta.tables[test_table_name]
+    sql_call = select([func.count(test_table.c.id)])
+    result = db_interface.conn.execute(sql_call)
+    logger.info(result.fetchone())
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--create_test_table", action="store_true")
@@ -259,6 +271,7 @@ def main():
     parser.add_argument("--test_delete", action="store_true")
     parser.add_argument("--test_join", action="store_true")
     parser.add_argument("--test_conjunctive", action="store_true")
+    parser.add_argument("--test_sqlalchemy_func", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
     db_interface = DBInterface(print_all_tables=args.print_all_tables)
@@ -283,6 +296,8 @@ def main():
     if args.test_conjunctive:
         test_and_conjunctive(db_interface)
         test_or_conjunctive(db_interface)
+    if args.test_sqlalchemy_func:
+        test_sqlalchemy_func(db_interface)
 
 
 if __name__ == "__main__":

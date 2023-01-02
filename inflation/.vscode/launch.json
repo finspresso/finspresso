@@ -145,6 +145,17 @@
         "--test_conjunctive"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Test sqlalchemy func (MYSQL)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/db_interface.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--test_sqlalchemy_func"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
