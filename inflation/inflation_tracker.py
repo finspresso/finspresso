@@ -13,7 +13,7 @@ from pyqtgraph.Qt import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
-from db_interface import DBInterface, test_and_conjunctive
+from db_interface import DBInterface
 
 # Global settings
 coloredlogs.install()
@@ -494,7 +494,14 @@ class InflationTracker(QtGui.QTabWidget):
 
     def create_sql_table(self, sql_db_name):
         self.db_interface = DBInterface(db_name=sql_db_name)
-        test_and_conjunctive(self.db_interface)
+        df = pd.DataFrame(columns=self.lik.lik_evolution.df_lik_evolution.index)
+        logger.info(self.lik.lik_evolution.df_lik_evolution.index)
+        df.to_sql(
+            "lik_evolution",
+            con=self.db_interface.conn,
+            if_exists="fail",
+            chunksize=1000,
+        )
 
 
 class MainWindow(QtGui.QMainWindow):
