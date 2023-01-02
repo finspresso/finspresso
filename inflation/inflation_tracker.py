@@ -189,6 +189,42 @@ class LIKEvolution(QtGui.QWidget):
             self.evolution_chart_canvas.axes.grid()
             self.evolution_chart_canvas.draw()
 
+    def create_sql_table(
+        self, sql_db_name, table_name="lik_evolution", language="English"
+    ):
+        translated_labels = translate_labels(
+            self.df_lik_evolution.index, language=language
+        )
+        self.db_interface = DBInterface(db_name=sql_db_name)
+        columns = ["Date"]
+        columns.extend(translated_labels)
+        df = pd.DataFrame(columns=columns)
+        logger.info("Creating SQL table %s in db %s", table_name, sql_db_name)
+        df.to_sql(
+            table_name,
+            con=self.db_interface.conn,
+            if_exists="fail",
+            chunksize=1000,
+        )
+
+    def upload_data_to_sql_table(
+        self, sql_db_name, table_name="lik_evolution", language="English"
+    ):
+        translated_labels = translate_labels(
+            self.df_lik_evolution.index, language=language
+        )
+        self.db_interface = DBInterface(db_name=sql_db_name)
+        df = self.df_lik_evolution.transpose()
+        df.columns = translated_labels
+        df.reset_index(names="Date", inplace=True)
+        logger.info("Uploading data to SQL table %s in db %s", table_name, sql_db_name)
+        df.to_sql(
+            table_name,
+            con=self.db_interface.conn,
+            if_exists="append",
+            chunksize=1000,
+        )
+
 
 class LIKWeights(QtGui.QWidget):
     def __init__(self, lik_weight_source, current_language, color_dict_lik):
@@ -492,30 +528,11 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik.store_color_to_json()
         self.lik.store_categories_to_json()
 
-    def create_sql_table(self, sql_db_name, table_name="lik_evolution"):
-        self.db_interface = DBInterface(db_name=sql_db_name)
-        columns = ["Date"]
-        columns.extend(self.lik.lik_evolution.df_lik_evolution.index)
-        df = pd.DataFrame(columns=columns)
-        logger.info("Creating SQL table %s in db %s", table_name, sql_db_name)
-        df.to_sql(
-            table_name,
-            con=self.db_interface.conn,
-            if_exists="fail",
-            chunksize=1000,
-        )
+    def create_sql_tables(self, sql_db_name):
+        self.lik.lik_evolution.create_sql_table(sql_db_name)
 
-    def upload_data_to_sql_table(self, sql_db_name, table_name="lik_evolution"):
-        self.db_interface = DBInterface(db_name=sql_db_name)
-        df = self.lik.lik_evolution.df_lik_evolution.transpose()
-        df.reset_index(names="Date", inplace=True)
-        logger.info("Uploading data to SQL table %s in db %s", table_name, sql_db_name)
-        df.to_sql(
-            table_name,
-            con=self.db_interface.conn,
-            if_exists="append",
-            chunksize=1000,
-        )
+    def upload_data_to_sql_tables(self, sql_db_name):
+        self.lik.lik_evolution.upload_data_to_sql_table(sql_db_name)
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -618,9 +635,9 @@ def main():
         main_window.show()
         sys.exit(app.exec_())
     if args.create_sql_table:
-        main_window.inflation_tracker.create_sql_table(args.sql_db_name)
+        main_window.inflation_tracker.create_sql_tables(args.sql_db_name)
     if args.upload_to_sql:
-        main_window.inflation_tracker.upload_data_to_sql_table(args.sql_db_name)
+        main_window.inflation_tracker.upload_data_to_sql_tables(args.sql_db_name)
     if args.json:
         main_window.inflation_tracker.store_data_to_json()
 
