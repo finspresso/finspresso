@@ -46,6 +46,23 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Upload data to SQL table",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--lik_weights",
+        "data/lik_weights.xlsx",
+        "--lik_evolution",
+        "data/lik_evolution.xlsx",
+        "--sql_db_name",
+        "dummy",
+        "--upload_to_sql"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Call db_interface (MYSQL)",
       "type": "python",
       "request": "launch",
