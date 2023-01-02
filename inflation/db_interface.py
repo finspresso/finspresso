@@ -19,8 +19,8 @@ logger = logging.getLogger("db_interace")
 
 
 class DBInterface:
-    def __init__(self, print_all_tables=False):
-        self.engine = create_engine("mysql://root:@127.0.0.1/dummy", echo=True)
+    def __init__(self, db_name="dummy", print_all_tables=False):
+        self.engine = create_engine("mysql://root:@127.0.0.1/" + db_name, echo=True)
         self.conn = self.engine.connect()
         if print_all_tables:
             self.print_all_tables()

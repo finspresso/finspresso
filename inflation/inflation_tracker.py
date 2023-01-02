@@ -13,6 +13,8 @@ from pyqtgraph.Qt import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
+from db_interface import DBInterface, test_and_conjunctive
+
 # Global settings
 coloredlogs.install()
 logger = logging.getLogger("portfolio_tracker")
@@ -228,7 +230,7 @@ class LIKWeights(QtGui.QWidget):
             create_level_col=True,
         )
         self.create_lik_dict()
-        current_year = str(datetime.datetime.now().year)
+        current_year = "2022"  # str(datetime.datetime.now().year)
         self.current_language = current_language
         self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.category_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
@@ -490,6 +492,10 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik.store_color_to_json()
         self.lik.store_categories_to_json()
 
+    def create_sql_table(self, sql_db_name):
+        self.db_interface = DBInterface(db_name=sql_db_name)
+        test_and_conjunctive(self.db_interface)
+
 
 class MainWindow(QtGui.QMainWindow):
     """Main Window."""
@@ -567,6 +573,14 @@ def main():
         help="If selected the data will not be visualized but it will store all the relevant tax rates in .json files",
         action="store_true",
     )
+    parser.add_argument(
+        "--create_sql_table",
+        help="If selected new empty table is created with given name",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--sql_db_name", help="The desired name of the SQL database", default="dummy"
+    )
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
@@ -574,9 +588,11 @@ def main():
     main_window = MainWindow(
         source_lik_weights=args.lik_weights, source_lik_evolution=args.lik_evolution
     )
-    if not args.json:
+    if not args.json and not args.create_sql_table:
         main_window.show()
         sys.exit(app.exec_())
+    if args.create_sql_table:
+        main_window.inflation_tracker.create_sql_table(args.sql_db_name)
     else:
         main_window.inflation_tracker.store_data_to_json()
 
