@@ -142,7 +142,7 @@ class LIKEvolution(QtGui.QWidget):
     def translate_lik_evolution_df(self):
         selected_language = self.current_language
         self.translated_index = translate_labels(
-            self.df_lik_evolution.index, language=selected_language
+            self.df_lik_evolution.index.values.tolist(), language=selected_language
         )
         self.update_category_combobox_evolution()
 
@@ -193,7 +193,7 @@ class LIKEvolution(QtGui.QWidget):
         self, sql_db_name, table_name="lik_evolution", language="English"
     ):
         translated_labels = translate_labels(
-            self.df_lik_evolution.index, language=language
+            self.df_lik_evolution.index.values.tolist(), language=language
         )
         self.db_interface = DBInterface(db_name=sql_db_name)
         columns = ["Date"]
@@ -211,7 +211,7 @@ class LIKEvolution(QtGui.QWidget):
         self, sql_db_name, table_name="lik_evolution", language="English"
     ):
         translated_labels = translate_labels(
-            self.df_lik_evolution.index, language=language
+            self.df_lik_evolution.index.values.tolist(), language=language
         )
         self.db_interface = DBInterface(db_name=sql_db_name)
         df = self.df_lik_evolution.transpose()
@@ -266,6 +266,7 @@ class LIKWeights(QtGui.QWidget):
             create_level_col=True,
         )
         self.create_lik_dict()
+        self.create_pie_chart_colors()
         current_year = "2022"  # str(datetime.datetime.now().year)
         self.current_language = current_language
         self.pie_chart_canvas = MplCanvas(self, width=5, height=4, dpi=100)
@@ -273,7 +274,6 @@ class LIKWeights(QtGui.QWidget):
         self.create_year_combobox(
             sorted(self.lik_dict.keys(), reverse=True), current_year
         )
-        self.create_pie_chart_colors()
         self.update_pie_chart()
         self.create_category_combobox(self.translated_index, self.translated_index[0])
         self.update_category_chart()
@@ -307,7 +307,7 @@ class LIKWeights(QtGui.QWidget):
     def translate_lik_df(self):
         selected_language = self.current_language
         self.translated_index = translate_labels(
-            self.lik_df.index, language=selected_language
+            self.lik_df.index.values.tolist(), language=selected_language
         )
         self.update_category_combobox()
 
@@ -351,7 +351,7 @@ class LIKWeights(QtGui.QWidget):
         self.current_pie_data = self.lik_dict[selected_year]
         self.pie_chart_canvas.axes.cla()
         sizes = self.current_pie_data.values
-        labels = self.current_pie_data.index.values
+        labels = self.current_pie_data.index.values.tolist()
         labels_translated = translate_labels(labels, language=selected_language)
         self.pie_chart_canvas.axes.pie(
             sizes,
