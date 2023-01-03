@@ -160,6 +160,7 @@ class LIKEvolution(QtGui.QWidget):
             index=category_names,
             columns=df_raw.iloc[2, 14:],
             data=df_raw.iloc[422:434, 14:].values,
+            dtype="float64",
         )
         self.translated_index = self.df_lik_evolution.index.values.tolist()
 
@@ -196,15 +197,21 @@ class LIKEvolution(QtGui.QWidget):
             self.df_lik_evolution.index.values.tolist(), language=language
         )
         self.db_interface = DBInterface(db_name=sql_db_name)
-        columns = ["Date"]
-        columns.extend(translated_labels)
-        df = pd.DataFrame(columns=columns)
+
+        df = self.df_lik_evolution.transpose()
+        df.columns = translated_labels
+        df.reset_index(names="Date", inplace=True)
+        df["Date"] = df["Date"].map(lambda x: x.date()).astype("datetime64[ns]")
+        type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
+        df = pd.DataFrame(columns=df.columns)
         logger.info("Creating SQL table %s in db %s", table_name, sql_db_name)
         df.to_sql(
             table_name,
             con=self.db_interface.conn,
             if_exists="fail",
             chunksize=1000,
+            dtype=type_dict,
+            index_label="id",
         )
 
     def upload_data_to_sql_table(
@@ -217,12 +224,16 @@ class LIKEvolution(QtGui.QWidget):
         df = self.df_lik_evolution.transpose()
         df.columns = translated_labels
         df.reset_index(names="Date", inplace=True)
+        df["Date"] = df["Date"].map(lambda x: x.date()).astype("datetime64[ns]")
+        type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
         logger.info("Uploading data to SQL table %s in db %s", table_name, sql_db_name)
         df.to_sql(
             table_name,
             con=self.db_interface.conn,
             if_exists="append",
             chunksize=1000,
+            dtype=type_dict,
+            index_label="id",
         )
 
 

@@ -12,6 +12,10 @@ from sqlalchemy import (
     ForeignKey,
     and_,
     or_,
+    BigInteger,
+    Text,
+    Float,
+    Date,
 )
 from sqlalchemy.sql import text, select, func
 
@@ -33,6 +37,21 @@ class DBInterface:
         meta.reflect(bind=self.engine)
         for table_name in meta.tables.keys():
             logger.info("Found table %s", table_name)
+
+    @classmethod
+    def infer_sqlalchemy_datatypes(cls, df):
+        type_dict = {}
+        for column in df.columns:
+            type_dict[column] = Text
+            if df[column].dtype == "int64":
+                type_dict[column] = BigInteger
+            elif df[column].dtype == "float64":
+                type_dict[column] = Float
+            elif df[column].dtype == "datetime64[ns]":
+                type_dict[column] = Date
+            elif df[column].dtype == "<M8[ns]":
+                type_dict[column] = Date
+        return type_dict
 
 
 def setup_logger(config_path):

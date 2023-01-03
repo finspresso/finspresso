@@ -43,16 +43,16 @@
                 method: "GET",
                 success: function (data) {
                     console.log(data);
-                    var years = [];
+                    var dates = [];
                     var values = [];
                     for (var i in data) {
-                        years.push(data[i]["year"]);
+                        dates.push(data[i]["Date"]);
                         values.push(data[i][category]);
                     }
-                    console.log(years);
+                    console.log(dates);
                     console.log(values);
                     var chartdata = {
-                        labels: years,
+                        labels: dates,
                         datasets: [
                             {
                                 label: category,
