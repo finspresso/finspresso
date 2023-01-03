@@ -55,11 +55,11 @@
                         labels: years,
                         datasets: [
                             {
-                                label: "Inflation" + category,
+                                label: category,
                                 backgroundColor: "rgba(200, 200, 200, 0.75)",
-                                borderColor: "rgba(200, 200, 200, 0.75)",
+                                borderColor: "rgba(255, 0, 0, 0.75)",
                                 hoverBackgroundColor: "rgba(200, 200, 200, 1)",
-                                hoverBorderColor: "rgba(200, 200, 200, 1)",
+                                //hoverBorderColor: "rgba(200, 200, 200, 1)",
                                 data: values,
                             },
                         ],
@@ -68,7 +68,7 @@
                     var ctx = $("#mycanvas");
 
                     var barGraph = new Chart(ctx, {
-                        type: "bar",
+                        type: "line",
                         data: chartdata,
                     });
                 },
@@ -77,48 +77,6 @@
                 },
             });
         };
-        function showCategory(str) {
-            if (str == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-            }
-            const xhttp = new XMLHttpRequest();
-            xhttp.onload = function (data) {
-                console.log("in onload");
-                console.log(data)
-                console.log(data.target.responseText);
-                var player = [];
-                var score = [];
-                for (var i in data) {
-                    console.log(data[i].year)
-                    //player.push("Player " + data[i].playerid);
-                    //score.push(data[i].score);
-                }
-
-                //     var chartdata = {
-                //         labels: player,
-                //         datasets: [
-                //             {
-                //                 label: "Player Score",
-                //                 backgroundColor: "rgba(200, 200, 200, 0.75)",
-                //                 borderColor: "rgba(200, 200, 200, 0.75)",
-                //                 hoverBackgroundColor: "rgba(200, 200, 200, 1)",
-                //                 hoverBorderColor: "rgba(200, 200, 200, 1)",
-                //                 data: score,
-                //             },
-                //         ],
-                //     };
-
-                //     var ctx = $("#mycanvas");
-
-                //     var barGraph = new Chart(ctx, {
-                //         type: "bar",
-                //         data: chartdata,
-                //     });
-            }
-            xhttp.open("GET", "getlikdata.php?q=" + str);
-            xhttp.send();
-        }
     </script>
 </body>
 
