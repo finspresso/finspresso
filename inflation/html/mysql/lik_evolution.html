@@ -22,7 +22,7 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/Chart.min.js"></script>
 
-    <h2>The LIK evolution dummy example</h2>
+    <h2>LIK evolution graph</h2>
 
     <form action="">
         <select name="Category" onchange="loadData(this.value)">
@@ -38,7 +38,6 @@
     <script>
         var loadData = function (category) {
             $.ajax({
-                //url: "get_lik_evolution_data.php?q=" + category,
                 url: "get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
