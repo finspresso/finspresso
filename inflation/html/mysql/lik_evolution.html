@@ -25,8 +25,7 @@
     <h2>LIK evolution graph</h2>
 
     <form action="">
-        <select name="Category" onchange="loadData(this.value)">
-            <option value="">Select a category:</option>
+        <select id="category-dropdown" name="Category" onchange="loadData(this.value)">
             <option value="Total">Total</option>
             <option value="Staples and non-alcoholic beverages">Staples and non-alcoholic beverages</option>
             <option value="Living and energy">Living and energy</option>
@@ -76,6 +75,12 @@
                 },
             });
         };
+    </script>
+    <script>
+        const category = document.getElementById('category-dropdown')
+        const category_current = category.options[category.selectedIndex].value;
+        console.log(category_current);
+        loadData(category_current);
     </script>
 </body>
 
