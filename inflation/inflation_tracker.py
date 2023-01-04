@@ -73,6 +73,26 @@ def create_color_dict(init_value=12345):
     return color_dict
 
 
+def create_RGB_dict_javascript(color_dict_rgb):
+    color_dict_rgb_javascript = dict()
+
+    for category, color in color_dict_rgb.items():
+        if category not in color_dict_rgb_javascript.keys():
+            javascript_string = (
+                "rgb("
+                + str(floor(255 * color[0]))
+                + ","
+                + str(floor(255 * color[1]))
+                + ","
+                + str(floor(255 * color[2]))
+                + ")"
+            )
+            color_dict_rgb_javascript[
+                NAME_MAPPING_DICT.get(category, category)
+            ] = javascript_string
+    return color_dict_rgb_javascript
+
+
 def qt_translate(context, word):
     return QtCore.QCoreApplication.translate(context, word)
 
@@ -115,6 +135,27 @@ class LIK(QtGui.QTabWidget):
         )
         self.addTab(self.lik_evolution, "Evolution")
         self.addTab(self.lik_weights, "Weights")
+
+    def upload_lik_colors_to_mysql(
+        self, sql_db_name, table_name="lik_colors", language="English"
+    ):
+        color_dict_rgb_javascript = create_RGB_dict_javascript(self.color_dict_lik)
+        translated_labels = translate_labels(
+            list(color_dict_rgb_javascript.keys()), language=language
+        )
+        self.db_interface = DBInterface(db_name=sql_db_name)
+        df = pd.DataFrame(color_dict_rgb_javascript, index=[0])
+        df.columns = translated_labels
+        type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
+        logger.info("Uploading data to SQL table %s in db %s", table_name, sql_db_name)
+        df.to_sql(
+            table_name,
+            con=self.db_interface.conn,
+            if_exists="append",
+            chunksize=1000,
+            dtype=type_dict,
+            index_label="id",
+        )
 
 
 class LIKEvolution(QtGui.QWidget):
@@ -633,6 +674,11 @@ def main():
         action="store_true",
     )
     parser.add_argument(
+        "--create_lik_color_sql_table",
+        help="If selected, creates sql table containing the javascript colorscodes",
+        action="store_true",
+    )
+    parser.add_argument(
         "--sql_db_name", help="The desired name of the SQL database", default="dummy"
     )
 
@@ -642,7 +688,12 @@ def main():
     main_window = MainWindow(
         source_lik_weights=args.lik_weights, source_lik_evolution=args.lik_evolution
     )
-    if not args.json and not args.create_sql_table and not args.upload_to_sql:
+    if (
+        not args.json
+        and not args.create_sql_table
+        and not args.upload_to_sql
+        and not args.create_lik_color_sql_table
+    ):
         main_window.show()
         sys.exit(app.exec_())
     if args.create_sql_table:
@@ -651,6 +702,8 @@ def main():
         main_window.inflation_tracker.upload_data_to_sql_tables(args.sql_db_name)
     if args.json:
         main_window.inflation_tracker.store_data_to_json()
+    if args.create_lik_color_sql_table:
+        main_window.inflation_tracker.lik.upload_lik_colors_to_mysql(args.sql_db_name)
 
 
 if __name__ == "__main__":
