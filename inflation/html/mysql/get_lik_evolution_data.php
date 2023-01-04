@@ -5,13 +5,11 @@ define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'dummy');
 $mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-//$mysqli = new mysqli("servername", "username", "password", "dbname");
 if($mysqli->connect_error) {
   exit('Could not connect');
 }
 
 $desired_category = $_GET['q'];
-//$desired_category = '`Living and energy`';
 $query = sprintf("SELECT $desired_category, Date FROM lik_evolution ORDER BY Date");
 $result = $mysqli->query($query);
 //loop through the returned data
@@ -25,9 +23,5 @@ $result->close();
 
 //close connection
 $mysqli->close();
-
-//now print the data
-//echo "This is data.php"
-//print("Hello world!");
 print json_encode($data);
 ?>

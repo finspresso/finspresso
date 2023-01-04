@@ -26,13 +26,9 @@
 
     <form action="">
         <select id="category-dropdown" name="Category" onchange="loadData(this.value)">
-            <option value="Total">Total</option>
-            <option value="Staples and non-alcoholic beverages">Staples and non-alcoholic beverages</option>
-            <option value="Living and energy">Living and energy</option>
         </select>
     </form>
     <br>
-    <div id="txtHint">Customer info will be listed here...</div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script>
         var loadData = function (category) {
@@ -40,15 +36,13 @@
                 url: "get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
-                    console.log(data);
+                    var category_dropdown = document.getElementById('category-dropdown');
                     var dates = [];
                     var values = [];
                     for (var i in data) {
                         dates.push(data[i]["Date"]);
                         values.push(data[i][category]);
                     }
-                    console.log(dates);
-                    console.log(values);
                     var chartdata = {
                         labels: dates,
                         datasets: [
@@ -77,10 +71,35 @@
         };
     </script>
     <script>
-        const category = document.getElementById('category-dropdown')
-        const category_current = category.options[category.selectedIndex].value;
-        console.log(category_current);
-        loadData(category_current);
+        var loadCategories = function () {
+            $.ajax({
+                url: "get_lik_categories.php",
+                method: "GET",
+                success: function (data) {
+
+                    let dropdown = document.getElementById("category-dropdown");
+                    let option;
+                    for (var i in data) {
+                        if (data[i]["Type"] == "float") {
+                            option = document.createElement('option');
+                            option.text = data[i]["Field"];
+                            option.value = data[i]["Field"];
+                            dropdown.add(option);
+                        }
+                    }
+                    dropdown.selectedIndex = 0;
+                    const category_current = dropdown.options[dropdown.selectedIndex].value;
+                    console.log(category_current);
+                    loadData(category_current);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+    </script>
+    <script>
+        loadCategories();
     </script>
 </body>
 
