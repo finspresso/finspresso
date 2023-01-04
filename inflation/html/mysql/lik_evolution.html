@@ -18,6 +18,10 @@
         <canvas id="mycanvas"></canvas>
     </div>
 
+    <div class="chartBox">
+        <canvas id="chartCategoryLIK"></canvas>
+    </div>
+
     <!-- javascript -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/Chart.min.js"></script>
@@ -36,7 +40,8 @@
                 url: "get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
-                    var category_dropdown = document.getElementById('category-dropdown');
+                    console.log("loading data");
+                    var category_dropdown = document.getElementById("category-dropdown");
                     var dates = [];
                     var values = [];
                     for (var i in data) {
@@ -56,13 +61,16 @@
                             },
                         ],
                     };
+                    console.log("updating chart data");
+                    console.log(chartCategoryLIK);
+                    chartCategoryLIK.config.data = chartdata;
+                    chartCategoryLIK.update();
+                    // var ctx = $("#mycanvas");
 
-                    var ctx = $("#mycanvas");
-
-                    var barGraph = new Chart(ctx, {
-                        type: "line",
-                        data: chartdata,
-                    });
+                    // var barGraph = new Chart(ctx, {
+                    //     type: "line",
+                    //     data: chartdata,
+                    // });
                 },
                 error: function (data) {
                     console.log(data);
@@ -99,6 +107,23 @@
         };
     </script>
     <script>
+        const labels = [1, 2];
+        let dataInit = {
+            labels: labels,
+            datasets: [{
+                label: 'My First Dataset',
+                data: [65, 59, 80],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+        const configInit = {
+            type: 'line',
+            data: dataInit,
+        };
+        var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
+        var chartCategoryLIK = new Chart(ctxCategory, configInit);
         loadCategories();
     </script>
 </body>
