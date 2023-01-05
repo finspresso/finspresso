@@ -3,21 +3,22 @@
 <html>
 
 <head>
-    <title>ChartJS - BarGraph</title>
+    <title>LIK evolution</title>
     <style type="text/css">
         #chart-container {
             width: 640px;
             height: auto;
         }
     </style>
+
+    <style type="text/css">
+        .chartBox {
+            width: 1200px;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div id="chart-container">
-        <canvas id="mycanvas"></canvas>
-    </div>
-
     <div class="chartBox">
         <canvas id="chartCategoryLIK"></canvas>
     </div>
@@ -40,7 +41,6 @@
                 url: "get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
-                    console.log("loading data");
                     var category_dropdown = document.getElementById("category-dropdown");
                     var dates = [];
                     var values = [];
@@ -53,24 +53,13 @@
                         datasets: [
                             {
                                 label: category,
-                                backgroundColor: "rgba(200, 200, 200, 0.75)",
-                                borderColor: "rgba(255, 0, 0, 0.75)",
-                                hoverBackgroundColor: "rgba(200, 200, 200, 1)",
-                                //hoverBorderColor: "rgba(200, 200, 200, 1)",
+                                borderColor: lik_colors[category],
                                 data: values,
                             },
                         ],
                     };
-                    console.log("updating chart data");
-                    console.log(chartCategoryLIK);
                     chartCategoryLIK.config.data = chartdata;
                     chartCategoryLIK.update();
-                    // var ctx = $("#mycanvas");
-
-                    // var barGraph = new Chart(ctx, {
-                    //     type: "line",
-                    //     data: chartdata,
-                    // });
                 },
                 error: function (data) {
                     console.log(data);
@@ -97,8 +86,20 @@
                     }
                     dropdown.selectedIndex = 0;
                     const category_current = dropdown.options[dropdown.selectedIndex].value;
-                    console.log(category_current);
                     loadData(category_current);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+
+        var loadColors = function () {
+            $.ajax({
+                url: "get_lik_colors.php",
+                method: "GET",
+                success: function (data) {
+                    lik_colors = data[0];
                 },
                 error: function (data) {
                     console.log(data);
@@ -107,6 +108,7 @@
         };
     </script>
     <script>
+        var lik_colors = [];
         const labels = [1, 2];
         let dataInit = {
             labels: labels,
@@ -124,6 +126,7 @@
         };
         var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
         var chartCategoryLIK = new Chart(ctxCategory, configInit);
+        loadColors();
         loadCategories();
     </script>
 </body>
