@@ -137,17 +137,21 @@ class LIK(QtGui.QTabWidget):
         self.addTab(self.lik_weights, "Weights")
 
     def upload_lik_colors_to_mysql(
-        self, sql_db_name, table_name="lik_colors", language="English"
+        self, credentials, table_name="lik_colors", language="English"
     ):
         color_dict_rgb_javascript = create_RGB_dict_javascript(self.color_dict_lik)
         translated_labels = translate_labels(
             list(color_dict_rgb_javascript.keys()), language=language
         )
-        self.db_interface = DBInterface(db_name=sql_db_name)
+        self.db_interface = DBInterface(credentials=credentials)
         df = pd.DataFrame(color_dict_rgb_javascript, index=[0])
         df.columns = translated_labels
         type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
-        logger.info("Uploading data to SQL table %s in db %s", table_name, sql_db_name)
+        logger.info(
+            "Uploading data to SQL table %s in db %s",
+            table_name,
+            credentials["db_name"],
+        )
         df.to_sql(
             table_name,
             con=self.db_interface.conn,
@@ -232,12 +236,12 @@ class LIKEvolution(QtGui.QWidget):
             self.evolution_chart_canvas.draw()
 
     def create_sql_table(
-        self, sql_db_name, table_name="lik_evolution", language="English"
+        self, credentials, table_name="lik_evolution", language="English"
     ):
         translated_labels = translate_labels(
             self.df_lik_evolution.index.values.tolist(), language=language
         )
-        self.db_interface = DBInterface(db_name=sql_db_name)
+        self.db_interface = DBInterface(credentials=credentials)
 
         df = self.df_lik_evolution.transpose()
         df.columns = translated_labels
@@ -245,7 +249,9 @@ class LIKEvolution(QtGui.QWidget):
         df["Date"] = df["Date"].map(lambda x: x.date()).astype("datetime64[ns]")
         type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
         df = pd.DataFrame(columns=df.columns)
-        logger.info("Creating SQL table %s in db %s", table_name, sql_db_name)
+        logger.info(
+            "Creating SQL table %s in db %s", table_name, credentials["db_name"]
+        )
         df.to_sql(
             table_name,
             con=self.db_interface.conn,
@@ -256,18 +262,22 @@ class LIKEvolution(QtGui.QWidget):
         )
 
     def upload_data_to_sql_table(
-        self, sql_db_name, table_name="lik_evolution", language="English"
+        self, credentials, table_name="lik_evolution", language="English"
     ):
         translated_labels = translate_labels(
             self.df_lik_evolution.index.values.tolist(), language=language
         )
-        self.db_interface = DBInterface(db_name=sql_db_name)
+        self.db_interface = DBInterface(credentials=credentials)
         df = self.df_lik_evolution.transpose()
         df.columns = translated_labels
         df.reset_index(names="Date", inplace=True)
         df["Date"] = df["Date"].map(lambda x: x.date()).astype("datetime64[ns]")
         type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
-        logger.info("Uploading data to SQL table %s in db %s", table_name, sql_db_name)
+        logger.info(
+            "Uploading data to SQL table %s in db %s",
+            table_name,
+            credentials["db_name"],
+        )
         df.to_sql(
             table_name,
             con=self.db_interface.conn,
@@ -580,11 +590,11 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik.store_color_to_json()
         self.lik.store_categories_to_json()
 
-    def create_sql_tables(self, sql_db_name):
-        self.lik.lik_evolution.create_sql_table(sql_db_name)
+    def create_sql_tables(self, credentials):
+        self.lik.lik_evolution.create_sql_table(credentials)
 
-    def upload_data_to_sql_tables(self, sql_db_name):
-        self.lik.lik_evolution.upload_data_to_sql_table(sql_db_name)
+    def upload_data_to_sql_tables(self, credentials):
+        self.lik.lik_evolution.upload_data_to_sql_table(credentials)
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -679,12 +689,24 @@ def main():
         action="store_true",
     )
     parser.add_argument(
-        "--sql_db_name", help="The desired name of the SQL database", default="dummy"
+        "--credentials_file",
+        help="Path to .json file containing db credentials",
+        default="",
     )
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
     setup_translation()
+    credentials_sql = {
+        "hostname": "127.0.0.1",
+        "user": "root",
+        "password": "",
+        "db_name": "dummy",
+        "port": "3306",
+    }
+    if args.credentials_file != "":
+        credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
+
     main_window = MainWindow(
         source_lik_weights=args.lik_weights, source_lik_evolution=args.lik_evolution
     )
@@ -697,13 +719,13 @@ def main():
         main_window.show()
         sys.exit(app.exec_())
     if args.create_sql_table:
-        main_window.inflation_tracker.create_sql_tables(args.sql_db_name)
+        main_window.inflation_tracker.create_sql_tables(credentials_sql)
     if args.upload_to_sql:
-        main_window.inflation_tracker.upload_data_to_sql_tables(args.sql_db_name)
+        main_window.inflation_tracker.upload_data_to_sql_tables(credentials_sql)
     if args.json:
         main_window.inflation_tracker.store_data_to_json()
     if args.create_lik_color_sql_table:
-        main_window.inflation_tracker.lik.upload_lik_colors_to_mysql(args.sql_db_name)
+        main_window.inflation_tracker.lik.upload_lik_colors_to_mysql(credentials_sql)
 
 
 if __name__ == "__main__":
