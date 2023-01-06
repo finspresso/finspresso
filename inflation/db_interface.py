@@ -23,8 +23,20 @@ logger = logging.getLogger("db_interace")
 
 
 class DBInterface:
-    def __init__(self, db_name="dummy", print_all_tables=False):
-        self.engine = create_engine("mysql://root:@127.0.0.1/" + db_name, echo=True)
+    def __init__(self, credentials, print_all_tables=False):
+        self.engine = create_engine(
+            "mysql://"
+            + credentials["user"]
+            + ":"
+            + credentials["password"]
+            + "@"
+            + credentials["hostname"]
+            + ":"
+            + credentials["port"]
+            + "/"
+            + credentials["db_name"],
+            echo=True,
+        )
         self.conn = self.engine.connect()
         if print_all_tables:
             self.print_all_tables()
@@ -52,6 +64,12 @@ class DBInterface:
             elif df[column].dtype == "<M8[ns]":
                 type_dict[column] = Date
         return type_dict
+
+    @staticmethod
+    def load_db_credentials(credential_file):
+        with open(credential_file, "r") as read_file:
+            credentials = json.load(read_file)
+        return credentials
 
 
 def setup_logger(config_path):
@@ -280,6 +298,11 @@ def test_sqlalchemy_func(db_interface, test_table_name="test_table"):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--credentials_file",
+        help="Path to .json file containing db credentials",
+        default="",
+    )
     parser.add_argument("--create_test_table", action="store_true")
     parser.add_argument("--print_all_tables", action="store_true")
     parser.add_argument("--insert_test_records", action="store_true")
@@ -293,7 +316,18 @@ def main():
     parser.add_argument("--test_sqlalchemy_func", action="store_true")
     args = parser.parse_args()
     setup_logger("logging_config.json")
-    db_interface = DBInterface(print_all_tables=args.print_all_tables)
+    credentials = {
+        "hostname": "127.0.0.1",
+        "user": "root",
+        "password": "",
+        "db_name": "dummy",
+        "port": "3306",
+    }
+    if args.credentials_file != "":
+        credentials = DBInterface.load_db_credentials(args.credentials_file)
+    db_interface = DBInterface(
+        credentials=credentials, print_all_tables=args.print_all_tables
+    )
     if args.create_test_table:
         create_test_table(db_interface)
     if args.insert_test_records:

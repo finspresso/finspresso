@@ -94,6 +94,8 @@
       "program": "${workspaceRoot}/db_interface.py",
       "cwd": "${workspaceRoot}",
       "args": [
+        "--credentials_file_test",
+        "sql_credentials.json",
         "--create_test_table"
       ],
       "console": "integratedTerminal"
