@@ -20,3 +20,8 @@ repos:
     - id: debug-statements
     - id: pretty-format-json
       args: ['--no-sort-keys', --autofix]
+
+- repo: https://github.com/digitalpulp/pre-commit-php.git
+  rev: 1.4.0
+  hooks:
+  - id: php-lint
