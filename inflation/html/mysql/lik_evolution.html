@@ -16,16 +16,16 @@
             width: 1200px;
         }
     </style>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Chart.min.js"></script>
+
 </head>
 
 <body>
     <div class="chartBox">
         <canvas id="chartCategoryLIK"></canvas>
     </div>
-
-    <!-- javascript -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/Chart.min.js"></script>
 
     <h2>LIK evolution graph</h2>
 
@@ -34,7 +34,6 @@
         </select>
     </form>
     <br>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script>
         var loadData = function (category) {
             $.ajax({
