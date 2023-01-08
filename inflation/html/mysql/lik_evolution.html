@@ -38,7 +38,7 @@
     <script>
         var loadData = function (category) {
             $.ajax({
-                url: "get_lik_evolution_data.php?q=" + "`" + category + "`",
+                url: "db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
                     var category_dropdown = document.getElementById("category-dropdown");
@@ -70,7 +70,7 @@
     <script>
         var loadCategories = function () {
             $.ajax({
-                url: "get_lik_categories.php",
+                url: "db_finspresso/get_lik_categories.php",
                 method: "GET",
                 success: function (data) {
 
@@ -96,7 +96,7 @@
 
         var loadColors = function () {
             $.ajax({
-                url: "get_lik_colors.php",
+                url: "db_finspresso/get_lik_colors.php",
                 method: "GET",
                 success: function (data) {
                     lik_colors = data[0];
