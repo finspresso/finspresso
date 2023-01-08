@@ -1,9 +1,7 @@
 <?php
 header('Content-Type: application/json');
-
-$strJsonFileContents = file_get_contents("sql_credentials.json");
-$sql_credentials = json_decode($strJsonFileContents, true);
-$mysqli = new mysqli($sql_credentials["hostname"], $sql_credentials["user"], $sql_credentials["password"], $sql_credentials["db_name"], $sql_credentials["port"]);
+require_once "db_credentials_local.php";
+$mysqli = new mysqli($DBhostname, $DBusername, $DBpassword, $DBname, $DBPort);
 if($mysqli->connect_error) {
   exit('Could not connect');
 }
