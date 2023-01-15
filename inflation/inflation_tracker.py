@@ -665,7 +665,7 @@ def main():
     parser.add_argument(
         "--lik_evolution",
         help="xlsx file containing LIK evolution over time",
-        default="data/lik_evolution.xlsx",  # ToDo: Automate download of .xlsx file fromttps://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23344559.html
+        default="data/lik_evolution.xlsx",  # ToDo: Automate download of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23925501.html
     )
 
     parser.add_argument(

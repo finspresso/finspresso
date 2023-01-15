@@ -13,7 +13,13 @@
 
     <style type="text/css">
         .chartBox {
-            width: 1200px;
+            width: 900px;
+        }
+    </style>
+    <style type="text/css">
+        .slidecontainer {
+            width: 900px;
+            /* Width of the outside container */
         }
     </style>
 
@@ -23,10 +29,6 @@
 </head>
 
 <body>
-    <div class="chartBox">
-        <canvas id="chartCategoryLIK"></canvas>
-    </div>
-
     <h2>LIK evolution graph</h2>
 
     <form action="">
@@ -34,37 +36,69 @@
         </select>
     </form>
     <br>
+    <div class="slidecontainer">
+        <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
+            onchange="updateTimeSpan()">
+    </div>
+    <br>
+    <div class="slidecontainer">
+        <input type="range" min="1982" max="2022" value="2021" class="slider" id="max_slider"
+            onchange="updateTimeSpan()">
+    </div>
+    <br>
+    <div class="chartBox">
+        <canvas id="chartCategoryLIK"></canvas>
+    </div>
     <script>
         var loadData = function (category) {
             $.ajax({
                 url: "db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
-                    var category_dropdown = document.getElementById("category-dropdown");
-                    var dates = [];
-                    var values = [];
-                    for (var i in data) {
-                        dates.push(data[i]["Date"]);
-                        values.push(data[i][category]);
-                    }
-                    var chartdata = {
-                        labels: dates,
-                        datasets: [
-                            {
-                                label: category,
-                                borderColor: lik_colors[category],
-                                data: values,
-                            },
-                        ],
-                    };
-                    chartCategoryLIK.config.data = chartdata;
-                    chartCategoryLIK.update();
+                    loadedData = data;
+                    updateGraph(category);
                 },
                 error: function (data) {
                     console.log(data);
                 },
             });
         };
+
+
+        function updateGraph(category) {
+            var dates = [];
+            var values = [];
+            var min_slider = document.getElementById("min_slider");
+            var max_slider = document.getElementById("max_slider");
+            var lower_date = new Date(min_slider.value, 0, 1);
+            var upper_date = new Date(max_slider.value, 11, 31);
+            for (var i in loadedData) {
+                var current_date = new Date(loadedData[i]["Date"]);
+                if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() < upper_date.getTime()) {
+                    dates.push(loadedData[i]["Date"]);
+                    values.push(loadedData[i][category]);
+                }
+
+            }
+            var chartdata = {
+                labels: dates,
+                datasets: [
+                    {
+                        label: category,
+                        borderColor: lik_colors[category],
+                        data: values,
+                    },
+                ],
+            };
+            chartCategoryLIK.config.data = chartdata;
+            chartCategoryLIK.update();
+        }
+
+        function updateTimeSpan() {
+            let dropdown = document.getElementById("category-dropdown");
+            const category_current = dropdown.options[dropdown.selectedIndex].value;
+            updateGraph(category_current);
+        }
     </script>
     <script>
         var loadCategories = function () {
@@ -107,6 +141,7 @@
         };
     </script>
     <script>
+        var loadedData = 0;
         var lik_colors = [];
         const labels = [1, 2];
         let dataInit = {
