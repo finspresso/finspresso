@@ -18,7 +18,7 @@
     </style>
     <style type="text/css">
         .slidecontainer {
-            width: 900px;
+            width: 200px;
             /* Width of the outside container */
         }
     </style>
@@ -36,15 +36,36 @@
         </select>
     </form>
     <br>
-    <div class="slidecontainer">
-        <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
-            onchange="updateTimeSpan()">
-    </div>
-    <br>
-    <div class="slidecontainer">
-        <input type="range" min="1982" max="2022" value="2021" class="slider" id="max_slider"
-            onchange="updateTimeSpan()">
-    </div>
+
+    <table>
+        <tr>
+            <td> First year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type=" number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
+                    oninput="updateTimeSpanManual()" />
+            </td>
+        </tr>
+        <tr>
+            <td> Last year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2022" class="slider" id="max_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type=" number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
+                    oninput="updateTimeSpanManual()" />
+            </td>
+        </tr>
+    </table>
+
     <br>
     <div class="chartBox">
         <canvas id="chartCategoryLIK"></canvas>
@@ -92,11 +113,30 @@
             };
             chartCategoryLIK.config.data = chartdata;
             chartCategoryLIK.update();
+
         }
 
-        function updateTimeSpan() {
+        function updateTimeSpanSlider() {
             let dropdown = document.getElementById("category-dropdown");
             const category_current = dropdown.options[dropdown.selectedIndex].value;
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_input.value = min_slider.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_input.value = max_slider.value;
+            updateGraph(category_current);
+        }
+
+        function updateTimeSpanManual() {
+            let dropdown = document.getElementById("category-dropdown");
+            const category_current = dropdown.options[dropdown.selectedIndex].value;
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_slider.value = min_input.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_slider.value = max_input.value;
             updateGraph(category_current);
         }
     </script>
