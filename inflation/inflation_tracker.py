@@ -64,6 +64,25 @@ LIK_CATEGORY_LIST = [
 ]
 
 
+def get_last_date_of_month(year, month):
+    """Return the last date of the month.
+
+    Args:
+        year (int): Year, i.e. 2022
+        month (int): Month, i.e. 1 for January
+
+    Returns:
+        date (datetime): Last date of the current month
+    """
+
+    if month == 12:
+        last_date = datetime.datetime(year, month, 31)
+    else:
+        last_date = datetime.datetime(year, month + 1, 1) + datetime.timedelta(days=-1)
+
+    return last_date
+
+
 def create_color_dict(init_value=12345):
     rng = np.random.default_rng(init_value)
     colors = rng.uniform(0, 1, (len(LIK_CATEGORY_LIST), 3))
@@ -201,9 +220,12 @@ class LIKEvolution(QtGui.QWidget):
         logger.info("Loading %s...", source_file)
         df_raw = pd.read_excel(source_file)
         category_names = [name.lstrip() for name in df_raw.iloc[422:434, 5]]
+        end_of_month_list = [
+            get_last_date_of_month(x.year, x.month) for x in df_raw.iloc[2, 14:]
+        ]
         self.df_lik_evolution = pd.DataFrame(
             index=category_names,
-            columns=df_raw.iloc[2, 14:],
+            columns=end_of_month_list,
             data=df_raw.iloc[422:434, 14:].values,
             dtype="float64",
         )
