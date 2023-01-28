@@ -91,7 +91,7 @@
             var values = [];
             var min_slider = document.getElementById("min_slider");
             var max_slider = document.getElementById("max_slider");
-            var lower_date = new Date(min_slider.value, 0, 31);
+            var lower_date = new Date(min_slider.value - 1, 12, 31);
             var upper_date = new Date(max_slider.value, 12, 31);
             for (var i in loadedData) {
                 var current_date = new Date(loadedData[i]["Date"]);
@@ -101,6 +101,7 @@
                 }
 
             }
+            //console.log(dates)
             var chartdata = {
                 labels: dates,
                 datasets: [
