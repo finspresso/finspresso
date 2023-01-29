@@ -1,7 +1,9 @@
 <?php
 header('Content-Type: application/json');
+// ini_set("log_errors", 1);
+// ini_set("error_log", "/tmp/php-error.log");
 require_once "db_credentials.php";
-$mysqli = new mysqli($DBhostname, $DBusername, $DBpassword, $DBname, $DBPort);
+$mysqli = new mysqli($DBhostname, $DBusername, $DBpassword, $DBname, $DBport);
 if($mysqli->connect_error) {
   exit('Could not connect');
 }

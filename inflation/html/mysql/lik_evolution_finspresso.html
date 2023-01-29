@@ -71,9 +71,10 @@
         <canvas id="chartCategoryLIK"></canvas>
     </div>
     <script>
+        const baseURL = "https://www.finspresso.com/"
         var loadData = function (category) {
             $.ajax({
-                url: "db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
+                url: baseURL + "/db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
                     loadedData = data;
@@ -145,7 +146,7 @@
 
         var loadCategories = function () {
             $.ajax({
-                url: "db_finspresso/get_lik_categories.php",
+                url: baseURL + "/db_finspresso/get_lik_categories.php",
                 method: "GET",
                 success: function (data) {
                     let dropdown = document.getElementById("category-dropdown");
@@ -170,7 +171,7 @@
 
         var loadColors = function () {
             $.ajax({
-                url: "db_finspresso/get_lik_colors.php",
+                url: baseURL + "/db_finspresso/get_lik_colors.php",
                 method: "GET",
                 success: function (data) {
                     lik_colors = data[0];
