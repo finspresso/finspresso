@@ -52,8 +52,6 @@
       "program": "${workspaceRoot}/inflation_tracker.py",
       "cwd": "${workspaceRoot}",
       "args": [
-        "--lik_weights",
-        "data/lik_weights.xlsx",
         "--lik_evolution",
         "data/lik_evolution.xlsx",
         "--credentials_file",

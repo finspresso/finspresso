@@ -1,4 +1,4 @@
-# Inflation tracker (work in progress)
+# Inflation tracker
 
 Tries to evaluate different inflation metrics.
 
@@ -24,7 +24,7 @@ The so-called LIK tab as shown below, visualizes the different weights of the in
 
 ![lik_screenshot](images/lik_screenshot2.png)
 
-## Running the visualization via webbrowser
+### Running LIK weight the visualization via webbrowser
 
 To run the visualization GUI from which you can see the weights per year respectively the evolution of each category over period from 2000 to 2022 , open file with webbrowser:
 `html/lik.html`
@@ -38,6 +38,58 @@ Please note, in order for the webbrowser to be able to access the data in the .j
 Afterwards, if you open up `html/lik.html` via your webbrower it should look like below. In the dropdown menu you can select the desired year e.g. 2022 for the pie chart. In the lower plot you can see how the selected category's weight changed over time:
 
 ![LIKGIF](images/lik_weight_html.gif)
+
+### Running LIK evolution the visualization via webbrowser
+
+If you want to run the LIK evolution GUI in the webbrowser you can use the file lik_evolution.html. For that to work locally you need the following:
+
+- Install XAMPP server
+- Create new database
+- Make .php files accessible to local XAMPP server
+- Upload the LIK evolution data to the local MySQL database
+
+#### Intall XAMPP server
+
+Since I use a Linux computer, I used this [installation](https://vitux.com/ubuntu-xampp/) procedure to install the XAMPP server. After I start the XAMPP server by typing:
+
+```sh
+sudo /opt/lampp/manager-linux-x64.run
+```
+
+Afterwards, the XAMPP GUI should open up and you should be able to start all the servers.
+
+![lampp](images/lampp.png)
+
+#### Create new MySQL database
+
+Once the LAMPP server is running you should be able to create the database via e.g. phpMyAdmin. E.g. for Ubuntu 20.04 [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-20-04). Afterwards you can type in your browser
+
+```sh
+http://localhost/phpmyadmin/
+```
+
+Afterwards you can click on new and create your desired database:
+
+![new_db](images/new_db.png)
+
+### Make .php files accessible to local XAMPP server
+
+In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](lik_evolution.html), you need to create a softlink to the all the files in the html/mysql folder in the LAMPP base folder:
+
+```sh
+sudo mkdir /opt/lampp/htdocs/projects/
+sudo ln -s <base folder of repo>/finspresso/inflation/html/mysql /opt/lampp/htdocs/projects/mysql
+```
+
+### Upload the LIK evolution data to the local MySQL database
+
+- Download the data i.e. the .xlsx file and from the BFS site [here](https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23925501.html). Create a file called sql_credentials.json that contains the credentials of the database. An example can be found in [sql_credentials_test.json](sql_credentials_test.json).
+
+```sh
+python inflation_tracker.py  --lik_evolution <Path to .xlsx file> --credentials_file sql_credentials.json --upload_to_sql
+```
+
+#### Accessing the files in the browswer
 
 ## Create translation files
 
