@@ -9,18 +9,25 @@
 <head>
     <title>LIK evolution</title>
     <style type="text/css">
-        #chart-container {
+        .chart-container {
             width: 640px;
             height: auto;
         }
-    </style>
 
-    <style type="text/css">
         .chartBox {
             width: 750px;
         }
-    </style>
-    <style type="text/css">
+
+        .input_field_class {
+            width: 200px;
+        }
+
+        .readonly_field_class {
+            width: 200px;
+            background-color: #a9a9a93c;
+            border: none;
+        }
+
         .slidecontainer {
             width: 200px;
             /* Width of the outside container */
@@ -48,7 +55,7 @@
             </td>
             <td>
                 <input type="number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
-                    oninput="updateTimeSpanManual()" />
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
             </td>
         </tr>
         <tr>
@@ -61,7 +68,7 @@
             </td>
             <td>
                 <input type="number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
-                    oninput="updateTimeSpanManual()" />
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
             </td>
         </tr>
         <tr>
@@ -69,7 +76,8 @@
             <td>
             </td>
             <td>
-                <input type="text" name="relative_change" value="50%" id="relative_change" readonly />
+                <input type="text" name="relative_change" value="NA" id="relative_change" readonly
+                    class="readonly_field_class" />
             </td>
         </tr>
     </table>
