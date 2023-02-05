@@ -136,6 +136,40 @@ class MplCanvas(FigureCanvasQTAgg):
         super(MplCanvas, self).__init__(fig)
 
 
+class KVPI(QtGui.QTabWidget):
+    def __init__(
+        self,
+        source_kvpi_evolution="",
+        current_language="",
+    ):
+        super().__init__()
+        self.kvpi_evolution = KVPIEvolution(source_kvpi_evolution, current_language)
+        self.addTab(self.kvpi_evolution, "Evolution")
+
+
+class KVPIEvolution(QtGui.QWidget):
+    def __init__(self, kvpi_evolution_source, current_language):
+        QtGui.QWidget.__init__(self)
+        self.current_language = current_language
+        self.main_layout = QtGui.QVBoxLayout()
+        self.setLayout(self.main_layout)
+        self.get_kvpi_evolution_data(kvpi_evolution_source)
+        self.kvpi_evolution_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
+        self.main_layout.addWidget(self.kvpi_evolution_chart_canvas)
+
+    def get_kvpi_evolution_data(self, source_file):
+        logger.info("Loading %s...", source_file)
+        df_raw = pd.read_excel(source_file)
+        self.df_kvpi_evolution = pd.DataFrame(
+            index=df_raw.iloc[5:29, 0],
+            columns=[
+                "Obligatorische Krankenpflegeversicherung",
+                "Krankenzusatzversicherung",
+            ],
+            data=df_raw.iloc[5:29, 1:3].values,
+        )
+
+
 class LIK(QtGui.QTabWidget):
     def __init__(
         self,
@@ -600,12 +634,15 @@ class InflationTracker(QtGui.QTabWidget):
         parent=None,
         source_lik_weights="",
         source_lik_evolution="",
+        source_kvpi_evolution="",
         current_language="",
     ):
         super(InflationTracker, self).__init__(parent)
         self.setGeometry(100, 10, 900, 1200)
         self.lik = LIK(source_lik_weights, source_lik_evolution, current_language)
+        self.kvpi = KVPI(source_kvpi_evolution, current_language)
         self.addTab(self.lik, "LIK")
+        self.addTab(self.kvpi, "KVPI")
 
     def store_data_to_json(self):
         self.lik.store_weights_to_json()
@@ -624,13 +661,16 @@ class MainWindow(QtGui.QMainWindow):
 
     language_changed = QtCore.pyqtSignal(str)
 
-    def __init__(self, source_lik_weights="", source_lik_evolution=""):
+    def __init__(
+        self, source_lik_weights="", source_lik_evolution="", source_kvpi_evolution=""
+    ):
         super().__init__()
 
         self.current_language = "German"
         self.inflation_tracker = InflationTracker(
             source_lik_weights=source_lik_weights,
             source_lik_evolution=source_lik_evolution,
+            source_kvpi_evolution=source_kvpi_evolution,
             current_language=self.current_language,
         )
         self.language_changed.connect(self._update_language)
@@ -689,6 +729,11 @@ def main():
         help="xlsx file containing LIK evolution over time",
         default="data/lik_evolution.xlsx",  # ToDo: Automate download of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.assetdetail.23925501.html
     )
+    parser.add_argument(
+        "--kvpi_evolution",
+        help="xlsx file containing KVPI evolution over time",
+        default="data/kvpi_index.xlsx",  # ToDo: Automate download of .xlsx file from https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/krankenversicherungspraemien.assetdetail.23749019.html
+    )
 
     parser.add_argument(
         "--json",
@@ -730,7 +775,9 @@ def main():
         credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
 
     main_window = MainWindow(
-        source_lik_weights=args.lik_weights, source_lik_evolution=args.lik_evolution
+        source_lik_weights=args.lik_weights,
+        source_lik_evolution=args.lik_evolution,
+        source_kvpi_evolution=args.kvpi_evolution,
     )
     if (
         not args.json
