@@ -41,7 +41,7 @@ Afterwards, if you open up `html/lik.html` via your webbrower it should look lik
 
 ### Running LIK evolution the visualization via webbrowser
 
-If you want to run the LIK evolution GUI in the webbrowser you can use the file lik_evolution.html. For that to work locally you need the following:
+If you want to run the LIK evolution GUI in the webbrowser you can use the file [lik_evolution.html](html/mysql/lik_evolution.html). For that to work locally you need the following:
 
 - Install XAMPP server
 - Create new database
@@ -50,7 +50,7 @@ If you want to run the LIK evolution GUI in the webbrowser you can use the file 
 
 #### Intall XAMPP server
 
-Since I use a Linux computer, I used this [installation](https://vitux.com/ubuntu-xampp/) procedure to install the XAMPP server. After I start the XAMPP server by typing:
+Since I use a Linux computer, I used this [installation](https://vitux.com/ubuntu-xampp/) procedure to install the XAMPP server. The XAMPP server normally can be started by typing:
 
 ```sh
 sudo /opt/lampp/manager-linux-x64.run
@@ -62,7 +62,7 @@ Afterwards, the XAMPP GUI should open up and you should be able to start all the
 
 #### Create new MySQL database
 
-Once the LAMPP server is running you should be able to create the database via e.g. phpMyAdmin. E.g. for Ubuntu 20.04 [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-20-04). Afterwards you can type in your browser
+Once the XAMPP server is running you should be able to create the database via e.g. phpMyAdmin. The installation instruction for phpMyAdmin e.g. for Ubuntu 20.04 are given [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-20-04). To access the MySQL database via phpMyAdmin, type the following in your browser:
 
 ```sh
 http://localhost/phpmyadmin/
@@ -74,7 +74,7 @@ Afterwards you can click on new and create your desired database:
 
 ### Make .php files accessible to local XAMPP server
 
-In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](lik_evolution.html), you need to create a softlink to the all the files in the html/mysql folder in the LAMPP base folder:
+In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](html/mysql/lik_evolution.html), you need to create a softlink to all the files in the html/mysql folder in the XAMPP base folder:
 
 ```sh
 sudo mkdir /opt/lampp/htdocs/projects/
@@ -89,7 +89,11 @@ sudo ln -s <base folder of repo>/finspresso/inflation/html/mysql /opt/lampp/htdo
 python inflation_tracker.py  --lik_evolution <Path to .xlsx file> --credentials_file sql_credentials.json --upload_to_sql
 ```
 
-#### Accessing the files in the browswer
+#### Accessing the LIK evolution GUI in the browser
+
+Once the above steps have been completed you can open the the file [lik_evolution.html](html/mysql/lik_evolution.html) with your browser. You should see the following windows in which you can play around with all the LIK categories and different time periods:
+
+![lik_evolution_gif](images/lik_evolution.gif)
 
 ## Create translation files
 
