@@ -3,6 +3,7 @@ import json
 from math import floor
 import numpy as np
 
+import warnings
 import pandas as pd
 import logging
 import coloredlogs
@@ -17,6 +18,7 @@ from matplotlib.figure import Figure
 from db_interface import DBInterface
 
 # Global settings
+warnings.simplefilter(action="ignore", category=FutureWarning)
 coloredlogs.install()
 logger = logging.getLogger("portfolio_tracker")
 logging.basicConfig(level=logging.DEBUG)
