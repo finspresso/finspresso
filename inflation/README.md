@@ -105,6 +105,10 @@ make generate_ts_files
 
 - Make your translation in the inflation_en.ts file e.g. with [Qt Linguist](https://doc.qt.io/qt-5/linguist-translators.html)
 
+```sh
+linguist translations/inflation.en.ts
+```
+
 - Run lrelease
 
 ```sh

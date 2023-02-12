@@ -37,6 +37,8 @@ QtCore.QT_TRANSLATE_NOOP("get_translation", "Unterricht")
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Erziehung und Unterricht")
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Restaurants und Hotels")
 QtCore.QT_TRANSLATE_NOOP("get_translation", "Sonstige Waren und Dienstleistungen")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Obligatorische Krankenpflegeversicherung")
+QtCore.QT_TRANSLATE_NOOP("get_translation", "Krankenzusatzversicherung")
 
 
 NAME_MAPPING_DICT = {
@@ -162,6 +164,25 @@ class KVPIEvolution(QtGui.QWidget):
         self.main_layout.addWidget(self.category_cb_kvpi)
         self.main_layout.addWidget(self.kvpi_chart_canvas)
 
+    def update_language(self, language):
+        if self.current_language != language:
+            self.current_language = language
+            self.translate_kvpi_df()
+            logger.info("Updating language KVPI")
+
+    def translate_kvpi_df(self):
+        selected_language = self.current_language
+        self.translated_index = translate_labels(
+            self.df_kvpi_evolution.columns.values.tolist(), language=selected_language
+        )
+        self.update_category_combobox_kvpi()
+
+    def update_category_combobox_kvpi(self):
+        current_index = self.category_cb_kvpi.currentIndex()
+        self.category_cb_kvpi.clear()
+        self.category_cb_kvpi.addItems(self.translated_index)
+        self.category_cb_kvpi.setCurrentText(self.translated_index[current_index])
+
     def create_category_combobox_kvpi(self, cb_list, current_text):
         self.category_cb_kvpi = QtGui.QComboBox()
         self.category_cb_kvpi.addItems(cb_list)
@@ -179,14 +200,14 @@ class KVPIEvolution(QtGui.QWidget):
             ],
             data=df_raw.iloc[5:29, 1:3].values,
         )
+        self.translated_index = self.df_kvpi_evolution.columns.values.tolist()
 
     def update_kvpi_chart(self):
         selected_category = self.category_cb_kvpi.currentText()
         if selected_category != "":
-            # idx = self.translated_index.index(selected_category)
-            # color = self.color_dict_lik[self.df_lik_evolution.index[idx]]
+            idx = self.translated_index.index(selected_category)
             x = self.df_kvpi_evolution.index
-            y = self.df_kvpi_evolution[selected_category].values
+            y = self.df_kvpi_evolution.iloc[:, idx].values
             self.kvpi_chart_canvas.axes.cla()
             self.kvpi_chart_canvas.axes.plot(x, y, label=selected_category)
             self.kvpi_chart_canvas.axes.set_xticks(x, rotation=45)
@@ -255,6 +276,7 @@ class LIKEvolution(QtGui.QWidget):
             self.df_lik_evolution.index, self.df_lik_evolution.index[0]
         )
         self.update_evolution_chart()
+
         self.main_layout.addWidget(self.category_cb_evolution)
         self.main_layout.addWidget(self.evolution_chart_canvas)
 
@@ -710,6 +732,7 @@ class MainWindow(QtGui.QMainWindow):
     def _update_language(self, language):
         self.inflation_tracker.lik.lik_weights.update_language(language)
         self.inflation_tracker.lik.lik_evolution.update_language(language)
+        self.inflation_tracker.kvpi.kvpi_evolution.update_language(language)
 
     def _create_menu_bar(self):
         menu_bar = self.menuBar()
