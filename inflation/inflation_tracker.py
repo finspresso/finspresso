@@ -154,8 +154,19 @@ class KVPIEvolution(QtGui.QWidget):
         self.main_layout = QtGui.QVBoxLayout()
         self.setLayout(self.main_layout)
         self.get_kvpi_evolution_data(kvpi_evolution_source)
-        self.kvpi_evolution_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
-        self.main_layout.addWidget(self.kvpi_evolution_chart_canvas)
+        self.kvpi_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
+        self.create_category_combobox_kvpi(
+            self.df_kvpi_evolution.columns, self.df_kvpi_evolution.columns[0]
+        )
+        self.update_kvpi_chart()
+        self.main_layout.addWidget(self.category_cb_kvpi)
+        self.main_layout.addWidget(self.kvpi_chart_canvas)
+
+    def create_category_combobox_kvpi(self, cb_list, current_text):
+        self.category_cb_kvpi = QtGui.QComboBox()
+        self.category_cb_kvpi.addItems(cb_list)
+        self.category_cb_kvpi.currentTextChanged.connect(self.update_kvpi_chart)
+        self.category_cb_kvpi.setCurrentText(current_text)
 
     def get_kvpi_evolution_data(self, source_file):
         logger.info("Loading %s...", source_file)
@@ -168,6 +179,22 @@ class KVPIEvolution(QtGui.QWidget):
             ],
             data=df_raw.iloc[5:29, 1:3].values,
         )
+
+    def update_kvpi_chart(self):
+        selected_category = self.category_cb_kvpi.currentText()
+        if selected_category != "":
+            # idx = self.translated_index.index(selected_category)
+            # color = self.color_dict_lik[self.df_lik_evolution.index[idx]]
+            x = self.df_kvpi_evolution.index
+            y = self.df_kvpi_evolution[selected_category].values
+            self.kvpi_chart_canvas.axes.cla()
+            self.kvpi_chart_canvas.axes.plot(x, y, label=selected_category)
+            self.kvpi_chart_canvas.axes.set_xticks(x, rotation=45)
+            self.kvpi_chart_canvas.axes.set_xticklabels(
+                self.kvpi_chart_canvas.axes.get_xticks(), rotation=80
+            )
+            self.kvpi_chart_canvas.axes.grid()
+            self.kvpi_chart_canvas.draw()
 
 
 class LIK(QtGui.QTabWidget):
