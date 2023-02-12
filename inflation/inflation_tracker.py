@@ -2,6 +2,7 @@ import argparse
 import json
 from math import floor
 import numpy as np
+
 import pandas as pd
 import logging
 import coloredlogs
@@ -145,17 +146,60 @@ class KVPI(QtGui.QTabWidget):
         current_language="",
     ):
         super().__init__()
-        self.kvpi_evolution = KVPIEvolution(source_kvpi_evolution, current_language)
+        df_kvpi = self.get_kvpi_data(source_kvpi_evolution)
+        self.kvpi_weights = KVPIWeights(df_kvpi, current_language)
+        self.kvpi_evolution = KVPIEvolution(df_kvpi, current_language)
+        self.addTab(self.kvpi_weights, "Weights")
         self.addTab(self.kvpi_evolution, "Evolution")
+
+    def get_kvpi_data(self, source_file):
+        logger.info("Loading %s... for KPVI", source_file)
+        df_raw = pd.read_excel(source_file)
+        df_kvpi = pd.DataFrame(
+            index=df_raw.iloc[5:29, 0],
+            columns=[
+                "Total",
+                "Obligatorische Krankenpflegeversicherung",
+                "Krankenzusatzversicherung",
+            ],
+            data=df_raw.iloc[5:29, 1:4].values,
+        )
+        return df_kvpi
+
+
+class KVPIWeights(QtGui.QWidget):
+    def __init__(self, df_kvpi, current_language):
+        QtGui.QWidget.__init__(self)
+        self.current_language = current_language
+        self.compute_kvpi_weights(df_kvpi)
+
+    def compute_kvpi_weights(self, df_kvpi):
+        self.df_kvpi_weights = pd.DataFrame(
+            columns=df_kvpi.columns[1:], index=df_kvpi.index
+        )
+        self.df_kvpi_weights.iloc[:, 0] = df_kvpi.apply(
+            self.get_weights_per_year, axis=1
+        )
+        self.df_kvpi_weights.iloc[:, 1] = 1 - self.df_kvpi_weights.iloc[:, 0]
+
+    def get_weights_per_year(self, row):
+        total = row[0]
+        x1 = row[1]
+        x2 = row[2]
+        weight = 2 / 3
+        if x1 != x2:
+            weight = (total - x2) / (x1 - x2)
+        return weight
 
 
 class KVPIEvolution(QtGui.QWidget):
-    def __init__(self, kvpi_evolution_source, current_language):
+    def __init__(self, df_kvpi, current_language):
         QtGui.QWidget.__init__(self)
+        self.df_kvpi_evolution = df_kvpi.copy()
+        self.translated_index = self.df_kvpi_evolution.columns.values.tolist()
         self.current_language = current_language
         self.main_layout = QtGui.QVBoxLayout()
         self.setLayout(self.main_layout)
-        self.get_kvpi_evolution_data(kvpi_evolution_source)
         self.kvpi_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.create_category_combobox_kvpi(
             self.df_kvpi_evolution.columns, self.df_kvpi_evolution.columns[0]
@@ -222,19 +266,6 @@ class KVPIEvolution(QtGui.QWidget):
         self.category_cb_kvpi.addItems(cb_list)
         self.category_cb_kvpi.currentTextChanged.connect(self.update_kvpi_chart)
         self.category_cb_kvpi.setCurrentText(current_text)
-
-    def get_kvpi_evolution_data(self, source_file):
-        logger.info("Loading %s...", source_file)
-        df_raw = pd.read_excel(source_file)
-        self.df_kvpi_evolution = pd.DataFrame(
-            index=df_raw.iloc[5:29, 0],
-            columns=[
-                "Obligatorische Krankenpflegeversicherung",
-                "Krankenzusatzversicherung",
-            ],
-            data=df_raw.iloc[5:29, 1:3].values,
-        )
-        self.translated_index = self.df_kvpi_evolution.columns.values.tolist()
 
     def update_kvpi_chart(self):
         selected_category = self.category_cb_kvpi.currentText()
