@@ -160,9 +160,43 @@ class KVPIEvolution(QtGui.QWidget):
         self.create_category_combobox_kvpi(
             self.df_kvpi_evolution.columns, self.df_kvpi_evolution.columns[0]
         )
+        self.create_year_sliders()
         self.update_kvpi_chart()
+
         self.main_layout.addWidget(self.category_cb_kvpi)
+        self.main_layout.addLayout(self.slider_layout)
         self.main_layout.addWidget(self.kvpi_chart_canvas)
+
+    def create_year_sliders(self):
+        self.slider_layout = QtGui.QGridLayout()
+        self.year_slider_kvpi_min = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.year_slider_kvpi_min.setMinimum(self.df_kvpi_evolution.index[0])
+        self.year_slider_kvpi_min.setMaximum(self.df_kvpi_evolution.index[-1])
+        self.year_slider_kvpi_min.setValue(self.df_kvpi_evolution.index[0])
+        self.year_slider_kvpi_min.setTickPosition(QtGui.QSlider.TicksBelow)
+        self.year_slider_kvpi_min.setTickInterval(1)
+        self.min_year_label = QtGui.QLabel(str(self.year_slider_kvpi_min.value()), self)
+        self.year_slider_kvpi_max = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.year_slider_kvpi_max.setMinimum(self.df_kvpi_evolution.index[0])
+        self.year_slider_kvpi_max.setMaximum(self.df_kvpi_evolution.index[-1])
+        self.year_slider_kvpi_max.setValue(self.df_kvpi_evolution.index[-1])
+        self.year_slider_kvpi_max.setTickPosition(QtGui.QSlider.TicksBelow)
+        self.year_slider_kvpi_max.setTickInterval(1)
+        self.max_year_label = QtGui.QLabel(str(self.year_slider_kvpi_max.value()), self)
+        self.year_slider_kvpi_min.valueChanged.connect(self.update_kvpi_chart)
+        self.year_slider_kvpi_min.valueChanged.connect(self.update_min_year_label)
+        self.year_slider_kvpi_max.valueChanged.connect(self.update_kvpi_chart)
+        self.year_slider_kvpi_max.valueChanged.connect(self.update_max_year_label)
+        self.slider_layout.addWidget(self.year_slider_kvpi_min, 1, 1)
+        self.slider_layout.addWidget(self.min_year_label, 1, 2)
+        self.slider_layout.addWidget(self.year_slider_kvpi_max, 2, 1)
+        self.slider_layout.addWidget(self.max_year_label, 2, 2)
+
+    def update_min_year_label(self, value):
+        self.min_year_label.setText(str(value))
+
+    def update_max_year_label(self, value):
+        self.max_year_label.setText(str(value))
 
     def update_language(self, language):
         if self.current_language != language:
@@ -206,8 +240,14 @@ class KVPIEvolution(QtGui.QWidget):
         selected_category = self.category_cb_kvpi.currentText()
         if selected_category != "":
             idx = self.translated_index.index(selected_category)
-            x = self.df_kvpi_evolution.index
-            y = self.df_kvpi_evolution.iloc[:, idx].values
+            idx_min = self.df_kvpi_evolution.index.get_loc(
+                self.year_slider_kvpi_min.value()
+            )
+            idx_max = self.df_kvpi_evolution.index.get_loc(
+                self.year_slider_kvpi_max.value()
+            )
+            x = self.df_kvpi_evolution.index[idx_min : idx_max + 1]
+            y = self.df_kvpi_evolution.iloc[idx_min : idx_max + 1, idx].values
             self.kvpi_chart_canvas.axes.cla()
             self.kvpi_chart_canvas.axes.plot(x, y, label=selected_category)
             self.kvpi_chart_canvas.axes.set_xticks(x, rotation=45)
@@ -692,6 +732,7 @@ class InflationTracker(QtGui.QTabWidget):
         self.kvpi = KVPI(source_kvpi_evolution, current_language)
         self.addTab(self.lik, "LIK")
         self.addTab(self.kvpi, "KVPI")
+        self.setCurrentIndex(1)
 
     def store_data_to_json(self):
         self.lik.store_weights_to_json()
