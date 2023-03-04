@@ -173,12 +173,18 @@ class KVPIWeights(QtGui.QWidget):
     def __init__(self, df_kvpi, current_language):
         QtGui.QWidget.__init__(self)
         self.current_language = current_language
+        self.main_layout = QtGui.QVBoxLayout()
+        self.setLayout(self.main_layout)
+        self.kvpi_weight_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.compute_kvpi_weights(df_kvpi)
+        self.update_kvpi_weight_chart()
+        self.main_layout.addWidget(self.kvpi_weight_chart_canvas)
 
     def compute_kvpi_weights(self, df_kvpi):
         self.df_kvpi_weights = pd.DataFrame(
             columns=df_kvpi.columns[1:], index=df_kvpi.index
         )
+        self.translated_index = self.df_kvpi_weights.columns.values.tolist()
         self.df_kvpi_weights.iloc[:, 0] = df_kvpi.apply(
             self.get_weights_per_year, axis=1
         )
@@ -192,6 +198,31 @@ class KVPIWeights(QtGui.QWidget):
         if x1 != x2:
             weight = (total - x2) / (x1 - x2)
         return weight
+
+    def update_kvpi_weight_chart(self):
+        x = self.df_kvpi_weights.index.values
+        y = self.df_kvpi_weights.values
+        self.kvpi_weight_chart_canvas.axes.cla()
+        self.kvpi_weight_chart_canvas.axes.plot(x, y, label=self.translated_index)
+        self.kvpi_weight_chart_canvas.axes.set_xticks(x, rotation=45)
+        self.kvpi_weight_chart_canvas.axes.set_xticklabels(
+            self.kvpi_weight_chart_canvas.axes.get_xticks(), rotation=80
+        )
+        self.kvpi_weight_chart_canvas.axes.grid()
+        self.kvpi_weight_chart_canvas.axes.legend()
+        self.kvpi_weight_chart_canvas.draw()
+
+    def update_language(self, language):
+        if self.current_language != language:
+            self.current_language = language
+            self.translate_kvpi_weight_df()
+
+    def translate_kvpi_weight_df(self):
+        selected_language = self.current_language
+        self.translated_index = translate_labels(
+            self.df_kvpi_weights.columns.values.tolist(), language=selected_language
+        )
+        self.update_kvpi_weight_chart()
 
 
 class KVPIEvolution(QtGui.QWidget):
@@ -807,6 +838,7 @@ class MainWindow(QtGui.QMainWindow):
         self.inflation_tracker.lik.lik_weights.update_language(language)
         self.inflation_tracker.lik.lik_evolution.update_language(language)
         self.inflation_tracker.kvpi.kvpi_evolution.update_language(language)
+        self.inflation_tracker.kvpi.kvpi_weights.update_language(language)
 
     def _create_menu_bar(self):
         menu_bar = self.menuBar()
