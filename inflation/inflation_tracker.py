@@ -68,6 +68,21 @@ LIK_CATEGORY_LIST = [
     "Total",
 ]
 
+CATEGORY_MAPPING_DICT = {
+    "Nahrungsmittel und alkoholfreie Getränke": "1[0-9]{3}",
+    "Alkoholische Getränke und Tabak": "2[0-9]{3}",
+    "Wohnen und Energie": "4[0-9]{3}",
+    "Bekleidung und Schuhe": "3[0-9]{3}",
+    "Hausrat und Haushaltsführung": "5[0-9]{3}",
+    "Gesundheitspflege": "6[0-9]{3}",
+    "Verkehr": "7[0-9]{3}",
+    "Nachrichtenübermittlung": "8[0-9]{3}",
+    "Freizeit und Kultur": "1[0-9]{3}",
+    "Unterricht": "10[0-9]{3}",
+    "Restaurants und Hotels": "11[0-9]{3}",
+    "Sonstige Waren und Dienstleistungen": "12[0-9]{3}",
+}
+
 
 def get_last_date_of_month(year, month):
     """Return the last date of the month.
@@ -166,6 +181,7 @@ class KVPI(QtGui.QTabWidget):
             ],
             data=df_raw.iloc[5:29, 1:4].values,
         )
+        logger.info("%s loaded", source_file)
         return df_kvpi
 
 
@@ -410,6 +426,23 @@ class LIKEvolution(QtGui.QWidget):
         end_of_month_list = [
             get_last_date_of_month(x.year, x.month) for x in df_raw.iloc[2, 14:]
         ]
+        self.df_dict_lik_evolution_drill_down = dict()
+        for category, re_mask in CATEGORY_MAPPING_DICT.items():
+            boolean_vec = df_raw.iloc[:, 1].map(
+                lambda x: True if re.search(re_mask, str(x)) else False
+            )
+            data = (
+                df_raw[boolean_vec]
+                .iloc[:, 14:]
+                .applymap(lambda x: np.NaN if x == "..." else x)
+            )
+            index = df_raw[boolean_vec].iloc[:, 5].map(lambda x: x.lstrip()).values
+            self.df_dict_lik_evolution_drill_down[category] = pd.DataFrame(
+                index=index,
+                columns=end_of_month_list,
+                data=data.values,
+                dtype="float64",
+            )
         self.df_lik_evolution = pd.DataFrame(
             index=category_names,
             columns=end_of_month_list,
@@ -417,6 +450,7 @@ class LIKEvolution(QtGui.QWidget):
             dtype="float64",
         )
         self.translated_index = self.df_lik_evolution.index.values.tolist()
+        logger.info("%s loaded", source_file)
 
     def create_category_combobox_evolution(self, cb_list, current_text):
         self.category_cb_evolution = QtGui.QComboBox()
