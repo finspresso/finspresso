@@ -77,7 +77,7 @@ CATEGORY_MAPPING_DICT = {
     "Gesundheitspflege": "6[0-9]{3}",
     "Verkehr": "7[0-9]{3}",
     "Nachrichtenübermittlung": "8[0-9]{3}",
-    "Freizeit und Kultur": "1[0-9]{3}",
+    "Freizeit und Kultur": "9[0-9]{3}",
     "Unterricht": "10[0-9]{3}",
     "Restaurants und Hotels": "11[0-9]{3}",
     "Sonstige Waren und Dienstleistungen": "12[0-9]{3}",
@@ -394,6 +394,9 @@ class LIKEvolution(QtGui.QWidget):
         self.evolution_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.evolution_sub_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.subcategory_cb_evolution = QtGui.QComboBox()
+        self.subcategory_cb_evolution.currentTextChanged.connect(
+            self.update_subcategory_evolution_chart
+        )
         self.create_category_combobox_evolution(
             self.df_lik_evolution.index, self.df_lik_evolution.index[0]
         )
@@ -428,8 +431,14 @@ class LIKEvolution(QtGui.QWidget):
             str(self.year_slider_evolution_max.value()), self
         )
         self.year_slider_evolution_min.valueChanged.connect(self.update_evolution_chart)
+        self.year_slider_evolution_min.valueChanged.connect(
+            self.update_subcategory_evolution_chart
+        )
         self.year_slider_evolution_min.valueChanged.connect(self.update_min_year_label)
         self.year_slider_evolution_max.valueChanged.connect(self.update_evolution_chart)
+        self.year_slider_evolution_max.valueChanged.connect(
+            self.update_subcategory_evolution_chart
+        )
         self.year_slider_evolution_max.valueChanged.connect(self.update_max_year_label)
         self.slider_layout.addWidget(self.year_slider_evolution_min, 1, 1)
         self.slider_layout.addWidget(self.min_year_label, 1, 2)
@@ -539,6 +548,36 @@ class LIKEvolution(QtGui.QWidget):
             # )
             self.evolution_chart_canvas.axes.grid()
             self.evolution_chart_canvas.draw()
+
+    def update_subcategory_evolution_chart(self):
+        selected_subcategory = self.subcategory_cb_evolution.currentText()
+        selected_category = self.category_cb_evolution.currentText()
+        if selected_subcategory != "" and selected_category != "":
+            self.year_slider_evolution_max.value()
+
+            lower_date = datetime.datetime(self.year_slider_evolution_min.value(), 1, 1)
+            upper_date = datetime.datetime(
+                self.year_slider_evolution_max.value() - 1, 12, 31
+            )
+            selected_period = (
+                self.df_dict_lik_evolution_drill_down[selected_category].columns
+                >= lower_date
+            ) & (
+                self.df_dict_lik_evolution_drill_down[selected_category].columns
+                <= upper_date
+            )
+            x = self.df_dict_lik_evolution_drill_down[selected_category].columns[
+                selected_period
+            ]
+            y = (
+                self.df_dict_lik_evolution_drill_down[selected_category]
+                .loc[selected_subcategory, selected_period]
+                .values
+            )
+            self.evolution_sub_chart_canvas.axes.cla()
+            self.evolution_sub_chart_canvas.axes.plot(x, y, label=selected_subcategory)
+            self.evolution_sub_chart_canvas.axes.grid()
+            self.evolution_sub_chart_canvas.draw()
 
     def create_sql_table(
         self, credentials, table_name="lik_evolution", language="English"
