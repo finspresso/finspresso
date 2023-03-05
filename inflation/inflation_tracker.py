@@ -392,6 +392,8 @@ class LIKEvolution(QtGui.QWidget):
         self.setLayout(self.main_layout)
         self.get_lik_evolution_data(lik_evolution_source)
         self.evolution_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
+        self.evolution_sub_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
+        self.subcategory_cb_evolution = QtGui.QComboBox()
         self.create_category_combobox_evolution(
             self.df_lik_evolution.index, self.df_lik_evolution.index[0]
         )
@@ -400,6 +402,8 @@ class LIKEvolution(QtGui.QWidget):
         self.main_layout.addWidget(self.category_cb_evolution)
         self.main_layout.addLayout(self.slider_layout)
         self.main_layout.addWidget(self.evolution_chart_canvas)
+        self.main_layout.addWidget(self.subcategory_cb_evolution)
+        self.main_layout.addWidget(self.evolution_sub_chart_canvas)
 
     def create_year_sliders(self):
         max_year = self.df_lik_evolution.columns[-1].year
@@ -457,6 +461,14 @@ class LIKEvolution(QtGui.QWidget):
         self.category_cb_evolution.addItems(self.translated_index)
         self.category_cb_evolution.setCurrentText(self.translated_index[current_index])
 
+    def update_subcategory_combobox_evolution(self):
+        category = self.category_cb_evolution.currentText()
+        self.subcategory_cb_evolution.clear()
+        if category in self.df_dict_lik_evolution_drill_down.keys():
+            self.subcategory_cb_evolution.addItems(
+                self.df_dict_lik_evolution_drill_down[category].index.values
+            )
+
     def get_lik_evolution_data(self, source_file):
         logger.info("Loading %s...", source_file)
         df_raw = pd.read_excel(source_file)
@@ -496,6 +508,10 @@ class LIKEvolution(QtGui.QWidget):
         self.category_cb_evolution.currentTextChanged.connect(
             self.update_evolution_chart
         )
+        self.category_cb_evolution.currentTextChanged.connect(
+            self.update_subcategory_combobox_evolution
+        )
+
         self.category_cb_evolution.setCurrentText(current_text)
 
     def update_evolution_chart(self):
