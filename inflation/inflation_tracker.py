@@ -395,10 +395,48 @@ class LIKEvolution(QtGui.QWidget):
         self.create_category_combobox_evolution(
             self.df_lik_evolution.index, self.df_lik_evolution.index[0]
         )
+        self.create_year_sliders()
         self.update_evolution_chart()
-
         self.main_layout.addWidget(self.category_cb_evolution)
+        self.main_layout.addLayout(self.slider_layout)
         self.main_layout.addWidget(self.evolution_chart_canvas)
+
+    def create_year_sliders(self):
+        max_year = self.df_lik_evolution.columns[-1].year
+        min_year = self.df_lik_evolution.columns[0].year
+        self.slider_layout = QtGui.QGridLayout()
+        self.year_slider_evolution_min = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.year_slider_evolution_min.setMinimum(min_year)
+        self.year_slider_evolution_min.setMaximum(max_year)
+        self.year_slider_evolution_min.setValue(min_year)
+        self.year_slider_evolution_min.setTickPosition(QtGui.QSlider.TicksBelow)
+        self.year_slider_evolution_min.setTickInterval(1)
+        self.min_year_label = QtGui.QLabel(
+            str(self.year_slider_evolution_min.value()), self
+        )
+        self.year_slider_evolution_max = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.year_slider_evolution_max.setMinimum(min_year)
+        self.year_slider_evolution_max.setMaximum(max_year + 1)
+        self.year_slider_evolution_max.setValue(max_year + 1)
+        self.year_slider_evolution_max.setTickPosition(QtGui.QSlider.TicksBelow)
+        self.year_slider_evolution_max.setTickInterval(1)
+        self.max_year_label = QtGui.QLabel(
+            str(self.year_slider_evolution_max.value()), self
+        )
+        self.year_slider_evolution_min.valueChanged.connect(self.update_evolution_chart)
+        self.year_slider_evolution_min.valueChanged.connect(self.update_min_year_label)
+        self.year_slider_evolution_max.valueChanged.connect(self.update_evolution_chart)
+        self.year_slider_evolution_max.valueChanged.connect(self.update_max_year_label)
+        self.slider_layout.addWidget(self.year_slider_evolution_min, 1, 1)
+        self.slider_layout.addWidget(self.min_year_label, 1, 2)
+        self.slider_layout.addWidget(self.year_slider_evolution_max, 2, 1)
+        self.slider_layout.addWidget(self.max_year_label, 2, 2)
+
+    def update_min_year_label(self, value):
+        self.min_year_label.setText(str(value))
+
+    def update_max_year_label(self, value):
+        self.max_year_label.setText(str(value))
 
     def update_language(self, language):
         if self.current_language != language:
@@ -463,10 +501,18 @@ class LIKEvolution(QtGui.QWidget):
     def update_evolution_chart(self):
         selected_category = self.category_cb_evolution.currentText()
         if selected_category != "":
+            self.year_slider_evolution_max.value()
             idx = self.translated_index.index(selected_category)
             color = self.color_dict_lik[self.df_lik_evolution.index[idx]]
-            x = self.df_lik_evolution.columns
-            y = self.df_lik_evolution.iloc[idx].values
+            lower_date = datetime.datetime(self.year_slider_evolution_min.value(), 1, 1)
+            upper_date = datetime.datetime(
+                self.year_slider_evolution_max.value() - 1, 12, 31
+            )
+            selected_period = (self.df_lik_evolution.columns >= lower_date) & (
+                self.df_lik_evolution.columns <= upper_date
+            )
+            x = self.df_lik_evolution.columns[selected_period]
+            y = self.df_lik_evolution.loc[:, selected_period].iloc[idx].values
             self.evolution_chart_canvas.axes.cla()
             self.evolution_chart_canvas.axes.plot(
                 x, y, color=color, label=selected_category
