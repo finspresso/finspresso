@@ -16,6 +16,21 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Store names to JSON",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--lik_weights",
+        "data/lik_weights.xlsx",
+        "--lik_evolution",
+        "data/lik_evolution.xlsx",
+        "--store_names_json"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Store data to json files",
       "type": "python",
       "request": "launch",

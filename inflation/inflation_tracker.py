@@ -357,6 +357,9 @@ class LIK(QtGui.QTabWidget):
         self.addTab(self.lik_evolution, "Evolution")
         self.addTab(self.lik_weights, "Weights")
 
+    def store_names_json(self):
+        self.lik_evolution.store_names_json()
+
     def upload_lik_colors_to_mysql(
         self, credentials, table_name="lik_colors", language="English"
     ):
@@ -407,6 +410,17 @@ class LIKEvolution(QtGui.QWidget):
         self.main_layout.addWidget(self.evolution_chart_canvas)
         self.main_layout.addWidget(self.subcategory_cb_evolution)
         self.main_layout.addWidget(self.evolution_sub_chart_canvas)
+
+    def store_names_json(self):
+        subcategory_list = []
+        for category in self.df_dict_lik_evolution_drill_down.keys():
+            subcategory_list.extend(
+                self.df_dict_lik_evolution_drill_down[category].index.values
+            )
+        subcategory_dict = {"names": subcategory_list}
+
+        with open("subcategory.json", "w", encoding="utf8") as file:
+            json.dump(subcategory_dict, file, indent=4, ensure_ascii=False)
 
     def create_year_sliders(self):
         max_year = self.df_lik_evolution.columns[-1].year
@@ -944,6 +958,9 @@ class InflationTracker(QtGui.QTabWidget):
     def upload_data_to_sql_tables(self, credentials):
         self.lik.lik_evolution.upload_data_to_sql_table(credentials)
 
+    def store_names_json(self):
+        self.lik.store_names_json()
+
 
 class MainWindow(QtGui.QMainWindow):
     """Main Window."""
@@ -1051,6 +1068,11 @@ def main():
         help="Path to .json file containing db credentials",
         default="",
     )
+    parser.add_argument(
+        "--store_names_json",
+        help="If selected, stores sub-cateories names in subcategory.csv",
+        action="store_true",
+    )
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
@@ -1075,6 +1097,7 @@ def main():
         and not args.create_sql_table
         and not args.upload_to_sql
         and not args.create_lik_color_sql_table
+        and not args.store_names_json
     ):
         main_window.show()
         sys.exit(app.exec_())
@@ -1086,6 +1109,8 @@ def main():
         main_window.inflation_tracker.store_data_to_json()
     if args.create_lik_color_sql_table:
         main_window.inflation_tracker.lik.upload_lik_colors_to_mysql(credentials_sql)
+    if args.store_names_json:
+        main_window.inflation_tracker.store_names_json()
 
 
 if __name__ == "__main__":
