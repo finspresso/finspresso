@@ -1,3 +1,6 @@
+import argparse
+import pandas as pd
+
 from lxml import etree
 
 
@@ -22,35 +25,46 @@ class TranslationHelper:
 
     @staticmethod
     def create_ts_file(
+        df_translation,
         csv_source_file="translation_inflation.csv",
-        ts_file_name="inflation.en.ts",
+        ts_file_name="translations/inflation.en.ts",
         context_name="inflation_tracker",
     ):
-        root = etree.Element("context")
-        context = etree.SubElement(root, "name")
-        context.text = context_name
-        translation_dict = {
-            "Nahrungsmittel": "Food",
-            "Reis": "Rice",
-            "Teigewaren": "Pasta",
-        }
+        root = etree.Element("TS")
+        root.set("version", "2.1")
+        root.set("language", "en_US")
+
+        context = etree.SubElement(root, "context")
+        name_element = etree.SubElement(context, "name")
+        name_element.text = context_name
         file_name = "../inflation_tracker.py"
-        for source_text, translation_text in translation_dict.items():
+        for _, row in df_translation.iterrows():
+            source_text = row["German"]
+            translation_text = row["English"].capitalize()
             message_element = TranslationHelper.create_message_element(
                 file_name, source_text, translation_text
             )
-            root.append(message_element)
+            context.append(message_element)
         etree.indent(root)
         b_xml = etree.tostring(
             root, pretty_print=True, encoding="UTF-8", xml_declaration=True
         )
 
-        with open("GFG.xml", "wb") as f:
+        with open(ts_file_name, "wb") as f:
             f.write(b_xml)
 
 
 def main():
-    TranslationHelper.create_ts_file()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--translation_csv",
+        help="File containing strings to be indexed",
+        default="translations/translation_inflation.csv",
+    )
+    args = parser.parse_args()
+
+    df_translation = pd.read_csv(args.translation_csv)
+    TranslationHelper.create_ts_file(df_translation)
 
 
 if __name__ == "__main__":

@@ -31,6 +31,15 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Create .ts files",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/translation_helper.py",
+      "cwd": "${workspaceRoot}",
+      "args": [],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Store data to json files",
       "type": "python",
       "request": "launch",
