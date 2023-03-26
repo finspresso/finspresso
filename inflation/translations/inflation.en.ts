@@ -9,8 +9,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Brot Mehl und Getreideprodukte</source>
-      <translation>Bread flour and grain products</translation>
+      <source>Brot, Mehl und Getreideprodukte</source>
+      <translation>Bread, flour and grain products</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -24,8 +24,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Brot Konditorei- und Dauerbackwaren</source>
-      <translation>Bread confectionery and permanent bakery</translation>
+      <source>Brot, Konditorei- und Dauerbackwaren</source>
+      <translation>Bread, pastry and permanent bakery</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -74,13 +74,13 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Fleisch Fleischwaren</source>
-      <translation>Meat meat</translation>
+      <source>Fleisch, Fleischwaren</source>
+      <translation>Meat, meat products</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Fleisch frisch oder tiefgekühlt</source>
-      <translation>Meat fresh or frozen</translation>
+      <source>Fleisch, frisch oder tiefgekühlt</source>
+      <translation>Meat, fresh or frozen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -114,8 +114,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Anderes Fleisch frisch</source>
-      <translation>Another meat fresh</translation>
+      <source>Anderes Fleisch, frisch</source>
+      <translation>Other meat, fresh</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -129,8 +129,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Aufschnitt übrige Fleischerzeugnisse und pfannenfertiges Fleisch</source>
-      <translation>Cutty remaining meat products and meat ready for pan</translation>
+      <source>Aufschnitt, übrige Fleischerzeugnisse und pfannenfertiges Fleisch</source>
+      <translation>Cutlation, remaining meat products and meat ready</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -139,8 +139,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Pfannenfertiges Fleisch roh</source>
-      <translation>Rown -ready meat raw</translation>
+      <source>Pfannenfertiges Fleisch, roh</source>
+      <translation>Cheat ready -to -pane, raw</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -149,13 +149,13 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Fische frisch</source>
-      <translation>Fish fresh</translation>
+      <source>Fische, frisch</source>
+      <translation>Fish, fresh</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Fische tiefgekühlt</source>
-      <translation>Fish frozen</translation>
+      <source>Fische, tiefgekühlt</source>
+      <translation>Fish, frozen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -164,8 +164,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Milch Käse Eier</source>
-      <translation>Milk cheese eggs</translation>
+      <source>Milch, Käse, Eier</source>
+      <translation>Milk, cheese, eggs</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -180,7 +180,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Drinkmilch</source>
-      <translation>Drink milk</translation>
+      <translation>Drink</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -199,8 +199,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Frisch- Weich- und Schmelzkäse</source>
-      <translation>Freshly soft and melting cheese</translation>
+      <source>Frisch-, Weich- und Schmelzkäse</source>
+      <translation>Fresh, soft and melting cheese</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -234,8 +234,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Margarine Speisefette und -öle</source>
-      <translation>Margarine food fat and oils</translation>
+      <source>Margarine, Speisefette und -öle</source>
+      <translation>Margarine, food fats and oils</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -254,8 +254,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Früchte Gemüse Kartoffeln und Pilze</source>
-      <translation>Fruits vegetables potatoes and mushrooms</translation>
+      <source>Früchte, Gemüse, Kartoffeln und Pilze</source>
+      <translation>Fruits, vegetables, potatoes and mushrooms</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -280,7 +280,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Kernobst</source>
-      <translation>Pipfruit</translation>
+      <translation>Core fruit</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -305,7 +305,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Tiefgekühlte Früchte</source>
-      <translation>Frozen fruits</translation>
+      <translation>Flying fruits</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -315,12 +315,12 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Fruchtkonserven</source>
-      <translation>Canned fruits</translation>
+      <translation>Fruits</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Gemüse Pilze und Kartoffeln</source>
-      <translation>Vegetables mushrooms and potatoes</translation>
+      <source>Gemüse, Pilze und Kartoffeln</source>
+      <translation>Vegetables, mushrooms and potatoes</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -354,13 +354,13 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Anderes Gemüse Küchenkräuter und Pilze</source>
-      <translation>Other vegetables kitchen herbs and mushrooms</translation>
+      <source>Anderes Gemüse, Küchenkräuter und Pilze</source>
+      <translation>Other vegetables, kitchen herbs and mushrooms</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Tiefkühlgemüse</source>
-      <translation>Frozen vegetables</translation>
+      <translation>Frozen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -389,8 +389,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Zucker Konfitüren Honig Schokolade und andere Süsswaren</source>
-      <translation>Sugar jam honey chocolate and other sweeteners</translation>
+      <source>Zucker, Konfitüren, Honig, Schokolade und andere Süsswaren</source>
+      <translation>Sugar, jams, honey, chocolate and other sweets</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -429,8 +429,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Salz Gewürze und Küchenkräuter</source>
-      <translation>Salt spices and kitchen herbs</translation>
+      <source>Salz, Gewürze und Küchenkräuter</source>
+      <translation>Salt, spices and kitchen herbs</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -454,8 +454,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Kaffee Tee Kakao und Nährgetränke</source>
-      <translation>Coffee tea cocoa and nutritional drinks</translation>
+      <source>Kaffee, Tee, Kakao und Nährgetränke</source>
+      <translation>Coffee, tea, cocoa and nutritional drinks</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -474,8 +474,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Mineralwasser Süssgetränke und Säfte</source>
-      <translation>Mineral water sweet drinks and juices</translation>
+      <source>Mineralwasser, Süssgetränke und Säfte</source>
+      <translation>Mineral water, sweet drinks and juices</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -524,8 +524,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Restaurants Cafés und Schnellverpflegung</source>
-      <translation>Restaurants cafés and quick catering</translation>
+      <source>Restaurants, Cafés und Schnellverpflegung</source>
+      <translation>Restaurants, cafes and quick catering</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -604,8 +604,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Personalrestaurants Kantinen</source>
-      <translation>Personnel restaurants canteens</translation>
+      <source>Personalrestaurants, Kantinen</source>
+      <translation>Personnel restaurants, canteens</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -824,13 +824,13 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Rotwein inländisch (Detailhandel)</source>
-      <translation>Red wine domestic (retail)</translation>
+      <source>Rotwein, inländisch (Detailhandel)</source>
+      <translation>Red wine, domestic (retail)</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Rotwein ausländisch (Detailhandel)</source>
-      <translation>Red wine foreign (retail)</translation>
+      <source>Rotwein, ausländisch (Detailhandel)</source>
+      <translation>Red wine, foreign (retail)</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -839,13 +839,13 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Weisswein inländisch (Detailhandel)</source>
-      <translation>White wine domestic (retail)</translation>
+      <source>Weisswein, inländisch (Detailhandel)</source>
+      <translation>White wine, domestic (retail)</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Weisswein ausländisch (Detailhandel)</source>
-      <translation>White wine foreign (retail)</translation>
+      <source>Weisswein, ausländisch (Detailhandel)</source>
+      <translation>White wine, foreign (retail)</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1134,38 +1134,38 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Elektrizität Verbrauchstyp I</source>
-      <translation>Electricity consumption type i</translation>
+      <source>Elektrizität, Verbrauchstyp I</source>
+      <translation>Electricity, type of consumption i</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Elektrizität Verbrauchstyp II</source>
-      <translation>Electricity consumption type ii</translation>
+      <source>Elektrizität, Verbrauchstyp II</source>
+      <translation>Electricity, consumption type ii</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Elektrizität Verbrauchstyp III</source>
-      <translation>Electricity consumption type iii</translation>
+      <source>Elektrizität, Verbrauchstyp III</source>
+      <translation>Electricity, type iii consumption</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Elektrizität Verbrauchstyp IV</source>
-      <translation>Electricity consumption type iv</translation>
+      <source>Elektrizität, Verbrauchstyp IV</source>
+      <translation>Electricity, type of consumption iv</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Elektrizität Verbrauchstyp V</source>
-      <translation>Electricity consumption type v</translation>
+      <source>Elektrizität, Verbrauchstyp V</source>
+      <translation>Electricity, consumption type v</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Elektrizität Verbrauchstyp VI</source>
-      <translation>Electricity consumer type vi</translation>
+      <source>Elektrizität, Verbrauchstyp VI</source>
+      <translation>Electricity, consumption type vi</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Elektrizität Verbrauchstyp VII</source>
-      <translation>Electricity consumer type vii</translation>
+      <source>Elektrizität, Verbrauchstyp VII</source>
+      <translation>Electricity, type of consumption vii</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1174,23 +1174,23 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Gas Verbrauchstyp II</source>
-      <translation>Gas consumption type ii</translation>
+      <source>Gas, Verbrauchstyp II</source>
+      <translation>Gas, consumption type ii</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Gas Verbrauchstyp III</source>
-      <translation>Gas consumer type iii</translation>
+      <source>Gas, Verbrauchstyp III</source>
+      <translation>Gas, type iii consumption</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Gas Verbrauchstyp IV</source>
-      <translation>Gas consumer type iv</translation>
+      <source>Gas, Verbrauchstyp IV</source>
+      <translation>Gas, type of consumption iv</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Gas Verbrauchstyp V</source>
-      <translation>Gas consumption type v</translation>
+      <source>Gas, Verbrauchstyp V</source>
+      <translation>Gas, type of consumption</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1234,33 +1234,33 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Jacken Herren</source>
-      <translation>Jacken men</translation>
+      <source>Jacken, Herren</source>
+      <translation>Jackets, gentlemen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Anzüge Herren</source>
-      <translation>Suits men</translation>
+      <source>Anzüge, Herren</source>
+      <translation>Suits, gentlemen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Hosen Herren</source>
-      <translation>Pants men</translation>
+      <source>Hosen, Herren</source>
+      <translation>Pants, gentlemen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Oberhemden Herren</source>
-      <translation>Oberhemden gentlemen</translation>
+      <source>Oberhemden, Herren</source>
+      <translation>Upper shirts, gentlemen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Strickwaren Herren</source>
-      <translation>Knitting men</translation>
+      <source>Strickwaren, Herren</source>
+      <translation>Knitwear, gentlemen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Unterwäsche Herren</source>
-      <translation>Underwear men</translation>
+      <source>Unterwäsche, Herren</source>
+      <translation>Underwear, gentlemen</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1269,33 +1269,33 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Mäntel und Jacken Damen</source>
-      <translation>Coats and jackets women</translation>
+      <source>Mäntel und Jacken, Damen</source>
+      <translation>Coats and jackets, women</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Jupes und Kleider Damen</source>
-      <translation>Jupes and dresses women</translation>
+      <source>Jupes und Kleider, Damen</source>
+      <translation>Jupes and dresses, women</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Hosen Damen</source>
-      <translation>Pants women</translation>
+      <source>Hosen, Damen</source>
+      <translation>Pants, women</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Blusen und Hemdblusen Damen</source>
-      <translation>Blouses and shirt blouses women</translation>
+      <source>Blusen und Hemdblusen, Damen</source>
+      <translation>Blouses and shirt blouses, women</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Strickwaren Damen</source>
-      <translation>Knitwear women</translation>
+      <source>Strickwaren, Damen</source>
+      <translation>Knitwear, ladies</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Unterwäsche Damen</source>
-      <translation>Underwear women</translation>
+      <source>Unterwäsche, Damen</source>
+      <translation>Underwear, women</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1304,18 +1304,18 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Jacken Kinder</source>
-      <translation>Jackets children</translation>
+      <source>Jacken, Kinder</source>
+      <translation>Jackets, children</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Hosen und Jupe Kinder</source>
-      <translation>Pants and jupe children</translation>
+      <source>Hosen und Jupe, Kinder</source>
+      <translation>Pants and jupe, children</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Strickwaren Kinder</source>
-      <translation>Knitwear children</translation>
+      <source>Strickwaren, Kinder</source>
+      <translation>Knitwear, children</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1324,8 +1324,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Strumpfwaren und Unterwäsche Kinder</source>
-      <translation>Wantry and underwear children</translation>
+      <source>Strumpfwaren und Unterwäsche, Kinder</source>
+      <translation>Wantry and underwear, children</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1444,8 +1444,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Heimtextilien Haushaltswäsche und Zubehör</source>
-      <translation>Home textiles household washing and accessories</translation>
+      <source>Heimtextilien, Haushaltswäsche und Zubehör</source>
+      <translation>Home textiles, household linen and accessories</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1479,13 +1479,13 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Waschmaschinen Wäschetrockner und Geschirrspüler</source>
-      <translation>Washing machines tumble dryer and dishwasher</translation>
+      <source>Waschmaschinen, Wäschetrockner und Geschirrspüler</source>
+      <translation>Washing machines, tumble dryers and dishwasher</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Kochherd Backofen und Grills</source>
-      <translation>Cooking stove oven and grills</translation>
+      <source>Kochherd, Backofen und Grills</source>
+      <translation>Cooking stove, oven and grills</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1504,8 +1504,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Glaswaren Geschirr und andere Gebrauchsgüter für die Haushaltsführung</source>
-      <translation>Glass goods dishes and other goods for housekeeping</translation>
+      <source>Glaswaren, Geschirr und andere Gebrauchsgüter für die Haushaltsführung</source>
+      <translation>Glass goods, dishes and other goods for housekeeping</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1534,8 +1534,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Werkzeuge Kleinmaterial und Zubehör für Haus und Garten</source>
-      <translation>Tools small material and accessories for house and garden</translation>
+      <source>Werkzeuge, Kleinmaterial und Zubehör für Haus und Garten</source>
+      <translation>Tools, small materials and accessories for house and garden</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1674,13 +1674,13 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Automobile Motor- und Fahrräder</source>
-      <translation>Automobile engine and bicycles</translation>
+      <source>Automobile, Motor- und Fahrräder</source>
+      <translation>Automobiles, engine and bicycles</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Kauf von Automobilen Motor- und Fahrrädern</source>
-      <translation>Purchase of automotive engine and bicycles</translation>
+      <source>Kauf von Automobilen, Motor- und Fahrrädern</source>
+      <translation>Purchase of automobiles, engine and bicycles</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1719,8 +1719,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Betrieb und Unterhalt von Automobilen Motor- und Fahrrädern</source>
-      <translation>Operation and maintenance of automotive engine and bicycles</translation>
+      <source>Betrieb und Unterhalt von Automobilen, Motor- und Fahrrädern</source>
+      <translation>Operation and maintenance of automobiles, engine and bicycles</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1874,8 +1874,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Geräte für Audio-Video Fotografie und Datenverarbeitung</source>
-      <translation>Devices for audio video photography and data processing</translation>
+      <source>Geräte für Audio-Video, Fotografie und Datenverarbeitung</source>
+      <translation>Devices for audio video, photography and data processing</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1894,8 +1894,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Foto- Kino- und optische Geräte</source>
-      <translation>Photo cinema and optical devices</translation>
+      <source>Foto-, Kino- und optische Geräte</source>
+      <translation>Photo, cinema and optical devices</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1954,8 +1954,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Sonstige Artikel und Geräte für Freizeit Garten und Heimtiere</source>
-      <translation>Other articles and devices for leisure garden and pets</translation>
+      <source>Sonstige Artikel und Geräte für Freizeit, Garten und Heimtiere</source>
+      <translation>Other articles and devices for leisure, garden and pets</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1975,7 +1975,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Spielwaren</source>
-      <translation>Toys</translation>
+      <translation>Toy</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2009,8 +2009,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Pflanzen Blumen und Gartenprodukte</source>
-      <translation>Plants flowers and garden products</translation>
+      <source>Pflanzen, Blumen und Gartenprodukte</source>
+      <translation>Plants, flowers and garden products</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2074,8 +2074,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Kino Theater und Konzerte</source>
-      <translation>Cinema theater and concerts</translation>
+      <source>Kino, Theater und Konzerte</source>
+      <translation>Cinema, theater and concerts</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2114,8 +2114,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Zeitungen Bücher und Schreibwaren</source>
-      <translation>Newspapers books and stationery</translation>
+      <source>Zeitungen, Bücher und Schreibwaren</source>
+      <translation>Newspapers, books and stationery</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2209,8 +2209,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Restaurants Cafés und Schnellverpflegung</source>
-      <translation>Restaurants cafés and quick catering</translation>
+      <source>Restaurants, Cafés und Schnellverpflegung</source>
+      <translation>Restaurants, cafes and quick catering</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2289,8 +2289,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Personalrestaurants Kantinen</source>
-      <translation>Personnel restaurants canteens</translation>
+      <source>Personalrestaurants, Kantinen</source>
+      <translation>Personnel restaurants, canteens</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2474,93 +2474,8 @@
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
-      <source>Inserate</source>
+      <source>Inserat</source>
       <translation>Advertisement</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Nahrungsmittel und alkoholfreie Getränke</source>
-      <translation>Staples and non-alcoholic beverages</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Alkoholische Getränke und Tabak</source>
-      <translation>Alcoholic beverages and tobacco</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Wohnen und Energie</source>
-      <translation>Living and energy</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Bekleidung und Schuhe</source>
-      <translation>Apparel and shoes</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Hausrat und Haushaltsführung</source>
-      <translation>Furniture and housekeeping</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Gesundheitspflege</source>
-      <translation>Health</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Verkehr</source>
-      <translation>Transportation</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Nachrichtenübermittlung</source>
-      <translation>Communication</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Freizeit und Kultur</source>
-      <translation>Leisure and culture</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Unterricht</source>
-      <translation>Education</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Restaurants und Hotels</source>
-      <translation>Restaurants and hotels</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Sonstige Waren und Dienstleistungen</source>
-      <translation>Further services</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Hausrat und laufende Haushaltsführung</source>
-      <translation>Furniture and housekeeping</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Hausrat und laufende Haushaltführung</source>
-      <translation>Furniture and housekeeping</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Erziehung und Unterricht</source>
-      <translation>Education</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Obligatorische Krankenpflegeversicherung</source>
-      <translation>Compulsory health insurance</translation>
-    </message>
-    <message>
-      <location filename="../inflation_tracker.py" line="1"/>
-      <source>Krankenzusatzversicherung</source>
-      <translation>Supplemental health insurance</translation>
     </message>
   </context>
 </TS>
