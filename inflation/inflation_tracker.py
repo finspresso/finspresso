@@ -26,24 +26,6 @@ logging.basicConfig(level=logging.DEBUG)
 trans = QtCore.QTranslator()
 
 
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Nahrungsmittel und alkoholfreie Getränke")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Alkoholische Getränke und Tabak")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Wohnen und Energie")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Bekleidung und Schuhe")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Hausrat und Haushaltsführung")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Hausrat und laufende Haushaltführung")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Gesundheitspflege")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Verkehr")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Nachrichtenübermittlung")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Freizeit und Kultur")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Unterricht")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Erziehung und Unterricht")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Restaurants und Hotels")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Sonstige Waren und Dienstleistungen")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Obligatorische Krankenpflegeversicherung")
-QtCore.QT_TRANSLATE_NOOP("get_translation", "Krankenzusatzversicherung")
-
-
 NAME_MAPPING_DICT = {
     "Hausrat und laufende Haushaltsführung": "Hausrat und Haushaltsführung",
     "Hausrat und laufende Haushaltführung": "Hausrat und Haushaltsführung",
@@ -145,7 +127,7 @@ def setup_translation():
 def translate_labels(labels, language="English"):
     labels_translated = labels
     if language == "English":
-        labels_translated = [qt_translate("get_translation", word) for word in labels]
+        labels_translated = [qt_translate("inflation_tracker", word) for word in labels]
     return labels_translated
 
 
@@ -478,19 +460,23 @@ class LIKEvolution(QtGui.QWidget):
         )
         self.update_category_combobox_evolution()
 
+    def update_subcategory_combobox_evolution(self):
+        self.subcategory_cb_evolution.clear()
+        selected_language = self.current_language
+        current_index = self.category_cb_evolution.currentIndex()
+        category = self.df_lik_evolution.index[current_index]
+        if category in self.df_dict_lik_evolution_drill_down.keys():
+            self.translated_subcategories = translate_labels(
+                self.df_dict_lik_evolution_drill_down[category].index.values.tolist(),
+                language=selected_language,
+            )
+            self.subcategory_cb_evolution.addItems(self.translated_subcategories)
+
     def update_category_combobox_evolution(self):
         current_index = self.category_cb_evolution.currentIndex()
         self.category_cb_evolution.clear()
         self.category_cb_evolution.addItems(self.translated_index)
         self.category_cb_evolution.setCurrentText(self.translated_index[current_index])
-
-    def update_subcategory_combobox_evolution(self):
-        category = self.category_cb_evolution.currentText()
-        self.subcategory_cb_evolution.clear()
-        if category in self.df_dict_lik_evolution_drill_down.keys():
-            self.subcategory_cb_evolution.addItems(
-                self.df_dict_lik_evolution_drill_down[category].index.values
-            )
 
     def get_lik_evolution_data(self, source_file):
         logger.info("Loading %s...", source_file)
@@ -564,34 +550,42 @@ class LIKEvolution(QtGui.QWidget):
             self.evolution_chart_canvas.draw()
 
     def update_subcategory_evolution_chart(self):
-        selected_subcategory = self.subcategory_cb_evolution.currentText()
-        selected_category = self.category_cb_evolution.currentText()
-        if selected_subcategory != "" and selected_category != "":
-            self.year_slider_evolution_max.value()
+        self.evolution_sub_chart_canvas.axes.cla()
+        current_index_category = self.category_cb_evolution.currentIndex()
+        selected_category = self.df_lik_evolution.index[current_index_category]
+        current_index_subcategory = self.subcategory_cb_evolution.currentIndex()
+        if selected_category in self.df_dict_lik_evolution_drill_down.keys():
+            selected_subcategory = self.df_dict_lik_evolution_drill_down[
+                selected_category
+            ].index[current_index_subcategory]
+            if selected_subcategory != "" and selected_category != "":
 
-            lower_date = datetime.datetime(self.year_slider_evolution_min.value(), 1, 1)
-            upper_date = datetime.datetime(
-                self.year_slider_evolution_max.value() - 1, 12, 31
-            )
-            selected_period = (
-                self.df_dict_lik_evolution_drill_down[selected_category].columns
-                >= lower_date
-            ) & (
-                self.df_dict_lik_evolution_drill_down[selected_category].columns
-                <= upper_date
-            )
-            x = self.df_dict_lik_evolution_drill_down[selected_category].columns[
-                selected_period
-            ]
-            y = (
-                self.df_dict_lik_evolution_drill_down[selected_category]
-                .loc[selected_subcategory, selected_period]
-                .values
-            )
-            self.evolution_sub_chart_canvas.axes.cla()
-            self.evolution_sub_chart_canvas.axes.plot(x, y, label=selected_subcategory)
-            self.evolution_sub_chart_canvas.axes.grid()
-            self.evolution_sub_chart_canvas.draw()
+                lower_date = datetime.datetime(
+                    self.year_slider_evolution_min.value(), 1, 1
+                )
+                upper_date = datetime.datetime(
+                    self.year_slider_evolution_max.value() - 1, 12, 31
+                )
+                selected_period = (
+                    self.df_dict_lik_evolution_drill_down[selected_category].columns
+                    >= lower_date
+                ) & (
+                    self.df_dict_lik_evolution_drill_down[selected_category].columns
+                    <= upper_date
+                )
+                x = self.df_dict_lik_evolution_drill_down[selected_category].columns[
+                    selected_period
+                ]
+                y = (
+                    self.df_dict_lik_evolution_drill_down[selected_category]
+                    .loc[selected_subcategory, selected_period]
+                    .values
+                )
+                self.evolution_sub_chart_canvas.axes.plot(
+                    x, y, label=selected_subcategory
+                )
+                self.evolution_sub_chart_canvas.axes.grid()
+        self.evolution_sub_chart_canvas.draw()
 
     def create_sql_table(
         self, credentials, table_name="lik_evolution", language="English"
