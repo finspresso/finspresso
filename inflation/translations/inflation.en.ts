@@ -1040,7 +1040,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Wohnungsmiete</source>
-      <translation>Rent</translation>
+      <translation>Apartment rent</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1225,7 +1225,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Bekleidungsartikel</source>
-      <translation>Clothing</translation>
+      <translation>Clothing article</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1815,12 +1815,12 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Öffentlicher Fernverkehr</source>
-      <translation>Public transport</translation>
+      <translation>Public transport (long-distance)</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Öffentlicher Regionalverkehr</source>
-      <translation>Public transport</translation>
+      <translation>Public transport (regional)</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2476,6 +2476,91 @@
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Inserat</source>
       <translation>Advertisement</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Nahrungsmittel und alkoholfreie Getränke</source>
+      <translation>Staples and non-alcoholic beverages</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Alkoholische Getränke und Tabak</source>
+      <translation>Alcoholic beverages and tobacco</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Wohnen und Energie</source>
+      <translation>Living and energy</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Bekleidung und Schuhe</source>
+      <translation>Apparel and shoes</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Hausrat und Haushaltsführung</source>
+      <translation>Furniture and housekeeping</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Gesundheitspflege</source>
+      <translation>Health</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Verkehr</source>
+      <translation>Transportation</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Nachrichtenübermittlung</source>
+      <translation>Communication</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Freizeit und Kultur</source>
+      <translation>Leisure and culture</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Unterricht</source>
+      <translation>Education</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Restaurants und Hotels</source>
+      <translation>Restaurants and hotels</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Sonstige Waren und Dienstleistungen</source>
+      <translation>Further services</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Hausrat und laufende Haushaltsführung</source>
+      <translation>Furniture and housekeeping</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Hausrat und laufende Haushaltführung</source>
+      <translation>Furniture and housekeeping</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Erziehung und Unterricht</source>
+      <translation>Education</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Obligatorische Krankenpflegeversicherung</source>
+      <translation>Compulsory health insurance</translation>
+    </message>
+    <message>
+      <location filename="../inflation_tracker.py" line="1"/>
+      <source>Krankenzusatzversicherung</source>
+      <translation>Supplemental health insurance</translation>
     </message>
   </context>
 </TS>

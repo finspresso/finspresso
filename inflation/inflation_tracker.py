@@ -613,16 +613,28 @@ class LIKEvolution(QtGui.QWidget):
             index_label="id",
         )
 
-    def upload_data_to_sql_table(
-        self, credentials, table_name="lik_evolution", language="English"
-    ):
-        translated_labels = translate_labels(
-            self.df_lik_evolution.index.values.tolist(), language=language
+    def upload_lik_evolution_to_sql(self, credentials, language="English"):
+        self.upload_data_to_sql_table(
+            self.df_lik_evolution.transpose(),
+            credentials,
+            "lik_evolution",
+            language=language,
         )
+        for key, df in self.df_dict_lik_evolution_drill_down.items():
+            category = key
+            if language == "English":
+                category = qt_translate("inflation_tracker", key)
+            self.upload_data_to_sql_table(
+                df.transpose(), credentials, category, language=language
+            )
+
+    def upload_data_to_sql_table(self, df, credentials, table_name, language="English"):
+        translated_labels = translate_labels(df.columns.tolist(), language=language)
         self.db_interface = DBInterface(credentials=credentials)
-        df = self.df_lik_evolution.transpose()
         df.columns = translated_labels
-        df.reset_index(names="Date", inplace=True)
+        df.reset_index(inplace=True)
+        df.rename(columns={"index": "Date"}, inplace=True)
+        # df.reset_index(names="Date", inplace=True)
         df["Date"] = df["Date"].map(lambda x: x.date()).astype("datetime64[ns]")
         type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
         logger.info(
@@ -950,7 +962,7 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik.lik_evolution.create_sql_table(credentials)
 
     def upload_data_to_sql_tables(self, credentials):
-        self.lik.lik_evolution.upload_data_to_sql_table(credentials)
+        self.lik.lik_evolution.upload_lik_evolution_to_sql(credentials)
 
     def store_names_json(self):
         self.lik.store_names_json()

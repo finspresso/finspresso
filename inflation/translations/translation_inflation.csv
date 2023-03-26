@@ -206,7 +206,7 @@ Amtsdokumente,Official documents
 Dienste von Rechtsanwälten,Services of lawyers
 Inserate,Advertisement
 Miete,Rent
-Wohnungsmiete,rent
+Wohnungsmiete,Apartment rent
 Wohnungsmiete (Mietpreisindex),Apartment rent (rental price index)
 Unterstellte Miete für selbstgenutztes Wohneigentum,Supported rent for self -used residential property
 Garagen- und Parkplatzmiete,Garage and parking rental
@@ -243,7 +243,7 @@ Holzpellets,Wood pellets
 Holzscheite,Wooden section
 Fernwärme,District heating
 Bekleidung,clothing
-Bekleidungsartikel,Clothing
+Bekleidungsartikel,Clothing article
 Herrenbekleidung,Men's clothing
 "Jacken, Herren","Jackets, gentlemen"
 "Anzüge, Herren","Suits, gentlemen"
@@ -361,8 +361,8 @@ Parkgebühren,Parking fees
 Gebühren für Privatfahrzeuge und Fahrschule,Fees for private vehicles and driving school
 Transportdienstleistungen,Transport services
 Öffentlicher Verkehr,Public transport
-Öffentlicher Fernverkehr,Public transport
-Öffentlicher Regionalverkehr,Public transport
+Öffentlicher Fernverkehr,Public transport (long-distance)
+Öffentlicher Regionalverkehr,Public transport (regional)
 Öffentlicher Verkehr ins Ausland,Public traffic abroad
 Taxi,taxi
 Luftverkehr,air traffic
@@ -494,3 +494,20 @@ Sonstige Dienstleistungen,other services
 Amtsdokumente,Official documents
 Dienste von Rechtsanwälten,Services of lawyers
 Inserat,Advertisement
+Nahrungsmittel und alkoholfreie Getränke,Staples and non-alcoholic beverages
+Alkoholische Getränke und Tabak,Alcoholic beverages and tobacco
+Wohnen und Energie,Living and energy
+Bekleidung und Schuhe,Apparel and shoes
+Hausrat und Haushaltsführung,Furniture and housekeeping
+Gesundheitspflege,Health
+Verkehr,Transportation
+Nachrichtenübermittlung,Communication
+Freizeit und Kultur,Leisure and culture
+Unterricht,Education
+Restaurants und Hotels,Restaurants and hotels
+Sonstige Waren und Dienstleistungen,Further services
+Hausrat und laufende Haushaltsführung,Furniture and housekeeping
+Hausrat und laufende Haushaltführung,Furniture and housekeeping
+Erziehung und Unterricht,Education
+Obligatorische Krankenpflegeversicherung,Compulsory health insurance
+Krankenzusatzversicherung,Supplemental health insurance
