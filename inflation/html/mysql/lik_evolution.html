@@ -86,6 +86,14 @@
     <div class="chartBox">
         <canvas id="chartCategoryLIK"></canvas>
     </div>
+
+    <form action="">
+        <select id="subcategory-dropdown" name="Subcategory" onchange="loadSubData(this.value)">
+        </select>
+    </form>
+    <div class="chartBox">
+        <canvas id="chartSubCategoryLIK"></canvas>
+    </div>
     <script>
         var baseURL = "";
         if (location.hostname === "www.finspresso.com") {
@@ -98,6 +106,19 @@
                 success: function (data) {
                     loadedData = data;
                     updateGraph(category);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+        var loadSubData = function (category) {
+            $.ajax({
+                url: baseURL + "db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
+                method: "GET",
+                success: function (data) {
+                    loadedData = data;
+                    updateSubGraph(category);
                 },
                 error: function (data) {
                     console.log(data);
@@ -143,6 +164,43 @@
 
         }
 
+        function updateSubGraph(category) {
+            var dates = [];
+            var values = [];
+            var min_slider = document.getElementById("min_slider");
+            var max_slider = document.getElementById("max_slider");
+            var lower_date = new Date(min_slider.value - 1, 11, 31);
+            var upper_date = new Date(max_slider.value, 12, 31);
+            for (var i in loadedData) {
+                var current_date = new Date(loadedData[i]["Date"]);
+                if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
+                    dates.push(loadedData[i]["Date"]);
+                    values.push(loadedData[i][category]);
+                }
+
+            }
+            let relative_change_element = document.getElementById("relative_change");
+            let relative_growth_string = 'NA';
+            if (values[0] !== 0) {
+                let relative_growth = (values[values.length - 1] / values[0] - 1) * 100;
+                relative_growth_string = relative_growth.toFixed(2) + "%";
+            }
+            relative_change_element.value = relative_growth_string;
+            var chartdata = {
+                labels: dates,
+                datasets: [
+                    {
+                        label: category,
+                        borderColor: lik_colors[category],
+                        data: values,
+                    },
+                ],
+            };
+            chartSubCategoryLIK.config.data = chartdata;
+            chartSubCategoryLIK.update();
+
+        }
+
         function updateTimeSpanSlider() {
             let dropdown = document.getElementById("category-dropdown");
             const category_current = dropdown.options[dropdown.selectedIndex].value;
@@ -153,6 +211,7 @@
             let max_slider = document.getElementById("max_slider");
             max_input.value = max_slider.value;
             updateGraph(category_current);
+            updateSubGraph(category_current);
         }
 
         function updateTimeSpanManual() {
@@ -165,6 +224,7 @@
             let max_slider = document.getElementById("max_slider");
             max_slider.value = max_input.value;
             updateGraph(category_current);
+            updateSubGraph(category_current);
         }
     </script>
     <script>
@@ -187,6 +247,31 @@
                     dropdown.selectedIndex = 0;
                     const category_current = dropdown.options[dropdown.selectedIndex].value;
                     loadData(category_current);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+
+        var loadSubCategories = function () {
+            $.ajax({
+                url: baseURL + "db_finspresso/get_lik_categories.php",
+                method: "GET",
+                success: function (data) {
+                    let dropdown = document.getElementById("subcategory-dropdown");
+                    let option;
+                    for (var i in data) {
+                        if (data[i]["Type"] == "float") {
+                            option = document.createElement("option");
+                            option.text = data[i]["Field"];
+                            option.value = data[i]["Field"];
+                            dropdown.add(option);
+                        }
+                    }
+                    dropdown.selectedIndex = 0;
+                    const category_current = dropdown.options[dropdown.selectedIndex].value;
+                    loadSubData(category_current);
                 },
                 error: function (data) {
                     console.log(data);
@@ -222,14 +307,33 @@
                 },
             ],
         };
+        let dataSubInit = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "My First Dataset",
+                    data: [65, 59, 80],
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    tension: 0.1,
+                },
+            ],
+        };
         const configInit = {
+            type: "line",
+            data: dataInit,
+        };
+        const configSubInit = {
             type: "line",
             data: dataInit,
         };
         var ctxCategory = document.getElementById("chartCategoryLIK").getContext("2d");
         var chartCategoryLIK = new Chart(ctxCategory, configInit);
+        var ctxSubCategory = document.getElementById("chartSubCategoryLIK").getContext("2d");
+        var chartSubCategoryLIK = new Chart(ctxSubCategory, configSubInit);
         loadColors();
         loadCategories();
+        loadSubCategories();
 
     </script>
 
