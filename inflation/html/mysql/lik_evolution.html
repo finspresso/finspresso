@@ -117,7 +117,7 @@
                 url: baseURL + "db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
-                    loadedData = data;
+                    loadedSubData = data;
                     updateSubGraph(category);
                 },
                 error: function (data) {
@@ -171,11 +171,11 @@
             var max_slider = document.getElementById("max_slider");
             var lower_date = new Date(min_slider.value - 1, 11, 31);
             var upper_date = new Date(max_slider.value, 12, 31);
-            for (var i in loadedData) {
-                var current_date = new Date(loadedData[i]["Date"]);
+            for (var i in loadedSubData) {
+                var current_date = new Date(loadedSubData[i]["Date"]);
                 if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
-                    dates.push(loadedData[i]["Date"]);
-                    values.push(loadedData[i][category]);
+                    dates.push(loadedSubData[i]["Date"]);
+                    values.push(loadedSubData[i][category]);
                 }
 
             }
@@ -204,6 +204,8 @@
         function updateTimeSpanSlider() {
             let dropdown = document.getElementById("category-dropdown");
             const category_current = dropdown.options[dropdown.selectedIndex].value;
+            let dropdownSub = document.getElementById("subcategory-dropdown");
+            const subcategory_current = dropdownSub.options[dropdownSub.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_input.value = min_slider.value;
@@ -211,12 +213,14 @@
             let max_slider = document.getElementById("max_slider");
             max_input.value = max_slider.value;
             updateGraph(category_current);
-            updateSubGraph(category_current);
+            updateSubGraph(subcategory_current);
         }
 
         function updateTimeSpanManual() {
             let dropdown = document.getElementById("category-dropdown");
             const category_current = dropdown.options[dropdown.selectedIndex].value;
+            let dropdownSub = document.getElementById("subcategory-dropdown");
+            const subcategory_current = dropdownSub.options[dropdownSub.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_slider.value = min_input.value;
@@ -224,7 +228,7 @@
             let max_slider = document.getElementById("max_slider");
             max_slider.value = max_input.value;
             updateGraph(category_current);
-            updateSubGraph(category_current);
+            updateSubGraph(subcategory_current);
         }
     </script>
     <script>
@@ -293,6 +297,7 @@
         };
 
         var loadedData = 0;
+        var loadedSubData = 0;
         var lik_colors = [];
         const labels = [1, 2];
         let dataInit = {
