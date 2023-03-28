@@ -88,7 +88,7 @@
     </div>
 
     <form action="">
-        <select id="subcategory-dropdown" name="Subcategory">
+        <select id="subcategory-dropdown" name="Subcategory" , onchange="loadSubData()">
         </select>
     </form>
     <div class="chartBox">
@@ -112,13 +112,17 @@
                 },
             });
         };
-        var loadSubData = function (category, subcategory) {
+        var loadSubData = function () {
+            let dropdown = document.getElementById("category-dropdown");
+            const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+            let dropdownSub = document.getElementById("subcategory-dropdown");
+            const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
             $.ajax({
-                url: baseURL + "db_finspresso/get_lik_evolution_sub_data.php?cat=" + "`" + category + "`" + "&subcat=" + "`" + subcategory + "`",
+                url: baseURL + "db_finspresso/get_lik_evolution_sub_data.php?cat=" + "`" + categoryCurrent + "`" + "&subcat=" + "`" + subcategoryCurrent + "`",
                 method: "GET",
                 success: function (data) {
                     loadedSubData = data;
-                    updateSubGraph(subcategory);
+                    updateSubGraph(subcategoryCurrent);
                 },
                 error: function (data) {
                     console.log(data);
@@ -213,8 +217,7 @@
             let max_slider = document.getElementById("max_slider");
             max_input.value = max_slider.value;
             updateGraph(categoryCurrent);
-            //loadSubCategories(categoryCurrent);
-            //updateSubGraph(subcategoryCurrent);
+            updateSubGraph(subcategoryCurrent);
         }
 
         function updateTimeSpanManual() {
@@ -229,8 +232,7 @@
             let max_slider = document.getElementById("max_slider");
             max_slider.value = max_input.value;
             updateGraph(categoryCurrent);
-            //loadSubCategories(categoryCurrent);
-            //updateSubGraph(subcategoryCurrent);
+            updateSubGraph(subcategoryCurrent);
         }
     </script>
     <script>
@@ -281,7 +283,7 @@
                     dropdownSub.selectedIndex = 0;
                     const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
                     const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
-                    loadSubData(categoryCurrent, subcategoryCurrent);
+                    loadSubData();
                 },
                 error: function (data) {
                     console.log(data);
