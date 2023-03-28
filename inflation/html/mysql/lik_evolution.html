@@ -39,7 +39,7 @@
 <body>
     <h2>LIK evolution graph</h2>
     <form action="">
-        <select id="category-dropdown" name="Category" onchange="loadData(this.value)">
+        <select id="category-dropdown" name="Category" onchange="loadData(this.value);loadSubCategories(this.value)">
         </select>
     </form>
     <br>
@@ -113,6 +113,7 @@
             });
         };
         var loadSubData = function (category) {
+            return;
             $.ajax({
                 url: baseURL + "db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
                 method: "GET",
@@ -213,7 +214,8 @@
             let max_slider = document.getElementById("max_slider");
             max_input.value = max_slider.value;
             updateGraph(category_current);
-            updateSubGraph(subcategory_current);
+            //loadSubCategories(category_current);
+            //updateSubGraph(subcategory_current);
         }
 
         function updateTimeSpanManual() {
@@ -228,7 +230,8 @@
             let max_slider = document.getElementById("max_slider");
             max_slider.value = max_input.value;
             updateGraph(category_current);
-            updateSubGraph(subcategory_current);
+            //loadSubCategories(category_current);
+            //updateSubGraph(subcategory_current);
         }
     </script>
     <script>
@@ -258,9 +261,11 @@
             });
         };
 
-        var loadSubCategories = function () {
+
+        var loadSubCategories = function (category) {
+            clearDropdown("subcategory-dropdown");
             $.ajax({
-                url: baseURL + "db_finspresso/get_lik_categories.php",
+                url: baseURL + "db_finspresso/get_lik_subcategories.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
                     let dropdown = document.getElementById("subcategory-dropdown");
@@ -275,12 +280,19 @@
                     }
                     dropdown.selectedIndex = 0;
                     const category_current = dropdown.options[dropdown.selectedIndex].value;
-                    loadSubData(category_current);
+                    //loadSubData(category_current);
                 },
                 error: function (data) {
                     console.log(data);
                 },
             });
+        };
+        var clearDropdown = function (dropdownName) {
+            var select = document.getElementById(dropdownName);
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
         };
 
         var loadColors = function () {
@@ -338,7 +350,7 @@
         var chartSubCategoryLIK = new Chart(ctxSubCategory, configSubInit);
         loadColors();
         loadCategories();
-        loadSubCategories();
+        //loadSubCategories();
 
     </script>
 
