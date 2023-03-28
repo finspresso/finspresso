@@ -88,7 +88,7 @@
     </div>
 
     <form action="">
-        <select id="subcategory-dropdown" name="Subcategory" onchange="loadSubData(this.value)">
+        <select id="subcategory-dropdown" name="Subcategory">
         </select>
     </form>
     <div class="chartBox">
@@ -112,14 +112,13 @@
                 },
             });
         };
-        var loadSubData = function (category) {
-            return;
+        var loadSubData = function (category, subcategory) {
             $.ajax({
-                url: baseURL + "db_finspresso/get_lik_evolution_data.php?q=" + "`" + category + "`",
+                url: baseURL + "db_finspresso/get_lik_evolution_sub_data.php?cat=" + "`" + category + "`" + "&subcat=" + "`" + subcategory + "`",
                 method: "GET",
                 success: function (data) {
                     loadedSubData = data;
-                    updateSubGraph(category);
+                    updateSubGraph(subcategory);
                 },
                 error: function (data) {
                     console.log(data);
@@ -204,34 +203,34 @@
 
         function updateTimeSpanSlider() {
             let dropdown = document.getElementById("category-dropdown");
-            const category_current = dropdown.options[dropdown.selectedIndex].value;
+            const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
             let dropdownSub = document.getElementById("subcategory-dropdown");
-            const subcategory_current = dropdownSub.options[dropdownSub.selectedIndex].value;
+            const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_input.value = min_slider.value;
             let max_input = document.getElementById("max_input");
             let max_slider = document.getElementById("max_slider");
             max_input.value = max_slider.value;
-            updateGraph(category_current);
-            //loadSubCategories(category_current);
-            //updateSubGraph(subcategory_current);
+            updateGraph(categoryCurrent);
+            //loadSubCategories(categoryCurrent);
+            //updateSubGraph(subcategoryCurrent);
         }
 
         function updateTimeSpanManual() {
             let dropdown = document.getElementById("category-dropdown");
-            const category_current = dropdown.options[dropdown.selectedIndex].value;
+            const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
             let dropdownSub = document.getElementById("subcategory-dropdown");
-            const subcategory_current = dropdownSub.options[dropdownSub.selectedIndex].value;
+            const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_slider.value = min_input.value;
             let max_input = document.getElementById("max_input");
             let max_slider = document.getElementById("max_slider");
             max_slider.value = max_input.value;
-            updateGraph(category_current);
-            //loadSubCategories(category_current);
-            //updateSubGraph(subcategory_current);
+            updateGraph(categoryCurrent);
+            //loadSubCategories(categoryCurrent);
+            //updateSubGraph(subcategoryCurrent);
         }
     </script>
     <script>
@@ -252,8 +251,8 @@
                         }
                     }
                     dropdown.selectedIndex = 0;
-                    const category_current = dropdown.options[dropdown.selectedIndex].value;
-                    loadData(category_current);
+                    const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+                    loadData(categoryCurrent);
                 },
                 error: function (data) {
                     console.log(data);
@@ -268,19 +267,21 @@
                 url: baseURL + "db_finspresso/get_lik_subcategories.php?q=" + "`" + category + "`",
                 method: "GET",
                 success: function (data) {
-                    let dropdown = document.getElementById("subcategory-dropdown");
+                    let dropdown = document.getElementById("category-dropdown");
+                    let dropdownSub = document.getElementById("subcategory-dropdown");
                     let option;
                     for (var i in data) {
                         if (data[i]["Type"] == "float") {
                             option = document.createElement("option");
                             option.text = data[i]["Field"];
                             option.value = data[i]["Field"];
-                            dropdown.add(option);
+                            dropdownSub.add(option);
                         }
                     }
-                    dropdown.selectedIndex = 0;
-                    const category_current = dropdown.options[dropdown.selectedIndex].value;
-                    //loadSubData(category_current);
+                    dropdownSub.selectedIndex = 0;
+                    const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+                    const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
+                    loadSubData(categoryCurrent, subcategoryCurrent);
                 },
                 error: function (data) {
                     console.log(data);
