@@ -196,7 +196,6 @@
             }
             let relative_change_element = document.getElementById("relative_change_sub");
             let relative_growth_string = 'NA';
-            console.log(values)
             if (values[0] != null && values[0] !== 0) {
                 let relative_growth = (values[values.length - 1] / values[0] - 1) * 100;
                 relative_growth_string = relative_growth.toFixed(2) + "%";
