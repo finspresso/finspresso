@@ -26,7 +26,6 @@ class TranslationHelper:
     @staticmethod
     def create_ts_file(
         df_translation,
-        csv_source_file="translation_inflation.csv",
         ts_file_name="translations/inflation.en.ts",
         context_name="inflation_tracker",
     ):
@@ -40,7 +39,8 @@ class TranslationHelper:
         file_name = "../inflation_tracker.py"
         for _, row in df_translation.iterrows():
             source_text = row["German"]
-            translation_text = row["English"].capitalize()
+            translation_text = row["English"]
+            translation_text = row["English"][0].upper() + row["English"][1:]
             message_element = TranslationHelper.create_message_element(
                 file_name, source_text, translation_text
             )
