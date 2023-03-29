@@ -1135,37 +1135,37 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Elektrizität, Verbrauchstyp I</source>
-      <translation>Electricity, type of consumption i</translation>
+      <translation>Electricity, type of consumption I</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Elektrizität, Verbrauchstyp II</source>
-      <translation>Electricity, consumption type ii</translation>
+      <translation>Electricity, consumption type II</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Elektrizität, Verbrauchstyp III</source>
-      <translation>Electricity, type iii consumption</translation>
+      <translation>Electricity, type III consumption</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Elektrizität, Verbrauchstyp IV</source>
-      <translation>Electricity, type of consumption iv</translation>
+      <translation>Electricity, type of consumption IV</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Elektrizität, Verbrauchstyp V</source>
-      <translation>Electricity, consumption type v</translation>
+      <translation>Electricity, consumption type V</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Elektrizität, Verbrauchstyp VI</source>
-      <translation>Electricity, consumption type vi</translation>
+      <translation>Electricity, consumption type VI</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Elektrizität, Verbrauchstyp VII</source>
-      <translation>Electricity, type of consumption vii</translation>
+      <translation>Electricity, type of consumption VII</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1175,17 +1175,17 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Gas, Verbrauchstyp II</source>
-      <translation>Gas, consumption type ii</translation>
+      <translation>Gas, consumption type II</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Gas, Verbrauchstyp III</source>
-      <translation>Gas, type iii consumption</translation>
+      <translation>Gas, type III consumption</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Gas, Verbrauchstyp IV</source>
-      <translation>Gas, type of consumption iv</translation>
+      <translation>Gas, type of consumption IV</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1310,7 +1310,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Hosen und Jupe, Kinder</source>
-      <translation>Pants and jupe, children</translation>
+      <translation>Pants and Jupe, children</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1665,7 +1665,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Pflegeleistungen Spitex</source>
-      <translation>Poster services spitex</translation>
+      <translation>Poster services Spitex</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1735,7 +1735,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Ersatzteile</source>
-      <translation>Spare parts</translation>
+      <translation>Spare Parts</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1880,7 +1880,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Fernseh- und Audio-Videogeräte</source>
-      <translation>Tv and audio video devices</translation>
+      <translation>TV and audio video devices</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1910,7 +1910,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>IT-Peripherie und Zubehör</source>
-      <translation>It periphery and accessories</translation>
+      <translation>IT periphery and accessories</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1935,7 +1935,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Reparatur und Installationen Radio und TV</source>
-      <translation>Repair and installations radio and tv</translation>
+      <translation>Repair and installations radio and TV</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -2175,7 +2175,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Pauschalreisen im Inland</source>
-      <translation>Package tours in germany</translation>
+      <translation>Package tours in Germany</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>

@@ -198,9 +198,11 @@
             }
             let relative_change_element = document.getElementById("relative_change_sub");
             let relative_growth_string = 'NA';
-            if (values[0] != null && values[0] !== 0) {
-                let relative_growth = (values[values.length - 1] / values[0] - 1) * 100;
-                relative_growth_string = relative_growth.toFixed(2) + "%";
+            if (values[0] !== null) { // Done due to Gutenberg html renderer bug
+                if (values[0] !== 0) {
+                    let relative_growth = (values[values.length - 1] / values[0] - 1) * 100;
+                    relative_growth_string = relative_growth.toFixed(2) + "%";
+                }
             }
             relative_change_element.value = relative_growth_string;
             var chartdata = {
