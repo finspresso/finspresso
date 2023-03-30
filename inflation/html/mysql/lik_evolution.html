@@ -223,8 +223,6 @@
         function updateTimeSpanSlider() {
             let dropdown = document.getElementById("category-dropdown");
             const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
-            let dropdownSub = document.getElementById("subcategory-dropdown");
-            const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_input.value = min_slider.value;
@@ -232,14 +230,16 @@
             let max_slider = document.getElementById("max_slider");
             max_input.value = max_slider.value;
             updateGraph(categoryCurrent);
-            updateSubGraph(categoryCurrent, subcategoryCurrent);
+            if (categoryCurrent !== "Total") {
+                let dropdownSub = document.getElementById("subcategory-dropdown");
+                const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
+                updateSubGraph(categoryCurrent, subcategoryCurrent);
+            }
         }
 
         function updateTimeSpanManual() {
             let dropdown = document.getElementById("category-dropdown");
             const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
-            let dropdownSub = document.getElementById("subcategory-dropdown");
-            const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_slider.value = min_input.value;
@@ -247,7 +247,11 @@
             let max_slider = document.getElementById("max_slider");
             max_slider.value = max_input.value;
             updateGraph(categoryCurrent);
-            updateSubGraph(categoryCurrent, subcategoryCurrent);
+            if (categoryCurrent !== "Total") {
+                let dropdownSub = document.getElementById("subcategory-dropdown");
+                const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
+                updateSubGraph(categoryCurrent, subcategoryCurrent);
+            }
         }
     </script>
     <script>
@@ -277,9 +281,29 @@
             });
         };
 
+        var resetSubCatGraph = function() {
+            let chartdataReset = {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: "NA",
+                            borderColor: "rgb(75, 192, 192)",
+                            data: [],
+                        },
+                    ],
+                };
+            chartSubCategoryLIK.config.data = chartdataReset;
+            chartSubCategoryLIK.update();
+            let relative_change_element = document.getElementById("relative_change_sub");
+            relative_change_element.value = "NA";
+        };
 
         var loadSubCategories = function (category) {
             clearDropdown("subcategory-dropdown");
+            if (category == "Total") {
+                resetSubCatGraph();
+                return;
+            }
             $.ajax({
                 url: baseURL + "db_finspresso/get_lik_subcategories.php?q=" + "`" + category + "`",
                 method: "GET",
