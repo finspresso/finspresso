@@ -547,6 +547,7 @@ class LIKEvolution(QtGui.QWidget):
             #     self.evolution_chart_canvas.axes.get_xticks(), rotation=80
             # )
             self.evolution_chart_canvas.axes.grid()
+            self.evolution_chart_canvas.axes.legend()
             self.evolution_chart_canvas.draw()
 
     def update_subcategory_evolution_chart(self):
@@ -559,7 +560,7 @@ class LIKEvolution(QtGui.QWidget):
                 selected_category
             ].index[current_index_subcategory]
             if selected_subcategory != "" and selected_category != "":
-
+                translated_subcategory = self.subcategory_cb_evolution.currentText()
                 lower_date = datetime.datetime(
                     self.year_slider_evolution_min.value(), 1, 1
                 )
@@ -582,9 +583,11 @@ class LIKEvolution(QtGui.QWidget):
                     .values
                 )
                 self.evolution_sub_chart_canvas.axes.plot(
-                    x, y, label=selected_subcategory
+                    x, y, label=translated_subcategory
                 )
                 self.evolution_sub_chart_canvas.axes.grid()
+                if translated_subcategory != "":
+                    self.evolution_sub_chart_canvas.axes.legend()
         self.evolution_sub_chart_canvas.draw()
 
     def create_sql_table(
