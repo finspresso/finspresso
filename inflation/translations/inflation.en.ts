@@ -1600,12 +1600,12 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Sanitätsmaterial</source>
-      <translation>Medical</translation>
+      <translation>Medical equipment</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Medizinische Hilfsmittel</source>
-      <translation>Medical aid</translation>
+      <translation>Medical aids</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
@@ -1815,7 +1815,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Öffentlicher Fernverkehr</source>
-      <translation>Public transport (long-distance)</translation>
+      <translation>Public transport (international)</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>

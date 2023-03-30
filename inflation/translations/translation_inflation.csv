@@ -318,8 +318,8 @@ Verbrauchsmaterial,Consumables
 Dienstleistungen für Wohnungsreinigung,Housing services
 Medizinische Erzeugnisse,Medical products
 Medikamente,Medication
-Sanitätsmaterial,Medical
-Medizinische Hilfsmittel,Medical aid
+Sanitätsmaterial,Medical equipment
+Medizinische Hilfsmittel,Medical aids
 Brillen und Kontaktlinsen,Glasses and contact lenses
 Hörgeräte und andere medizinische Hilfsmittel,Hearing aids and other medical aids
 Ambulante Dienstleistungen,Outpatient services
@@ -361,7 +361,7 @@ Parkgebühren,Parking fees
 Gebühren für Privatfahrzeuge und Fahrschule,Fees for private vehicles and driving school
 Transportdienstleistungen,Transport services
 Öffentlicher Verkehr,Public transport
-Öffentlicher Fernverkehr,Public transport (long-distance)
+Öffentlicher Fernverkehr,Public transport (international)
 Öffentlicher Regionalverkehr,Public transport (regional)
 Öffentlicher Verkehr ins Ausland,Public traffic abroad
 Taxi,taxi
