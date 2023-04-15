@@ -481,14 +481,14 @@ class LIKEvolution(QtGui.QWidget):
     def get_lik_evolution_data(self, source_file):
         logger.info("Loading %s...", source_file)
         df_raw = pd.read_excel(source_file)
-        category_names = [name.lstrip() for name in df_raw.iloc[422:434, 5]]
+        category_names = [name.lstrip() for name in df_raw.iloc[422:435, 5]]
         end_of_month_list = [
             get_last_date_of_month(x.year, x.month) for x in df_raw.iloc[2, 14:]
         ]
         self.df_dict_lik_evolution_drill_down = dict()
         for category, re_mask in CATEGORY_MAPPING_DICT.items():
             boolean_vec = df_raw.iloc[:, 1].map(
-                lambda x: True if re.search(re_mask, str(x)) else False
+                lambda x: True if re.fullmatch(re_mask, str(x)) else False
             )
             data = (
                 df_raw[boolean_vec]
@@ -505,7 +505,7 @@ class LIKEvolution(QtGui.QWidget):
         self.df_lik_evolution = pd.DataFrame(
             index=category_names,
             columns=end_of_month_list,
-            data=df_raw.iloc[422:434, 14:].values,
+            data=df_raw.iloc[422:435, 14:].values,
             dtype="float64",
         )
         self.translated_index = self.df_lik_evolution.index.values.tolist()
