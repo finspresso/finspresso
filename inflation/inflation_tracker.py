@@ -939,6 +939,21 @@ class LIKWeights(QtGui.QWidget):
         return return_value
 
 
+class CompareTool(QtGui.QTabWidget):
+    def __init__(self, df_lik_evolution, df_kvpi_evolution, language, parent=None):
+        super().__init__()
+        self.compare_graph = CompareGraph(df_lik_evolution, df_kvpi_evolution, language)
+        self.addTab(self.compare_graph, "Graphs")
+
+
+class CompareGraph(QtGui.QWidget):
+    def __init__(self, df_lik_evolution, df_kvpi_evolution, current_language):
+        QtGui.QWidget.__init__(self)
+        self.current_language = current_language
+        self.main_layout = QtGui.QVBoxLayout()
+        self.setLayout(self.main_layout)
+
+
 class InflationTracker(QtGui.QTabWidget):
     def __init__(
         self,
@@ -952,8 +967,14 @@ class InflationTracker(QtGui.QTabWidget):
         self.setGeometry(100, 10, 900, 1200)
         self.lik = LIK(source_lik_weights, source_lik_evolution, current_language)
         self.kvpi = KVPI(source_kvpi_evolution, current_language)
+        self.compare_tool = CompareTool(
+            self.lik.lik_evolution.df_lik_evolution,
+            self.kvpi.kvpi_evolution.df_kvpi_evolution,
+            current_language,
+        )
         self.addTab(self.lik, "LIK")
         self.addTab(self.kvpi, "KVPI")
+        self.addTab(self.compare_tool, "Compare Tool")
         self.setCurrentIndex(1)
 
     def store_data_to_json(self):
