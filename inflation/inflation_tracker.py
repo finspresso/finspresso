@@ -942,16 +942,95 @@ class LIKWeights(QtGui.QWidget):
 class CompareTool(QtGui.QTabWidget):
     def __init__(self, df_lik_evolution, df_kvpi_evolution, language, parent=None):
         super().__init__()
-        self.compare_graph = CompareGraph(df_lik_evolution, df_kvpi_evolution, language)
+        df = self.merge_dataframes(df_lik_evolution, df_kvpi_evolution)
+        self.compare_graph = CompareGraph(df, language)
         self.addTab(self.compare_graph, "Graphs")
+
+    def merge_dataframes(self, df_lik_evolution, df_kvpi_evolution):
+        df1 = df_kvpi_evolution.copy()
+        df1.index = [datetime.datetime(year, 1, 1) for year in df_kvpi_evolution.index]
+        df2 = df_lik_evolution.transpose()
+        df_merged = df1.join(df2, lsuffix=" KVPI", rsuffix=" LIK", how="outer").fillna(
+            method="ffill"
+        )
+        return df_merged
 
 
 class CompareGraph(QtGui.QWidget):
-    def __init__(self, df_lik_evolution, df_kvpi_evolution, current_language):
+    def __init__(self, df, current_language):
+
         QtGui.QWidget.__init__(self)
+        self.df = df
         self.current_language = current_language
         self.main_layout = QtGui.QVBoxLayout()
+        self.compare_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
+        self.create_comboboxes_compare()
+        self.create_year_sliders()
+        self.update_chart()
+        self.main_layout.addWidget(self.compare_cat1_cb)
+        self.main_layout.addWidget(self.compare_cat2_cb)
+        self.main_layout.addLayout(self.slider_layout)
+        self.main_layout.addWidget(self.compare_chart_canvas)
         self.setLayout(self.main_layout)
+
+    def update_chart(self):
+        min_date = datetime.datetime(self.year_slider_min.value(), 1, 1)
+        max_date = datetime.datetime(self.year_slider_max.value(), 1, 1)
+        x = self.df.index[(self.df.index >= min_date) & (self.df.index <= max_date)]
+        y1 = self.df.loc[x, self.compare_cat1_cb.currentText()]
+        y2 = self.df.loc[x, self.compare_cat2_cb.currentText()]
+        self.compare_chart_canvas.axes.cla()
+        self.compare_chart_canvas.axes.plot(
+            x, y1, label=self.compare_cat1_cb.currentText()
+        )
+        self.compare_chart_canvas.axes.plot(
+            x, y2, label=self.compare_cat2_cb.currentText()
+        )
+        self.compare_chart_canvas.axes.grid()
+        self.compare_chart_canvas.axes.legend()
+        self.compare_chart_canvas.draw()
+
+    def create_comboboxes_compare(self):
+        options = self.df.columns
+        self.compare_cat1_cb = QtGui.QComboBox()
+        self.compare_cat1_cb.addItems(options)
+        self.compare_cat1_cb.currentTextChanged.connect(self.update_chart)
+        self.compare_cat2_cb = QtGui.QComboBox()
+        self.compare_cat2_cb.addItems(options)
+        self.compare_cat2_cb.currentTextChanged.connect(self.update_chart)
+
+    def create_year_sliders(self):
+        max_year = self.df.index[-1].year
+        min_year = self.df.index[0].year
+        self.slider_layout = QtGui.QGridLayout()
+        self.year_slider_min = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.year_slider_min.setMinimum(min_year)
+        self.year_slider_min.setMaximum(max_year)
+        self.year_slider_min.setValue(min_year)
+        self.year_slider_min.setTickPosition(QtGui.QSlider.TicksBelow)
+        self.year_slider_min.setTickInterval(1)
+        self.min_year_label = QtGui.QLabel(str(self.year_slider_min.value()), self)
+        self.year_slider_max = QtGui.QSlider(QtCore.Qt.Horizontal)
+        self.year_slider_max.setMinimum(min_year)
+        self.year_slider_max.setMaximum(max_year + 1)
+        self.year_slider_max.setValue(max_year + 1)
+        self.year_slider_max.setTickPosition(QtGui.QSlider.TicksBelow)
+        self.year_slider_max.setTickInterval(1)
+        self.max_year_label = QtGui.QLabel(str(self.year_slider_max.value()), self)
+        self.year_slider_min.valueChanged.connect(self.update_chart)
+        self.year_slider_min.valueChanged.connect(self.update_min_year_label)
+        self.year_slider_max.valueChanged.connect(self.update_chart)
+        self.year_slider_max.valueChanged.connect(self.update_max_year_label)
+        self.slider_layout.addWidget(self.year_slider_min, 1, 1)
+        self.slider_layout.addWidget(self.min_year_label, 1, 2)
+        self.slider_layout.addWidget(self.year_slider_max, 2, 1)
+        self.slider_layout.addWidget(self.max_year_label, 2, 2)
+
+    def update_min_year_label(self, value):
+        self.min_year_label.setText(str(value))
+
+    def update_max_year_label(self, value):
+        self.max_year_label.setText(str(value))
 
 
 class InflationTracker(QtGui.QTabWidget):
