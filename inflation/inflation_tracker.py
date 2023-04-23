@@ -995,14 +995,16 @@ class CompareGraph(QtGui.QWidget):
         max_date = datetime.datetime(self.year_slider_max.value(), 1, 1)
         x = self.df.index[(self.df.index >= min_date) & (self.df.index <= max_date)]
         y1 = self.df.loc[x, self.compare_cat1_cb.currentText()]
+        first_valid_index_y1 = y1.first_valid_index()
         y2 = self.df.loc[x, self.compare_cat2_cb.currentText()]
+        first_valid_index_y2 = y2.first_valid_index()
         if (
             self.cbox_relative.isChecked()
-            and not np.isnan(y1.iloc[0])
-            and not np.isnan(y2.iloc[0])
+            and first_valid_index_y1 is not None
+            and first_valid_index_y2 is not None
         ):
-            y1 = y1 / y1.iloc[0] * 100
-            y2 = y2 / y2.iloc[0] * 100
+            y1 = y1 / y1[first_valid_index_y1] * 100
+            y2 = y2 / y2[first_valid_index_y2] * 100
         self.compare_chart_canvas.axes.cla()
         self.compare_chart_canvas.axes.plot(
             x, y1, label=self.compare_cat1_cb.currentText()
