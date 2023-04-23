@@ -311,13 +311,18 @@
                     let dropdown = document.getElementById("category-dropdown");
                     let dropdownSub = document.getElementById("subcategory-dropdown");
                     let option;
+                    let subcategory_list = [];
                     for (var i in data) {
                         if (data[i]["Type"] == "float") {
-                            option = document.createElement("option");
-                            option.text = data[i]["Field"];
-                            option.value = data[i]["Field"];
-                            dropdownSub.add(option);
+                            subcategory_list.push(data[i]["Field"]);
                         }
+                    }
+                    subcategory_list = subcategory_list.sort();
+                    for (subcat of subcategory_list) {
+                        option = document.createElement("option");
+                        option.text = subcat;
+                        option.value = subcat;
+                        dropdownSub.add(option);
                     }
                     dropdownSub.selectedIndex = 0;
                     const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
