@@ -980,6 +980,7 @@ class CompareGraph(QtGui.QWidget):
         self.main_layout = QtGui.QVBoxLayout()
         self.compare_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.create_comboboxes_compare()
+        self.translate_compare()
         self.create_year_sliders()
         self.create_checkbox_relative()
         self.update_chart()
@@ -990,13 +991,27 @@ class CompareGraph(QtGui.QWidget):
         self.main_layout.addWidget(self.compare_chart_canvas)
         self.setLayout(self.main_layout)
 
+    def update_language(self, language):
+        if self.current_language != language:
+            self.current_language = language
+            self.translate_compare()
+
+    def translate_compare(self):
+        selected_language = self.current_language
+        self.translated_index = translate_labels(
+            self.df.columns.values.tolist(), language=selected_language
+        )
+        self.update_category_comboboxes()
+
     def update_chart(self):
         min_date = datetime.datetime(self.year_slider_min.value(), 1, 1)
         max_date = datetime.datetime(self.year_slider_max.value(), 1, 1)
         x = self.df.index[(self.df.index >= min_date) & (self.df.index <= max_date)]
-        y1 = self.df.loc[x, self.compare_cat1_cb.currentText()]
+        idx1 = self.translated_index.index(self.compare_cat1_cb.currentText())
+        y1 = self.df.loc[x, self.df.columns[idx1]]
         first_valid_index_y1 = y1.first_valid_index()
-        y2 = self.df.loc[x, self.compare_cat2_cb.currentText()]
+        idx2 = self.translated_index.index(self.compare_cat2_cb.currentText())
+        y2 = self.df.loc[x, self.df.columns[idx2]]
         first_valid_index_y2 = y2.first_valid_index()
         if (
             self.cbox_relative.isChecked()
@@ -1015,6 +1030,13 @@ class CompareGraph(QtGui.QWidget):
         self.compare_chart_canvas.axes.grid()
         self.compare_chart_canvas.axes.legend()
         self.compare_chart_canvas.draw()
+
+    def update_category_comboboxes(self):
+        for combobox in [self.compare_cat1_cb, self.compare_cat2_cb]:
+            current_index = combobox.currentIndex()
+            combobox.clear()
+            combobox.addItems(self.translated_index)
+            combobox.setCurrentText(self.translated_index[current_index])
 
     def create_checkbox_relative(self):
         self.cbox_relative = QtGui.QCheckBox("Enable relative change")
@@ -1132,6 +1154,7 @@ class MainWindow(QtGui.QMainWindow):
         self.inflation_tracker.lik.lik_evolution.update_language(language)
         self.inflation_tracker.kvpi.kvpi_evolution.update_language(language)
         self.inflation_tracker.kvpi.kvpi_weights.update_language(language)
+        self.inflation_tracker.compare_tool.compare_graph.update_language(language)
 
     def _create_menu_bar(self):
         menu_bar = self.menuBar()
