@@ -966,10 +966,12 @@ class CompareGraph(QtGui.QWidget):
         self.compare_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.create_comboboxes_compare()
         self.create_year_sliders()
+        self.create_checkbox_relative()
         self.update_chart()
         self.main_layout.addWidget(self.compare_cat1_cb)
         self.main_layout.addWidget(self.compare_cat2_cb)
         self.main_layout.addLayout(self.slider_layout)
+        self.main_layout.addWidget(self.cbox_relative)
         self.main_layout.addWidget(self.compare_chart_canvas)
         self.setLayout(self.main_layout)
 
@@ -979,6 +981,13 @@ class CompareGraph(QtGui.QWidget):
         x = self.df.index[(self.df.index >= min_date) & (self.df.index <= max_date)]
         y1 = self.df.loc[x, self.compare_cat1_cb.currentText()]
         y2 = self.df.loc[x, self.compare_cat2_cb.currentText()]
+        if (
+            self.cbox_relative.isChecked()
+            and not np.isnan(y1.iloc[0])
+            and not np.isnan(y2.iloc[0])
+        ):
+            y1 = y1 / y1.iloc[0] * 100
+            y2 = y2 / y2.iloc[0] * 100
         self.compare_chart_canvas.axes.cla()
         self.compare_chart_canvas.axes.plot(
             x, y1, label=self.compare_cat1_cb.currentText()
@@ -989,6 +998,11 @@ class CompareGraph(QtGui.QWidget):
         self.compare_chart_canvas.axes.grid()
         self.compare_chart_canvas.axes.legend()
         self.compare_chart_canvas.draw()
+
+    def create_checkbox_relative(self):
+        self.cbox_relative = QtGui.QCheckBox("Enable relative change")
+        self.cbox_relative.setChecked(False)
+        self.cbox_relative.toggled.connect(self.update_chart)
 
     def create_comboboxes_compare(self):
         options = self.df.columns
