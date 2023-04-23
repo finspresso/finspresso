@@ -940,19 +940,34 @@ class LIKWeights(QtGui.QWidget):
 
 
 class CompareTool(QtGui.QTabWidget):
-    def __init__(self, df_lik_evolution, df_kvpi_evolution, language, parent=None):
+    def __init__(
+        self,
+        df_lik_evolution,
+        df_dict_lik_evolution_drill_down,
+        df_kvpi_evolution,
+        language,
+        parent=None,
+    ):
         super().__init__()
-        df = self.merge_dataframes(df_lik_evolution, df_kvpi_evolution)
+        df = self.merge_dataframes(
+            df_lik_evolution, df_kvpi_evolution, df_dict_lik_evolution_drill_down
+        )
         self.compare_graph = CompareGraph(df, language)
         self.addTab(self.compare_graph, "Graphs")
 
-    def merge_dataframes(self, df_lik_evolution, df_kvpi_evolution):
+    def merge_dataframes(
+        self, df_lik_evolution, df_kvpi_evolution, df_dict_lik_evolution_drill_down
+    ):
         df1 = df_kvpi_evolution.copy()
         df1.index = [datetime.datetime(year, 1, 1) for year in df_kvpi_evolution.index]
         df2 = df_lik_evolution.transpose()
         df_merged = df1.join(df2, lsuffix=" KVPI", rsuffix=" LIK", how="outer").fillna(
             method="ffill"
         )
+        for category, df_sub in df_dict_lik_evolution_drill_down.items():
+            df_merged = df_merged.join(
+                df_sub.transpose(), rsuffix=" " + category, how="outer"
+            ).fillna(method="ffill")
         return df_merged
 
 
@@ -1062,6 +1077,7 @@ class InflationTracker(QtGui.QTabWidget):
         self.kvpi = KVPI(source_kvpi_evolution, current_language)
         self.compare_tool = CompareTool(
             self.lik.lik_evolution.df_lik_evolution,
+            self.lik.lik_evolution.df_dict_lik_evolution_drill_down,
             self.kvpi.kvpi_evolution.df_kvpi_evolution,
             current_language,
         )
