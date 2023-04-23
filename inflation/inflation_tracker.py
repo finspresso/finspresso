@@ -980,9 +980,9 @@ class CompareGraph(QtGui.QWidget):
         self.main_layout = QtGui.QVBoxLayout()
         self.compare_chart_canvas = MplCanvas(self, width=5, height=6, dpi=100)
         self.create_comboboxes_compare()
-        self.translate_compare()
         self.create_year_sliders()
         self.create_checkbox_relative()
+        self.translate_compare()
         self.update_chart()
         self.main_layout.addWidget(self.compare_cat1_cb)
         self.main_layout.addWidget(self.compare_cat2_cb)
@@ -1001,35 +1001,40 @@ class CompareGraph(QtGui.QWidget):
         self.translated_index = translate_labels(
             self.df.columns.values.tolist(), language=selected_language
         )
+        self.translated_index.sort()
         self.update_category_comboboxes()
 
     def update_chart(self):
         min_date = datetime.datetime(self.year_slider_min.value(), 1, 1)
         max_date = datetime.datetime(self.year_slider_max.value(), 1, 1)
         x = self.df.index[(self.df.index >= min_date) & (self.df.index <= max_date)]
-        idx1 = self.translated_index.index(self.compare_cat1_cb.currentText())
-        y1 = self.df.loc[x, self.df.columns[idx1]]
-        first_valid_index_y1 = y1.first_valid_index()
-        idx2 = self.translated_index.index(self.compare_cat2_cb.currentText())
-        y2 = self.df.loc[x, self.df.columns[idx2]]
-        first_valid_index_y2 = y2.first_valid_index()
         if (
-            self.cbox_relative.isChecked()
-            and first_valid_index_y1 is not None
-            and first_valid_index_y2 is not None
+            self.compare_cat1_cb.currentText() in self.translated_index
+            and self.compare_cat2_cb.currentText() in self.translated_index
         ):
-            y1 = y1 / y1[first_valid_index_y1] * 100
-            y2 = y2 / y2[first_valid_index_y2] * 100
-        self.compare_chart_canvas.axes.cla()
-        self.compare_chart_canvas.axes.plot(
-            x, y1, label=self.compare_cat1_cb.currentText()
-        )
-        self.compare_chart_canvas.axes.plot(
-            x, y2, label=self.compare_cat2_cb.currentText()
-        )
-        self.compare_chart_canvas.axes.grid()
-        self.compare_chart_canvas.axes.legend()
-        self.compare_chart_canvas.draw()
+            idx1 = self.translated_index.index(self.compare_cat1_cb.currentText())
+            y1 = self.df.loc[x, self.df.columns[idx1]]
+            first_valid_index_y1 = y1.first_valid_index()
+            idx2 = self.translated_index.index(self.compare_cat2_cb.currentText())
+            y2 = self.df.loc[x, self.df.columns[idx2]]
+            first_valid_index_y2 = y2.first_valid_index()
+            if (
+                self.cbox_relative.isChecked()
+                and first_valid_index_y1 is not None
+                and first_valid_index_y2 is not None
+            ):
+                y1 = y1 / y1[first_valid_index_y1] * 100
+                y2 = y2 / y2[first_valid_index_y2] * 100
+            self.compare_chart_canvas.axes.cla()
+            self.compare_chart_canvas.axes.plot(
+                x, y1, label=self.compare_cat1_cb.currentText()
+            )
+            self.compare_chart_canvas.axes.plot(
+                x, y2, label=self.compare_cat2_cb.currentText()
+            )
+            self.compare_chart_canvas.axes.grid()
+            self.compare_chart_canvas.axes.legend()
+            self.compare_chart_canvas.draw()
 
     def update_category_comboboxes(self):
         for combobox in [self.compare_cat1_cb, self.compare_cat2_cb]:
@@ -1047,9 +1052,11 @@ class CompareGraph(QtGui.QWidget):
         options = self.df.columns
         self.compare_cat1_cb = QtGui.QComboBox()
         self.compare_cat1_cb.addItems(options)
+        self.compare_cat1_cb.setCurrentText(options[0])
         self.compare_cat1_cb.currentTextChanged.connect(self.update_chart)
         self.compare_cat2_cb = QtGui.QComboBox()
         self.compare_cat2_cb.addItems(options)
+        self.compare_cat2_cb.setCurrentText(options[0])
         self.compare_cat2_cb.currentTextChanged.connect(self.update_chart)
 
     def create_year_sliders(self):

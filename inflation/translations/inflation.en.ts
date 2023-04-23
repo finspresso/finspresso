@@ -360,7 +360,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Tiefkühlgemüse</source>
-      <translation>Frozen</translation>
+      <translation>Frozen vegetables</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
