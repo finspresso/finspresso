@@ -656,29 +656,6 @@ class LIKEvolution(QtGui.QWidget):
                 df.transpose(), credentials, category, language=language
             )
 
-    def upload_data_to_sql_table(self, df, credentials, table_name, language="English"):
-        translated_labels = translate_labels(df.columns.tolist(), language=language)
-        self.db_interface = DBInterface(credentials=credentials)
-        df.columns = translated_labels
-        df.reset_index(inplace=True)
-        df.rename(columns={"index": "Date"}, inplace=True)
-        # df.reset_index(names="Date", inplace=True)
-        df["Date"] = df["Date"].map(lambda x: x.date()).astype("datetime64[ns]")
-        type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
-        logger.info(
-            "Uploading data to SQL table %s in db %s",
-            table_name,
-            credentials["db_name"],
-        )
-        df.to_sql(
-            table_name,
-            con=self.db_interface.conn,
-            if_exists="append",
-            chunksize=1000,
-            dtype=type_dict,
-            index_label="id",
-        )
-
 
 class LIKWeights(QtGui.QWidget):
     def __init__(self, lik_weight_source, current_language, color_dict_lik):
