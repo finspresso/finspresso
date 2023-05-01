@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<head>
+    <title>Compare tool</title>
+    <style type="text/css">
+        .chart-container {
+            width: 640px;
+            height: auto;
+        }
+
+        .chartBox {
+            width: 750px;
+        }
+
+        .input_field_class {
+            width: 200px;
+        }
+
+        .readonly_field_class {
+            width: 200px;
+            background-color: #a9a9a93c;
+            border: none;
+        }
+
+        .slidecontainer {
+            width: 200px;
+            /* Width of the outside container */
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>Compare</h2>
+    <form action="">
+        <select id="category-dropdown" name="Category" onchange="loadCategories(this.value)">
+        </select>
+    </form>
+    <br>
+
+    <script>
+        var loadCompareCategories = function () {
+            $.ajax({
+                url: baseURL + "db_finspresso/get_compare_categories.php",
+                method: "GET",
+                success: function (data) {
+                    let dropdown = document.getElementById("category-dropdown");
+                    let option;
+                    for (var i in data) {
+                        if (data[i]["Type"] == "float") {
+                            option = document.createElement("option");
+                            option.text = data[i]["Field"];
+                            option.value = data[i]["Field"];
+                            dropdown.add(option);
+                        }
+                    }
+                    dropdown.selectedIndex = 0;
+                    const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+                    loadData(categoryCurrent);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+        var baseURL = "";
+        if (location.hostname === "www.finspresso.com") {
+            baseURL = "https://www.finspresso.com/";
+        }
+         loadCompareCategories();
+    </script>
+</body>
+
+</html>
