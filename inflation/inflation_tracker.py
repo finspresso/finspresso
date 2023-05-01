@@ -316,6 +316,7 @@ class KVPIEvolution(QtGui.QWidget):
             self.kvpi_chart_canvas.axes.set_xticklabels(
                 self.kvpi_chart_canvas.axes.get_xticks(), rotation=80
             )
+            self.kvpi_chart_canvas.axes.legend()
             self.kvpi_chart_canvas.axes.grid()
             self.kvpi_chart_canvas.draw()
 
