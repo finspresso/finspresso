@@ -10,7 +10,7 @@ if($mysqli->connect_error) {
   exit('Could not connect');
 }
 
-$sql = "SHOW COLUMNS FROM `lik_evolution`";
+$sql = "SHOW COLUMNS FROM `lik_kvpi_evolution`";
 $result = $mysqli->query($sql);
 // while($row = mysqli_fetch_array($result)){
 //     echo $row['Field']."<br>";
