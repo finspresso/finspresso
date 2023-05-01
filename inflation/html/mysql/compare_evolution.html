@@ -38,19 +38,179 @@
 
 <body>
     <h2>Compare</h2>
-    <form action="">
-        <select id="category-dropdown" name="Category">
-        </select>
-    </form>
-    <br>
 
+    <table>
+        <tr>
+            <td> First category </td>
+            <td>
+                <form action="">
+                    <select id="category1-dropdown" name="Category1" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> Second category </td>
+            <td>
+                <form action="">
+                    <select id="category2-dropdown" name="Category2" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> First year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type="number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
+            </td>
+        </tr>
+        <tr>
+            <td> Last year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2022" class="slider" id="max_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type="number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
+            </td>
+        </tr>
+
+        <tr>
+            <td> Relative Change </td>
+            <td>
+            </td>
+            <td>
+                <input type="text" name="relative_change" value="NA" id="relative_change" readonly
+                    class="readonly_field_class" />
+            </td>
+        </tr>
+        <tr>
+            <td> Rescale</td>
+            <td>
+            <input type="checkbox" id="rescale_checkbox" name="rescale_checkbox" onchange="rescaleData()">
+        </td>
+        </tr>
+
+    </table>
+    <br>
+    <div class="chartBox">
+        <canvas id="chartCompare"></canvas>
+    </div>
     <script>
+        function rescaleData() {
+            let dropdown1 = document.getElementById("category1-dropdown");
+            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
+            let dropdown2 = document.getElementById("category2-dropdown");
+            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
+            updateGraph(category1, category2);
+        }
+
+        function updateTimeSpanSlider() {
+            let dropdown1 = document.getElementById("category1-dropdown");
+            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
+            let dropdown2 = document.getElementById("category2-dropdown");
+            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_input.value = min_slider.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_input.value = max_slider.value;
+            updateGraph(category1, category2);
+        }
+
+        function updateTimeSpanManual() {
+            let dropdown1 = document.getElementById("category1-dropdown");
+            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
+            let dropdown2 = document.getElementById("category2-dropdown");
+            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_slider.value = min_input.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_slider.value = max_input.value;
+            updateGraph(category1, category2);
+        }
+
+        function updateGraph(category1, category2) {
+            var dates = [];
+            var values1 = [];
+            var values2 = [];
+            var min_slider = document.getElementById("min_slider");
+            var max_slider = document.getElementById("max_slider");
+            var lower_date = new Date(min_slider.value - 1, 11, 31);
+            var upper_date = new Date(max_slider.value, 12, 31);
+            let rescale_checkbox = document.getElementById("rescale_checkbox");
+            let rescaled1 = false;
+            let rescaled2 = false;
+            for (var i in loadedData) {
+                var current_date = new Date(loadedData[i]["Date"]);
+                if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
+                    dates.push(loadedData[i]["Date"]);
+                    if (!rescaled1 && loadedData[i][category1] != null) {
+                        rescaled1 = true;
+                        var rescale_value1 = 100;
+                        if (rescale_checkbox.checked) {
+                            rescale_value1 =loadedData[i][category1];
+                        }
+                    }
+                    if (!rescaled2 && loadedData[i][category2] != null) {
+                        rescaled2 = true;
+                        var rescale_value2 = 100;
+                        if (rescale_checkbox.checked) {
+                            rescale_value2 = loadedData[i][category2];
+                        }
+                    }
+                    values1.push(loadedData[i][category1] / rescale_value1 * 100);
+                    values2.push(loadedData[i][category2] / rescale_value2 * 100);
+                }
+
+            }
+            let relative_change_element = document.getElementById("relative_change");
+            let relative_growth_string = 'NA';
+            if (values1[0] != null && values1[0] !== 0) {
+                let relative_growth = (values1[values1.length - 1] / values1[0] - 1) * 100;
+                relative_growth_string = relative_growth.toFixed(2) + "%";
+            }
+            relative_change_element.value = relative_growth_string;
+            var chartdata = {
+                labels: dates,
+                datasets: [
+                    {
+                        label: category1,
+                        borderColor: "rgb(75, 192, 192)",
+                        data: values1,
+                    },
+                    {
+                        label: category2,
+                        borderColor: "rgb(255, 0, 0)",
+                        data: values2,
+                    }
+                ],
+            };
+            chartCompare.config.data = chartdata;
+            chartCompare.update();
+
+        }
+
         var loadCompareCategories = function () {
             $.ajax({
                 url: baseURL + "db_finspresso/get_compare_categories.php",
                 method: "GET",
                 success: function (data) {
-                    let dropdown = document.getElementById("category-dropdown");
+                    let dropdown1 = document.getElementById("category1-dropdown");
+                    let dropdown2 = document.getElementById("category2-dropdown");
                     let option;
                     let category_list = [];
                     for (var i in data) {
@@ -63,12 +223,35 @@
                         option = document.createElement("option");
                         option.text = cat;
                         option.value = cat;
-                        dropdown.add(option);
+                        dropdown1.add(option);
+                        option2 = document.createElement("option");
+                        option2.text = cat;
+                        option2.value = cat;
+                        dropdown2.add(option2);
                     }
 
-                    dropdown.selectedIndex = 0;
-                    const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
-                    loadData(categoryCurrent);
+                    dropdown1.selectedIndex = 0;
+                    dropdown2.selectedIndex = 0;
+                    loadCompareData();
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+
+        var loadCompareData = function () {
+            let dropdown1 = document.getElementById("category1-dropdown");
+            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
+            let dropdown2 = document.getElementById("category2-dropdown");
+            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
+            let requestURL = baseURL + "db_finspresso/get_compare_evolution_data.php?cat1=" + "`" + category1 + "`" + "&cat2=" + "`" + category2 + "`";
+            $.ajax({
+                url: requestURL,
+                method: "GET",
+                success: function (data) {
+                    loadedData = data;
+                    updateGraph(category1, category2);
                 },
                 error: function (data) {
                     console.log(data);
@@ -79,7 +262,27 @@
         if (location.hostname === "www.finspresso.com") {
             baseURL = "https://www.finspresso.com/";
         }
-         loadCompareCategories();
+        const labels = [1, 2];
+        var loadedData = 0;
+        let dataInit = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "NA",
+                    data: [],
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    tension: 0.1,
+                },
+            ],
+        };
+        const configInit = {
+            type: "line",
+            data: dataInit,
+        };
+        var ctxCompare = document.getElementById("chartCompare").getContext("2d");
+        var chartCompare = new Chart(ctxCompare, configInit);
+        loadCompareCategories();
     </script>
 </body>
 
