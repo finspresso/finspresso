@@ -148,7 +148,7 @@ def upload_data_to_sql_table(df, credentials, table_name, language="English"):
     df.to_sql(
         table_name,
         con=db_interface.conn,
-        if_exists="append",
+        if_exists="replace",
         chunksize=1000,
         dtype=type_dict,
         index_label="id",
@@ -1137,7 +1137,7 @@ class InflationTracker(QtGui.QTabWidget):
 
     def upload_data_to_sql_tables(self, credentials):
         self.compare_tool.upload_lik_evolution_to_sql(credentials)
-        # self.lik.lik_evolution.upload_lik_evolution_to_sql(credentials)
+        self.lik.lik_evolution.upload_lik_evolution_to_sql(credentials)
 
     def store_names_json(self):
         self.lik.store_names_json()
