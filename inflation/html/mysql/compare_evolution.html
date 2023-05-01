@@ -39,7 +39,7 @@
 <body>
     <h2>Compare</h2>
     <form action="">
-        <select id="category-dropdown" name="Category" onchange="loadCategories(this.value)">
+        <select id="category-dropdown" name="Category">
         </select>
     </form>
     <br>
@@ -52,14 +52,20 @@
                 success: function (data) {
                     let dropdown = document.getElementById("category-dropdown");
                     let option;
+                    let category_list = [];
                     for (var i in data) {
                         if (data[i]["Type"] == "float") {
-                            option = document.createElement("option");
-                            option.text = data[i]["Field"];
-                            option.value = data[i]["Field"];
-                            dropdown.add(option);
+                            category_list.push(data[i]["Field"]);
                         }
                     }
+                    category_list = category_list.sort();
+                    for (cat of category_list) {
+                        option = document.createElement("option");
+                        option.text = cat;
+                        option.value = cat;
+                        dropdown.add(option);
+                    }
+
                     dropdown.selectedIndex = 0;
                     const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
                     loadData(categoryCurrent);
