@@ -951,11 +951,19 @@ class CompareTool(QtGui.QTabWidget):
         parent=None,
     ):
         super().__init__()
-        df = self.merge_dataframes(
+        self.df = self.merge_dataframes(
             df_lik_evolution, df_kvpi_evolution, df_dict_lik_evolution_drill_down
         )
-        self.compare_graph = CompareGraph(df, language)
+        self.compare_graph = CompareGraph(self.df, language)
         self.addTab(self.compare_graph, "Graphs")
+
+    def upload_lik_evolution_to_sql(self, credentials, language="English"):
+        upload_data_to_sql_table(
+            self.df,
+            credentials,
+            "lik_kvpi_evolution",
+            language=language,
+        )
 
     def merge_dataframes(
         self, df_lik_evolution, df_kvpi_evolution, df_dict_lik_evolution_drill_down
@@ -1128,7 +1136,8 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik.lik_evolution.create_sql_table(credentials)
 
     def upload_data_to_sql_tables(self, credentials):
-        self.lik.lik_evolution.upload_lik_evolution_to_sql(credentials)
+        self.compare_tool.upload_lik_evolution_to_sql(credentials)
+        # self.lik.lik_evolution.upload_lik_evolution_to_sql(credentials)
 
     def store_names_json(self):
         self.lik.store_names_json()
