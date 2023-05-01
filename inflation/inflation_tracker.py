@@ -131,6 +131,30 @@ def translate_labels(labels, language="English"):
     return labels_translated
 
 
+def upload_data_to_sql_table(df, credentials, table_name, language="English"):
+    translated_labels = translate_labels(df.columns.tolist(), language=language)
+    db_interface = DBInterface(credentials=credentials)
+    df.columns = translated_labels
+    df.reset_index(inplace=True)
+    df.rename(columns={"index": "Date"}, inplace=True)
+    # df.reset_index(names="Date", inplace=True)
+    df["Date"] = df["Date"].map(lambda x: x.date()).astype("datetime64[ns]")
+    type_dict = db_interface.infer_sqlalchemy_datatypes(df)
+    logger.info(
+        "Uploading data to SQL table %s in db %s",
+        table_name,
+        credentials["db_name"],
+    )
+    df.to_sql(
+        table_name,
+        con=db_interface.conn,
+        if_exists="append",
+        chunksize=1000,
+        dtype=type_dict,
+        index_label="id",
+    )
+
+
 class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
@@ -618,7 +642,7 @@ class LIKEvolution(QtGui.QWidget):
         )
 
     def upload_lik_evolution_to_sql(self, credentials, language="English"):
-        self.upload_data_to_sql_table(
+        upload_data_to_sql_table(
             self.df_lik_evolution.transpose(),
             credentials,
             "lik_evolution",
@@ -628,7 +652,7 @@ class LIKEvolution(QtGui.QWidget):
             category = key
             if language == "English":
                 category = qt_translate("inflation_tracker", key)
-            self.upload_data_to_sql_table(
+            upload_data_to_sql_table(
                 df.transpose(), credentials, category, language=language
             )
 
