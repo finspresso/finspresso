@@ -100,8 +100,15 @@
             <td> Rescale</td>
             <td>
             <input type="checkbox" id="rescale_checkbox" name="rescale_checkbox" onchange="rescaleData()">
-        </td>
+            </td>
         </tr>
+        <tr>
+            <td> Reset</td>
+            <td>
+            <button type="button" onclick="resetView()">Reset view</button>
+            </td>
+        </tr>
+
 
     </table>
     <br>
@@ -260,6 +267,15 @@
                 },
             });
         };
+
+        function resetView() {
+            resetZoom();
+        }
+
+        function resetZoom() {
+            chartCompare.resetZoom();
+        }
+
         var baseURL = "";
         if (location.hostname === "www.finspresso.com") {
             baseURL = "https://www.finspresso.com/";
@@ -296,6 +312,7 @@
                 }
           }
         };
+
         var ctxCompare = document.getElementById("chartCompare").getContext("2d");
         var chartCompare = new Chart(ctxCompare, configInit);
         loadCompareCategories();
