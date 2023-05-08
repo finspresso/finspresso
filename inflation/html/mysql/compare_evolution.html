@@ -242,13 +242,15 @@
         }i
             let dataset = [];
             for (var i=1; i <= max_graphs; i++) {
-                //console.log("values_dict " + i, values_dict[i]);
                 let dropdown = document.getElementById("category" + i + "-dropdown");
                 if (document.getElementById("enable" + i + "_checkbox").checked) {
                     let data_element = {
                         label: labels_dict[i],
                         borderColor: colors_dict[i],
                         data: values_dict[i],
+                        borderWidth: 1.4,
+                        tension: 0.2,
+                        pointRadius: 0.8
                     };
                     dataset.push(data_element);
                 }
@@ -345,6 +347,7 @@
                     data: [],
                     fill: false,
                     borderColor: "rgb(75, 192, 192)",
+                    borderWidth: 0.3,
                     tension: 0.1,
                 },
             ],
