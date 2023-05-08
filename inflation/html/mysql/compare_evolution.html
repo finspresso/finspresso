@@ -131,8 +131,12 @@
                 } else {
                     dropdown.disabled = true;
                 }
-
             }
+            let dropdown1 = document.getElementById("category1-dropdown");
+            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
+            let dropdown2 = document.getElementById("category2-dropdown");
+            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
+            updateGraph(category1, category2);
         }
 
         function rescaleData() {
@@ -174,6 +178,15 @@
 
         function updateGraph(category1, category2) {
             var dates = [];
+            var values_dict = {};
+            values_dict[1] = [];
+            values_dict[2] = [];
+            labels_dict = {};
+            labels_dict[1] = category1;
+            labels_dict[2] = category2;
+            colors_dict = {};
+            colors_dict[1] = "rgb(75, 192, 192)";
+            colors_dict[2] = "rgb(255, 0, 0)";
             var values1 = [];
             var values2 = [];
             var min_slider = document.getElementById("min_slider");
@@ -201,8 +214,8 @@
                             rescale_value2 = loadedData[i][category2];
                         }
                     }
-                    values1.push(loadedData[i][category1] / rescale_value1 * 100);
-                    values2.push(loadedData[i][category2] / rescale_value2 * 100);
+                    values_dict[1].push(loadedData[i][category1] / rescale_value1 * 100);
+                    values_dict[2].push(loadedData[i][category2] / rescale_value2 * 100);
                 }
 
             }
@@ -212,21 +225,27 @@
                 let relative_growth = (values1[values1.length - 1] / values1[0] - 1) * 100;
                 relative_growth_string = relative_growth.toFixed(2) + "%";
             }
+
+
             relative_change_element.value = relative_growth_string;
+
+            let dataset = [];
+            max_graphs = 2
+            for (var i=1; i <= max_graphs; i++) {
+                let dropdown = document.getElementById("category" + i + "-dropdown");
+                if (document.getElementById("enable" + i + "_checkbox").checked) {
+                    let data_element = {
+                        label: labels_dict[i],
+                        borderColor: colors_dict[i],
+                        data: values_dict[i],
+                    };
+                    dataset.push(data_element);
+                }
+
+            }
             var chartdata = {
                 labels: dates,
-                datasets: [
-                    {
-                        label: category1,
-                        borderColor: "rgb(75, 192, 192)",
-                        data: values1,
-                    },
-                    {
-                        label: category2,
-                        borderColor: "rgb(255, 0, 0)",
-                        data: values2,
-                    }
-                ],
+                datasets: dataset
             };
             chartCompare.config.data = chartdata;
             chartCompare.update();
