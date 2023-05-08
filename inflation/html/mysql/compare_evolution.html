@@ -43,7 +43,7 @@
 
     <table>
         <tr>
-            <td> First category </td>
+            <td> 1. category </td>
             <td>
                 <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateGraph()" checked=true>
             </td>
@@ -55,13 +55,49 @@
             </td>
         </tr>
         <tr>
-            <td> Second category </td>
+            <td> 2. category </td>
             <td>
                 <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox"onchange="updateGraph()">
             </td>
             <td>
                 <form action="">
                     <select id="category2-dropdown" name="Category2" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> 3. category </td>
+            <td>
+                <input type="checkbox" id="enable3_checkbox" name="enable3_checkbox"onchange="updateGraph()">
+            </td>
+            <td>
+                <form action="">
+                    <select id="category3-dropdown" name="Category3" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> 4. category </td>
+            <td>
+                <input type="checkbox" id="enable4_checkbox" name="enable4_checkbox"onchange="updateGraph()">
+            </td>
+            <td>
+                <form action="">
+                    <select id="category4-dropdown" name="Category4" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> 5. category </td>
+            <td>
+                <input type="checkbox" id="enable5_checkbox" name="enable5_checkbox"onchange="updateGraph()">
+            </td>
+            <td>
+                <form action="">
+                    <select id="category5-dropdown" name="Category5" onchange="loadCompareData()">
                     </select>
                 </form>
             </td>
@@ -162,12 +198,7 @@
             updateCheckboxes();
             var dates = [];
             var values_dict = {};
-            values_dict[1] = [];
-            values_dict[2] = [];
             labels_dict = {};
-            colors_dict = {};
-            colors_dict[1] = "rgb(75, 192, 192)";
-            colors_dict[2] = "rgb(255, 0, 0)";
             var values1 = [];
             var values2 = [];
             var min_slider = document.getElementById("min_slider");
@@ -176,6 +207,7 @@
             var upper_date = new Date(max_slider.value, 12, 31);
             let rescale_checkbox = document.getElementById("rescale_checkbox");
             for (var j = 1; j <= max_graphs; j++) {
+                values_dict[j] = [];
                 let rescaled = false;
                 let dropdown = document.getElementById("category" + j + "-dropdown");
                 let category = dropdown.options[dropdown.selectedIndex].value;
@@ -207,9 +239,10 @@
 
 
                 relative_change_element.value = relative_growth_string;
-        }
+        }i
             let dataset = [];
             for (var i=1; i <= max_graphs; i++) {
+                //console.log("values_dict " + i, values_dict[i]);
                 let dropdown = document.getElementById("category" + i + "-dropdown");
                 if (document.getElementById("enable" + i + "_checkbox").checked) {
                     let data_element = {
@@ -263,11 +296,20 @@
         };
 
         var loadCompareData = function () {
-            let dropdown1 = document.getElementById("category1-dropdown");
-            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
-            let dropdown2 = document.getElementById("category2-dropdown");
-            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
-            let requestURL = baseURL + "db_finspresso/get_compare_evolution_data.php?cat1=" + "`" + category1 + "`" + "&cat2=" + "`" + category2 + "`";
+            //let requestURL = baseURL + "db_finspresso/get_compare_evolution_data.php?cat1=" + "`" + category1 + "`" + "&cat2=" + "`" + category2 + "`";
+
+            let requestURL = baseURL + "db_finspresso/get_compare_evolution_data.php?";
+            for (var j = 1; j <= max_graphs; j++) {
+                let dropdown = document.getElementById("category" + j +"-dropdown");
+                let category = dropdown.options[dropdown.selectedIndex].value;
+                let cat_variable = "";
+                if (j > 1) {
+                    cat_variable = cat_variable  + "&";
+                }
+                cat_variable = cat_variable + "cat" + j + "=";
+                requestURL = requestURL + cat_variable + "`" + category + "`"
+            }
+
             $.ajax({
                 url: requestURL,
                 method: "GET",
@@ -328,7 +370,13 @@
                 }
           }
         };
-        var max_graphs = 2;
+        var max_graphs = 5;
+        colors_dict = {};
+        colors_dict[1] = "rgb(75, 192, 192)";
+        colors_dict[2] = "rgb(255, 0, 0)";
+        colors_dict[3] = "rgb(250, 0, 180)";
+        colors_dict[4] = "rgb(0, 255, 0)";
+        colors_dict[5] = "rgb(0, 0, 255)";
         var ctxCompare = document.getElementById("chartCompare").getContext("2d");
         var chartCompare = new Chart(ctxCompare, configInit);
         loadCompareCategories();

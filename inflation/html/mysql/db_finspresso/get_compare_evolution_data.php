@@ -10,7 +10,10 @@ if($mysqli->connect_error) {
 
 $category1 = $_GET['cat1'];
 $category2 = $_GET['cat2'];
-$query = sprintf("SELECT $category1, $category2, Date FROM lik_kvpi_evolution ORDER BY Date");
+$category3 = $_GET['cat3'];
+$category4 = $_GET['cat4'];
+$category5 = $_GET['cat5'];
+$query = sprintf("SELECT $category1, $category2, $category3, $category4, $category5, Date FROM lik_kvpi_evolution ORDER BY Date");
 $result = $mysqli->query($query);
 //loop through the returned data
 $data = array();
