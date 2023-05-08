@@ -45,11 +45,11 @@
         <tr>
             <td> First category </td>
             <td>
-                <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateCheckbox()">
+                <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateGraph()" checked=true>
             </td>
             <td>
                 <form action="">
-                    <select id="category1-dropdown" name="Category1" onchange="loadCompareData()">
+                    <select id="category1-dropdown" name="Category1" onchange="loadCompareData()" checked=true>
                     </select>
                 </form>
             </td>
@@ -57,7 +57,7 @@
         <tr>
             <td> Second category </td>
             <td>
-                <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox"onchange="updateCheckbox()">
+                <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox"onchange="updateGraph()">
             </td>
             <td>
                 <form action="">
@@ -122,7 +122,7 @@
         <canvas id="chartCompare"></canvas>
     </div>
     <script>
-        function updateCheckbox() {
+        function updateCheckboxes() {
             max_graphs = 2
             for (var i=1; i <= max_graphs; i++) {
                 let dropdown = document.getElementById("category" + i + "-dropdown");
@@ -132,7 +132,6 @@
                     dropdown.disabled = true;
                 }
             }
-            updateGraph();
         }
 
         function rescaleData() {
@@ -161,6 +160,7 @@
         }
 
         function updateGraph() {
+            updateCheckboxes();
             let max_graphs = 2
             var dates = [];
             var values_dict = {};
@@ -238,11 +238,6 @@
                 url: baseURL + "db_finspresso/get_compare_categories.php",
                 method: "GET",
                 success: function (data) {
-                    let dropdown1 = document.getElementById("category1-dropdown");
-                    let dropdown2 = document.getElementById("category2-dropdown");
-                    dropdown1.disabled = true;
-                    dropdown2.disabled = true;
-                    let option;
                     let category_list = [];
                     for (var i in data) {
                         if (data[i]["Type"] == "float") {
@@ -250,19 +245,18 @@
                         }
                     }
                     category_list = category_list.sort();
-                    for (cat of category_list) {
-                        option = document.createElement("option");
-                        option.text = cat;
-                        option.value = cat;
-                        dropdown1.add(option);
-                        option2 = document.createElement("option");
-                        option2.text = cat;
-                        option2.value = cat;
-                        dropdown2.add(option2);
+                    max_graphs = 2;
+                    for (var j = 1; j <= max_graphs; j++) {
+                        let dropdown = document.getElementById("category" + j +"-dropdown");
+                        for (cat of category_list) {
+                            let option = document.createElement("option");
+                            option.text = cat;
+                            option.value = cat;
+                            dropdown.add(option);
+                        }
+                        dropdown.selectedIndex = 0;
                     }
 
-                    dropdown1.selectedIndex = 0;
-                    dropdown2.selectedIndex = 0;
                     loadCompareData();
                 },
                 error: function (data) {
