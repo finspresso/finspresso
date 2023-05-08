@@ -132,58 +132,41 @@
                     dropdown.disabled = true;
                 }
             }
-            let dropdown1 = document.getElementById("category1-dropdown");
-            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
-            let dropdown2 = document.getElementById("category2-dropdown");
-            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
-            updateGraph(category1, category2);
+            updateGraph();
         }
 
         function rescaleData() {
-            let dropdown1 = document.getElementById("category1-dropdown");
-            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
-            let dropdown2 = document.getElementById("category2-dropdown");
-            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
-            updateGraph(category1, category2);
+            updateGraph();
         }
 
 
         function updateTimeSpanSlider() {
-            let dropdown1 = document.getElementById("category1-dropdown");
-            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
-            let dropdown2 = document.getElementById("category2-dropdown");
-            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_input.value = min_slider.value;
             let max_input = document.getElementById("max_input");
             let max_slider = document.getElementById("max_slider");
             max_input.value = max_slider.value;
-            updateGraph(category1, category2);
+            updateGraph();
         }
 
         function updateTimeSpanManual() {
-            let dropdown1 = document.getElementById("category1-dropdown");
-            const category1 = dropdown1.options[dropdown1.selectedIndex].value;
-            let dropdown2 = document.getElementById("category2-dropdown");
-            const category2 = dropdown2.options[dropdown2.selectedIndex].value;
             let min_input = document.getElementById("min_input");
             let min_slider = document.getElementById("min_slider");
             min_slider.value = min_input.value;
             let max_input = document.getElementById("max_input");
             let max_slider = document.getElementById("max_slider");
             max_slider.value = max_input.value;
-            updateGraph(category1, category2);
+            updateGraph();
         }
 
-        function updateGraph(category1, category2) {
+        function updateGraph() {
+            let max_graphs = 2
             var dates = [];
             var values_dict = {};
             values_dict[1] = [];
             values_dict[2] = [];
             labels_dict = {};
-            labels_dict[1] = category1;
-            labels_dict[2] = category2;
             colors_dict = {};
             colors_dict[1] = "rgb(75, 192, 192)";
             colors_dict[2] = "rgb(255, 0, 0)";
@@ -194,43 +177,40 @@
             var lower_date = new Date(min_slider.value - 1, 11, 31);
             var upper_date = new Date(max_slider.value, 12, 31);
             let rescale_checkbox = document.getElementById("rescale_checkbox");
-            let rescaled1 = false;
-            let rescaled2 = false;
-            for (var i in loadedData) {
-                var current_date = new Date(loadedData[i]["Date"]);
-                if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
-                    dates.push(loadedData[i]["Date"]);
-                    if (!rescaled1 && loadedData[i][category1] != null) {
-                        rescaled1 = true;
-                        var rescale_value1 = 100;
-                        if (rescale_checkbox.checked) {
-                            rescale_value1 =loadedData[i][category1];
+            for (var j = 1; j <= max_graphs; j++) {
+                let rescaled = false;
+                let dropdown = document.getElementById("category" + j + "-dropdown");
+                let category = dropdown.options[dropdown.selectedIndex].value;
+                labels_dict[j] = category;
+
+                for (var i in loadedData) {
+                    var current_date = new Date(loadedData[i]["Date"]);
+                    if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
+                        if (j == 1) {
+                            dates.push(loadedData[i]["Date"]);
                         }
-                    }
-                    if (!rescaled2 && loadedData[i][category2] != null) {
-                        rescaled2 = true;
-                        var rescale_value2 = 100;
-                        if (rescale_checkbox.checked) {
-                            rescale_value2 = loadedData[i][category2];
+                        if (!rescaled && loadedData[i][category] != null) {
+                            rescaled = true;
+                            var rescale_value = 100;
+                            if (rescale_checkbox.checked) {
+                                rescale_value = loadedData[i][category];
+                            }
                         }
+                        values_dict[j].push(loadedData[i][category] / rescale_value * 100);
                     }
-                    values_dict[1].push(loadedData[i][category1] / rescale_value1 * 100);
-                    values_dict[2].push(loadedData[i][category2] / rescale_value2 * 100);
+
+                }
+                let relative_change_element = document.getElementById("relative_change");
+                let relative_growth_string = 'NA';
+                if (values_dict[j][0] != null && values_dict[j][0] !== 0) {
+                    let relative_growth = (values_dict[j][values_dict[j].length - 1] / values_dict[j] - 1) * 100;
+                    relative_growth_string = relative_growth.toFixed(2) + "%";
                 }
 
-            }
-            let relative_change_element = document.getElementById("relative_change");
-            let relative_growth_string = 'NA';
-            if (values1[0] != null && values1[0] !== 0) {
-                let relative_growth = (values1[values1.length - 1] / values1[0] - 1) * 100;
-                relative_growth_string = relative_growth.toFixed(2) + "%";
-            }
 
-
-            relative_change_element.value = relative_growth_string;
-
+                relative_change_element.value = relative_growth_string;
+        }
             let dataset = [];
-            max_graphs = 2
             for (var i=1; i <= max_graphs; i++) {
                 let dropdown = document.getElementById("category" + i + "-dropdown");
                 if (document.getElementById("enable" + i + "_checkbox").checked) {
@@ -302,7 +282,7 @@
                 method: "GET",
                 success: function (data) {
                     loadedData = data;
-                    updateGraph(category1, category2);
+                    updateGraph();
                 },
                 error: function (data) {
                     console.log(data);
