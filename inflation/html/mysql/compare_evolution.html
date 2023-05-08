@@ -45,6 +45,9 @@
         <tr>
             <td> First category </td>
             <td>
+                <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateCheckbox()">
+            </td>
+            <td>
                 <form action="">
                     <select id="category1-dropdown" name="Category1" onchange="loadCompareData()">
                     </select>
@@ -53,6 +56,9 @@
         </tr>
         <tr>
             <td> Second category </td>
+            <td>
+                <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox"onchange="updateCheckbox()">
+            </td>
             <td>
                 <form action="">
                     <select id="category2-dropdown" name="Category2" onchange="loadCompareData()">
@@ -116,6 +122,19 @@
         <canvas id="chartCompare"></canvas>
     </div>
     <script>
+        function updateCheckbox() {
+            max_graphs = 2
+            for (var i=1; i <= max_graphs; i++) {
+                let dropdown = document.getElementById("category" + i + "-dropdown");
+                if (document.getElementById("enable" + i + "_checkbox").checked) {
+                    dropdown.disabled = false;
+                } else {
+                    dropdown.disabled = true;
+                }
+
+            }
+        }
+
         function rescaleData() {
             let dropdown1 = document.getElementById("category1-dropdown");
             const category1 = dropdown1.options[dropdown1.selectedIndex].value;
@@ -123,6 +142,7 @@
             const category2 = dropdown2.options[dropdown2.selectedIndex].value;
             updateGraph(category1, category2);
         }
+
 
         function updateTimeSpanSlider() {
             let dropdown1 = document.getElementById("category1-dropdown");
@@ -221,6 +241,8 @@
                 success: function (data) {
                     let dropdown1 = document.getElementById("category1-dropdown");
                     let dropdown2 = document.getElementById("category2-dropdown");
+                    dropdown1.disabled = true;
+                    dropdown2.disabled = true;
                     let option;
                     let category_list = [];
                     for (var i in data) {
@@ -309,6 +331,9 @@
                         pan: {
                             enabled: true
                         }
+                    },
+                    legend: {
+                        display: true
                     }
                 }
           }
