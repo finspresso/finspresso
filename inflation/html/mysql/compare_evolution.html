@@ -182,7 +182,7 @@
                 let dropdown = document.getElementById("category" + j + "-dropdown");
                 let category = dropdown.options[dropdown.selectedIndex].value;
                 labels_dict[j] = category;
-
+                rescale_value = null;
                 for (var i in loadedData) {
                     var current_date = new Date(loadedData[i]["Date"]);
                     if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
@@ -191,7 +191,7 @@
                         }
                         if (!rescaled && loadedData[i][category] != null) {
                             rescaled = true;
-                            var rescale_value = 100;
+                            rescale_value = 100;
                             if (rescale_checkbox.checked) {
                                 rescale_value = loadedData[i][category];
                             }
