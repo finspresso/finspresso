@@ -34,6 +34,9 @@
             width: 200px;
             /* Width of the outside container */
         }
+        .dropdown_white {background:white;}
+        .dropdown_gray {background:gray;}
+
     </style>
 
 </head>
@@ -274,11 +277,16 @@
                             let option = document.createElement("option");
                             option.text = cat;
                             option.value = cat;
+                            if (cat.includes("KVPI") || cat.includes("Supplemental health insurance")
+                            || cat.includes("Compulsory health insurance")) {
+                                option.className = "dropdown_gray";
+                            } else {
+                                option.className = "dropdown_white";
+                            }
                             dropdown.add(option);
                         }
                         dropdown.selectedIndex = 0;
                     }
-
                     loadCompareData();
                 },
                 error: function (data) {
