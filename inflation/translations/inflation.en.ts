@@ -2060,7 +2060,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Bergbahnen und Skilifte</source>
-      <translation>Bergbahnen and ski lifts</translation>
+      <translation>Mountain trains and ski lifts</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
