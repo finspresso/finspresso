@@ -1011,7 +1011,6 @@ class CompareGraph(QtGui.QWidget):
         self.translated_index = translate_labels(
             self.df.columns.values.tolist(), language=selected_language
         )
-        self.translated_index.sort()
         self.update_category_comboboxes()
 
     def update_chart(self):
@@ -1047,11 +1046,18 @@ class CompareGraph(QtGui.QWidget):
             self.compare_chart_canvas.draw()
 
     def update_category_comboboxes(self):
-        for combobox in [self.compare_cat1_cb, self.compare_cat2_cb]:
-            current_index = combobox.currentIndex()
+        cb_current_list = translate_labels(
+            [self.compare_cat1_cb.currentText(), self.compare_cat2_cb.currentText()],
+            language=self.current_language,
+        )
+        self.cb_category_items = self.translated_index.copy()
+        self.cb_category_items.sort()
+        for cb_current, combobox in zip(
+            cb_current_list, [self.compare_cat1_cb, self.compare_cat2_cb]
+        ):
             combobox.clear()
-            combobox.addItems(self.translated_index)
-            combobox.setCurrentText(self.translated_index[current_index])
+            combobox.addItems(self.cb_category_items)
+            combobox.setCurrentText(cb_current)
 
     def create_checkbox_relative(self):
         self.cbox_relative = QtGui.QCheckBox("Enable relative change")
