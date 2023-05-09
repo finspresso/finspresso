@@ -305,7 +305,7 @@
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
       <source>Tiefgekühlte Früchte</source>
-      <translation>Flying fruits</translation>
+      <translation>Frozen fruits</translation>
     </message>
     <message>
       <location filename="../inflation_tracker.py" line="1"/>
