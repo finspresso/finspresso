@@ -130,15 +130,6 @@
         </tr>
 
         <tr>
-            <td> Relative Change </td>
-            <td>
-            </td>
-            <td>
-                <input type="text" name="relative_change" value="NA" id="relative_change" readonly
-                    class="readonly_field_class" />
-            </td>
-        </tr>
-        <tr>
             <td> Rescale</td>
             <td>
             <input type="checkbox" id="rescale_checkbox" name="rescale_checkbox" onchange="rescaleData()">
@@ -198,6 +189,7 @@
             updateCheckboxes();
             var dates = [];
             var values_dict = {};
+            var relative_growth_dict = {};
             labels_dict = {};
             var values1 = [];
             var values2 = [];
@@ -230,22 +222,20 @@
                     }
 
                 }
-                let relative_change_element = document.getElementById("relative_change");
                 let relative_growth_string = 'NA';
+                relative_growth_dict[j] = 'NA';
                 if (values_dict[j][0] != null && values_dict[j][0] !== 0) {
-                    let relative_growth = (values_dict[j][values_dict[j].length - 1] / values_dict[j] - 1) * 100;
-                    relative_growth_string = relative_growth.toFixed(2) + "%";
+                    let relative_growth = (values_dict[j][values_dict[j].length - 1] / values_dict[j][0] - 1) * 100;
+                    relative_growth_dict[j] = relative_growth.toFixed(2) + "%";
                 }
 
-
-                relative_change_element.value = relative_growth_string;
-        }i
+        }
             let dataset = [];
             for (var i=1; i <= max_graphs; i++) {
                 let dropdown = document.getElementById("category" + i + "-dropdown");
                 if (document.getElementById("enable" + i + "_checkbox").checked) {
                     let data_element = {
-                        label: labels_dict[i],
+                        label: labels_dict[i] + " (" + relative_growth_dict[i] + ")",
                         borderColor: colors_dict[i],
                         data: values_dict[i],
                         borderWidth: 1.4,
