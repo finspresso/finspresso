@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run MBugdet tracker",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbuget"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}
