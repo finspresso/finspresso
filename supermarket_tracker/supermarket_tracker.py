@@ -13,7 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 
 logger = logging.getLogger("supermarket_tracker")
@@ -99,7 +99,7 @@ class SuperMarketTracker:
                     logger.info("Clicking on extension button")
                     driver.execute_script("arguments[0].click();", element)
                     time.sleep(3)
-                except NoSuchElementException:
+                except (TimeoutException, NoSuchElementException):
                     logger.warning("No extension button found. Proceeding.")
                     break
             elements = driver.find_elements(By.TAG_NAME, "article")
@@ -120,7 +120,7 @@ class SuperMarketTracker:
                     )
                     logger.info(subelement.text)
                 except NoSuchElementException:
-                    print("NoSuchElementException occurred. Ignoring elment")
+                    logger.warning("NoSuchElementException occurred. Ignoring element.")
         finally:
             driver.quit()
 
