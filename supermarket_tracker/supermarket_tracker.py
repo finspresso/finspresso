@@ -32,7 +32,7 @@ class SuperMarketTracker:
         with file_path.open("r") as file:
             self.config = json.load(file)
 
-    def download_products(self):
+    def download_prices(self):
         options = Options()
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
@@ -65,6 +65,33 @@ class SuperMarketTracker:
                 driver.quit()
         logger.info(self.download_dict)
 
+    def collect_products(self):
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        self.download_dict = dict()
+        now = datetime.datetime.now()
+        download_folder = (
+            Path(self.data_folder)
+            / Path(self.name)
+            / Path(now.strftime("%Y%m%d_%H%M%S"))
+        )
+        download_folder.mkdir()
+        driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()), options=options
+        )
+        driver.get(self.config["collection_url"])
+        try:
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, ".show-product-image"))
+            )
+            elements = driver.find_elements(By.CSS_SELECTOR, ".show-product-image")
+            link_list = [element.get_attribute("href") for element in elements]
+            logger.info(link_list)
+        finally:
+            driver.quit()
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -81,6 +108,16 @@ def main():
         help="If given screenshots are stored",
         action="store_true",
     )
+    parser.add_argument(
+        "--download_prices",
+        help="If selected, dowloads latest prices for all products corresponding to config name",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--collect_products",
+        help="If selected, creates list with all products corresponding to config name",
+        action="store_true",
+    )
 
     args = parser.parse_args()
     logger.info("Consider tracking category %s", args.name)
@@ -88,7 +125,10 @@ def main():
     tracker_handler = SuperMarketTracker(
         args.name, args.data_folder, take_screenshots=args.take_screenshots
     )
-    tracker_handler.download_products()
+    if args.download_prices:
+        tracker_handler.download_prices()
+    if args.collect_products:
+        tracker_handler.collect_products()
 
 
 if __name__ == "__main__":
