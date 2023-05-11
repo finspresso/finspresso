@@ -19,9 +19,10 @@ coloredlogs.install(level=logging.INFO)
 
 
 class SuperMarketTracker:
-    def __init__(self, name, data_folder):
+    def __init__(self, name, data_folder, take_screenshots=False):
         self.name = name
         self.data_folder = data_folder
+        self.take_screenshots = take_screenshots
         logger.debug("Init super market tracker with name %s", name)
         self.load_config()
 
@@ -58,7 +59,8 @@ class SuperMarketTracker:
                     EC.presence_of_element_located((By.CLASS_NAME, "actual"))
                 )
                 self.download_dict[product_id]["price"] = element.text
-                # driver.save_screenshot(product_id+'.png')
+                if self.take_screenshots:
+                    driver.save_screenshot(download_folder / Path(product_id + ".png"))
             finally:
                 driver.quit()
         logger.info(self.download_dict)
@@ -74,10 +76,18 @@ def main():
     parser.add_argument(
         "--data_folder", help="Name of root folder to store the data", default="data"
     )
+    parser.add_argument(
+        "--take_screenshots",
+        help="If given screenshots are stored",
+        action="store_true",
+    )
+
     args = parser.parse_args()
     logger.info("Consider tracking category %s", args.name)
     logger.debug("Debug log line")
-    tracker_handler = SuperMarketTracker(args.name, args.data_folder)
+    tracker_handler = SuperMarketTracker(
+        args.name, args.data_folder, take_screenshots=args.take_screenshots
+    )
     tracker_handler.download_products()
 
 

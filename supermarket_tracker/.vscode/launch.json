@@ -9,7 +9,8 @@
       "cwd": "${workspaceRoot}",
       "args": [
         "--name",
-        "mbudget"
+        "mbudget",
+        "--take_screenshots"
       ],
       "console": "integratedTerminal"
     }
