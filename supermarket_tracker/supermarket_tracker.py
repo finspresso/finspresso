@@ -1,74 +1,67 @@
 import argparse
-
-# from bs4 import BeautifulSoup
-
-# import requests
+import json
 import logging
 import coloredlogs
+import datetime
+
+from pathlib import Path
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
-coloredlogs.install()
 logger = logging.getLogger("supermarket_tracker")
-logging.basicConfig(level=logging.DEBUG)
+coloredlogs.install(level=logging.INFO)
 
 
-# class DownloadHandler:
-#     def __init__(
-#         self,
-#         index,
-#         single_processing=False,
-#         jobs=None,
-#         file_name=DEFAULT_FILE_NAME,
-#     ):
-#         self.download_url = INDEX_MAPPING_DICT.get(index)
-#         self.single_processing = single_processing
-#         self.jobs = jobs
-#         self.file_name = file_name
+class SuperMarketTracker:
+    def __init__(self, name, data_folder):
+        self.name = name
+        self.data_folder = data_folder
+        logger.debug("Init super market tracker with name %s", name)
+        self.load_config()
 
-#     def get_constituents(self, cached=False):
-#         if cached:
-#             self.load_constituents()
-#         else:
-#             self.download_constituetns()
+    def load_config(self):
+        file_path = Path("configs") / Path(self.name + ".json")
+        logger.debug("Loading config %s", file_path)
+        with file_path.open("r") as file:
+            self.config = json.load(file)
 
-#     def load_constituents(self):
-#         print("Loading constituents url from file {}".format(self.file_name))
-#         self.constituents = dict()
-#         with open(self.file_name, "r") as input_file:
-#             loaded_dict = json.load(input_file)
-#             self.constituents = {
-#                 key: {"url": value.get("url", "")}
-#                 for key, value in loaded_dict.items()
-#             }
-
-#     def download_constituetns(self):
-#         page = requests.get(self.download_url)
-#         soup = BeautifulSoup(page.content, "html.parser")
-#         last_page = self.get_last_page_sequence(soup)
-#         self.constituents = dict()
-#         mask = '"/kurs/aktie/(.+)/">(.+)</a>'
-#         for i in range(1, last_page + 1):
-#             url = self.download_url + "col=&asc=0&fpage=" + str(i)
-#             page = requests.get(url)
-#             soup = BeautifulSoup(page.content, "html.parser")
-#             for i in range(1, 6):
-#                 results = soup.findAll("table", {"id": "ALNI" + str(i)})
-#                 if results:
-#                     break
-#             for result in results:
-#                 sub_results = result.find_all("td")
-#                 for sub_result in sub_results:
-#                     annotations = sub_result.find_all("a")
-#                     for annotation in annotations:
-#                         match = re.search(mask, str(annotation))
-#                         if match:
-#                             self.constituents[
-#                                 " ".join(match.group(1).split("-")[:-1])
-#                             ] = {
-#                                 "url": "https://ch.marketscreener.com/kurs/aktie/"
-#                                 + match.group(1)
-#                             }
-#                             break
+    def download_products(self):
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        self.download_dict = dict()
+        now = datetime.datetime.now()
+        download_folder = (
+            Path(self.data_folder)
+            / Path(self.name)
+            / Path(now.strftime("%Y%m%d_%H%M%S"))
+        )
+        download_folder.mkdir()
+        for product in self.config["products"]:
+            product_id = product["id"]
+            self.download_dict[product_id] = {"price": "NA", "name": product["name"]}
+            url = self.config["base_url"] + "/" + product["id"]
+            driver = webdriver.Chrome(
+                service=Service(ChromeDriverManager().install()), options=options
+            )
+            logger.info("Downloading product %s", product["name"])
+            driver.get(url)
+            try:
+                element = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CLASS_NAME, "actual"))
+                )
+                self.download_dict[product_id]["price"] = element.text
+                # driver.save_screenshot(product_id+'.png')
+            finally:
+                driver.quit()
+        logger.info(self.download_dict)
 
 
 def main():
@@ -76,17 +69,16 @@ def main():
     parser.add_argument(
         "--name",
         help="Sets the name of of the tracking category to consider",
-        default="mbuget",
+        default="mbudget",
+    )
+    parser.add_argument(
+        "--data_folder", help="Name of root folder to store the data", default="data"
     )
     args = parser.parse_args()
     logger.info("Consider tracking category %s", args.name)
-
-    # download_handler = DownloadHandler(
-    #     args.index,
-    #     single_processing=args.single_processing,
-    #     jobs=args.jobs,
-    #     file_name=args.file_name,
-    # )
+    logger.debug("Debug log line")
+    tracker_handler = SuperMarketTracker(args.name, args.data_folder)
+    tracker_handler.download_products()
 
 
 if __name__ == "__main__":
