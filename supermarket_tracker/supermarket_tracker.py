@@ -3,6 +3,7 @@ import json
 import logging
 import coloredlogs
 import datetime
+import time
 
 from pathlib import Path
 from selenium import webdriver
@@ -12,6 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 
 
 logger = logging.getLogger("supermarket_tracker")
@@ -83,12 +85,42 @@ class SuperMarketTracker:
         )
         driver.get(self.config["collection_url"])
         try:
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, ".show-product-image"))
-            )
-            elements = driver.find_elements(By.CSS_SELECTOR, ".show-product-image")
-            link_list = [element.get_attribute("href") for element in elements]
-            logger.info(link_list)
+            while True:
+                try:
+                    logger.info("Searching for extension button")
+                    element = WebDriverWait(driver, 5).until(
+                        EC.presence_of_element_located(
+                            (
+                                By.XPATH,
+                                '//*[@id="brand-search-products-content"]/div[2]/app-products-display/div[2]/div/button',
+                            )
+                        )
+                    )
+                    logger.info("Clicking on extension button")
+                    driver.execute_script("arguments[0].click();", element)
+                    time.sleep(3)
+                except NoSuchElementException:
+                    logger.warning("No extension button found. Proceeding.")
+                    break
+            elements = driver.find_elements(By.TAG_NAME, "article")
+            for element in elements:
+                try:
+                    subelement = element.find_element(
+                        By.XPATH,
+                        ".//div/div[1]/a[2]/span[1]/lsp-product-price/span/span/span",
+                    )
+                    logger.info(subelement.text)
+                    subelement = element.find_element(
+                        By.CLASS_NAME, "show-product-image"
+                    )
+                    logger.info(subelement.get_attribute("href"))
+                    subelement = element.find_element(
+                        By.XPATH,
+                        ".//div/div[1]/a[2]/span[1]/lsp-product-name/div/span[2]/span",
+                    )
+                    logger.info(subelement.text)
+                except NoSuchElementException:
+                    print("NoSuchElementException occurred. Ignoring elment")
         finally:
             driver.quit()
 
