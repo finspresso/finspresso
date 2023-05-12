@@ -3,7 +3,10 @@ import json
 import logging
 import coloredlogs
 import datetime
+import pandas as pd
+import re
 import time
+
 
 from pathlib import Path
 from selenium import webdriver
@@ -103,26 +106,63 @@ class SuperMarketTracker:
                     logger.warning("No extension button found. Proceeding.")
                     break
             elements = driver.find_elements(By.TAG_NAME, "article")
+            product_dict = dict()
             for element in elements:
                 try:
-                    subelement = element.find_element(
-                        By.XPATH,
-                        ".//div/div[1]/a[2]/span[1]/lsp-product-price/span/span/span",
-                    )
-                    logger.info(subelement.text)
+                    product_id = "NA"
+                    product_link = "NA"
+                    product_name = "NA"
+                    product_price = "NA"
+
                     subelement = element.find_element(
                         By.CLASS_NAME, "show-product-image"
                     )
-                    logger.info(subelement.get_attribute("href"))
+                    product_link = subelement.get_attribute("href")
+                    match = re.search("([0-9]+)", product_link)
+                    if match:
+                        product_id = match.group(1)
+                    else:
+                        logger.error(
+                            "Cannot extract product ID from link %s", product_link
+                        )
+                        continue
                     subelement = element.find_element(
                         By.XPATH,
                         ".//div/div[1]/a[2]/span[1]/lsp-product-name/div/span[2]/span",
                     )
-                    logger.info(subelement.text)
+                    product_name = subelement.text
+                    subelement = element.find_element(
+                        By.XPATH,
+                        ".//div/div[1]/a[2]/span[1]/lsp-product-price/span/span/span",
+                    )
+                    match = re.search("([0-9]*\.[0-9]*)", subelement.text)
+                    if match:
+                        product_price = float(match.group(1))
+                    else:
+                        logger.error(
+                            "Could not extract price for product %s", product_name
+                        )
+                    logger.info(
+                        "%s, %s, %s, %s",
+                        product_id,
+                        product_link,
+                        product_name,
+                        product_price,
+                    )
+                    product_dict[product_id] = [
+                        product_link,
+                        product_name,
+                        product_price,
+                    ]
                 except NoSuchElementException:
-                    logger.warning("NoSuchElementException occurred. Ignoring element.")
+                    logger.warning(
+                        "NoSuchElementException error occurred. Ignoring element."
+                    )
         finally:
             driver.quit()
+        df = pd.DataFrame.from_dict(product_dict, orient="index")
+        df.columns = ["Product Link", "Product Name", "Price"]
+        df.to_excel("mbudget_prices.xlsx")
 
 
 def main():
