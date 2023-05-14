@@ -18,6 +18,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
+from PIL import Image
+from io import BytesIO
+
 
 logger = logging.getLogger("supermarket_tracker")
 coloredlogs.install(level=logging.INFO)
@@ -86,6 +89,8 @@ class SuperMarketTracker:
         driver = webdriver.Chrome(
             service=Service(ChromeDriverManager().install()), options=options
         )
+        self.max_window_height = driver.get_window_size()["height"]
+        self.current_offset = 0
         driver.get(self.config["collection_url"])
         try:
             while True:
@@ -105,6 +110,21 @@ class SuperMarketTracker:
                 except (TimeoutException, NoSuchElementException):
                     logger.warning("No extension button found. Proceeding.")
                     break
+            try:
+                logger.info("Searching for cookie banner")
+                element = WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located(
+                        (
+                            By.XPATH,
+                            "/html/body/app-root/lsp-cookie-banner/section/div/button",
+                        )
+                    )
+                )
+                logger.info("Clicking away cookie banner")
+                driver.execute_script("arguments[0].click();", element)
+                time.sleep(4)
+            except (TimeoutException, NoSuchElementException):
+                logger.warning("No cookie banner found. Proceeding.")
             elements = driver.find_elements(By.TAG_NAME, "article")
             product_dict = dict()
             for element in elements:
@@ -113,7 +133,6 @@ class SuperMarketTracker:
                     product_link = "NA"
                     product_name = "NA"
                     product_price = "NA"
-
                     subelement = element.find_element(
                         By.CLASS_NAME, "show-product-image"
                     )
@@ -149,6 +168,10 @@ class SuperMarketTracker:
                         product_name,
                         product_price,
                     )
+                    if self.take_screenshots:
+                        self.get_element_screenshot(
+                            driver, element, download_folder / Path(product_id + ".png")
+                        )
                     product_dict[product_id] = [
                         product_link,
                         product_name,
@@ -162,7 +185,20 @@ class SuperMarketTracker:
             driver.quit()
         df = pd.DataFrame.from_dict(product_dict, orient="index")
         df.columns = ["Product Link", "Product Name", "Price"]
-        df.to_excel("mbudget_prices.xlsx")
+        df.to_excel(download_folder / Path("mbudget_prices.xlsx"))
+
+    def get_element_screenshot(self, driver, element, screenshot_name):
+        driver.execute_script("arguments[0].scrollIntoView()", element)
+        location = element.location
+        size = element.size
+        left = location["x"]
+        top = location["y"]
+        right = location["x"] + size["width"]
+        bottom = location["y"] + size["height"]
+        screenshot = driver.get_screenshot_as_png()
+        im = Image.open(BytesIO(screenshot))
+        im = im.crop((left, top, right, bottom))
+        im.save(screenshot_name)
 
 
 def main():
