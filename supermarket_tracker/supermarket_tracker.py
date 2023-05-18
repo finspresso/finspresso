@@ -187,6 +187,45 @@ class SuperMarketTracker:
         df = pd.DataFrame.from_dict(product_dict, orient="index")
         df.columns = ["Product Link", "Product Name", "Price"]
         df.to_excel(download_folder / Path("mbudget_prices.xlsx"))
+        self.compare_to_reference(df)
+
+    def compare_to_reference(self, df):
+        reference_json = self.reference_folder / Path("product_reference.json")
+        if reference_json.exists():
+            logger.info("Reference file %s exists", reference_json)
+            with reference_json.open(mode="r") as file_input:
+                dict_reference = json.load(file_input)
+                reference_set = set(dict_reference.keys())
+                downloaded_set = set(df.index.values)
+                discontinued_articles = reference_set - downloaded_set
+                if len(discontinued_articles) == 0:
+                    logger.info("No articles are discontinued")
+                else:
+                    for article in discontinued_articles:
+                        logger.warning(
+                            "Discontinued article:\n\
+                                        Product Link:%s\n\
+                                        Product Name:%s\n\
+                                        Price:%s\n\
+                                        Category:%s\n",
+                            dict_reference[article]["Product Link"],
+                            dict_reference[article]["Product Name"],
+                            dict_reference[article]["Price"],
+                            dict_reference[article]["Category"],
+                        )
+                        logger.warning("Article %s discontinued", article)
+                new_articles = downloaded_set - reference_set
+                if len(new_articles) == 0:
+                    logger.info("No new articles found")
+                else:
+                    logger.info("Found %s new articles", len(new_articles))
+                    for article in new_articles:
+                        logger.warning("New article: \n%s\n", df.loc[article, :])
+        else:
+            logger.error(
+                "Reference json %s does not exist. Please provide this file",
+                reference_json,
+            )
 
     def get_element_screenshot(self, driver, element, screenshot_name):
         driver.execute_script("arguments[0].scrollIntoView()", element)
