@@ -1,27 +1,27 @@
 repos:
--   repo: https://github.com/ambv/black
+  - repo: https://github.com/ambv/black
     rev: 21.8b0
     hooks:
-    - id: black
-      language_version: python
--   repo: https://github.com/pre-commit/pre-commit-hooks
+      - id: black
+        language_version: python
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v1.2.3
     hooks:
-    - id: flake8
-      args: # arguments to configure flake8
-        # these are errors that will be ignored by flake8
-        # check out their meaning here
-        # https://flake8.pycqa.org/en/latest/user/error-codes.html
-        - "--ignore=E501,W605,W503,E203"
-    - id: check-yaml
-    - id: end-of-file-fixer
-    - id: trailing-whitespace
-    - id: check-json
-    - id: debug-statements
-    - id: pretty-format-json
-      args: ['--no-sort-keys', --autofix]
+      - id: flake8
+        args: # arguments to configure flake8
+          # these are errors that will be ignored by flake8
+          # check out their meaning here
+          # https://flake8.pycqa.org/en/latest/user/error-codes.html
+          - "--ignore=E501,W605,W503,E203"
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-json
+      - id: debug-statements
+      - id: pretty-format-json
+        args: ["--no-sort-keys", --autofix, --no-ensure-ascii]
 
-- repo: https://github.com/digitalpulp/pre-commit-php.git
-  rev: 1.4.0
-  hooks:
-  - id: php-lint
+  - repo: https://github.com/digitalpulp/pre-commit-php.git
+    rev: 1.4.0
+    hooks:
+      - id: php-lint
