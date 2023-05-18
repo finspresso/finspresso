@@ -200,8 +200,15 @@ class SuperMarketTracker:
             with reference_json.open(mode="r") as file_input:
                 dict_reference = json.load(file_input)
                 reference_set = set(dict_reference.keys())
+                active_set = set(
+                    [
+                        article
+                        for article in dict_reference.keys()
+                        if dict_reference[article]["Discontinued"] == "NA"
+                    ]
+                )
                 downloaded_set = set(df.index.values)
-                discontinued_articles = reference_set - downloaded_set
+                discontinued_articles = active_set - downloaded_set
                 if len(discontinued_articles) == 0:
                     logger.info("No articles are discontinued")
                 else:
