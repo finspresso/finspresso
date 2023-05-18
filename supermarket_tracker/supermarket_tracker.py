@@ -30,6 +30,7 @@ class SuperMarketTracker:
     def __init__(self, name, data_folder, take_screenshots=False):
         self.name = name
         self.data_folder = data_folder
+        self.reference_folder = Path("references") / Path(name)
         self.take_screenshots = take_screenshots
         logger.debug("Init super market tracker with name %s", name)
         self.load_config()
@@ -200,6 +201,21 @@ class SuperMarketTracker:
         im = im.crop((left, top, right, bottom))
         im.save(screenshot_name)
 
+    def create_reference_json(self):
+        product_sorted_xlsx = self.reference_folder / Path("product_sorted.xlsx")
+        if product_sorted_xlsx.exists():
+            logger.info("Reference file %s exists", product_sorted_xlsx)
+            df_ref = pd.read_excel(product_sorted_xlsx, index_col=0)
+            dict_reference = df_ref.to_dict(orient="index")
+            reference_json = self.reference_folder / Path("product_reference.json")
+            with reference_json.open(mode="w") as outfile:
+                json.dump(dict_reference, outfile, indent=4, ensure_ascii=False)
+        else:
+            logger.error(
+                "Reference file %s does not exist. Please provide this file",
+                product_sorted_xlsx,
+            )
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -226,6 +242,13 @@ def main():
         help="If selected, creates list with all products corresponding to config name",
         action="store_true",
     )
+    parser.add_argument(
+        "--create_reference_json",
+        help="If selected it creates a reference json file containing the existing products.\
+              The source for the creation is .xlsx file that must reside in the folder \
+              references/<name>/product_sorted.xlsx",
+        action="store_true",
+    )
 
     args = parser.parse_args()
     logger.info("Consider tracking category %s", args.name)
@@ -237,6 +260,8 @@ def main():
         tracker_handler.download_prices()
     if args.collect_products:
         tracker_handler.collect_products()
+    if args.create_reference_json:
+        tracker_handler.create_reference_json()
 
 
 if __name__ == "__main__":

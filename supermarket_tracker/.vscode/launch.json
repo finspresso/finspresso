@@ -28,6 +28,19 @@
         "--take_screenshots"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Create MBudget reference json",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbudget",
+        "--create_reference_json"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
