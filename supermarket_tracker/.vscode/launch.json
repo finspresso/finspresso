@@ -54,6 +54,20 @@
         "--create_reference_json"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Compare MBudget reference json",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbudget",
+        "--compare_reference_json",
+        "data/mbudget/20230518_135021/mbudget_prices.xlsx"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }

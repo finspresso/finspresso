@@ -203,6 +203,9 @@ class SuperMarketTracker:
                 if len(discontinued_articles) == 0:
                     logger.info("No articles are discontinued")
                 else:
+                    logger.info(
+                        "Labelled %s discontinued articles", len(discontinued_articles)
+                    )
                     for article in discontinued_articles:
                         logger.warning(
                             "Discontinued article:\n\
@@ -223,6 +226,7 @@ class SuperMarketTracker:
                     logger.info("Found %s new articles", len(new_articles))
                     for article in new_articles:
                         logger.warning("New article: \n%s\n", df.loc[article, :])
+                # self.update_reference_json(discontinued_articles, new_articles, df)
         else:
             logger.error(
                 "Reference json %s does not exist. Please provide this file",
@@ -250,6 +254,25 @@ class SuperMarketTracker:
         return timestamp_string
 
     def create_reference_json(self):
+        product_sorted_xlsx = self.reference_folder / Path("product_sorted.xlsx")
+        if product_sorted_xlsx.exists():
+            logger.info("Reference file %s exists", product_sorted_xlsx)
+            df_ref = pd.read_excel(product_sorted_xlsx, index_col=0)
+            df_ref["Introduced"] = df_ref["Introduced"].map(self.get_str_from_timestamp)
+            df_ref["Discontinued"] = df_ref["Discontinued"].map(
+                self.get_str_from_timestamp
+            )
+            dict_reference = df_ref.to_dict(orient="index")
+            reference_json = self.reference_folder / Path("product_reference.json")
+            with reference_json.open(mode="w") as outfile:
+                json.dump(dict_reference, outfile, indent=4, ensure_ascii=False)
+        else:
+            logger.error(
+                "Reference file %s does not exist. Please provide this file",
+                product_sorted_xlsx,
+            )
+
+    def update_reference_json(self):
         product_sorted_xlsx = self.reference_folder / Path("product_sorted.xlsx")
         if product_sorted_xlsx.exists():
             logger.info("Reference file %s exists", product_sorted_xlsx)
@@ -301,6 +324,12 @@ def main():
               references/<name>/product_sorted.xlsx",
         action="store_true",
     )
+    parser.add_argument(
+        "--compare_reference_json",
+        help="If selected it compares the reference json with the input xlsx file",
+        type=str,
+        default="",
+    )
 
     args = parser.parse_args()
     logger.info("Consider tracking category %s", args.name)
@@ -314,6 +343,14 @@ def main():
         tracker_handler.collect_products()
     if args.create_reference_json:
         tracker_handler.create_reference_json()
+    if args.compare_reference_json != "":
+        if Path(args.compare_reference_json).exists():
+            logger.info("File %s exists", args.compare_reference_json)
+            df = pd.read_excel(args.compare_reference_json, index_col=0)
+            df.index = df.index.map(lambda x: str(x))
+            tracker_handler.compare_to_reference(df)
+        else:
+            logger.error("File %s does not exist", args.compare_reference_json)
 
 
 if __name__ == "__main__":
