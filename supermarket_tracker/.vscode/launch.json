@@ -30,6 +30,19 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Collect MBugdet products (Express)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbudget",
+        "--collect_products"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Create MBudget reference json",
       "type": "python",
       "request": "launch",

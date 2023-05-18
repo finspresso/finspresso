@@ -187,6 +187,8 @@ class SuperMarketTracker:
         df = pd.DataFrame.from_dict(product_dict, orient="index")
         df.columns = ["Product Link", "Product Name", "Price"]
         df.to_excel(download_folder / Path("mbudget_prices.xlsx"))
+        delta = datetime.datetime.now() - now
+        logger.info("Total download took %ss", round(delta.total_seconds(), 1))
         self.compare_to_reference(df)
 
     def compare_to_reference(self, df):
