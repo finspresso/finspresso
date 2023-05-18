@@ -485,7 +485,7 @@
     "Price": 2.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "2023-05-18"
   },
   "153921600000": {
     "Product Link": "https://www.migros.ch/en/product/153921600000",
@@ -3293,7 +3293,7 @@
     "Price": 3.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "2023-05-18"
   },
   "220222085000": {
     "Product Link": "https://www.migros.ch/en/product/220222085000",
@@ -3317,7 +3317,7 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "2023-05-18"
   },
   "700873100000": {
     "Product Link": "https://www.migros.ch/en/product/700873100000",
@@ -5109,6 +5109,102 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
+    "Discontinued": "NA"
+  },
+  "700170500003": {
+    "Product Link": "https://www.migros.ch/en/product/700170500003",
+    "Product Name": "M-Budget Tasse",
+    "Price": 3.5,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500009": {
+    "Product Link": "https://www.migros.ch/en/product/700170500009",
+    "Product Name": "M-Budget Set 12tlg.",
+    "Price": 45.95,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500007": {
+    "Product Link": "https://www.migros.ch/en/product/700170500007",
+    "Product Name": "M-Budget Sch\u00fcssel",
+    "Price": 2.95,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "212524000000": {
+    "Product Link": "https://www.migros.ch/en/product/212524000000",
+    "Product Name": "Baked Camembert",
+    "Price": 3.15,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500005": {
+    "Product Link": "https://www.migros.ch/en/product/700170500005",
+    "Product Name": "M-Budget Teller flach",
+    "Price": 3.5,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500006": {
+    "Product Link": "https://www.migros.ch/en/product/700170500006",
+    "Product Name": "M-Budget Teller tief",
+    "Price": 3.5,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500001": {
+    "Product Link": "https://www.migros.ch/en/product/700170500001",
+    "Product Name": "M-Budget Espressotasse",
+    "Price": 2.95,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500008": {
+    "Product Link": "https://www.migros.ch/en/product/700170500008",
+    "Product Name": "M-Budget Sch\u00fcssel",
+    "Price": 3.95,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "196500501500": {
+    "Product Link": "https://www.migros.ch/en/product/196500501500",
+    "Product Name": "Eggs import 48g",
+    "Price": 4.25,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "702050700000": {
+    "Product Link": "https://www.migros.ch/en/product/702050700000",
+    "Product Name": "Cardboard plates for sausages",
+    "Price": 3.2,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500004": {
+    "Product Link": "https://www.migros.ch/en/product/700170500004",
+    "Product Name": "M-Budget Dessertteller",
+    "Price": 1.95,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "700170500002": {
+    "Product Link": "https://www.migros.ch/en/product/700170500002",
+    "Product Name": "M-Budget Kaffeetasse",
+    "Price": 3.5,
+    "Category": "NA",
+    "Introduced": "2023-05-18",
     "Discontinued": "NA"
   }
 }
