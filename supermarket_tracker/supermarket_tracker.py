@@ -242,11 +242,22 @@ class SuperMarketTracker:
         im = im.crop((left, top, right, bottom))
         im.save(screenshot_name)
 
+    @staticmethod
+    def get_str_from_timestamp(timestamp):
+        timestamp_string = "NA"
+        if isinstance(timestamp, pd.Timestamp):
+            timestamp_string = timestamp.strftime("%Y-%m-%d")
+        return timestamp_string
+
     def create_reference_json(self):
         product_sorted_xlsx = self.reference_folder / Path("product_sorted.xlsx")
         if product_sorted_xlsx.exists():
             logger.info("Reference file %s exists", product_sorted_xlsx)
             df_ref = pd.read_excel(product_sorted_xlsx, index_col=0)
+            df_ref["Introduced"] = df_ref["Introduced"].map(self.get_str_from_timestamp)
+            df_ref["Discontinued"] = df_ref["Discontinued"].map(
+                self.get_str_from_timestamp
+            )
             dict_reference = df_ref.to_dict(orient="index")
             reference_json = self.reference_folder / Path("product_reference.json")
             with reference_json.open(mode="w") as outfile:
