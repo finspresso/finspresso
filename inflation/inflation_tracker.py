@@ -15,7 +15,7 @@ from pyqtgraph.Qt import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
-from db_interface import DBInterface
+from db_interface.db_interface import DBInterface
 
 # Global settings
 warnings.simplefilter(action="ignore", category=FutureWarning)

@@ -9,3 +9,4 @@ portfolio_math.egg-info
 __pycache__
 db_interface_package/build
 db_interface_package/db_interface.egg-info.egg-info
+credentials/

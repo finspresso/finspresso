@@ -21,6 +21,8 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from PIL import Image
 from io import BytesIO
 
+from db_interface.db_interface import DBInterface
+
 
 logger = logging.getLogger("supermarket_tracker")
 coloredlogs.install(level=logging.INFO)
@@ -307,6 +309,34 @@ class SuperMarketTracker:
                 reference_json,
             )
 
+    def update_metadata_table(self, credentials):
+        self.db_interface = DBInterface(credentials=credentials, print_all_tables=False)
+        table_name = self.name + "_metadata"
+        reference_json = self.reference_folder / Path("product_reference.json")
+        if reference_json.exists():
+            logger.info("Reference file %s exists", reference_json)
+            dict_reference = dict()
+            with reference_json.open(mode="r") as file:
+                dict_reference = json.load(file)
+                df = pd.DataFrame.from_dict(dict_reference, orient="index")
+                df.drop(labels="Price", axis=1, inplace=True)
+                type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
+                logger.info(
+                    "Re-creating SQL table %s in db %s",
+                    table_name,
+                    credentials["db_name"],
+                )
+                df.to_sql(
+                    table_name,
+                    con=self.db_interface.conn,
+                    if_exists="fail",
+                    chunksize=1000,
+                    dtype=type_dict,
+                    index_label="id",
+                )
+        else:
+            logger.error("Reference file %s does not exist", reference_json)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -346,10 +376,22 @@ def main():
         type=str,
         default="",
     )
-
+    parser.add_argument(
+        "--credentials_file",
+        help="Path to .json file containing db credentials",
+        default="",
+    )
+    parser.add_argument(
+        "--update_metadata_table",
+        help="If given updates the metadata table of the product type e.g. MBudget",
+        action="store_true",
+    )
+    credentials_sql = dict()
     args = parser.parse_args()
+
     logger.info("Consider tracking category %s", args.name)
-    logger.debug("Debug log line")
+    if args.credentials_file != "":
+        credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
     tracker_handler = SuperMarketTracker(
         args.name, args.data_folder, take_screenshots=args.take_screenshots
     )
@@ -372,6 +414,13 @@ def main():
             )
         else:
             logger.error("File %s does not exist", args.compare_reference_json)
+    if args.update_metadata_table:
+        if len(credentials_sql) == 0:
+            logger.error(
+                "No valid credentials given. Please provide a valid credentials file."
+            )
+            return -1
+        tracker_handler.update_metadata_table(credentials_sql)
 
 
 if __name__ == "__main__":

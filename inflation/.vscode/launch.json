@@ -64,7 +64,7 @@
         "--lik_evolution",
         "data/lik_evolution.xlsx",
         "--credentials_file",
-        "sql_credentials.json",
+        "credentials/sql_credentials.json",
         "--create_sql_table"
       ],
       "console": "integratedTerminal"
@@ -79,7 +79,7 @@
         "--lik_evolution",
         "data/lik_evolution.xlsx",
         "--credentials_file",
-        "sql_credentials.json",
+        "credentials/sql_credentials.json",
         "--upload_to_sql"
       ],
       "console": "integratedTerminal"
@@ -96,7 +96,7 @@
         "--lik_evolution",
         "data/lik_evolution.xlsx",
         "--credentials_file",
-        "sql_credentials.json",
+        "credentials/sql_credentials.json",
         "--create_lik_color_sql_table"
       ],
       "console": "integratedTerminal"
