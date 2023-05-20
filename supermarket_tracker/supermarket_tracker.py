@@ -329,7 +329,40 @@ class SuperMarketTracker:
                 df.to_sql(
                     table_name,
                     con=self.db_interface.conn,
-                    if_exists="fail",
+                    if_exists="replace",
+                    chunksize=1000,
+                    dtype=type_dict,
+                    index_label="id",
+                )
+        else:
+            logger.error("Reference file %s does not exist", reference_json)
+
+    def update_prices_table(self, credentials):
+        self.db_interface = DBInterface(credentials=credentials, print_all_tables=False)
+        table_name = self.name + "_prices"
+        reference_json = self.reference_folder / Path("product_reference.json")
+        if reference_json.exists():
+            logger.info("Reference file %s exists", reference_json)
+            dict_reference = dict()
+            with reference_json.open(mode="r") as file:
+                dict_reference = json.load(file)
+                price_dict = {
+                    article: article_dict["Price"]
+                    for article, article_dict in dict_reference.items()
+                }
+                df = pd.DataFrame(price_dict, index=[datetime.datetime.now()])
+                df.index.name = "Date"
+                df.reset_index(inplace=True)
+                type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
+                logger.info(
+                    "Re-creating SQL table %s in db %s",
+                    table_name,
+                    credentials["db_name"],
+                )
+                df.to_sql(
+                    table_name,
+                    con=self.db_interface.conn,
+                    if_exists="append",
                     chunksize=1000,
                     dtype=type_dict,
                     index_label="id",
@@ -386,6 +419,11 @@ def main():
         help="If given updates the metadata table of the product type e.g. MBudget",
         action="store_true",
     )
+    parser.add_argument(
+        "--update_prices_table",
+        help="If given updates the prices table of the product type e.g. MBudget",
+        action="store_true",
+    )
     credentials_sql = dict()
     args = parser.parse_args()
 
@@ -421,6 +459,13 @@ def main():
             )
             return -1
         tracker_handler.update_metadata_table(credentials_sql)
+    if args.update_prices_table:
+        if len(credentials_sql) == 0:
+            logger.error(
+                "No valid credentials given. Please provide a valid credentials file."
+            )
+            return -1
+        tracker_handler.update_prices_table(credentials_sql)
 
 
 if __name__ == "__main__":

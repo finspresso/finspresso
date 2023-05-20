@@ -83,6 +83,21 @@
         "--update_metadata_table"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Update prices table",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbudget",
+        "--credentials_file",
+        "credentials/sql_credentials.json",
+        "--update_prices_table"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
