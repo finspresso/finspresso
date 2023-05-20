@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging.config
+import pandas as pd
 
 from sqlalchemy import (
     create_engine,
@@ -37,9 +38,10 @@ class DBInterface:
             + credentials["db_name"],
             echo=True,
         )
-        self.conn = self.engine.connect()
+        self.connect()
         if print_all_tables:
             self.print_all_tables()
+        self.close()
 
     def create_table(self, meta):
         meta.create_all(self.engine)
@@ -49,6 +51,45 @@ class DBInterface:
         meta.reflect(bind=self.engine)
         for table_name in meta.tables.keys():
             logger.info("Found table %s", table_name)
+
+    def get_all_tables(self):
+        meta = MetaData()
+        meta.reflect(bind=self.engine)
+        table_names = []
+        if len(meta.tables) > 0:
+            table_names = list(meta.tables.keys())
+        return table_names
+
+    def print_all_records(self, table_name):
+        logger.info("Calling print_all_records on table %s", table_name)
+        self.connect()
+        df = pd.read_sql_table(table_name, self.conn)
+        self.close()
+        logger.info(df.to_string())
+
+    def get_all_columns(self, table_name):
+        columns = []
+        self.connect()
+        if table_name in self.get_all_tables():
+            df = pd.read_sql_table(table_name, self.conn)
+            columns = df.columns
+        self.close()
+        return columns
+
+    def add_new_columns(self, table_name, new_columns, type_dict):
+        self.connect()
+        for column_name in new_columns:
+            column_type = str(type_dict[column_name]())
+            logger.info("Adding column %s of type %s", column_name, column_type)
+            query = f"ALTER TABLE {table_name} ADD `{str(column_name)}` {column_type} ;"
+            self.conn.execute(query)
+        self.close()
+
+    def close(self):
+        self.conn.close()
+
+    def connect(self):
+        self.conn = self.engine.connect()
 
     @classmethod
     def infer_sqlalchemy_datatypes(cls, df):

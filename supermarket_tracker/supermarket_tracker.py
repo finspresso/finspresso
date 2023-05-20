@@ -340,7 +340,10 @@ class SuperMarketTracker:
     def update_prices_table(self, credentials):
         self.db_interface = DBInterface(credentials=credentials, print_all_tables=False)
         table_name = self.name + "_prices"
-        reference_json = self.reference_folder / Path("product_reference.json")
+        existing_columns = set(self.db_interface.get_all_columns(table_name))
+
+        table_name = self.name + "_prices"
+        reference_json = self.reference_folder / Path("product_reference_test.json")
         if reference_json.exists():
             logger.info("Reference file %s exists", reference_json)
             dict_reference = dict()
@@ -354,11 +357,21 @@ class SuperMarketTracker:
                 df.index.name = "Date"
                 df.reset_index(inplace=True)
                 type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
+                if table_name in self.db_interface.get_all_tables():
+                    existing_columns = set(
+                        self.db_interface.get_all_columns(table_name)
+                    )
+                    new_columns = set(df.columns) - existing_columns
+                    if len(new_columns) > 0:
+                        self.db_interface.add_new_columns(
+                            table_name, new_columns, type_dict
+                        )
                 logger.info(
-                    "Re-creating SQL table %s in db %s",
+                    "Updating SQL table %s in db %s",
                     table_name,
                     credentials["db_name"],
                 )
+                self.db_interface.connect()
                 df.to_sql(
                     table_name,
                     con=self.db_interface.conn,
@@ -367,8 +380,14 @@ class SuperMarketTracker:
                     dtype=type_dict,
                     index_label="id",
                 )
+                self.db_interface.close()
         else:
             logger.error("Reference file %s does not exist", reference_json)
+
+    def print_prices_table(self, credentials):
+        self.db_interface = DBInterface(credentials=credentials, print_all_tables=False)
+        table_name = self.name + "_prices"
+        self.db_interface.print_all_records(table_name)
 
 
 def main():
@@ -424,6 +443,15 @@ def main():
         help="If given updates the prices table of the product type e.g. MBudget",
         action="store_true",
     )
+
+    parser.add_argument(
+        "--print_prices_table",
+        help="If given print the prices table of \
+              the product type e.g. MBudget present\
+              in the MYSQL database",
+        action="store_true",
+    )
+
     credentials_sql = dict()
     args = parser.parse_args()
 
@@ -466,6 +494,14 @@ def main():
             )
             return -1
         tracker_handler.update_prices_table(credentials_sql)
+
+    if args.print_prices_table:
+        if len(credentials_sql) == 0:
+            logger.error(
+                "No valid credentials given. Please provide a valid credentials file."
+            )
+            return -1
+        tracker_handler.print_prices_table(credentials_sql)
 
 
 if __name__ == "__main__":

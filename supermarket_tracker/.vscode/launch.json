@@ -98,6 +98,21 @@
         "--update_prices_table"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Print prices table",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbudget",
+        "--credentials_file",
+        "credentials/sql_credentials.json",
+        "--print_prices_table"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
