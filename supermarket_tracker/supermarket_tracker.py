@@ -386,7 +386,7 @@ class SuperMarketTracker:
                     if_exists="append",
                     chunksize=1000,
                     dtype=type_dict,
-                    index_label="id",
+                    index=False,
                 )
                 self.db_interface.close()
         else:
