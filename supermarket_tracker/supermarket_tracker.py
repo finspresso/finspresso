@@ -321,7 +321,12 @@ class SuperMarketTracker:
                 dict_reference = json.load(file)
                 df = pd.DataFrame.from_dict(dict_reference, orient="index")
                 df.drop(labels="Price", axis=1, inplace=True)
+                df.index.name = "Article"
+                df.reset_index(inplace=True)
                 type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
+                self.db_interface.create_table_with_types(
+                    table_name, df.columns, type_dict
+                )
                 logger.info(
                     "Re-creating SQL table %s in db %s",
                     table_name,
@@ -331,10 +336,10 @@ class SuperMarketTracker:
                 df.to_sql(
                     table_name,
                     con=self.db_interface.conn,
-                    if_exists="replace",
+                    if_exists="append",
                     chunksize=1000,
                     dtype=type_dict,
-                    index_label="id",
+                    index=False,
                 )
                 self.db_interface.close()
         else:
@@ -346,7 +351,7 @@ class SuperMarketTracker:
         existing_columns = set(self.db_interface.get_all_columns(table_name))
 
         table_name = self.name + "_prices"
-        reference_json = self.reference_folder / Path("product_reference.json")
+        reference_json = self.reference_folder / Path("product_reference_test.json")
         if reference_json.exists():
             logger.info("Reference file %s exists", reference_json)
             dict_reference = dict()

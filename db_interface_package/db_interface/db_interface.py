@@ -17,6 +17,7 @@ from sqlalchemy import (
     Text,
     Float,
     Date,
+    TIMESTAMP,
 )
 from sqlalchemy.sql import text, select, func
 
@@ -49,6 +50,11 @@ class DBInterface:
             table_name,
             meta,
             Column("id", Integer, primary_key=True, autoincrement=True),
+            Column(
+                "updated_at",
+                TIMESTAMP,
+                server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"),
+            ),
         )
         meta.create_all(self.engine)
         self.add_new_columns(table_name, new_columns, type_dict)
