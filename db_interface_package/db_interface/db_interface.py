@@ -43,6 +43,16 @@ class DBInterface:
             self.print_all_tables()
         self.close()
 
+    def create_table_with_types(self, table_name, new_columns, type_dict):
+        meta = MetaData()
+        Table(
+            table_name,
+            meta,
+            Column("id", Integer, primary_key=True, autoincrement=True),
+        )
+        meta.create_all(self.engine)
+        self.add_new_columns(table_name, new_columns, type_dict)
+
     def create_table(self, meta):
         meta.create_all(self.engine)
 

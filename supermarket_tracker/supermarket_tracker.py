@@ -369,6 +369,11 @@ class SuperMarketTracker:
                         self.db_interface.add_new_columns(
                             table_name, new_columns, type_dict
                         )
+                else:
+                    logger.info("Creating table %s", table_name)
+                    self.db_interface.create_table_with_types(
+                        table_name, df.columns, type_dict
+                    )
                 logger.info(
                     "Updating SQL table %s in db %s",
                     table_name,
