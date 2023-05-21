@@ -24,7 +24,7 @@ logger = logging.getLogger("db_interace")
 
 
 class DBInterface:
-    def __init__(self, credentials, print_all_tables=False):
+    def __init__(self, credentials, print_all_tables=False, echo=False):
         self.engine = create_engine(
             "mysql://"
             + credentials["user"]
@@ -36,7 +36,7 @@ class DBInterface:
             + credentials["port"]
             + "/"
             + credentials["db_name"],
-            echo=True,
+            echo=echo,
         )
         self.connect()
         if print_all_tables:
@@ -51,6 +51,14 @@ class DBInterface:
         meta.reflect(bind=self.engine)
         for table_name in meta.tables.keys():
             logger.info("Found table %s", table_name)
+
+    def delete_tables(self, tables_to_delete):
+        meta = MetaData()
+        meta.reflect(bind=self.engine)
+        for table_name in meta.tables.keys():
+            if table_name in tables_to_delete:
+                logger.info("Deleting table %s", table_name)
+                meta.tables[table_name].drop(self.engine)
 
     def get_all_tables(self):
         meta = MetaData()

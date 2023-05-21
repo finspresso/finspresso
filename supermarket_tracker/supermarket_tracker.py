@@ -312,6 +312,7 @@ class SuperMarketTracker:
     def update_metadata_table(self, credentials):
         self.db_interface = DBInterface(credentials=credentials, print_all_tables=False)
         table_name = self.name + "_metadata"
+        self.db_interface.delete_tables([table_name])
         reference_json = self.reference_folder / Path("product_reference.json")
         if reference_json.exists():
             logger.info("Reference file %s exists", reference_json)
@@ -326,6 +327,7 @@ class SuperMarketTracker:
                     table_name,
                     credentials["db_name"],
                 )
+                self.db_interface.connect()
                 df.to_sql(
                     table_name,
                     con=self.db_interface.conn,
@@ -334,6 +336,7 @@ class SuperMarketTracker:
                     dtype=type_dict,
                     index_label="id",
                 )
+                self.db_interface.close()
         else:
             logger.error("Reference file %s does not exist", reference_json)
 
@@ -343,7 +346,7 @@ class SuperMarketTracker:
         existing_columns = set(self.db_interface.get_all_columns(table_name))
 
         table_name = self.name + "_prices"
-        reference_json = self.reference_folder / Path("product_reference_test.json")
+        reference_json = self.reference_folder / Path("product_reference.json")
         if reference_json.exists():
             logger.info("Reference file %s exists", reference_json)
             dict_reference = dict()
