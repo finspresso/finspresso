@@ -1,0 +1,139 @@
+<!doctype html>
+
+<head>
+    <style type="text/css">
+        .select-selected {
+            width: 200px;
+        }
+    </style>
+    <style type="text/css">
+        .chartBox {
+            width: 900px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+    <select id="category2-dropdown" name="category2">
+    </select>
+    <div class="chartBox">
+        <canvas id="chartCategoryLIK"></canvas>
+    </div>
+
+
+    <script>
+        const category2 = document.getElementById('category2-dropdown')
+        const baseURL = 'https://www.finspresso.com/wp-content/uploads/storage_json_inflation'
+        var plotColors = [
+            "rgb(57,80,203)",
+            "rgb(172,99,84)",
+            "rgb(152,47,171)",
+            "rgb(240,63,241)",
+            "rgb(170,24,112)",
+            "rgb(226,177,83)",
+            "rgb(187,56,20)",
+            "rgb(40,86,118)",
+            "rgb(67,208,49)",
+            "rgb(33,23,152)",
+            "rgb(217,153,237)",
+            "rgb(184,219,236)"
+        ];
+
+        let dropdown = document.getElementById("category2-dropdown");
+        dropdown.length = 0;
+        dropdown.selectedIndex = 0;
+        const url = 'https://www.finspresso.com/wp-content/uploads/storage_json_inflation/category_lik/categories.json';
+        function updateCategory() {
+            category2_current = category2.options[category2.selectedIndex].value;
+            console.log("category2_current", category2_current);
+            chartCategoryLIK.options.plugins.datasource.url = baseURL + '/category_lik/' + category2_current + '.json';
+            console.log(chartCategoryLIK.options.plugins.datasource.url);
+            chartCategoryLIK.data.datasets[0].borderColor = plotColors[category2.selectedIndex];
+            chartCategoryLIK.data.datasets[0].pointBackgroundColor = plotColors[category2.selectedIndex];
+            chartCategoryLIK.update()
+        }
+        const request = new XMLHttpRequest();
+        request.open('GET', url, true);
+
+        request.onload = function () {
+            if (request.status === 200) {
+                const data = JSON.parse(request.responseText);
+                let option;
+                for (let i = 0; i < data.length; i++) {
+                    option = document.createElement('option');
+                    option.text = data[i].name;
+                    option.value = data[i].abbreviation;
+                    dropdown.add(option);
+                }
+                updateCategory();
+            } else {
+                // Reached the server, but it returned an error
+            }
+        }
+
+        request.onerror = function () {
+            console.error('An error occurred fetching the JSON from ' + url);
+        };
+
+        request.send();
+
+        var configCategory = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    yAxisID: 'category_lik',
+                    backgroundColor: 'transparent',
+                    borderColor: plotColors[category2.selectedIndex], //'rgb(57,80,203)',
+                    pointBackgroundColor: plotColors[category2.selectedIndex],//'rgb(57,80,203)',
+                    tension: 0,
+                    fill: false
+                }]
+            },
+            plugins: [ChartDataSource],
+            options: {
+                title: {
+                    display: true,
+                    text: 'Category2'
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Year'
+                        }
+                    }],
+                    yAxes: [{
+                        id: 'category_lik',
+                        gridLines: {
+                            drawOnChartArea: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: '%'
+                        }
+                    }]
+                },
+                plugins: {
+                    datasource: {
+                        type: 'json',
+                        url: baseURL + '/category_lik/Health.json',// '/category_lik/' + category2.options[category2.selectedIndex].value + '.json',
+                        rowMapping: 'dataset',
+                        indexLabels: 'labels',
+                        datasetLabels: 'datasets[*].label',
+                        data: 'datasets[*].data'
+                    }
+                }
+            }
+        };
+        var ctxCategory = document.getElementById('chartCategoryLIK').getContext('2d');
+        chartCategoryLIK = new Chart(ctxCategory, configCategory);
+        category2.addEventListener('change', updateCategory);
+
+
+    </script>
+</body>
+
+</html>
