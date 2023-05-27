@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<style>
+    th,
+    td {
+        padding: 5px;
+    }
+</style>
+
+<head>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h2>The LIK evolution dummy example</h2>
+    <select name="Category" onchange="loadCategories(this.value)">
+        <option value="">Select a customer:</option>
+        <option value="living_and_energy">Living and Energy</option>
+        <option value="alcoholic_beverages_and_tobacco">Alcoholic beverages and tobacco</option>
+        <option value="staples_and_non_alcoholic_beverages">Staples and non-alcoholic beverages</option>
+        <option value="health">health</option>
+    </select>
+    </form>
+    <br>
+    <div id="txtHint">Customer info will be listed here...</div>
+    <script>
+        var loadCategories = function () {
+            $.ajax({
+                url: "db_finspresso/get_lik_categories.php",
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<head>
+    <title>LIK evolution</title>
+    <style type="text/css">
+        .chart-container {
+            width: 640px;
+            height: auto;
+        }
+
+        .chartBox {
+            width: 750px;
+        }
+
+        .input_field_class {
+            width: 200px;
+        }
+
+        .readonly_field_class {
+            width: 200px;
+            background-color: #a9a9a93c;
+            border: none;
+        }
+
+        .slidecontainer {
+            width: 200px;
+            /* Width of the outside container */
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>LIK evolution graph</h2>
+    <form action="">
+        <select id="category-dropdown" name="Category" onchange="loadData(this.value);loadSubCategories(this.value)">
+        </select>
+    </form>
+    <br>
+
+    <table>
+        <tr>
+            <td> First year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type="number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
+            </td>
+        </tr>
+        <tr>
+            <td> Last year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2022" class="slider" id="max_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type="number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
+            </td>
+        </tr>
+        <tr>
+            <td> Relative Change </td>
+            <td>
+            </td>
+            <td>
+                <input type="text" name="relative_change" value="NA" id="relative_change" readonly
+                    class="readonly_field_class" />
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <div class="chartBox">
+        <canvas id="chartCategoryLIK"></canvas>
+    </div>
+
+    <form action="">
+        <select id="subcategory-dropdown" name="Subcategory" , onchange="loadSubData()">
+        </select>
+    </form>
+    <br>
+    <table>
+    <tr>
+        <td> Relative Change </td>
+        <td>
+        </td>
+        <td>
+            <input type="text" name="relative_change_sub" value="NA" id="relative_change_sub" readonly
+                class="readonly_field_class" />
+        </td>
+    </tr>
+    </table>
+    <br>
+    <div class="chartBox">
+        <canvas id="chartSubCategoryLIK"></canvas>
+    </div>
+    <script>
+        var baseURL = "";
+        if (location.hostname === "www.finspresso.com") {
+            baseURL = "https://www.finspresso.com";
+        }
+        baseURL = baseURL + "/inflation/php_files";
+        var loadData = function (category) {
+            $.ajax({
+                url: baseURL + "/get_lik_evolution_data.php?q=" + "`" + category + "`",
+                method: "GET",
+                success: function (data) {
+                    loadedData = data;
+                    updateGraph(category);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+        var loadSubData = function () {
+            let dropdown = document.getElementById("category-dropdown");
+            const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+            let dropdownSub = document.getElementById("subcategory-dropdown");
+            const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
+            $.ajax({
+                url: baseURL + "/get_lik_evolution_sub_data.php?cat=" + "`" + categoryCurrent + "`" + "&subcat=" + "`" + subcategoryCurrent + "`",
+                method: "GET",
+                success: function (data) {
+                    loadedSubData = data;
+                    updateSubGraph(categoryCurrent, subcategoryCurrent);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+
+
+        function updateGraph(category) {
+            var dates = [];
+            var values = [];
+            var min_slider = document.getElementById("min_slider");
+            var max_slider = document.getElementById("max_slider");
+            var lower_date = new Date(min_slider.value - 1, 11, 31);
+            var upper_date = new Date(max_slider.value, 12, 31);
+            for (var i in loadedData) {
+                var current_date = new Date(loadedData[i]["Date"]);
+                if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
+                    dates.push(loadedData[i]["Date"]);
+                    values.push(loadedData[i][category]);
+                }
+
+            }
+            let relative_change_element = document.getElementById("relative_change");
+            let relative_growth_string = 'NA';
+            if (values[0] !== 0) {
+                let relative_growth = (values[values.length - 1] / values[0] - 1) * 100;
+                relative_growth_string = relative_growth.toFixed(2) + "%";
+            }
+            relative_change_element.value = relative_growth_string;
+            var chartdata = {
+                labels: dates,
+                datasets: [
+                    {
+                        label: category,
+                        borderColor: lik_colors[category],
+                        data: values,
+                    },
+                ],
+            };
+            chartCategoryLIK.config.data = chartdata;
+            chartCategoryLIK.update();
+
+        }
+
+        function updateSubGraph(category, subcategory) {
+            var dates = [];
+            var values = [];
+            var min_slider = document.getElementById("min_slider");
+            var max_slider = document.getElementById("max_slider");
+            var lower_date = new Date(min_slider.value - 1, 11, 31);
+            var upper_date = new Date(max_slider.value, 12, 31);
+            for (var i in loadedSubData) {
+                var current_date = new Date(loadedSubData[i]["Date"]);
+                if (current_date.getTime() >= lower_date.getTime() && current_date.getTime() <= upper_date.getTime()) {
+                    dates.push(loadedSubData[i]["Date"]);
+                    values.push(loadedSubData[i][subcategory]);
+                }
+
+            }
+            let relative_change_element = document.getElementById("relative_change_sub");
+            let relative_growth_string = 'NA';
+            if (values[0] !== null) { // Done due to Gutenberg html renderer bug
+                if (values[0] !== 0) {
+                    let relative_growth = (values[values.length - 1] / values[0] - 1) * 100;
+                    relative_growth_string = relative_growth.toFixed(2) + "%";
+                }
+            }
+            relative_change_element.value = relative_growth_string;
+            var chartdata = {
+                labels: dates,
+                datasets: [
+                    {
+                        label: subcategory,
+                        borderColor: lik_colors[category],
+                        data: values,
+                    },
+                ],
+            };
+            chartSubCategoryLIK.config.data = chartdata;
+            chartSubCategoryLIK.update();
+
+        }
+
+        function updateTimeSpanSlider() {
+            let dropdown = document.getElementById("category-dropdown");
+            const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_input.value = min_slider.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_input.value = max_slider.value;
+            updateGraph(categoryCurrent);
+            if (categoryCurrent !== "Total") {
+                let dropdownSub = document.getElementById("subcategory-dropdown");
+                const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
+                updateSubGraph(categoryCurrent, subcategoryCurrent);
+            }
+        }
+
+        function updateTimeSpanManual() {
+            let dropdown = document.getElementById("category-dropdown");
+            const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_slider.value = min_input.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_slider.value = max_input.value;
+            updateGraph(categoryCurrent);
+            if (categoryCurrent !== "Total") {
+                let dropdownSub = document.getElementById("subcategory-dropdown");
+                const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
+                updateSubGraph(categoryCurrent, subcategoryCurrent);
+            }
+        }
+    </script>
+    <script>
+
+        var loadCategories = function () {
+            $.ajax({
+                url: baseURL + "/get_lik_categories.php",
+                method: "GET",
+                success: function (data) {
+                    let dropdown = document.getElementById("category-dropdown");
+                    let option;
+                    for (var i in data) {
+                        if (data[i]["Type"] == "float") {
+                            option = document.createElement("option");
+                            option.text = data[i]["Field"];
+                            option.value = data[i]["Field"];
+                            dropdown.add(option);
+                        }
+                    }
+                    dropdown.selectedIndex = 0;
+                    const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+                    loadData(categoryCurrent);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+
+        var resetSubCatGraph = function() {
+            let chartdataReset = {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: "NA",
+                            borderColor: "rgb(75, 192, 192)",
+                            data: [],
+                        },
+                    ],
+                };
+            chartSubCategoryLIK.config.data = chartdataReset;
+            chartSubCategoryLIK.update();
+            let relative_change_element = document.getElementById("relative_change_sub");
+            relative_change_element.value = "NA";
+        };
+
+        var loadSubCategories = function (category) {
+            clearDropdown("subcategory-dropdown");
+            if (category == "Total") {
+                resetSubCatGraph();
+                return;
+            }
+            $.ajax({
+                url: baseURL + "/get_lik_subcategories.php?q=" + "`" + category + "`",
+                method: "GET",
+                success: function (data) {
+                    let dropdown = document.getElementById("category-dropdown");
+                    let dropdownSub = document.getElementById("subcategory-dropdown");
+                    let option;
+                    let subcategory_list = [];
+                    for (var i in data) {
+                        if (data[i]["Type"] == "float") {
+                            subcategory_list.push(data[i]["Field"]);
+                        }
+                    }
+                    subcategory_list = subcategory_list.sort();
+                    for (subcat of subcategory_list) {
+                        option = document.createElement("option");
+                        option.text = subcat;
+                        option.value = subcat;
+                        dropdownSub.add(option);
+                    }
+                    dropdownSub.selectedIndex = 0;
+                    const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
+                    const subcategoryCurrent = dropdownSub.options[dropdownSub.selectedIndex].value;
+                    loadSubData();
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+        var clearDropdown = function (dropdownName) {
+            var select = document.getElementById(dropdownName);
+            var length = select.options.length;
+            for (i = length - 1; i >= 0; i--) {
+                select.options[i] = null;
+            }
+        };
+
+        var loadColors = function () {
+            $.ajax({
+                url: baseURL + "/get_lik_colors.php",
+                method: "GET",
+                success: function (data) {
+                    lik_colors = data[0];
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+
+        var loadedData = 0;
+        var loadedSubData = 0;
+        var lik_colors = [];
+        const labels = [1, 2];
+        let dataInit = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "NA",
+                    data: [],
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    tension: 0.1,
+                },
+            ],
+        };
+        const configInit = {
+            type: "line",
+            data: dataInit,
+        };
+        const configSubInit = {
+            type: "line",
+            data: dataInit,
+        };
+        var ctxCategory = document.getElementById("chartCategoryLIK").getContext("2d");
+        var chartCategoryLIK = new Chart(ctxCategory, configInit);
+        var ctxSubCategory = document.getElementById("chartSubCategoryLIK").getContext("2d");
+        var chartSubCategoryLIK = new Chart(ctxSubCategory, configSubInit);
+        loadColors();
+        loadCategories();
+
+    </script>
+
+</body>
+
+</html>

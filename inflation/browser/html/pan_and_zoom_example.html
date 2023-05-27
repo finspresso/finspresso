@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Zoom/Pan example</title>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script  src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js" integrity="sha512-wUYbRPLV5zs6IqvWd88HIqZU/b8TBx+I8LEioQ/UC0t5EMCLApqhIAnUg7EsAzdbhhdgW07TqYDdH3QEXRcPOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange',
+            'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange',
+            'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange',
+            'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange',
+            'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange',
+            'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3,
+                     12, 19, 3, 5, 2, 3,
+                     12, 19, 3, 5, 2, 3,
+                     12, 19, 3, 5, 2, 3,
+                     12, 19, 3, 5, 2, 3,
+                     12, 19, 3, 5, 2, 3,],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+                zoom :{
+                    zoom: {
+                        wheel: {
+                            enabled: true
+                        }
+                    },
+                    pan: {
+                        enabled: true
+                    }
+                }
+            }
+          }
+        });
+      </script>
+
+</body>
+
+</html>
