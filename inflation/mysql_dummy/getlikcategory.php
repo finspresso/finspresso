@@ -1,10 +1,7 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'dummy');
-$mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-//$mysqli = new mysqli("servername", "username", "password", "dbname");
+$strJsonFileContents = file_get_contents("sql_credentials_test.json");
+$sql_credentials = json_decode($strJsonFileContents, true);
+$mysqli = new mysqli($sql_credentials["hostname"], $sql_credentials["user"], $sql_credentials["password"], $sql_credentials["db_name"], $sql_credentials["port"]);;
 if($mysqli->connect_error) {
   exit('Could not connect');
 }
