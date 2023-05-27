@@ -74,11 +74,18 @@ Afterwards you can click on new and create your desired database:
 
 ### Make .php files accessible to local XAMPP server
 
-In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](html/mysql/lik_evolution.html), you need to create a softlink to all the files in the html/mysql folder in the XAMPP base folder:
+In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](html/mysql/lik_evolution.html), you need to create a softlink to all the files in the html/mysql folder in the XAMPP base folder (`/opt/lampp/htdocs/`):
 
 ```sh
-sudo mkdir /opt/lampp/htdocs/projects/
-sudo ln -s <base folder of repo>/finspresso/inflation/html/mysql /opt/lampp/htdocs/projects/mysql
+sudo mkdir /opt/lampp/htdocs/inflation/
+sudo ln -s <base folder of repo>/finspresso/inflation/browser/html /opt/lampp/htdocs/inflation/html
+sudo ln -s <base folder of repo>/finspresso/inflation/browser/php_files /opt/lampp/htdocs/inflation/php_files
+```
+
+After that you should be able to open the lik_evolution.html with your browser:
+
+```sh
+/opt/google/chrome/chrome http://localhost/projects/mysql/lik_evolution.html
 ```
 
 ### Upload the LIK evolution data to the local MySQL database
