@@ -1,2 +1,4 @@
 data/*
 *weights_*
+.vscode/settings.json
+sql_credentials*

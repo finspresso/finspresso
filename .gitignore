@@ -10,3 +10,4 @@ __pycache__
 db_interface_package/build
 db_interface_package/db_interface.egg-info.egg-info
 credentials/
+db_interface_package/db_interface.egg-info
