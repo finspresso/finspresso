@@ -85,8 +85,10 @@ sudo ln -s <base folder of repo>/finspresso/inflation/browser/php_files /opt/lam
 After that you should be able to open the lik_evolution.html with your browser e.g. with Chrome:
 
 ```sh
-/opt/google/chrome/chrome http://localhost/projects/mysql/lik_evolution.html
+/opt/google/chrome/chrome http://localhost/inflation/html/lik_evolution.html
 ```
+
+Please note, the Apache server will not execute the .php files and respond if you directly try to open the file lik_evolution.html with your browser that resides in the repo folder. Hence, important to copy both html and php_files folder.
 
 ### Upload the LIK evolution data to the local MySQL database
 
