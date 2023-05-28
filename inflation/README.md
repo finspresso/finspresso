@@ -77,9 +77,10 @@ Afterwards you can click on new and create your desired database:
 In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](browser/html/lik_evolution.html), you need to create a softlink to all the files in the `browser/html` and `browser/php_files` folder in the XAMPP base folder (`/opt/lampp/htdocs/`):
 
 ```sh
+PROJECTS_FOLDER= <base folder of repo>
 sudo mkdir /opt/lampp/htdocs/inflation/
-sudo ln -s <base folder of repo>/finspresso/inflation/browser/html /opt/lampp/htdocs/inflation/html
-sudo ln -s <base folder of repo>/finspresso/inflation/browser/php_files /opt/lampp/htdocs/inflation/php_files
+sudo ln -s $PROJECTS_FOLDER/finspresso/inflation/browser/html /opt/lampp/htdocs/inflation/html
+sudo ln -s $PROJECTS_FOLDER/finspresso/inflation/browser/php_files /opt/lampp/htdocs/inflation/php_files
 ```
 
 After that you should be able to open the lik_evolution.html with your browser e.g. with Chrome:
