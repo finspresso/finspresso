@@ -7,9 +7,10 @@ Tracks prices of selected super market.
 In order for th local XAMPP server to be able to respond to the request sent out by [supermarket_tracker.html](browser/html/supermarket_tracker.html), you need to create a softlink to all the files in the `browser/html` and `browser/php_files` folder in the XAMPP base folder (`/opt/lampp/htdocs/`):
 
 ```sh
-sudo mkdir /opt/lampp/htdocs/supermarket_tracker/
-sudo ln -s <base folder of repo>/finspresso/supermarket_tracker/browser/html /opt/lampp/htdocs/supermarket_tracker/html
-sudo ln -s <base folder of repo>/finspresso/supermarket_tracker/browser/php_files /opt/lampp/htdocs/supermarket_tracker/php_files
+sudo mkdir /opt/lampp/htdocs/supermarket_tracker
+PROJECTS_FOLDER= <base folder of repo>
+sudo ln -s $PROJECTS_FOLDER/finspresso/supermarket_tracker/browser/html /opt/lampp/htdocs/supermarket_tracker/html
+sudo ln -s $PROJECTS_FOLDER/finspresso/supermarket_tracker/browser/php_files /opt/lampp/htdocs/supermarket_tracker/php_files
 ```
 
 After that you should be able to open the supermarket_tracker.html with your browser e.g. with Chrome:
