@@ -16,7 +16,7 @@ sudo ln -s $PROJECTS_FOLDER/finspresso/supermarket_tracker/browser/php_files /op
 After that you should be able to open the supermarket_tracker.html with your browser e.g. with Chrome:
 
 ```sh
-/opt/google/chrome/chrome http://localhost/inflation/html/supermarket_tracker.html
+/opt/google/chrome/chrome http://localhost/supermarket_tracker/html/mbudget_tracker.html
 ```
 
 Please note, the Apache server will not execute the .php files and respond if you directly try to open the file lik_evolution.html with your browser that resides in the repo folder. Hence, important to copy both html and php_files folder. This [entry](https://github.com/finspresso/finspresso/tree/master/inflation#intall-xampp-server) shows how to install a LAMPP server.
