@@ -109,7 +109,23 @@
         };
 
         var loadProductData = function () {
+            let dropdownProduct = document.getElementById("product1-dropdown");
+            let productCurrent = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+            let productID = productDict[productCurrent]["Article"];
             updateProductURL();
+            $.ajax({
+                url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + productID + "`",
+                method: "GET",
+                success: function (data) {
+                    loadedData = data;
+                    console.log(loadedData);
+                    //updateGraph(category);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+
         };
         var updateProductURL = function () {
             let dropdownProduct = document.getElementById("product1-dropdown");
