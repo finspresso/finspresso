@@ -19,4 +19,4 @@ After that you should be able to open the supermarket_tracker.html with your bro
 /opt/google/chrome/chrome http://localhost/inflation/html/supermarket_tracker.html
 ```
 
-Please note, the Apache server will not execute the .php files and respond if you directly try to open the file lik_evolution.html with your browser that resides in the repo folder. Hence, important to copy both html and php_files folder. This [entry](https://github.com/finspresso/finspresso/tree/master/inflation#make-php-files-accessible-to-local-xampp-server) shows how to install a LAMPP server.
+Please note, the Apache server will not execute the .php files and respond if you directly try to open the file lik_evolution.html with your browser that resides in the repo folder. Hence, important to copy both html and php_files folder. This [entry](https://github.com/finspresso/finspresso/tree/master/inflation#intall-xampp-server) shows how to install a LAMPP server.
