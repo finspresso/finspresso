@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js" integrity="sha512-wUYbRPLV5zs6IqvWd88HIqZU/b8TBx+I8LEioQ/UC0t5EMCLApqhIAnUg7EsAzdbhhdgW07TqYDdH3QEXRcPOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<head>
+    <title>Compare tool</title>
+    <style type="text/css">
+        .chart-container {
+            width: 640px;
+            height: auto;
+        }
+
+        .chartBox {
+            width: 750px;
+        }
+
+        .input_field_class {
+            width: 200px;
+        }
+
+        .readonly_field_class {
+            width: 200px;
+            background-color: #a9a9a93c;
+            border: none;
+        }
+
+        .slidecontainer {
+            width: 200px;
+            /* Width of the outside container */
+        }
+        .dropdown_white {background:white;}
+        .dropdown_gray {background:gray;}
+
+    </style>
+
+</head>
+
+<body>
+    <h2>Compare</h2>
+
+    <table>
+        <tr>
+            <td> 1. category </td>
+            <td>
+                <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateGraph()" checked=true>
+            </td>
+            <td>
+                <form action="">
+                    <select id="category1-dropdown" name="Category1" onchange="loadCompareData()" checked=true>
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> 2. category </td>
+            <td>
+                <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox"onchange="updateGraph()">
+            </td>
+            <td>
+                <form action="">
+                    <select id="category2-dropdown" name="Category2" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> 3. category </td>
+            <td>
+                <input type="checkbox" id="enable3_checkbox" name="enable3_checkbox"onchange="updateGraph()">
+            </td>
+            <td>
+                <form action="">
+                    <select id="category3-dropdown" name="Category3" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> 4. category </td>
+            <td>
+                <input type="checkbox" id="enable4_checkbox" name="enable4_checkbox"onchange="updateGraph()">
+            </td>
+            <td>
+                <form action="">
+                    <select id="category4-dropdown" name="Category4" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> 5. category </td>
+            <td>
+                <input type="checkbox" id="enable5_checkbox" name="enable5_checkbox"onchange="updateGraph()">
+            </td>
+            <td>
+                <form action="">
+                    <select id="category5-dropdown" name="Category5" onchange="loadCompareData()">
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td> First year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type="number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
+            </td>
+        </tr>
+        <tr>
+            <td> Last year </td>
+            <td>
+                <div class="slidecontainer">
+                    <input type="range" min="1982" max="2022" value="2022" class="slider" id="max_slider"
+                        oninput="updateTimeSpanSlider()">
+                </div>
+            </td>
+            <td>
+                <input type="number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
+                    oninput="updateTimeSpanManual()" class="input_field_class" />
+            </td>
+        </tr>
+
+        <tr>
+            <td> Rescale</td>
+            <td>
+            <input type="checkbox" id="rescale_checkbox" name="rescale_checkbox" onchange="rescaleData()">
+            </td>
+        </tr>
+        <tr>
+            <td> Reset</td>
+            <td>
+            <button type="button" onclick="resetView()">Reset view</button>
+            </td>
+        </tr>
+
+
+    </table>
+    <br>
+    <div class="chartBox">
+        <canvas id="chartCompare"></canvas>
+    </div>
+    <script>
+        function updateCheckboxes() {
+            for (var i=1; i <= max_graphs; i++) {
+                let dropdown = document.getElementById("category" + i + "-dropdown");
+                if (document.getElementById("enable" + i + "_checkbox").checked) {
+                    dropdown.disabled = false;
+                } else {
+                    dropdown.disabled = true;
+                }
+            }
+        }
+
+        function rescaleData() {
+            updateGraph();
+        }
+
+
+        function updateTimeSpanSlider() {
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_input.value = min_slider.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_input.value = max_slider.value;
+            updateGraph();
+        }
+
+        function updateTimeSpanManual() {
+            let min_input = document.getElementById("min_input");
+            let min_slider = document.getElementById("min_slider");
+            min_slider.value = min_input.value;
+            let max_input = document.getElementById("max_input");
+            let max_slider = document.getElementById("max_slider");
+            max_slider.value = max_input.value;
+            updateGraph();
+        }
+
+        var loadProducts = function () {
+            $.ajax({
+                url: baseURL + "db_finspresso/get_compare_categories.php",
+                method: "GET",
+                success: function (data) {
+                    let category_list = [];
+                    for (var i in data) {
+                        if (data[i]["Type"] == "float") {
+                            category_list.push(data[i]["Field"]);
+                        }
+                    }
+                    category_list = category_list.sort();
+                    for (var j = 1; j <= max_graphs; j++) {
+                        let dropdown = document.getElementById("category" + j +"-dropdown");
+                        for (cat of category_list) {
+                            let option = document.createElement("option");
+                            option.text = cat;
+                            option.value = cat;
+                            if (cat.includes("KVPI") || cat.includes("Supplemental health insurance")
+                            || cat.includes("Compulsory health insurance")) {
+                                option.className = "dropdown_gray";
+                            } else {
+                                option.className = "dropdown_white";
+                            }
+                            dropdown.add(option);
+                        }
+                        dropdown.selectedIndex = 0;
+                    }
+                    loadCompareData();
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+        };
+
+
+
+
+        loadProducts();
+    </script>
+</body>
+
+</html>

@@ -74,7 +74,7 @@ Afterwards you can click on new and create your desired database:
 
 ### Make .php files accessible to local XAMPP server
 
-In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](html/mysql/lik_evolution.html), you need to create a softlink to all the files in the `browser/html` and `browser/php_files` folder in the XAMPP base folder (`/opt/lampp/htdocs/`):
+In order for the XAMPP server to be able to respond to the request sent out by [lik_evolution.html](browser/html/lik_evolution.html), you need to create a softlink to all the files in the `browser/html` and `browser/php_files` folder in the XAMPP base folder (`/opt/lampp/htdocs/`):
 
 ```sh
 sudo mkdir /opt/lampp/htdocs/inflation/
