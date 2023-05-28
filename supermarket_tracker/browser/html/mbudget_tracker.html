@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js" integrity="sha512-wUYbRPLV5zs6IqvWd88HIqZU/b8TBx+I8LEioQ/UC0t5EMCLApqhIAnUg7EsAzdbhhdgW07TqYDdH3QEXRcPOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <head>
-    <title>Compare tool</title>
+    <title>MBudget tracker</title>
     <style type="text/css">
         .chart-container {
             width: 640px;
@@ -42,172 +42,49 @@
 </head>
 
 <body>
-    <h2>Compare</h2>
-
     <table>
         <tr>
-            <td> 1. category </td>
-            <td>
-                <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateGraph()" checked=true>
-            </td>
+            <td> Product </td>
             <td>
                 <form action="">
-                    <select id="category1-dropdown" name="Category1" onchange="loadCompareData()" checked=true>
+                    <select id="product1-dropdown" name="Product1" onchange="loadProductData()" checked=true>
                     </select>
                 </form>
             </td>
         </tr>
-        <tr>
-            <td> 2. category </td>
-            <td>
-                <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox"onchange="updateGraph()">
-            </td>
-            <td>
-                <form action="">
-                    <select id="category2-dropdown" name="Category2" onchange="loadCompareData()">
-                    </select>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td> 3. category </td>
-            <td>
-                <input type="checkbox" id="enable3_checkbox" name="enable3_checkbox"onchange="updateGraph()">
-            </td>
-            <td>
-                <form action="">
-                    <select id="category3-dropdown" name="Category3" onchange="loadCompareData()">
-                    </select>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td> 4. category </td>
-            <td>
-                <input type="checkbox" id="enable4_checkbox" name="enable4_checkbox"onchange="updateGraph()">
-            </td>
-            <td>
-                <form action="">
-                    <select id="category4-dropdown" name="Category4" onchange="loadCompareData()">
-                    </select>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td> 5. category </td>
-            <td>
-                <input type="checkbox" id="enable5_checkbox" name="enable5_checkbox"onchange="updateGraph()">
-            </td>
-            <td>
-                <form action="">
-                    <select id="category5-dropdown" name="Category5" onchange="loadCompareData()">
-                    </select>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td> First year </td>
-            <td>
-                <div class="slidecontainer">
-                    <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
-                        oninput="updateTimeSpanSlider()">
-                </div>
-            </td>
-            <td>
-                <input type="number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
-                    oninput="updateTimeSpanManual()" class="input_field_class" />
-            </td>
-        </tr>
-        <tr>
-            <td> Last year </td>
-            <td>
-                <div class="slidecontainer">
-                    <input type="range" min="1982" max="2022" value="2022" class="slider" id="max_slider"
-                        oninput="updateTimeSpanSlider()">
-                </div>
-            </td>
-            <td>
-                <input type="number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
-                    oninput="updateTimeSpanManual()" class="input_field_class" />
-            </td>
-        </tr>
-
-        <tr>
-            <td> Rescale</td>
-            <td>
-            <input type="checkbox" id="rescale_checkbox" name="rescale_checkbox" onchange="rescaleData()">
-            </td>
-        </tr>
-        <tr>
-            <td> Reset</td>
-            <td>
-            <button type="button" onclick="resetView()">Reset view</button>
-            </td>
-        </tr>
-
-
     </table>
     <br>
     <div class="chartBox">
         <canvas id="chartCompare"></canvas>
     </div>
     <script>
-        function updateCheckboxes() {
-            for (var i=1; i <= max_graphs; i++) {
-                let dropdown = document.getElementById("category" + i + "-dropdown");
-                if (document.getElementById("enable" + i + "_checkbox").checked) {
-                    dropdown.disabled = false;
-                } else {
-                    dropdown.disabled = true;
-                }
-            }
+        var max_graphs = 1;
+        var productDict = new Object();
+        var baseURL = "";
+        if (location.hostname === "www.finspresso.com") {
+            baseURL = "https://www.finspresso.com";
         }
-
-        function rescaleData() {
-            updateGraph();
-        }
-
-
-        function updateTimeSpanSlider() {
-            let min_input = document.getElementById("min_input");
-            let min_slider = document.getElementById("min_slider");
-            min_input.value = min_slider.value;
-            let max_input = document.getElementById("max_input");
-            let max_slider = document.getElementById("max_slider");
-            max_input.value = max_slider.value;
-            updateGraph();
-        }
-
-        function updateTimeSpanManual() {
-            let min_input = document.getElementById("min_input");
-            let min_slider = document.getElementById("min_slider");
-            min_slider.value = min_input.value;
-            let max_input = document.getElementById("max_input");
-            let max_slider = document.getElementById("max_slider");
-            max_slider.value = max_input.value;
-            updateGraph();
-        }
-
+        baseURL = baseURL + "/supermarket_tracker/php_files";
         var loadProducts = function () {
             $.ajax({
-                url: baseURL + "db_finspresso/get_compare_categories.php",
+                url: baseURL + "/get_mbudget_products.php",
                 method: "GET",
                 success: function (data) {
-                    let category_list = [];
+                    //console.log(data);
+                    let product_list = [];
                     for (var i in data) {
-                        if (data[i]["Type"] == "float") {
-                            category_list.push(data[i]["Field"]);
-                        }
+                        productDict[data[i]["Product Name"]] = data[i];
+                        product_list.push(data[i]["Product Name"]);
+
                     }
-                    category_list = category_list.sort();
+                    product_list = product_list.sort();
                     for (var j = 1; j <= max_graphs; j++) {
-                        let dropdown = document.getElementById("category" + j +"-dropdown");
-                        for (cat of category_list) {
+                        let dropdown = document.getElementById("product" + j +"-dropdown");
+                        for (product of product_list) {
                             let option = document.createElement("option");
-                            option.text = cat;
-                            option.value = cat;
-                            if (cat.includes("KVPI") || cat.includes("Supplemental health insurance")
-                            || cat.includes("Compulsory health insurance")) {
+                            option.text = product;
+                            option.value = product;
+                            if (productDict[product]["Category"] === "other") {
                                 option.className = "dropdown_gray";
                             } else {
                                 option.className = "dropdown_white";
@@ -216,16 +93,13 @@
                         }
                         dropdown.selectedIndex = 0;
                     }
-                    loadCompareData();
+                    // loadCompareData();
                 },
                 error: function (data) {
                     console.log(data);
                 },
             });
         };
-
-
-
 
         loadProducts();
     </script>
