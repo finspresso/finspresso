@@ -42,6 +42,7 @@
 </head>
 
 <body>
+    <h1>MBudget tracker</h1>
     <table>
         <tr>
             <td> Product </td>
@@ -50,6 +51,12 @@
                     <select id="product1-dropdown" name="Product1" onchange="loadProductData()" checked=true>
                     </select>
                 </form>
+            </td>
+        </tr>
+        <tr>
+            <td> Product URL </td>
+            <td>
+                <a href="https://www.w3schools.com/" id="product1_url">Visit W3Schools.com!</a>
             </td>
         </tr>
     </table>
@@ -93,12 +100,23 @@
                         }
                         dropdown.selectedIndex = 0;
                     }
-                    // loadCompareData();
+                    loadProductData();
                 },
                 error: function (data) {
                     console.log(data);
                 },
             });
+        };
+
+        var loadProductData = function () {
+            updateProductURL();
+        };
+        var updateProductURL = function () {
+            let dropdownProduct = document.getElementById("product1-dropdown");
+            const productCurrent = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+            let product_url_element = document.getElementById("product1_url");
+            product_url_element.href = productDict[productCurrent]["Product Link"];
+            product_url_element.text = productDict[productCurrent]["Product Link"];
         };
 
         loadProducts();
