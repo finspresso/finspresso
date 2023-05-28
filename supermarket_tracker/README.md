@@ -4,7 +4,7 @@ Tracks prices of selected super market.
 
 ## MBudget tracker
 
-The MBudget tracker collects all the available prices that can be accessed via the mbudget protuct overview [page](https://www.migros.ch/en/brand/m-budget). Please note, the correct url is given in the config `config/mbudget.json`. This page list all the availabel products and there price as e.g. shown below:
+The MBudget tracker collects all the available prices that can be accessed via the mbudget protuct overview [page](https://www.migros.ch/en/brand/m-budget). Please note, the correct url is given in the config `config/mbudget.json`. This page list all the available products and there price as e.g. shown below:
 
 ![mbudget_base](images/mbudget_base.png)
 
@@ -16,7 +16,7 @@ python supermarket_tracker.py --name mbudget --collect_products --take_screensho
 
 This does the following:
 
-- Opens the mbudget protuct overview [page](https://www.migros.ch/en/brand/m-budget) using the [Selium-Python](https://selenium-python.readthedocs.io/) library in headless mode
+- Opens the mbudget product overview [page](https://www.migros.ch/en/brand/m-budget) using the [Selium-Python](https://selenium-python.readthedocs.io/) library in headless mode
 - Extracts the price, article number and product name and stores them into an .xlsx file in the folder `data/mbudget/<Date and time of run>/mbudget_prices.xlsx`
 - Compares the downloaded products with the prior state stored in the folder `references/mbudget/product_reference.json` and list which products were added and which were discontinued.
 - Additionally the script takes a screenshot of every product and stores the screenshots under `data/mbudget/<Date and time of run>/`
