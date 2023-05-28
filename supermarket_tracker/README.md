@@ -8,7 +8,7 @@ In order for th local XAMPP server to be able to respond to the request sent out
 
 ```sh
 sudo mkdir /opt/lampp/htdocs/supermarket_tracker
-PROJECTS_FOLDER= <base folder of repo>
+PROJECTS_FOLDER=<base folder of repo>
 sudo ln -s $PROJECTS_FOLDER/finspresso/supermarket_tracker/browser/html /opt/lampp/htdocs/supermarket_tracker/html
 sudo ln -s $PROJECTS_FOLDER/finspresso/supermarket_tracker/browser/php_files /opt/lampp/htdocs/supermarket_tracker/php_files
 ```
