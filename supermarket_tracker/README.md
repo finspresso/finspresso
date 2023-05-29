@@ -57,6 +57,24 @@ The script compares the content of `references/mbudget/product_reference.json` w
 
 ![basmati2](images/basmati_rice2.png)
 
+### Interface to MySQL database
+
+The data collected in the preceding steps can be stored in a MySQL database. For that to work locally on your PC, you need to install an XAMPP server as described in [here](https://github.com/finspresso/finspresso/tree/master/inflation#intall-xampp-server). Once you the MySQL database server running, you create the database `supermarket` e.g. with phpMyAdmin. Later the scripts will populate the table `mbudget_metadata` basically containing information from `references/mbudget/product_reference.json` as well as the table mbudget_prices that contains the price per article per time instances as shown below:
+
+![supermarket_db](images/supermarket_db.png)
+
+![mbudget_metadata](images/mbudget_metadata.png)
+
+![mbudget_prices](images/mbudget_prices.png)
+
+#### Updating metadata table
+
+To update the metadata with the latest information from `references/mbudget/product_reference.json`, you can make the following call below. Please note, you need to provide the credentials of the MySQL database in the file `credentials/sql_credentials.json`
+
+```sh
+python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials.json --update_metadata_table
+```
+
 ## Make .php files accessible to local XAMPP server
 
 In order for th local XAMPP server to be able to respond to the request sent out by e.g. [mbudget_tracker.html](browser/html/mbudget_tracker.html), you need to create a softlink to all the files in the `browser/html` and `browser/php_files` folder in the XAMPP base folder (`/opt/lampp/htdocs/`):
