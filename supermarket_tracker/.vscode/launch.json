@@ -56,7 +56,7 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "Compare/Update MBudget reference json",
+      "name": "Update MBudget reference json",
       "type": "python",
       "request": "launch",
       "program": "${workspaceRoot}/supermarket_tracker.py",
@@ -64,7 +64,7 @@
       "args": [
         "--name",
         "mbudget",
-        "--compare_reference_json",
+        "--update_reference_json",
         "data/mbudget/20230518_135021/mbudget_prices.xlsx"
       ],
       "console": "integratedTerminal"

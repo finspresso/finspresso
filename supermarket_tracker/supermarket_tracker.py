@@ -278,6 +278,7 @@ class SuperMarketTracker:
             reference_json = self.reference_folder / Path("product_reference.json")
             with reference_json.open(mode="w") as outfile:
                 json.dump(dict_reference, outfile, indent=4, ensure_ascii=False)
+                logger.info("Created %s.", reference_json)
         else:
             logger.error(
                 "Reference file %s does not exist. Please provide this file",
@@ -436,7 +437,7 @@ def main():
         action="store_true",
     )
     parser.add_argument(
-        "--compare_reference_json",
+        "--update_reference_json",
         help="If selected it compares the reference json with the input xlsx file",
         type=str,
         default="",
@@ -480,10 +481,10 @@ def main():
         tracker_handler.collect_products()
     if args.create_reference_json:
         tracker_handler.create_reference_json()
-    if args.compare_reference_json != "":
-        if Path(args.compare_reference_json).exists():
-            logger.info("File %s exists", args.compare_reference_json)
-            df = pd.read_excel(args.compare_reference_json, index_col=0)
+    if args.update_reference_json != "":
+        if Path(args.update_reference_json).exists():
+            logger.info("File %s exists", args.update_reference_json)
+            df = pd.read_excel(args.update_reference_json, index_col=0)
             df.index = df.index.map(lambda x: str(x))
             discontinued_articles, new_articles = tracker_handler.compare_to_reference(
                 df
@@ -492,7 +493,7 @@ def main():
                 discontinued_articles, df.loc[new_articles, :]
             )
         else:
-            logger.error("File %s does not exist", args.compare_reference_json)
+            logger.error("File %s does not exist", args.update_reference_json)
     if args.update_metadata_table:
         if len(credentials_sql) == 0:
             logger.error(

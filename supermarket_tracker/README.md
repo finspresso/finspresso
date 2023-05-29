@@ -4,6 +4,10 @@ Tracks prices of selected super market.
 
 ## MBudget tracker
 
+The Mbudget tracker tracks the different products in the Migros' MBudget line.
+
+### Collection process
+
 The MBudget tracker collects all the available prices that can be accessed via the mbudget protuct overview [page](https://www.migros.ch/en/brand/m-budget). Please note, the correct url is given in the config `config/mbudget.json`. This page list all the available products and there price as e.g. shown below:
 
 ![mbudget_base](images/mbudget_base.png)
@@ -21,9 +25,25 @@ This does the following:
 - Compares the downloaded products with the prior state stored in the folder `references/mbudget/product_reference.json` and list which products were added and which were discontinued.
 - Additionally the script takes a screenshot of every product and stores the screenshots under `data/mbudget/<Date and time of run>/`
 
-Please note, if you leave the option `--take_screenshots` the whole process takes significantly longer i.e. around 140s.
+Please note, if you use the option `--take_screenshots` the whole process takes significantly longer due to the storing of the screenshots i.e. around 140s.
 
 ![collect](images/collect.png)
+
+### Creation of reference .json
+
+If you have run the collection of the prices as described above the first time, you need create a file called `references/mbudget/product_sorted.xlsx`. This file is based on the .xlsx file that resides in `data/mbudget/<Date and time of run>/mbudget_prices.xlsx`. Then you need to open this file and create three more columns called `Category`, `Introduced`, `Discontinued`. The category is either `grocery` for edible items or `other`. Please insert, the day of the collection into the column `Introduced` in the format `YYYY-MM-DD`. In the column `Discontinued` the value `NA` can be filled in.
+
+![product_sorted](images/product_sorted.png)
+
+Finally, you can use the below, to create reference .json that resides `references/mbudget/product_reference.json `. This files contains the current state of the prices/product.
+
+```sh
+python supermarket_tracker.py --name mbudget --create_reference_json
+```
+
+The product_reference.json contains all relevant information per articles as shown below:
+
+![product_reference_json](images/product_reference_json.png)
 
 ## Make .php files accessible to local XAMPP server
 
