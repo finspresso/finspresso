@@ -69,10 +69,26 @@ The data collected in the preceding steps can be stored in a MySQL database. For
 
 #### Updating metadata table
 
-To update the metadata with the latest information from `references/mbudget/product_reference.json`, you can make the following call below. Please note, you need to provide the credentials of the MySQL database in the file `credentials/sql_credentials.json`
+To update the metadata table with the latest information from `references/mbudget/product_reference.json`, you can make the following call below. Please note, you need to provide the credentials of the MySQL database in the file `credentials/sql_credentials.json`
 
 ```sh
 python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials.json --update_metadata_table
+```
+
+#### Updating prices table
+
+To update the prices table with the latest information from `references/mbudget/product_reference.json`, you can make the following call below. Please note, you need to provide the credentials of the MySQL database in the file `credentials/sql_credentials.json`
+
+```sh
+python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials.json --update_prices_table
+```
+
+### Collecting and updating tables in one step
+
+If you want to collect the latest product prices as well as update the MySQL tables with this latest information you can execute the bash script `update_all.sh`:
+
+```sh
+./update_all.sh mbudget
 ```
 
 ## Make .php files accessible to local XAMPP server

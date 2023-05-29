@@ -35,7 +35,25 @@ class SuperMarketTracker:
         self.reference_folder = Path("references") / Path(name)
         self.take_screenshots = take_screenshots
         logger.debug("Init super market tracker with name %s", name)
+        self.get_latest_collection_folder()
         self.load_config()
+
+    def get_latest_collection_folder(self):
+        self.latest_collection_file = "NA"
+        download_folder = Path(self.data_folder) / Path(self.name)
+        date_folder_list = []
+        for path in download_folder.iterdir():
+            if path.is_dir():
+                match = re.search("[0-9]{8}", path.name)
+                if match:
+                    date_folder_list.append(path.name)
+        if len(date_folder_list) > 0:
+            date_folder_list.sort()
+            self.latest_collection_file = (
+                download_folder
+                / Path(date_folder_list[-1])
+                / Path(self.name + "_prices.xlsx")
+            )
 
     def load_config(self):
         file_path = Path("configs") / Path(self.name + ".json")
@@ -353,7 +371,7 @@ class SuperMarketTracker:
         existing_columns = set(self.db_interface.get_all_columns(table_name))
 
         table_name = self.name + "_prices"
-        reference_json = self.reference_folder / Path("product_reference_test.json")
+        reference_json = self.reference_folder / Path("product_reference.json")
         if reference_json.exists():
             logger.info("Reference file %s exists", reference_json)
             dict_reference = dict()
@@ -483,9 +501,17 @@ def main():
     if args.create_reference_json:
         tracker_handler.create_reference_json()
     if args.update_reference_json != "":
-        if Path(args.update_reference_json).exists():
-            logger.info("File %s exists", args.update_reference_json)
-            df = pd.read_excel(args.update_reference_json, index_col=0)
+        collection_file = Path(args.update_reference_json)
+        if args.update_reference_json == "latest":
+            if tracker_handler.latest_collection_file != "NA":
+                collection_file = tracker_handler.latest_collection_file
+                logger.info("Taking latest collection file %s", collection_file)
+            else:
+                logger.error("No latest collection .xlsx found")
+                exit(1)
+        if collection_file.exists():
+            logger.info("File %s exists", collection_file)
+            df = pd.read_excel(collection_file, index_col=0)
             df.index = df.index.map(lambda x: str(x))
             discontinued_articles, new_articles = tracker_handler.compare_to_reference(
                 df
@@ -494,7 +520,7 @@ def main():
                 discontinued_articles, df.loc[new_articles, :]
             )
         else:
-            logger.error("File %s does not exist", args.update_reference_json)
+            logger.error("File %s does not exist", collection_file)
     if args.update_metadata_table:
         if len(credentials_sql) == 0:
             logger.error(

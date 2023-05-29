@@ -70,6 +70,20 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Update MBudget reference json (latest)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbudget",
+        "--update_reference_json",
+        "latest"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Update metadata table",
       "type": "python",
       "request": "launch",
@@ -113,6 +127,16 @@
         "--print_prices_table"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Update all mbudget",
+      "type": "bashdb",
+      "request": "launch",
+      "program": "${workspaceRoot}/update_all.sh",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "mbudget"
+      ]
     }
   ]
 }
