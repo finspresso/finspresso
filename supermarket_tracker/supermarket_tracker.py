@@ -342,7 +342,7 @@ class SuperMarketTracker:
                                 new_articles_dict[article]["Include"] = "No"
                             else:
                                 logger.error(
-                                    "Unknown category input %s. Aborting", input_cat
+                                    "Unknown include input %s. Aborting", input_cat
                                 )
                                 exit(1)
                     dict_reference.update(new_articles_dict)
