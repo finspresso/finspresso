@@ -29,8 +29,9 @@ coloredlogs.install(level=logging.INFO)
 
 
 class SuperMarketTracker:
-    def __init__(self, name, data_folder, take_screenshots=False):
+    def __init__(self, name, data_folder, take_screenshots=False, interactive=True):
         self.name = name
+        self.interactive = interactive
         self.data_folder = data_folder
         self.reference_folder = Path("references") / Path(name)
         self.take_screenshots = take_screenshots
@@ -318,6 +319,21 @@ class SuperMarketTracker:
                     df_new_articles["Introduced"] = today
                     df_new_articles["Discontinued"] = "NA"
                     new_articles_dict = df_new_articles.to_dict(orient="index")
+                    if self.interactive:
+                        for article in new_articles_dict.keys():
+                            product_name = new_articles_dict[article]["Product Name"]
+                            product_link = new_articles_dict[article]["Product Link"]
+                            input_string = f"New product {product_name} ({product_link}) detected.\nType g for grocery and o for other\n"
+                            input_cat = input(input_string)
+                            if input_cat == "g":
+                                new_articles_dict[article]["Category"] = "grocery"
+                            elif input_cat == "o":
+                                new_articles_dict[article]["Category"] = "other"
+                            else:
+                                logger.error(
+                                    "Unknown category input %s. Aborting", input_cat
+                                )
+                                exit(1)
                     dict_reference.update(new_articles_dict)
             if len(dict_reference) > 0:
                 with reference_json.open(mode="w") as outfile:
