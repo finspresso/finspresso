@@ -55,8 +55,6 @@ python supermarket_tracker.py --name mbudget --update_reference_json data/mbudge
 
 The script compares the content of `references/mbudget/product_reference.json` with the content of the created .xlsx file. In the end it prints which products were discontinued respectively added. Please note, you need classify the product category of the newly found product in the reference .json e.g. `other` `grocery`
 
-![basmati1](images/basmati_rice.png)
-
 ![basmati2](images/basmati_rice2.png)
 
 ## Make .php files accessible to local XAMPP server
