@@ -35,7 +35,7 @@ If you have run the collection of the prices as described above the first time, 
 
 ![product_sorted](images/product_sorted.png)
 
-Finally, you can use the below, to create reference .json that resides `references/mbudget/product_reference.json `. This files contains the current state of the prices/product.
+Finally, you can use the below, to create reference .json that resides `references/mbudget/product_reference.json`. This files contains the current state of the prices/product.
 
 ```sh
 python supermarket_tracker.py --name mbudget --create_reference_json
@@ -44,6 +44,20 @@ python supermarket_tracker.py --name mbudget --create_reference_json
 The product_reference.json contains all relevant information per articles as shown below:
 
 ![product_reference_json](images/product_reference_json.png)
+
+### Update of reference .json
+
+Assuming you have already created the file `references/mbudget/product_reference.json` and have run the collection on another day, you can update `references/mbudget/product_reference.json` with the latest information by calling
+
+```sh
+python supermarket_tracker.py --name mbudget --update_reference_json data/mbudget/<Date and time of run>/mbudget_prices.xlsx
+```
+
+The script compares the content of `references/mbudget/product_reference.json` with the content of the created .xlsx file. In the end it prints which products were discontinued respectively added. Please note, you need classify the product category of the newly found product in the reference .json e.g. `other` `grocery`
+
+![basmati1](images/basmati_rice.png)
+
+![basmati2](images/basmati_rice2.png)
 
 ## Make .php files accessible to local XAMPP server
 

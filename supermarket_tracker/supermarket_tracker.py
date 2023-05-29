@@ -304,6 +304,7 @@ class SuperMarketTracker:
             if len(dict_reference) > 0:
                 with reference_json.open(mode="w") as outfile:
                     json.dump(dict_reference, outfile, indent=4, ensure_ascii=False)
+                    logger.info("Updated %s", reference_json)
         else:
             logger.error(
                 "Reference file %s does not exist. Please provide this file",

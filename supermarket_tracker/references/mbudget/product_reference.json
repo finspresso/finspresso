@@ -4813,7 +4813,7 @@
     "Price": 0.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "2023-05-29"
   },
   "100200900000": {
     "Product Link": "https://www.migros.ch/en/product/100200900000",
@@ -5205,6 +5205,14 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-18",
+    "Discontinued": "NA"
+  },
+  "104410100000": {
+    "Product Link": "https://www.migros.ch/en/product/104410100000",
+    "Product Name": "Basmati rice",
+    "Price": 1.6,
+    "Category": "grocery",
+    "Introduced": "2023-05-29",
     "Discontinued": "NA"
   }
 }
