@@ -398,6 +398,15 @@ class SuperMarketTracker:
                     for article, article_dict in dict_reference.items()
                 }
                 df = pd.DataFrame(price_dict, index=[datetime.datetime.now()])
+                grocery_cols = [
+                    x for x in df.columns if dict_reference[x]["Category"] == "grocery"
+                ]
+                other_cols = [
+                    x for x in df.columns if dict_reference[x]["Category"] == "other"
+                ]
+                df.insert(0, "Average other", df.loc[:, other_cols].mean(axis=1))
+                df.insert(0, "Average grocery", df.loc[:, grocery_cols].mean(axis=1))
+                df.insert(0, "Average overall", df.mean(axis=1))
                 df.index.name = "Date"
                 df.reset_index(inplace=True)
                 type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
