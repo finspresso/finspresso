@@ -334,6 +334,17 @@ class SuperMarketTracker:
                                     "Unknown category input %s. Aborting", input_cat
                                 )
                                 exit(1)
+                            input_string = f"New product {product_name} ({product_link}) detected.\nType y for include attribute and n for not\n"
+                            input_cat = input(input_string)
+                            if input_cat == "y":
+                                new_articles_dict[article]["Include"] = "Yes"
+                            elif input_cat == "n":
+                                new_articles_dict[article]["Include"] = "No"
+                            else:
+                                logger.error(
+                                    "Unknown category input %s. Aborting", input_cat
+                                )
+                                exit(1)
                     dict_reference.update(new_articles_dict)
             if len(dict_reference) > 0:
                 with reference_json.open(mode="w") as outfile:

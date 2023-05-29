@@ -5,7 +5,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233521000002": {
     "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -13,7 +14,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212602600000": {
     "Product Link": "https://www.migros.ch/en/product/212602600000",
@@ -21,7 +23,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "196520001500": {
     "Product Link": "https://www.migros.ch/en/product/196520001500",
@@ -29,7 +32,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "243100410000": {
     "Product Link": "https://www.migros.ch/en/product/243100410000",
@@ -37,7 +41,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204242000000": {
     "Product Link": "https://www.migros.ch/en/product/204242000000",
@@ -45,7 +50,8 @@
     "Price": 3.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251305500000": {
     "Product Link": "https://www.migros.ch/en/product/251305500000",
@@ -53,7 +59,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200609600000": {
     "Product Link": "https://www.migros.ch/en/product/200609600000",
@@ -61,7 +68,8 @@
     "Price": 2.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210154000000": {
     "Product Link": "https://www.migros.ch/en/product/210154000000",
@@ -69,7 +77,8 @@
     "Price": 3.15,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "260233803300": {
     "Product Link": "https://www.migros.ch/en/product/260233803300",
@@ -77,7 +86,8 @@
     "Price": 3.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200803100000": {
     "Product Link": "https://www.migros.ch/en/product/200803100000",
@@ -85,7 +95,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212602900000": {
     "Product Link": "https://www.migros.ch/en/product/212602900000",
@@ -93,7 +104,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233520691202": {
     "Product Link": "https://www.migros.ch/en/product/233520691202",
@@ -101,7 +113,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200604600000": {
     "Product Link": "https://www.migros.ch/en/product/200604600000",
@@ -109,7 +122,8 @@
     "Price": 4.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "111901300000": {
     "Product Link": "https://www.migros.ch/en/product/111901300000",
@@ -117,7 +131,8 @@
     "Price": 1.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "103530600000": {
     "Product Link": "https://www.migros.ch/en/product/103530600000",
@@ -125,7 +140,8 @@
     "Price": 0.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "205008000000": {
     "Product Link": "https://www.migros.ch/en/product/205008000000",
@@ -133,7 +149,8 @@
     "Price": 0.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104102000000": {
     "Product Link": "https://www.migros.ch/en/product/104102000000",
@@ -141,7 +158,8 @@
     "Price": 1.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "274502603400": {
     "Product Link": "https://www.migros.ch/en/product/274502603400",
@@ -149,7 +167,8 @@
     "Price": 3.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "271802302500": {
     "Product Link": "https://www.migros.ch/en/product/271802302500",
@@ -157,7 +176,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231001481202": {
     "Product Link": "https://www.migros.ch/en/product/231001481202",
@@ -165,7 +185,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233000581302": {
     "Product Link": "https://www.migros.ch/en/product/233000581302",
@@ -173,7 +194,8 @@
     "Price": 5.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "230500171000": {
     "Product Link": "https://www.migros.ch/en/product/230500171000",
@@ -181,7 +203,8 @@
     "Price": 3.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110152900000": {
     "Product Link": "https://www.migros.ch/en/product/110152900000",
@@ -189,7 +212,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231040080102": {
     "Product Link": "https://www.migros.ch/en/product/231040080102",
@@ -197,7 +221,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "526010200000": {
     "Product Link": "https://www.migros.ch/en/product/526010200000",
@@ -205,7 +230,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "526501000000": {
     "Product Link": "https://www.migros.ch/en/product/526501000000",
@@ -213,7 +239,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231500281202": {
     "Product Link": "https://www.migros.ch/en/product/231500281202",
@@ -221,7 +248,8 @@
     "Price": 2.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130757000000": {
     "Product Link": "https://www.migros.ch/en/product/130757000000",
@@ -229,7 +257,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101911700000": {
     "Product Link": "https://www.migros.ch/en/product/101911700000",
@@ -237,7 +266,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212665200000": {
     "Product Link": "https://www.migros.ch/en/product/212665200000",
@@ -245,7 +275,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "103302600000": {
     "Product Link": "https://www.migros.ch/en/product/103302600000",
@@ -253,7 +284,8 @@
     "Price": 6.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130123900000": {
     "Product Link": "https://www.migros.ch/en/product/130123900000",
@@ -261,7 +293,8 @@
     "Price": 3.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220221085000": {
     "Product Link": "https://www.migros.ch/en/product/220221085000",
@@ -269,7 +302,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "271713502300": {
     "Product Link": "https://www.migros.ch/en/product/271713502300",
@@ -277,7 +311,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106610700000": {
     "Product Link": "https://www.migros.ch/en/product/106610700000",
@@ -285,7 +320,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "263501108600": {
     "Product Link": "https://www.migros.ch/en/product/263501108600",
@@ -293,7 +329,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130140400000": {
     "Product Link": "https://www.migros.ch/en/product/130140400000",
@@ -301,7 +338,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120983100000": {
     "Product Link": "https://www.migros.ch/en/product/120983100000",
@@ -309,7 +347,8 @@
     "Price": 6.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212555700000": {
     "Product Link": "https://www.migros.ch/en/product/212555700000",
@@ -317,7 +356,8 @@
     "Price": 1.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "232343082000": {
     "Product Link": "https://www.migros.ch/en/product/232343082000",
@@ -325,7 +365,8 @@
     "Price": 2.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "230500251502": {
     "Product Link": "https://www.migros.ch/en/product/230500251502",
@@ -333,7 +374,8 @@
     "Price": 3.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104101900000": {
     "Product Link": "https://www.migros.ch/en/product/104101900000",
@@ -341,7 +383,8 @@
     "Price": 1.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231502083302": {
     "Product Link": "https://www.migros.ch/en/product/231502083302",
@@ -349,7 +392,8 @@
     "Price": 3.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130102300000": {
     "Product Link": "https://www.migros.ch/en/product/130102300000",
@@ -357,7 +401,8 @@
     "Price": 2.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "230105200000": {
     "Product Link": "https://www.migros.ch/en/product/230105200000",
@@ -365,7 +410,8 @@
     "Price": 3.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "115015000000": {
     "Product Link": "https://www.migros.ch/en/product/115015000000",
@@ -373,7 +419,8 @@
     "Price": 2.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233011010102": {
     "Product Link": "https://www.migros.ch/en/product/233011010102",
@@ -381,7 +428,8 @@
     "Price": 4.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104601200000": {
     "Product Link": "https://www.migros.ch/en/product/104601200000",
@@ -389,7 +437,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153211500000": {
     "Product Link": "https://www.migros.ch/en/product/153211500000",
@@ -397,7 +446,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120983300000": {
     "Product Link": "https://www.migros.ch/en/product/120983300000",
@@ -405,7 +455,8 @@
     "Price": 6.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "115060000000": {
     "Product Link": "https://www.migros.ch/en/product/115060000000",
@@ -413,7 +464,8 @@
     "Price": 2.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "165040700000": {
     "Product Link": "https://www.migros.ch/en/product/165040700000",
@@ -421,7 +473,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "264501202300": {
     "Product Link": "https://www.migros.ch/en/product/264501202300",
@@ -429,7 +482,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704525800000": {
     "Product Link": "https://www.migros.ch/en/product/704525800000",
@@ -437,7 +491,8 @@
     "Price": 1.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "205372100000": {
     "Product Link": "https://www.migros.ch/en/product/205372100000",
@@ -445,7 +500,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233091081200": {
     "Product Link": "https://www.migros.ch/en/product/233091081200",
@@ -453,7 +509,8 @@
     "Price": 4.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "243150600000": {
     "Product Link": "https://www.migros.ch/en/product/243150600000",
@@ -461,7 +518,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104101600000": {
     "Product Link": "https://www.migros.ch/en/product/104101600000",
@@ -469,7 +527,8 @@
     "Price": 1.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "111200900000": {
     "Product Link": "https://www.migros.ch/en/product/111200900000",
@@ -477,7 +536,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "277108110400": {
     "Product Link": "https://www.migros.ch/en/product/277108110400",
@@ -485,7 +545,8 @@
     "Price": 2.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "2023-05-18"
+    "Discontinued": "2023-05-18",
+    "Include": "Yes"
   },
   "153921600000": {
     "Product Link": "https://www.migros.ch/en/product/153921600000",
@@ -493,7 +554,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "161615400000": {
     "Product Link": "https://www.migros.ch/en/product/161615400000",
@@ -501,7 +563,8 @@
     "Price": 1.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212706500000": {
     "Product Link": "https://www.migros.ch/en/product/212706500000",
@@ -509,7 +572,8 @@
     "Price": 2.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "131020000000": {
     "Product Link": "https://www.migros.ch/en/product/131020000000",
@@ -517,7 +581,8 @@
     "Price": 3.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "501022000000": {
     "Product Link": "https://www.migros.ch/en/product/501022000000",
@@ -525,7 +590,8 @@
     "Price": 0.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "264400702500": {
     "Product Link": "https://www.migros.ch/en/product/264400702500",
@@ -533,7 +599,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "162025900000": {
     "Product Link": "https://www.migros.ch/en/product/162025900000",
@@ -541,7 +608,8 @@
     "Price": 8.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233120281302": {
     "Product Link": "https://www.migros.ch/en/product/233120281302",
@@ -549,7 +617,8 @@
     "Price": 3.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110131600000": {
     "Product Link": "https://www.migros.ch/en/product/110131600000",
@@ -557,7 +626,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "230501600000": {
     "Product Link": "https://www.migros.ch/en/product/230501600000",
@@ -565,7 +635,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "161426500000": {
     "Product Link": "https://www.migros.ch/en/product/161426500000",
@@ -573,7 +644,8 @@
     "Price": 5.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200740500000": {
     "Product Link": "https://www.migros.ch/en/product/200740500000",
@@ -581,7 +653,8 @@
     "Price": 3.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101912300000": {
     "Product Link": "https://www.migros.ch/en/product/101912300000",
@@ -589,7 +662,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "111200800000": {
     "Product Link": "https://www.migros.ch/en/product/111200800000",
@@ -597,7 +671,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251446000000": {
     "Product Link": "https://www.migros.ch/en/product/251446000000",
@@ -605,7 +680,8 @@
     "Price": 2.15,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104102100000": {
     "Product Link": "https://www.migros.ch/en/product/104102100000",
@@ -613,7 +689,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "166010000000": {
     "Product Link": "https://www.migros.ch/en/product/166010000000",
@@ -621,7 +698,8 @@
     "Price": 8.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "122006900000": {
     "Product Link": "https://www.migros.ch/en/product/122006900000",
@@ -629,7 +707,8 @@
     "Price": 2.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153225000000": {
     "Product Link": "https://www.migros.ch/en/product/153225000000",
@@ -637,7 +716,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153232100000": {
     "Product Link": "https://www.migros.ch/en/product/153232100000",
@@ -645,7 +725,8 @@
     "Price": 0.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130271000000": {
     "Product Link": "https://www.migros.ch/en/product/130271000000",
@@ -653,7 +734,8 @@
     "Price": 6.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101912200000": {
     "Product Link": "https://www.migros.ch/en/product/101912200000",
@@ -661,7 +743,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212580100000": {
     "Product Link": "https://www.migros.ch/en/product/212580100000",
@@ -669,7 +752,8 @@
     "Price": 3.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "274461603300": {
     "Product Link": "https://www.migros.ch/en/product/274461603300",
@@ -677,7 +761,8 @@
     "Price": 4.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "232342189002": {
     "Product Link": "https://www.migros.ch/en/product/232342189002",
@@ -685,7 +770,8 @@
     "Price": 3.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212412000000": {
     "Product Link": "https://www.migros.ch/en/product/212412000000",
@@ -693,7 +779,8 @@
     "Price": 4.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231040920000": {
     "Product Link": "https://www.migros.ch/en/product/231040920000",
@@ -701,7 +788,8 @@
     "Price": 9.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "161619900000": {
     "Product Link": "https://www.migros.ch/en/product/161619900000",
@@ -709,7 +797,8 @@
     "Price": 3.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "230100105302": {
     "Product Link": "https://www.migros.ch/en/product/230100105302",
@@ -717,7 +806,8 @@
     "Price": 4.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "243996540000": {
     "Product Link": "https://www.migros.ch/en/product/243996540000",
@@ -725,7 +815,8 @@
     "Price": 5.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "205324400000": {
     "Product Link": "https://www.migros.ch/en/product/205324400000",
@@ -733,7 +824,8 @@
     "Price": 2.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220224010500": {
     "Product Link": "https://www.migros.ch/en/product/220224010500",
@@ -741,7 +833,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "232100152703": {
     "Product Link": "https://www.migros.ch/en/product/232100152703",
@@ -749,7 +842,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220220085000": {
     "Product Link": "https://www.migros.ch/en/product/220220085000",
@@ -757,7 +851,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156020800000": {
     "Product Link": "https://www.migros.ch/en/product/156020800000",
@@ -765,7 +860,8 @@
     "Price": 0.85,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "232103030000": {
     "Product Link": "https://www.migros.ch/en/product/232103030000",
@@ -773,7 +869,8 @@
     "Price": 4.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105317700000": {
     "Product Link": "https://www.migros.ch/en/product/105317700000",
@@ -781,7 +878,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "122052100000": {
     "Product Link": "https://www.migros.ch/en/product/122052100000",
@@ -789,7 +887,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153222400000": {
     "Product Link": "https://www.migros.ch/en/product/153222400000",
@@ -797,7 +896,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231500189602": {
     "Product Link": "https://www.migros.ch/en/product/231500189602",
@@ -805,7 +905,8 @@
     "Price": 3.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231001781000": {
     "Product Link": "https://www.migros.ch/en/product/231001781000",
@@ -813,7 +914,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "162020100000": {
     "Product Link": "https://www.migros.ch/en/product/162020100000",
@@ -821,7 +923,8 @@
     "Price": 4.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251366100000": {
     "Product Link": "https://www.migros.ch/en/product/251366100000",
@@ -829,7 +932,8 @@
     "Price": 4.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160154100000": {
     "Product Link": "https://www.migros.ch/en/product/160154100000",
@@ -837,7 +941,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500116900000": {
     "Product Link": "https://www.migros.ch/en/product/500116900000",
@@ -845,7 +950,8 @@
     "Price": 3.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130140500000": {
     "Product Link": "https://www.migros.ch/en/product/130140500000",
@@ -853,7 +959,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "161644700000": {
     "Product Link": "https://www.migros.ch/en/product/161644700000",
@@ -861,7 +968,8 @@
     "Price": 3.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210409924000": {
     "Product Link": "https://www.migros.ch/en/product/210409924000",
@@ -869,7 +977,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204141300000": {
     "Product Link": "https://www.migros.ch/en/product/204141300000",
@@ -877,7 +986,8 @@
     "Price": 6.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110211000000": {
     "Product Link": "https://www.migros.ch/en/product/110211000000",
@@ -885,7 +995,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "243413500000": {
     "Product Link": "https://www.migros.ch/en/product/243413500000",
@@ -893,7 +1004,8 @@
     "Price": 9.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704504100000": {
     "Product Link": "https://www.migros.ch/en/product/704504100000",
@@ -901,7 +1013,8 @@
     "Price": 1.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512082700000": {
     "Product Link": "https://www.migros.ch/en/product/512082700000",
@@ -909,7 +1022,8 @@
     "Price": 2.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204452000000": {
     "Product Link": "https://www.migros.ch/en/product/204452000000",
@@ -917,7 +1031,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "232358481602": {
     "Product Link": "https://www.migros.ch/en/product/232358481602",
@@ -925,7 +1040,8 @@
     "Price": 3.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "151003000000": {
     "Product Link": "https://www.migros.ch/en/product/151003000000",
@@ -933,7 +1049,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120908900000": {
     "Product Link": "https://www.migros.ch/en/product/120908900000",
@@ -941,7 +1058,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200801200000": {
     "Product Link": "https://www.migros.ch/en/product/200801200000",
@@ -949,7 +1067,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156020900000": {
     "Product Link": "https://www.migros.ch/en/product/156020900000",
@@ -957,7 +1076,8 @@
     "Price": 0.85,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101902400000": {
     "Product Link": "https://www.migros.ch/en/product/101902400000",
@@ -965,7 +1085,8 @@
     "Price": 1.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502017800000": {
     "Product Link": "https://www.migros.ch/en/product/502017800000",
@@ -973,7 +1094,8 @@
     "Price": 1.3,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "115025000000": {
     "Product Link": "https://www.migros.ch/en/product/115025000000",
@@ -981,7 +1103,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130507900000": {
     "Product Link": "https://www.migros.ch/en/product/130507900000",
@@ -989,7 +1112,8 @@
     "Price": 5.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105319900000": {
     "Product Link": "https://www.migros.ch/en/product/105319900000",
@@ -997,7 +1121,8 @@
     "Price": 3.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100112500000": {
     "Product Link": "https://www.migros.ch/en/product/100112500000",
@@ -1005,7 +1130,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105317600000": {
     "Product Link": "https://www.migros.ch/en/product/105317600000",
@@ -1013,7 +1139,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105311500000": {
     "Product Link": "https://www.migros.ch/en/product/105311500000",
@@ -1021,7 +1148,8 @@
     "Price": 3.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "164021200000": {
     "Product Link": "https://www.migros.ch/en/product/164021200000",
@@ -1029,7 +1157,8 @@
     "Price": 9.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104431100000": {
     "Product Link": "https://www.migros.ch/en/product/104431100000",
@@ -1037,7 +1166,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520124700000": {
     "Product Link": "https://www.migros.ch/en/product/520124700000",
@@ -1045,7 +1175,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513206800000": {
     "Product Link": "https://www.migros.ch/en/product/513206800000",
@@ -1053,7 +1184,8 @@
     "Price": 1.35,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100102700000": {
     "Product Link": "https://www.migros.ch/en/product/100102700000",
@@ -1061,7 +1193,8 @@
     "Price": 0.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212521800000": {
     "Product Link": "https://www.migros.ch/en/product/212521800000",
@@ -1069,7 +1202,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "165032500000": {
     "Product Link": "https://www.migros.ch/en/product/165032500000",
@@ -1077,7 +1211,8 @@
     "Price": 5.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704522000000": {
     "Product Link": "https://www.migros.ch/en/product/704522000000",
@@ -1085,7 +1220,8 @@
     "Price": 0.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153236600000": {
     "Product Link": "https://www.migros.ch/en/product/153236600000",
@@ -1093,7 +1229,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110301300000": {
     "Product Link": "https://www.migros.ch/en/product/110301300000",
@@ -1101,7 +1238,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220624085000": {
     "Product Link": "https://www.migros.ch/en/product/220624085000",
@@ -1109,7 +1247,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "111701300000": {
     "Product Link": "https://www.migros.ch/en/product/111701300000",
@@ -1117,7 +1256,8 @@
     "Price": 3.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104485400000": {
     "Product Link": "https://www.migros.ch/en/product/104485400000",
@@ -1125,7 +1265,8 @@
     "Price": 3.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "227220040400": {
     "Product Link": "https://www.migros.ch/en/product/227220040400",
@@ -1133,7 +1274,8 @@
     "Price": 7.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104211800000": {
     "Product Link": "https://www.migros.ch/en/product/104211800000",
@@ -1141,7 +1283,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153415100000": {
     "Product Link": "https://www.migros.ch/en/product/153415100000",
@@ -1149,7 +1292,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "161629100000": {
     "Product Link": "https://www.migros.ch/en/product/161629100000",
@@ -1157,7 +1301,8 @@
     "Price": 2.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160123600000": {
     "Product Link": "https://www.migros.ch/en/product/160123600000",
@@ -1165,7 +1310,8 @@
     "Price": 3.85,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "103302000000": {
     "Product Link": "https://www.migros.ch/en/product/103302000000",
@@ -1173,7 +1319,8 @@
     "Price": 4.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "165040400000": {
     "Product Link": "https://www.migros.ch/en/product/165040400000",
@@ -1181,7 +1328,8 @@
     "Price": 7.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "277000902400": {
     "Product Link": "https://www.migros.ch/en/product/277000902400",
@@ -1189,7 +1337,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130541000000": {
     "Product Link": "https://www.migros.ch/en/product/130541000000",
@@ -1197,7 +1346,8 @@
     "Price": 2.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220655085000": {
     "Product Link": "https://www.migros.ch/en/product/220655085000",
@@ -1205,7 +1355,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "162527500000": {
     "Product Link": "https://www.migros.ch/en/product/162527500000",
@@ -1213,7 +1364,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153012500000": {
     "Product Link": "https://www.migros.ch/en/product/153012500000",
@@ -1221,7 +1373,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156013100000": {
     "Product Link": "https://www.migros.ch/en/product/156013100000",
@@ -1229,7 +1382,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110102000000": {
     "Product Link": "https://www.migros.ch/en/product/110102000000",
@@ -1237,7 +1391,8 @@
     "Price": 1.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "501115000000": {
     "Product Link": "https://www.migros.ch/en/product/501115000000",
@@ -1245,7 +1400,8 @@
     "Price": 7.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110169000000": {
     "Product Link": "https://www.migros.ch/en/product/110169000000",
@@ -1253,7 +1409,8 @@
     "Price": 2.2,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500317400000": {
     "Product Link": "https://www.migros.ch/en/product/500317400000",
@@ -1261,7 +1418,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "161645600000": {
     "Product Link": "https://www.migros.ch/en/product/161645600000",
@@ -1269,7 +1427,8 @@
     "Price": 3.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200811800000": {
     "Product Link": "https://www.migros.ch/en/product/200811800000",
@@ -1277,7 +1436,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220660085000": {
     "Product Link": "https://www.migros.ch/en/product/220660085000",
@@ -1285,7 +1445,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212307526000": {
     "Product Link": "https://www.migros.ch/en/product/212307526000",
@@ -1293,7 +1454,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212586024000": {
     "Product Link": "https://www.migros.ch/en/product/212586024000",
@@ -1301,7 +1463,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130140600000": {
     "Product Link": "https://www.migros.ch/en/product/130140600000",
@@ -1309,7 +1472,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153154000000": {
     "Product Link": "https://www.migros.ch/en/product/153154000000",
@@ -1317,7 +1481,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "232360051702": {
     "Product Link": "https://www.migros.ch/en/product/232360051702",
@@ -1325,7 +1490,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106620100000": {
     "Product Link": "https://www.migros.ch/en/product/106620100000",
@@ -1333,7 +1499,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "162002200000": {
     "Product Link": "https://www.migros.ch/en/product/162002200000",
@@ -1341,7 +1508,8 @@
     "Price": 5.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204547000000": {
     "Product Link": "https://www.migros.ch/en/product/204547000000",
@@ -1349,7 +1517,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120911700000": {
     "Product Link": "https://www.migros.ch/en/product/120911700000",
@@ -1357,7 +1526,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212413626000": {
     "Product Link": "https://www.migros.ch/en/product/212413626000",
@@ -1365,7 +1535,8 @@
     "Price": 9.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109030600000": {
     "Product Link": "https://www.migros.ch/en/product/109030600000",
@@ -1373,7 +1544,8 @@
     "Price": 5.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130542200000": {
     "Product Link": "https://www.migros.ch/en/product/130542200000",
@@ -1381,7 +1553,8 @@
     "Price": 2.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "161425700000": {
     "Product Link": "https://www.migros.ch/en/product/161425700000",
@@ -1389,7 +1562,8 @@
     "Price": 5.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "162557500000": {
     "Product Link": "https://www.migros.ch/en/product/162557500000",
@@ -1397,7 +1571,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "501115200000": {
     "Product Link": "https://www.migros.ch/en/product/501115200000",
@@ -1405,7 +1580,8 @@
     "Price": 2.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "263300902300": {
     "Product Link": "https://www.migros.ch/en/product/263300902300",
@@ -1413,7 +1589,8 @@
     "Price": 3.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204125100000": {
     "Product Link": "https://www.migros.ch/en/product/204125100000",
@@ -1421,7 +1598,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106409500000": {
     "Product Link": "https://www.migros.ch/en/product/106409500000",
@@ -1429,7 +1607,8 @@
     "Price": 1.05,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153921700000": {
     "Product Link": "https://www.migros.ch/en/product/153921700000",
@@ -1437,7 +1616,8 @@
     "Price": 0.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512082400000": {
     "Product Link": "https://www.migros.ch/en/product/512082400000",
@@ -1445,7 +1625,8 @@
     "Price": 2.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "121507800000": {
     "Product Link": "https://www.migros.ch/en/product/121507800000",
@@ -1453,7 +1634,8 @@
     "Price": 3.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231525081302": {
     "Product Link": "https://www.migros.ch/en/product/231525081302",
@@ -1461,7 +1643,8 @@
     "Price": 3.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107301100000": {
     "Product Link": "https://www.migros.ch/en/product/107301100000",
@@ -1469,7 +1652,8 @@
     "Price": 3.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120911500000": {
     "Product Link": "https://www.migros.ch/en/product/120911500000",
@@ -1477,7 +1661,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "122020400000": {
     "Product Link": "https://www.migros.ch/en/product/122020400000",
@@ -1485,7 +1670,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "274432203400": {
     "Product Link": "https://www.migros.ch/en/product/274432203400",
@@ -1493,7 +1679,8 @@
     "Price": 4.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "526110400000": {
     "Product Link": "https://www.migros.ch/en/product/526110400000",
@@ -1501,7 +1688,8 @@
     "Price": 3.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110216400000": {
     "Product Link": "https://www.migros.ch/en/product/110216400000",
@@ -1509,7 +1697,8 @@
     "Price": 1.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212602700000": {
     "Product Link": "https://www.migros.ch/en/product/212602700000",
@@ -1517,7 +1706,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720122900000": {
     "Product Link": "https://www.migros.ch/en/product/720122900000",
@@ -1525,7 +1715,8 @@
     "Price": 8.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160154300000": {
     "Product Link": "https://www.migros.ch/en/product/160154300000",
@@ -1533,7 +1724,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105260700000": {
     "Product Link": "https://www.migros.ch/en/product/105260700000",
@@ -1541,7 +1733,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210474228000": {
     "Product Link": "https://www.migros.ch/en/product/210474228000",
@@ -1549,7 +1742,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "121000300000": {
     "Product Link": "https://www.migros.ch/en/product/121000300000",
@@ -1557,7 +1751,8 @@
     "Price": 8.35,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210629924000": {
     "Product Link": "https://www.migros.ch/en/product/210629924000",
@@ -1565,7 +1760,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "241102110000": {
     "Product Link": "https://www.migros.ch/en/product/241102110000",
@@ -1573,7 +1769,8 @@
     "Price": 8.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231020864002": {
     "Product Link": "https://www.migros.ch/en/product/231020864002",
@@ -1581,7 +1778,8 @@
     "Price": 2.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130541300000": {
     "Product Link": "https://www.migros.ch/en/product/130541300000",
@@ -1589,7 +1787,8 @@
     "Price": 3.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "165004200000": {
     "Product Link": "https://www.migros.ch/en/product/165004200000",
@@ -1597,7 +1796,8 @@
     "Price": 3.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130541200000": {
     "Product Link": "https://www.migros.ch/en/product/130541200000",
@@ -1605,7 +1805,8 @@
     "Price": 2.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220250085000": {
     "Product Link": "https://www.migros.ch/en/product/220250085000",
@@ -1613,7 +1814,8 @@
     "Price": 3.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106124300000": {
     "Product Link": "https://www.migros.ch/en/product/106124300000",
@@ -1621,7 +1823,8 @@
     "Price": 5.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104220600000": {
     "Product Link": "https://www.migros.ch/en/product/104220600000",
@@ -1629,7 +1832,8 @@
     "Price": 3.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120915100000": {
     "Product Link": "https://www.migros.ch/en/product/120915100000",
@@ -1637,7 +1841,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101136500000": {
     "Product Link": "https://www.migros.ch/en/product/101136500000",
@@ -1645,7 +1850,8 @@
     "Price": 2.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156053900000": {
     "Product Link": "https://www.migros.ch/en/product/156053900000",
@@ -1653,7 +1859,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "165055000000": {
     "Product Link": "https://www.migros.ch/en/product/165055000000",
@@ -1661,7 +1868,8 @@
     "Price": 5.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210127724000": {
     "Product Link": "https://www.migros.ch/en/product/210127724000",
@@ -1669,7 +1877,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "157134200000": {
     "Product Link": "https://www.migros.ch/en/product/157134200000",
@@ -1677,7 +1886,8 @@
     "Price": 2.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706525000000": {
     "Product Link": "https://www.migros.ch/en/product/706525000000",
@@ -1685,7 +1895,8 @@
     "Price": 0.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "230112060102": {
     "Product Link": "https://www.migros.ch/en/product/230112060102",
@@ -1693,7 +1904,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110555400000": {
     "Product Link": "https://www.migros.ch/en/product/110555400000",
@@ -1701,7 +1913,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "165055900000": {
     "Product Link": "https://www.migros.ch/en/product/165055900000",
@@ -1709,7 +1922,8 @@
     "Price": 9.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109106500000": {
     "Product Link": "https://www.migros.ch/en/product/109106500000",
@@ -1717,7 +1931,8 @@
     "Price": 3.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106501600000": {
     "Product Link": "https://www.migros.ch/en/product/106501600000",
@@ -1725,7 +1940,8 @@
     "Price": 6.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104475700000": {
     "Product Link": "https://www.migros.ch/en/product/104475700000",
@@ -1733,7 +1949,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "526227000000": {
     "Product Link": "https://www.migros.ch/en/product/526227000000",
@@ -1741,7 +1958,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210589800000": {
     "Product Link": "https://www.migros.ch/en/product/210589800000",
@@ -1749,7 +1967,8 @@
     "Price": 1.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130271400000": {
     "Product Link": "https://www.migros.ch/en/product/130271400000",
@@ -1757,7 +1976,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101400400000": {
     "Product Link": "https://www.migros.ch/en/product/101400400000",
@@ -1765,7 +1985,8 @@
     "Price": 3.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "230560052002": {
     "Product Link": "https://www.migros.ch/en/product/230560052002",
@@ -1773,7 +1994,8 @@
     "Price": 3.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "113119400000": {
     "Product Link": "https://www.migros.ch/en/product/113119400000",
@@ -1781,7 +2003,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "152105000000": {
     "Product Link": "https://www.migros.ch/en/product/152105000000",
@@ -1789,7 +2012,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106126900000": {
     "Product Link": "https://www.migros.ch/en/product/106126900000",
@@ -1797,7 +2021,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105260600000": {
     "Product Link": "https://www.migros.ch/en/product/105260600000",
@@ -1805,7 +2030,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706207400000": {
     "Product Link": "https://www.migros.ch/en/product/706207400000",
@@ -1813,7 +2039,8 @@
     "Price": 2.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110555600000": {
     "Product Link": "https://www.migros.ch/en/product/110555600000",
@@ -1821,7 +2048,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "152030500000": {
     "Product Link": "https://www.migros.ch/en/product/152030500000",
@@ -1829,7 +2057,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "122000100000": {
     "Product Link": "https://www.migros.ch/en/product/122000100000",
@@ -1837,7 +2066,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "165031300000": {
     "Product Link": "https://www.migros.ch/en/product/165031300000",
@@ -1845,7 +2075,8 @@
     "Price": 9.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031600000": {
     "Product Link": "https://www.migros.ch/en/product/109031600000",
@@ -1853,7 +2084,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "271714902500": {
     "Product Link": "https://www.migros.ch/en/product/271714902500",
@@ -1861,7 +2093,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120911200000": {
     "Product Link": "https://www.migros.ch/en/product/120911200000",
@@ -1869,7 +2102,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200811900000": {
     "Product Link": "https://www.migros.ch/en/product/200811900000",
@@ -1877,7 +2111,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706509600000": {
     "Product Link": "https://www.migros.ch/en/product/706509600000",
@@ -1885,7 +2120,8 @@
     "Price": 1.45,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514204000000": {
     "Product Link": "https://www.migros.ch/en/product/514204000000",
@@ -1893,7 +2129,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "166002700000": {
     "Product Link": "https://www.migros.ch/en/product/166002700000",
@@ -1901,7 +2138,8 @@
     "Price": 13.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110555200000": {
     "Product Link": "https://www.migros.ch/en/product/110555200000",
@@ -1909,7 +2147,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130541100000": {
     "Product Link": "https://www.migros.ch/en/product/130541100000",
@@ -1917,7 +2156,8 @@
     "Price": 2.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100102800000": {
     "Product Link": "https://www.migros.ch/en/product/100102800000",
@@ -1925,7 +2165,8 @@
     "Price": 0.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153222900000": {
     "Product Link": "https://www.migros.ch/en/product/153222900000",
@@ -1933,7 +2174,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "507008200000": {
     "Product Link": "https://www.migros.ch/en/product/507008200000",
@@ -1941,7 +2183,8 @@
     "Price": 1.2,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156013000000": {
     "Product Link": "https://www.migros.ch/en/product/156013000000",
@@ -1949,7 +2192,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160178500000": {
     "Product Link": "https://www.migros.ch/en/product/160178500000",
@@ -1957,7 +2201,8 @@
     "Price": 4.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "243413600000": {
     "Product Link": "https://www.migros.ch/en/product/243413600000",
@@ -1965,7 +2210,8 @@
     "Price": 11.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106618900000": {
     "Product Link": "https://www.migros.ch/en/product/106618900000",
@@ -1973,7 +2219,8 @@
     "Price": 1.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "122028600000": {
     "Product Link": "https://www.migros.ch/en/product/122028600000",
@@ -1981,7 +2228,8 @@
     "Price": 6.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107192700000": {
     "Product Link": "https://www.migros.ch/en/product/107192700000",
@@ -1989,7 +2237,8 @@
     "Price": 8.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110168900000": {
     "Product Link": "https://www.migros.ch/en/product/110168900000",
@@ -1997,7 +2246,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704503900000": {
     "Product Link": "https://www.migros.ch/en/product/704503900000",
@@ -2005,7 +2255,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110216300000": {
     "Product Link": "https://www.migros.ch/en/product/110216300000",
@@ -2013,7 +2264,8 @@
     "Price": 1.35,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110505400000": {
     "Product Link": "https://www.migros.ch/en/product/110505400000",
@@ -2021,7 +2273,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106100700000": {
     "Product Link": "https://www.migros.ch/en/product/106100700000",
@@ -2029,7 +2282,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160314700000": {
     "Product Link": "https://www.migros.ch/en/product/160314700000",
@@ -2037,7 +2291,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104431200000": {
     "Product Link": "https://www.migros.ch/en/product/104431200000",
@@ -2045,7 +2300,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120911400000": {
     "Product Link": "https://www.migros.ch/en/product/120911400000",
@@ -2053,7 +2309,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031400000": {
     "Product Link": "https://www.migros.ch/en/product/109031400000",
@@ -2061,7 +2318,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514111100000": {
     "Product Link": "https://www.migros.ch/en/product/514111100000",
@@ -2069,7 +2327,8 @@
     "Price": 0.6,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107185400000": {
     "Product Link": "https://www.migros.ch/en/product/107185400000",
@@ -2077,7 +2336,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251317000000": {
     "Product Link": "https://www.migros.ch/en/product/251317000000",
@@ -2085,7 +2345,8 @@
     "Price": 5.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210630024000": {
     "Product Link": "https://www.migros.ch/en/product/210630024000",
@@ -2093,7 +2354,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231525483202": {
     "Product Link": "https://www.migros.ch/en/product/231525483202",
@@ -2101,7 +2363,8 @@
     "Price": 2.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100200600000": {
     "Product Link": "https://www.migros.ch/en/product/100200600000",
@@ -2109,7 +2372,8 @@
     "Price": 0.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130927800000": {
     "Product Link": "https://www.migros.ch/en/product/130927800000",
@@ -2117,7 +2381,8 @@
     "Price": 3.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160152400000": {
     "Product Link": "https://www.migros.ch/en/product/160152400000",
@@ -2125,7 +2390,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "151406500000": {
     "Product Link": "https://www.migros.ch/en/product/151406500000",
@@ -2133,7 +2399,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110555500000": {
     "Product Link": "https://www.migros.ch/en/product/110555500000",
@@ -2141,7 +2408,8 @@
     "Price": 1.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031800000": {
     "Product Link": "https://www.migros.ch/en/product/109031800000",
@@ -2149,7 +2417,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "151003100000": {
     "Product Link": "https://www.migros.ch/en/product/151003100000",
@@ -2157,7 +2426,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231040974002": {
     "Product Link": "https://www.migros.ch/en/product/231040974002",
@@ -2165,7 +2435,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231011584002": {
     "Product Link": "https://www.migros.ch/en/product/231011584002",
@@ -2173,7 +2444,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110149100000": {
     "Product Link": "https://www.migros.ch/en/product/110149100000",
@@ -2181,7 +2453,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "121507900000": {
     "Product Link": "https://www.migros.ch/en/product/121507900000",
@@ -2189,7 +2462,8 @@
     "Price": 3.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513851100000": {
     "Product Link": "https://www.migros.ch/en/product/513851100000",
@@ -2197,7 +2471,8 @@
     "Price": 0.6,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706524600000": {
     "Product Link": "https://www.migros.ch/en/product/706524600000",
@@ -2205,7 +2480,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100201000000": {
     "Product Link": "https://www.migros.ch/en/product/100201000000",
@@ -2213,7 +2489,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105311400000": {
     "Product Link": "https://www.migros.ch/en/product/105311400000",
@@ -2221,7 +2498,8 @@
     "Price": 4.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106124200000": {
     "Product Link": "https://www.migros.ch/en/product/106124200000",
@@ -2229,7 +2507,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "501112200000": {
     "Product Link": "https://www.migros.ch/en/product/501112200000",
@@ -2237,7 +2516,8 @@
     "Price": 4.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101136600000": {
     "Product Link": "https://www.migros.ch/en/product/101136600000",
@@ -2245,7 +2525,8 @@
     "Price": 2.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100130000000": {
     "Product Link": "https://www.migros.ch/en/product/100130000000",
@@ -2253,7 +2534,8 @@
     "Price": 0.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130542400000": {
     "Product Link": "https://www.migros.ch/en/product/130542400000",
@@ -2261,7 +2543,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706519200000": {
     "Product Link": "https://www.migros.ch/en/product/706519200000",
@@ -2269,7 +2552,8 @@
     "Price": 2.65,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "243996342000": {
     "Product Link": "https://www.migros.ch/en/product/243996342000",
@@ -2277,7 +2561,8 @@
     "Price": 5.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "157214100000": {
     "Product Link": "https://www.migros.ch/en/product/157214100000",
@@ -2285,7 +2570,8 @@
     "Price": 4.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251402850000": {
     "Product Link": "https://www.migros.ch/en/product/251402850000",
@@ -2293,7 +2579,8 @@
     "Price": 6.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502024000000": {
     "Product Link": "https://www.migros.ch/en/product/502024000000",
@@ -2301,7 +2588,8 @@
     "Price": 2.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101523900000": {
     "Product Link": "https://www.migros.ch/en/product/101523900000",
@@ -2309,7 +2597,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031500000": {
     "Product Link": "https://www.migros.ch/en/product/109031500000",
@@ -2317,7 +2606,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130732900000": {
     "Product Link": "https://www.migros.ch/en/product/130732900000",
@@ -2325,7 +2615,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514073600000": {
     "Product Link": "https://www.migros.ch/en/product/514073600000",
@@ -2333,7 +2624,8 @@
     "Price": 0.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107118400000": {
     "Product Link": "https://www.migros.ch/en/product/107118400000",
@@ -2341,7 +2633,8 @@
     "Price": 7.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106655100000": {
     "Product Link": "https://www.migros.ch/en/product/106655100000",
@@ -2349,7 +2642,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "151406600000": {
     "Product Link": "https://www.migros.ch/en/product/151406600000",
@@ -2357,7 +2651,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220662085500": {
     "Product Link": "https://www.migros.ch/en/product/220662085500",
@@ -2365,7 +2660,8 @@
     "Price": 3.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "709316400000": {
     "Product Link": "https://www.migros.ch/en/product/709316400000",
@@ -2373,7 +2669,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220660080000": {
     "Product Link": "https://www.migros.ch/en/product/220660080000",
@@ -2381,7 +2678,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "203518000000": {
     "Product Link": "https://www.migros.ch/en/product/203518000000",
@@ -2389,7 +2687,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513851200000": {
     "Product Link": "https://www.migros.ch/en/product/513851200000",
@@ -2397,7 +2696,8 @@
     "Price": 1.2,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "507007500000": {
     "Product Link": "https://www.migros.ch/en/product/507007500000",
@@ -2405,7 +2705,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031900000": {
     "Product Link": "https://www.migros.ch/en/product/109031900000",
@@ -2413,7 +2714,8 @@
     "Price": 1.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251366000000": {
     "Product Link": "https://www.migros.ch/en/product/251366000000",
@@ -2421,7 +2723,8 @@
     "Price": 9.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220654085000": {
     "Product Link": "https://www.migros.ch/en/product/220654085000",
@@ -2429,7 +2732,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101053000000": {
     "Product Link": "https://www.migros.ch/en/product/101053000000",
@@ -2437,7 +2741,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513206700000": {
     "Product Link": "https://www.migros.ch/en/product/513206700000",
@@ -2445,7 +2750,8 @@
     "Price": 1.35,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "166002800000": {
     "Product Link": "https://www.migros.ch/en/product/166002800000",
@@ -2453,7 +2759,8 @@
     "Price": 10.35,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "507007300000": {
     "Product Link": "https://www.migros.ch/en/product/507007300000",
@@ -2461,7 +2768,8 @@
     "Price": 1.55,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "166001400000": {
     "Product Link": "https://www.migros.ch/en/product/166001400000",
@@ -2469,7 +2777,8 @@
     "Price": 9.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220634001200": {
     "Product Link": "https://www.migros.ch/en/product/220634001200",
@@ -2477,7 +2786,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104220800000": {
     "Product Link": "https://www.migros.ch/en/product/104220800000",
@@ -2485,7 +2795,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "105260500000": {
     "Product Link": "https://www.migros.ch/en/product/105260500000",
@@ -2493,7 +2804,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104230200000": {
     "Product Link": "https://www.migros.ch/en/product/104230200000",
@@ -2501,7 +2813,8 @@
     "Price": 3.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120560000000": {
     "Product Link": "https://www.migros.ch/en/product/120560000000",
@@ -2509,7 +2822,8 @@
     "Price": 6.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "152030600000": {
     "Product Link": "https://www.migros.ch/en/product/152030600000",
@@ -2517,7 +2831,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "709316600000": {
     "Product Link": "https://www.migros.ch/en/product/709316600000",
@@ -2525,7 +2840,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107173000000": {
     "Product Link": "https://www.migros.ch/en/product/107173000000",
@@ -2533,7 +2849,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212706600000": {
     "Product Link": "https://www.migros.ch/en/product/212706600000",
@@ -2541,7 +2858,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130541400000": {
     "Product Link": "https://www.migros.ch/en/product/130541400000",
@@ -2549,7 +2867,8 @@
     "Price": 3.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "153472500000": {
     "Product Link": "https://www.migros.ch/en/product/153472500000",
@@ -2557,7 +2876,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130757100000": {
     "Product Link": "https://www.migros.ch/en/product/130757100000",
@@ -2565,7 +2885,8 @@
     "Price": 3.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100103000000": {
     "Product Link": "https://www.migros.ch/en/product/100103000000",
@@ -2573,7 +2894,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156013300000": {
     "Product Link": "https://www.migros.ch/en/product/156013300000",
@@ -2581,7 +2903,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156012900000": {
     "Product Link": "https://www.migros.ch/en/product/156012900000",
@@ -2589,7 +2912,8 @@
     "Price": 1.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "152611000000": {
     "Product Link": "https://www.migros.ch/en/product/152611000000",
@@ -2597,7 +2921,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109032400000": {
     "Product Link": "https://www.migros.ch/en/product/109032400000",
@@ -2605,7 +2930,8 @@
     "Price": 1.1,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "121000100000": {
     "Product Link": "https://www.migros.ch/en/product/121000100000",
@@ -2613,7 +2939,8 @@
     "Price": 1.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130316100000": {
     "Product Link": "https://www.migros.ch/en/product/130316100000",
@@ -2621,7 +2948,8 @@
     "Price": 3.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520250600000": {
     "Product Link": "https://www.migros.ch/en/product/520250600000",
@@ -2629,7 +2957,8 @@
     "Price": 1.6,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513359400000": {
     "Product Link": "https://www.migros.ch/en/product/513359400000",
@@ -2637,7 +2966,8 @@
     "Price": 2.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107010300000": {
     "Product Link": "https://www.migros.ch/en/product/107010300000",
@@ -2645,7 +2975,8 @@
     "Price": 1.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720853300000": {
     "Product Link": "https://www.migros.ch/en/product/720853300000",
@@ -2653,7 +2984,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106275800000": {
     "Product Link": "https://www.migros.ch/en/product/106275800000",
@@ -2661,7 +2993,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720549500000": {
     "Product Link": "https://www.migros.ch/en/product/720549500000",
@@ -2669,7 +3002,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130928000000": {
     "Product Link": "https://www.migros.ch/en/product/130928000000",
@@ -2677,7 +3011,8 @@
     "Price": 3.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107118300000": {
     "Product Link": "https://www.migros.ch/en/product/107118300000",
@@ -2685,7 +3020,8 @@
     "Price": 6.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106655300000": {
     "Product Link": "https://www.migros.ch/en/product/106655300000",
@@ -2693,7 +3029,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "157212700000": {
     "Product Link": "https://www.migros.ch/en/product/157212700000",
@@ -2701,7 +3038,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031200000": {
     "Product Link": "https://www.migros.ch/en/product/109031200000",
@@ -2709,7 +3047,8 @@
     "Price": 0.25,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514073500000": {
     "Product Link": "https://www.migros.ch/en/product/514073500000",
@@ -2717,7 +3056,8 @@
     "Price": 0.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514618800000": {
     "Product Link": "https://www.migros.ch/en/product/514618800000",
@@ -2725,7 +3065,8 @@
     "Price": 0.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106125400000": {
     "Product Link": "https://www.migros.ch/en/product/106125400000",
@@ -2733,7 +3074,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109035600000": {
     "Product Link": "https://www.migros.ch/en/product/109035600000",
@@ -2741,7 +3083,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520250700000": {
     "Product Link": "https://www.migros.ch/en/product/520250700000",
@@ -2749,7 +3092,8 @@
     "Price": 0.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104410000000": {
     "Product Link": "https://www.migros.ch/en/product/104410000000",
@@ -2757,7 +3101,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706602400000": {
     "Product Link": "https://www.migros.ch/en/product/706602400000",
@@ -2765,7 +3110,8 @@
     "Price": 1.3,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160314800000": {
     "Product Link": "https://www.migros.ch/en/product/160314800000",
@@ -2773,7 +3119,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106655000000": {
     "Product Link": "https://www.migros.ch/en/product/106655000000",
@@ -2781,7 +3128,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031100000": {
     "Product Link": "https://www.migros.ch/en/product/109031100000",
@@ -2789,7 +3137,8 @@
     "Price": 0.25,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233533261000": {
     "Product Link": "https://www.migros.ch/en/product/233533261000",
@@ -2797,7 +3146,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520250500000": {
     "Product Link": "https://www.migros.ch/en/product/520250500000",
@@ -2805,7 +3155,8 @@
     "Price": 0.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "156013200000": {
     "Product Link": "https://www.migros.ch/en/product/156013200000",
@@ -2813,7 +3164,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "721527800000": {
     "Product Link": "https://www.migros.ch/en/product/721527800000",
@@ -2821,7 +3173,8 @@
     "Price": 1.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101052700000": {
     "Product Link": "https://www.migros.ch/en/product/101052700000",
@@ -2829,7 +3182,8 @@
     "Price": 2.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "708104200000": {
     "Product Link": "https://www.migros.ch/en/product/708104200000",
@@ -2837,7 +3191,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106002400000": {
     "Product Link": "https://www.migros.ch/en/product/106002400000",
@@ -2845,7 +3200,8 @@
     "Price": 0.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130733000000": {
     "Product Link": "https://www.migros.ch/en/product/130733000000",
@@ -2853,7 +3209,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706524700000": {
     "Product Link": "https://www.migros.ch/en/product/706524700000",
@@ -2861,7 +3218,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "164021400000": {
     "Product Link": "https://www.migros.ch/en/product/164021400000",
@@ -2869,7 +3227,8 @@
     "Price": 9.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "232343008102": {
     "Product Link": "https://www.migros.ch/en/product/232343008102",
@@ -2877,7 +3236,8 @@
     "Price": 6.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700873400000": {
     "Product Link": "https://www.migros.ch/en/product/700873400000",
@@ -2885,7 +3245,8 @@
     "Price": 4.6,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110555300000": {
     "Product Link": "https://www.migros.ch/en/product/110555300000",
@@ -2893,7 +3254,8 @@
     "Price": 4.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512082300000": {
     "Product Link": "https://www.migros.ch/en/product/512082300000",
@@ -2901,7 +3263,8 @@
     "Price": 1.15,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109033400000": {
     "Product Link": "https://www.migros.ch/en/product/109033400000",
@@ -2909,7 +3272,8 @@
     "Price": 0.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706603700000": {
     "Product Link": "https://www.migros.ch/en/product/706603700000",
@@ -2917,7 +3281,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101052900000": {
     "Product Link": "https://www.migros.ch/en/product/101052900000",
@@ -2925,7 +3290,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514618700000": {
     "Product Link": "https://www.migros.ch/en/product/514618700000",
@@ -2933,7 +3299,8 @@
     "Price": 0.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513359300000": {
     "Product Link": "https://www.migros.ch/en/product/513359300000",
@@ -2941,7 +3308,8 @@
     "Price": 2.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109033100000": {
     "Product Link": "https://www.migros.ch/en/product/109033100000",
@@ -2949,7 +3317,8 @@
     "Price": 0.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "103525000000": {
     "Product Link": "https://www.migros.ch/en/product/103525000000",
@@ -2957,7 +3326,8 @@
     "Price": 1.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107129200000": {
     "Product Link": "https://www.migros.ch/en/product/107129200000",
@@ -2965,7 +3335,8 @@
     "Price": 8.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109034200000": {
     "Product Link": "https://www.migros.ch/en/product/109034200000",
@@ -2973,7 +3344,8 @@
     "Price": 2.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "238936600000": {
     "Product Link": "https://www.migros.ch/en/product/238936600000",
@@ -2981,7 +3353,8 @@
     "Price": 11.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520250400000": {
     "Product Link": "https://www.migros.ch/en/product/520250400000",
@@ -2989,7 +3362,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109030900000": {
     "Product Link": "https://www.migros.ch/en/product/109030900000",
@@ -2997,7 +3371,8 @@
     "Price": 3.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "236716758000": {
     "Product Link": "https://www.migros.ch/en/product/236716758000",
@@ -3005,7 +3380,8 @@
     "Price": 8.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107159200000": {
     "Product Link": "https://www.migros.ch/en/product/107159200000",
@@ -3013,7 +3389,8 @@
     "Price": 5.85,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109033200000": {
     "Product Link": "https://www.migros.ch/en/product/109033200000",
@@ -3021,7 +3398,8 @@
     "Price": 0.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106655200000": {
     "Product Link": "https://www.migros.ch/en/product/106655200000",
@@ -3029,7 +3407,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130360000000": {
     "Product Link": "https://www.migros.ch/en/product/130360000000",
@@ -3037,7 +3416,8 @@
     "Price": 2.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220659045000": {
     "Product Link": "https://www.migros.ch/en/product/220659045000",
@@ -3045,7 +3425,8 @@
     "Price": 2.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "102502800000": {
     "Product Link": "https://www.migros.ch/en/product/102502800000",
@@ -3053,7 +3434,8 @@
     "Price": 1.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "102502900000": {
     "Product Link": "https://www.migros.ch/en/product/102502900000",
@@ -3061,7 +3443,8 @@
     "Price": 1.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101088700000": {
     "Product Link": "https://www.migros.ch/en/product/101088700000",
@@ -3069,7 +3452,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "152152100000": {
     "Product Link": "https://www.migros.ch/en/product/152152100000",
@@ -3077,7 +3461,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109033300000": {
     "Product Link": "https://www.migros.ch/en/product/109033300000",
@@ -3085,7 +3470,8 @@
     "Price": 0.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109030200000": {
     "Product Link": "https://www.migros.ch/en/product/109030200000",
@@ -3093,7 +3479,8 @@
     "Price": 0.25,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109034300000": {
     "Product Link": "https://www.migros.ch/en/product/109034300000",
@@ -3101,7 +3488,8 @@
     "Price": 2.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512025200000": {
     "Product Link": "https://www.migros.ch/en/product/512025200000",
@@ -3109,7 +3497,8 @@
     "Price": 1.65,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106100800000": {
     "Product Link": "https://www.migros.ch/en/product/106100800000",
@@ -3117,7 +3506,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "157212800000": {
     "Product Link": "https://www.migros.ch/en/product/157212800000",
@@ -3125,7 +3515,8 @@
     "Price": 1.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109035500000": {
     "Product Link": "https://www.migros.ch/en/product/109035500000",
@@ -3133,7 +3524,8 @@
     "Price": 9.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706603600000": {
     "Product Link": "https://www.migros.ch/en/product/706603600000",
@@ -3141,7 +3533,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500426300000": {
     "Product Link": "https://www.migros.ch/en/product/500426300000",
@@ -3149,7 +3542,8 @@
     "Price": 5.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120252000000": {
     "Product Link": "https://www.migros.ch/en/product/120252000000",
@@ -3157,7 +3551,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "505051400000": {
     "Product Link": "https://www.migros.ch/en/product/505051400000",
@@ -3165,7 +3560,8 @@
     "Price": 0.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100102900000": {
     "Product Link": "https://www.migros.ch/en/product/100102900000",
@@ -3173,7 +3569,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "100103100000": {
     "Product Link": "https://www.migros.ch/en/product/100103100000",
@@ -3181,7 +3578,8 @@
     "Price": 2.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210775600000": {
     "Product Link": "https://www.migros.ch/en/product/210775600000",
@@ -3189,7 +3587,8 @@
     "Price": 7.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231015500000": {
     "Product Link": "https://www.migros.ch/en/product/231015500000",
@@ -3197,7 +3596,8 @@
     "Price": 3.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220658545000": {
     "Product Link": "https://www.migros.ch/en/product/220658545000",
@@ -3205,7 +3605,8 @@
     "Price": 2.1,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220281530000": {
     "Product Link": "https://www.migros.ch/en/product/220281530000",
@@ -3213,7 +3614,8 @@
     "Price": 5.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220282040000": {
     "Product Link": "https://www.migros.ch/en/product/220282040000",
@@ -3221,7 +3623,8 @@
     "Price": 4.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220281040000": {
     "Product Link": "https://www.migros.ch/en/product/220281040000",
@@ -3229,7 +3632,8 @@
     "Price": 4.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120801000000": {
     "Product Link": "https://www.migros.ch/en/product/120801000000",
@@ -3237,7 +3641,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120850400000": {
     "Product Link": "https://www.migros.ch/en/product/120850400000",
@@ -3245,7 +3650,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "501108000000": {
     "Product Link": "https://www.migros.ch/en/product/501108000000",
@@ -3253,7 +3659,8 @@
     "Price": 2.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220220085092": {
     "Product Link": "https://www.migros.ch/en/product/220220085092",
@@ -3261,7 +3668,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "271708308500": {
     "Product Link": "https://www.migros.ch/en/product/271708308500",
@@ -3269,7 +3677,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031700000": {
     "Product Link": "https://www.migros.ch/en/product/109031700000",
@@ -3277,7 +3686,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110555100000": {
     "Product Link": "https://www.migros.ch/en/product/110555100000",
@@ -3285,7 +3695,8 @@
     "Price": 1.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "270400902300": {
     "Product Link": "https://www.migros.ch/en/product/270400902300",
@@ -3293,7 +3704,8 @@
     "Price": 3.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "2023-05-18"
+    "Discontinued": "2023-05-18",
+    "Include": "Yes"
   },
   "220222085000": {
     "Product Link": "https://www.migros.ch/en/product/220222085000",
@@ -3301,7 +3713,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "701079200000": {
     "Product Link": "https://www.migros.ch/en/product/701079200000",
@@ -3309,7 +3722,8 @@
     "Price": 0.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "271401902600": {
     "Product Link": "https://www.migros.ch/en/product/271401902600",
@@ -3317,7 +3731,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "2023-05-18"
+    "Discontinued": "2023-05-18",
+    "Include": "Yes"
   },
   "700873100000": {
     "Product Link": "https://www.migros.ch/en/product/700873100000",
@@ -3325,7 +3740,8 @@
     "Price": 3.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233110181602": {
     "Product Link": "https://www.migros.ch/en/product/233110181602",
@@ -3333,7 +3749,8 @@
     "Price": 3.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120911800000": {
     "Product Link": "https://www.migros.ch/en/product/120911800000",
@@ -3341,7 +3758,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120911600000": {
     "Product Link": "https://www.migros.ch/en/product/120911600000",
@@ -3349,7 +3767,8 @@
     "Price": 3.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "772748500000": {
     "Product Link": "https://www.migros.ch/en/product/772748500000",
@@ -3357,7 +3776,8 @@
     "Price": 9.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700873200000": {
     "Product Link": "https://www.migros.ch/en/product/700873200000",
@@ -3365,7 +3785,8 @@
     "Price": 3.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231525583602": {
     "Product Link": "https://www.migros.ch/en/product/231525583602",
@@ -3373,7 +3794,8 @@
     "Price": 3.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "702028500000": {
     "Product Link": "https://www.migros.ch/en/product/702028500000",
@@ -3381,7 +3803,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130271500000": {
     "Product Link": "https://www.migros.ch/en/product/130271500000",
@@ -3389,7 +3812,8 @@
     "Price": 3.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101135700000": {
     "Product Link": "https://www.migros.ch/en/product/101135700000",
@@ -3397,7 +3821,8 @@
     "Price": 0.85,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106100900000": {
     "Product Link": "https://www.migros.ch/en/product/106100900000",
@@ -3405,7 +3830,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106501100000": {
     "Product Link": "https://www.migros.ch/en/product/106501100000",
@@ -3413,7 +3839,8 @@
     "Price": 0.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "113119600000": {
     "Product Link": "https://www.migros.ch/en/product/113119600000",
@@ -3421,7 +3848,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106501000000": {
     "Product Link": "https://www.migros.ch/en/product/106501000000",
@@ -3429,7 +3857,8 @@
     "Price": 0.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "113253600000": {
     "Product Link": "https://www.migros.ch/en/product/113253600000",
@@ -3437,7 +3866,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120901400000": {
     "Product Link": "https://www.migros.ch/en/product/120901400000",
@@ -3445,7 +3875,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120901600000": {
     "Product Link": "https://www.migros.ch/en/product/120901600000",
@@ -3453,7 +3884,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130140700000": {
     "Product Link": "https://www.migros.ch/en/product/130140700000",
@@ -3461,7 +3893,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130324900000": {
     "Product Link": "https://www.migros.ch/en/product/130324900000",
@@ -3469,7 +3902,8 @@
     "Price": 3.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130337600000": {
     "Product Link": "https://www.migros.ch/en/product/130337600000",
@@ -3477,7 +3911,8 @@
     "Price": 4.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130455300000": {
     "Product Link": "https://www.migros.ch/en/product/130455300000",
@@ -3485,7 +3920,8 @@
     "Price": 3.35,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "111187800500": {
     "Product Link": "https://www.migros.ch/en/product/111187800500",
@@ -3493,7 +3929,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130919400000": {
     "Product Link": "https://www.migros.ch/en/product/130919400000",
@@ -3501,7 +3938,8 @@
     "Price": 4.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "122028500000": {
     "Product Link": "https://www.migros.ch/en/product/122028500000",
@@ -3509,7 +3947,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "112930005500": {
     "Product Link": "https://www.migros.ch/en/product/112930005500",
@@ -3517,7 +3956,8 @@
     "Price": 0.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130271200000": {
     "Product Link": "https://www.migros.ch/en/product/130271200000",
@@ -3525,7 +3965,8 @@
     "Price": 6.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "113253700000": {
     "Product Link": "https://www.migros.ch/en/product/113253700000",
@@ -3533,7 +3974,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130422000000": {
     "Product Link": "https://www.migros.ch/en/product/130422000000",
@@ -3541,7 +3983,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130423000000": {
     "Product Link": "https://www.migros.ch/en/product/130423000000",
@@ -3549,7 +3992,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130433900000": {
     "Product Link": "https://www.migros.ch/en/product/130433900000",
@@ -3557,7 +4001,8 @@
     "Price": 2.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "113546000000": {
     "Product Link": "https://www.migros.ch/en/product/113546000000",
@@ -3565,7 +4010,8 @@
     "Price": 2.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130757200000": {
     "Product Link": "https://www.migros.ch/en/product/130757200000",
@@ -3573,7 +4019,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120801100000": {
     "Product Link": "https://www.migros.ch/en/product/120801100000",
@@ -3581,7 +4028,8 @@
     "Price": 0.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120901800000": {
     "Product Link": "https://www.migros.ch/en/product/120901800000",
@@ -3589,7 +4037,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120908800000": {
     "Product Link": "https://www.migros.ch/en/product/120908800000",
@@ -3597,7 +4046,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120850500000": {
     "Product Link": "https://www.migros.ch/en/product/120850500000",
@@ -3605,7 +4055,8 @@
     "Price": 0.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120915000000": {
     "Product Link": "https://www.migros.ch/en/product/120915000000",
@@ -3613,7 +4064,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120901200000": {
     "Product Link": "https://www.migros.ch/en/product/120901200000",
@@ -3621,7 +4073,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120901500000": {
     "Product Link": "https://www.migros.ch/en/product/120901500000",
@@ -3629,7 +4082,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120901700000": {
     "Product Link": "https://www.migros.ch/en/product/120901700000",
@@ -3637,7 +4091,8 @@
     "Price": 0.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "121000200000": {
     "Product Link": "https://www.migros.ch/en/product/121000200000",
@@ -3645,7 +4100,8 @@
     "Price": 1.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200633700000": {
     "Product Link": "https://www.migros.ch/en/product/200633700000",
@@ -3653,7 +4109,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130424000000": {
     "Product Link": "https://www.migros.ch/en/product/130424000000",
@@ -3661,7 +4118,8 @@
     "Price": 3.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130433100000": {
     "Product Link": "https://www.migros.ch/en/product/130433100000",
@@ -3669,7 +4127,8 @@
     "Price": 2.65,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204019900000": {
     "Product Link": "https://www.migros.ch/en/product/204019900000",
@@ -3677,7 +4136,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130450700000": {
     "Product Link": "https://www.migros.ch/en/product/130450700000",
@@ -3685,7 +4145,8 @@
     "Price": 3.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130321600000": {
     "Product Link": "https://www.migros.ch/en/product/130321600000",
@@ -3693,7 +4154,8 @@
     "Price": 2.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130455100000": {
     "Product Link": "https://www.migros.ch/en/product/130455100000",
@@ -3701,7 +4163,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130337500000": {
     "Product Link": "https://www.migros.ch/en/product/130337500000",
@@ -3709,7 +4172,8 @@
     "Price": 4.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "231525584202": {
     "Product Link": "https://www.migros.ch/en/product/231525584202",
@@ -3717,7 +4181,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "131121100000": {
     "Product Link": "https://www.migros.ch/en/product/131121100000",
@@ -3725,7 +4190,8 @@
     "Price": 3.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233527030000": {
     "Product Link": "https://www.migros.ch/en/product/233527030000",
@@ -3733,7 +4199,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "2023-05-29"
+    "Discontinued": "2023-05-29",
+    "Include": "Yes"
   },
   "241000250000": {
     "Product Link": "https://www.migros.ch/en/product/241000250000",
@@ -3741,7 +4208,8 @@
     "Price": 7.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "241102550000": {
     "Product Link": "https://www.migros.ch/en/product/241102550000",
@@ -3749,7 +4217,8 @@
     "Price": 7.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160153900000": {
     "Product Link": "https://www.migros.ch/en/product/160153900000",
@@ -3757,7 +4226,8 @@
     "Price": 1.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502018200000": {
     "Product Link": "https://www.migros.ch/en/product/502018200000",
@@ -3765,7 +4235,8 @@
     "Price": 4.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502018300000": {
     "Product Link": "https://www.migros.ch/en/product/502018300000",
@@ -3773,7 +4244,8 @@
     "Price": 2.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502018400000": {
     "Product Link": "https://www.migros.ch/en/product/502018400000",
@@ -3781,7 +4253,8 @@
     "Price": 1.05,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "501115100000": {
     "Product Link": "https://www.migros.ch/en/product/501115100000",
@@ -3789,7 +4262,8 @@
     "Price": 4.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502018100000": {
     "Product Link": "https://www.migros.ch/en/product/502018100000",
@@ -3797,7 +4271,8 @@
     "Price": 1.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512082600000": {
     "Product Link": "https://www.migros.ch/en/product/512082600000",
@@ -3805,7 +4280,8 @@
     "Price": 1.15,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512116200000": {
     "Product Link": "https://www.migros.ch/en/product/512116200000",
@@ -3813,7 +4289,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204014000000": {
     "Product Link": "https://www.migros.ch/en/product/204014000000",
@@ -3821,7 +4298,8 @@
     "Price": 2.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513660300000": {
     "Product Link": "https://www.migros.ch/en/product/513660300000",
@@ -3829,7 +4307,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520124600000": {
     "Product Link": "https://www.migros.ch/en/product/520124600000",
@@ -3837,7 +4316,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520356900000": {
     "Product Link": "https://www.migros.ch/en/product/520356900000",
@@ -3845,7 +4325,8 @@
     "Price": 0.85,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "200699800000": {
     "Product Link": "https://www.migros.ch/en/product/200699800000",
@@ -3853,7 +4334,8 @@
     "Price": 2.75,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204026000000": {
     "Product Link": "https://www.migros.ch/en/product/204026000000",
@@ -3861,7 +4343,8 @@
     "Price": 2.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "526110500000": {
     "Product Link": "https://www.migros.ch/en/product/526110500000",
@@ -3869,7 +4352,8 @@
     "Price": 1.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "701138300000": {
     "Product Link": "https://www.migros.ch/en/product/701138300000",
@@ -3877,7 +4361,8 @@
     "Price": 6.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "703204000000": {
     "Product Link": "https://www.migros.ch/en/product/703204000000",
@@ -3885,7 +4370,8 @@
     "Price": 4.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "703509200000": {
     "Product Link": "https://www.migros.ch/en/product/703509200000",
@@ -3893,7 +4379,8 @@
     "Price": 11.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704521900000": {
     "Product Link": "https://www.migros.ch/en/product/704521900000",
@@ -3901,7 +4388,8 @@
     "Price": 1.25,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704525600000": {
     "Product Link": "https://www.migros.ch/en/product/704525600000",
@@ -3909,7 +4397,8 @@
     "Price": 1.6,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704525700000": {
     "Product Link": "https://www.migros.ch/en/product/704525700000",
@@ -3917,7 +4406,8 @@
     "Price": 1.2,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706277400000": {
     "Product Link": "https://www.migros.ch/en/product/706277400000",
@@ -3925,7 +4415,8 @@
     "Price": 3.3,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706223000000": {
     "Product Link": "https://www.migros.ch/en/product/706223000000",
@@ -3933,7 +4424,8 @@
     "Price": 4.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "709316700000": {
     "Product Link": "https://www.migros.ch/en/product/709316700000",
@@ -3941,7 +4433,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720124000000": {
     "Product Link": "https://www.migros.ch/en/product/720124000000",
@@ -3949,7 +4442,8 @@
     "Price": 3.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720219900000": {
     "Product Link": "https://www.migros.ch/en/product/720219900000",
@@ -3957,7 +4451,8 @@
     "Price": 2.6,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720540400000": {
     "Product Link": "https://www.migros.ch/en/product/720540400000",
@@ -3965,7 +4460,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720308900000": {
     "Product Link": "https://www.migros.ch/en/product/720308900000",
@@ -3973,7 +4469,8 @@
     "Price": 9.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720681000000": {
     "Product Link": "https://www.migros.ch/en/product/720681000000",
@@ -3981,7 +4478,8 @@
     "Price": 2.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720569400000": {
     "Product Link": "https://www.migros.ch/en/product/720569400000",
@@ -3989,7 +4487,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720613000000": {
     "Product Link": "https://www.migros.ch/en/product/720613000000",
@@ -3997,7 +4496,8 @@
     "Price": 3.2,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720853400000": {
     "Product Link": "https://www.migros.ch/en/product/720853400000",
@@ -4005,7 +4505,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "721181200000": {
     "Product Link": "https://www.migros.ch/en/product/721181200000",
@@ -4013,7 +4514,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "721285300000": {
     "Product Link": "https://www.migros.ch/en/product/721285300000",
@@ -4021,7 +4523,8 @@
     "Price": 1.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "264200701000": {
     "Product Link": "https://www.migros.ch/en/product/264200701000",
@@ -4029,7 +4532,8 @@
     "Price": 1.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500426000000": {
     "Product Link": "https://www.migros.ch/en/product/500426000000",
@@ -4037,7 +4541,8 @@
     "Price": 4.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502018000000": {
     "Product Link": "https://www.migros.ch/en/product/502018000000",
@@ -4045,7 +4550,8 @@
     "Price": 1.05,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "505016900000": {
     "Product Link": "https://www.migros.ch/en/product/505016900000",
@@ -4053,7 +4559,8 @@
     "Price": 2.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512116300000": {
     "Product Link": "https://www.migros.ch/en/product/512116300000",
@@ -4061,7 +4568,8 @@
     "Price": 1.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514109300000": {
     "Product Link": "https://www.migros.ch/en/product/514109300000",
@@ -4069,7 +4577,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514109400000": {
     "Product Link": "https://www.migros.ch/en/product/514109400000",
@@ -4077,7 +4586,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500411000000": {
     "Product Link": "https://www.migros.ch/en/product/500411000000",
@@ -4085,7 +4595,8 @@
     "Price": 5.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "502017900000": {
     "Product Link": "https://www.migros.ch/en/product/502017900000",
@@ -4093,7 +4604,8 @@
     "Price": 1.25,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "505069100000": {
     "Product Link": "https://www.migros.ch/en/product/505069100000",
@@ -4101,7 +4613,8 @@
     "Price": 1.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "505069200000": {
     "Product Link": "https://www.migros.ch/en/product/505069200000",
@@ -4109,7 +4622,8 @@
     "Price": 1.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "703505500000": {
     "Product Link": "https://www.migros.ch/en/product/703505500000",
@@ -4117,7 +4631,8 @@
     "Price": 9.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706277500000": {
     "Product Link": "https://www.migros.ch/en/product/706277500000",
@@ -4125,7 +4640,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "522204700000": {
     "Product Link": "https://www.migros.ch/en/product/522204700000",
@@ -4133,7 +4649,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "522204800000": {
     "Product Link": "https://www.migros.ch/en/product/522204800000",
@@ -4141,7 +4658,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "703108700000": {
     "Product Link": "https://www.migros.ch/en/product/703108700000",
@@ -4149,7 +4667,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "704509800000": {
     "Product Link": "https://www.migros.ch/en/product/704509800000",
@@ -4157,7 +4676,8 @@
     "Price": 4.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706504300000": {
     "Product Link": "https://www.migros.ch/en/product/706504300000",
@@ -4165,7 +4685,8 @@
     "Price": 0.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "709316500000": {
     "Product Link": "https://www.migros.ch/en/product/709316500000",
@@ -4173,7 +4694,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "721542400000": {
     "Product Link": "https://www.migros.ch/en/product/721542400000",
@@ -4181,7 +4703,8 @@
     "Price": 0.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520358600000": {
     "Product Link": "https://www.migros.ch/en/product/520358600000",
@@ -4189,7 +4712,8 @@
     "Price": 0.85,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "727400700000": {
     "Product Link": "https://www.migros.ch/en/product/727400700000",
@@ -4197,7 +4721,8 @@
     "Price": 1.3,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500525900000": {
     "Product Link": "https://www.migros.ch/en/product/500525900000",
@@ -4205,7 +4730,8 @@
     "Price": 2.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500526000000": {
     "Product Link": "https://www.migros.ch/en/product/500526000000",
@@ -4213,7 +4739,8 @@
     "Price": 2.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "151003300000": {
     "Product Link": "https://www.migros.ch/en/product/151003300000",
@@ -4221,7 +4748,8 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "131190800000": {
     "Product Link": "https://www.migros.ch/en/product/131190800000",
@@ -4229,7 +4757,8 @@
     "Price": 2.4,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514073700000": {
     "Product Link": "https://www.migros.ch/en/product/514073700000",
@@ -4237,7 +4766,8 @@
     "Price": 0.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514109200000": {
     "Product Link": "https://www.migros.ch/en/product/514109200000",
@@ -4245,7 +4775,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514073800000": {
     "Product Link": "https://www.migros.ch/en/product/514073800000",
@@ -4253,7 +4784,8 @@
     "Price": 0.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "514109100000": {
     "Product Link": "https://www.migros.ch/en/product/514109100000",
@@ -4261,7 +4793,8 @@
     "Price": 0.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500426200000": {
     "Product Link": "https://www.migros.ch/en/product/500426200000",
@@ -4269,7 +4802,8 @@
     "Price": 3.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120983000000": {
     "Product Link": "https://www.migros.ch/en/product/120983000000",
@@ -4277,7 +4811,8 @@
     "Price": 0.55,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "701122000001": {
     "Product Link": "https://www.migros.ch/en/product/701122000001",
@@ -4285,7 +4820,8 @@
     "Price": 7.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "815324424110": {
     "Product Link": "https://www.migros.ch/en/product/815324424110",
@@ -4293,7 +4829,8 @@
     "Price": 4.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "815336024210": {
     "Product Link": "https://www.migros.ch/en/product/815336024210",
@@ -4301,7 +4838,8 @@
     "Price": 4.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "823720130310": {
     "Product Link": "https://www.migros.ch/en/product/823720130310",
@@ -4309,7 +4847,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "830222200802": {
     "Product Link": "https://www.migros.ch/en/product/830222200802",
@@ -4317,7 +4856,8 @@
     "Price": 1.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "830224001117": {
     "Product Link": "https://www.migros.ch/en/product/830224001117",
@@ -4325,7 +4865,8 @@
     "Price": 2.35,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "830224100002": {
     "Product Link": "https://www.migros.ch/en/product/830224100002",
@@ -4333,7 +4874,8 @@
     "Price": 2.65,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "830224299917": {
     "Product Link": "https://www.migros.ch/en/product/830224299917",
@@ -4341,7 +4883,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "831223230210": {
     "Product Link": "https://www.migros.ch/en/product/831223230210",
@@ -4349,7 +4892,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "831223330220": {
     "Product Link": "https://www.migros.ch/en/product/831223330220",
@@ -4357,7 +4901,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "501022100000": {
     "Product Link": "https://www.migros.ch/en/product/501022100000",
@@ -4365,7 +4910,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "220221085100": {
     "Product Link": "https://www.migros.ch/en/product/220221085100",
@@ -4373,7 +4919,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "522208000000": {
     "Product Link": "https://www.migros.ch/en/product/522208000000",
@@ -4381,7 +4928,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "113211700000": {
     "Product Link": "https://www.migros.ch/en/product/113211700000",
@@ -4389,7 +4937,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101715400000": {
     "Product Link": "https://www.migros.ch/en/product/101715400000",
@@ -4397,7 +4946,8 @@
     "Price": 9.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101715500000": {
     "Product Link": "https://www.migros.ch/en/product/101715500000",
@@ -4405,7 +4955,8 @@
     "Price": 9.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101715600000": {
     "Product Link": "https://www.migros.ch/en/product/101715600000",
@@ -4413,7 +4964,8 @@
     "Price": 8.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "210452400000": {
     "Product Link": "https://www.migros.ch/en/product/210452400000",
@@ -4421,7 +4973,8 @@
     "Price": 1.35,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120983200000": {
     "Product Link": "https://www.migros.ch/en/product/120983200000",
@@ -4429,7 +4982,8 @@
     "Price": 0.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "500117000000": {
     "Product Link": "https://www.migros.ch/en/product/500117000000",
@@ -4437,7 +4991,8 @@
     "Price": 3.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "120983400000": {
     "Product Link": "https://www.migros.ch/en/product/120983400000",
@@ -4445,7 +5000,8 @@
     "Price": 0.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513140000000": {
     "Product Link": "https://www.migros.ch/en/product/513140000000",
@@ -4453,7 +5009,8 @@
     "Price": 1.25,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "110200600000": {
     "Product Link": "https://www.migros.ch/en/product/110200600000",
@@ -4461,7 +5018,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "227220625000": {
     "Product Link": "https://www.migros.ch/en/product/227220625000",
@@ -4469,7 +5027,8 @@
     "Price": 4.45,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "160392600000": {
     "Product Link": "https://www.migros.ch/en/product/160392600000",
@@ -4477,7 +5036,8 @@
     "Price": 3.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "130927400000": {
     "Product Link": "https://www.migros.ch/en/product/130927400000",
@@ -4485,7 +5045,8 @@
     "Price": 1.55,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "152100400000": {
     "Product Link": "https://www.migros.ch/en/product/152100400000",
@@ -4493,7 +5054,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "266000309400": {
     "Product Link": "https://www.migros.ch/en/product/266000309400",
@@ -4501,7 +5063,8 @@
     "Price": 5.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "510410700000": {
     "Product Link": "https://www.migros.ch/en/product/510410700000",
@@ -4509,7 +5072,8 @@
     "Price": 1.15,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512471900000": {
     "Product Link": "https://www.migros.ch/en/product/512471900000",
@@ -4517,7 +5081,8 @@
     "Price": 9.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "760525600040": {
     "Product Link": "https://www.migros.ch/en/product/760525600040",
@@ -4525,7 +5090,8 @@
     "Price": 17.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "760525600020": {
     "Product Link": "https://www.migros.ch/en/product/760525600020",
@@ -4533,7 +5099,8 @@
     "Price": 17.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212569200000": {
     "Product Link": "https://www.migros.ch/en/product/212569200000",
@@ -4541,7 +5108,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "761203900000": {
     "Product Link": "https://www.migros.ch/en/product/761203900000",
@@ -4549,7 +5117,8 @@
     "Price": 8.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "770797400000": {
     "Product Link": "https://www.migros.ch/en/product/770797400000",
@@ -4557,7 +5126,8 @@
     "Price": 29.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "792206400000": {
     "Product Link": "https://www.migros.ch/en/product/792206400000",
@@ -4565,7 +5135,8 @@
     "Price": 21.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "792206500000": {
     "Product Link": "https://www.migros.ch/en/product/792206500000",
@@ -4573,7 +5144,8 @@
     "Price": 21.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "792206600000": {
     "Product Link": "https://www.migros.ch/en/product/792206600000",
@@ -4581,7 +5153,8 @@
     "Price": 21.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "821172100610": {
     "Product Link": "https://www.migros.ch/en/product/821172100610",
@@ -4589,7 +5162,8 @@
     "Price": 5.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "831226630210": {
     "Product Link": "https://www.migros.ch/en/product/831226630210",
@@ -4597,7 +5171,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "823724930310": {
     "Product Link": "https://www.migros.ch/en/product/823724930310",
@@ -4605,7 +5180,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "821172300620": {
     "Product Link": "https://www.migros.ch/en/product/821172300620",
@@ -4613,7 +5189,8 @@
     "Price": 6.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "821172200610": {
     "Product Link": "https://www.migros.ch/en/product/821172200610",
@@ -4621,7 +5198,8 @@
     "Price": 3.65,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "761120200010": {
     "Product Link": "https://www.migros.ch/en/product/761120200010",
@@ -4629,7 +5207,8 @@
     "Price": 6.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "815340600210": {
     "Product Link": "https://www.migros.ch/en/product/815340600210",
@@ -4637,7 +5216,8 @@
     "Price": 4.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "815340500210": {
     "Product Link": "https://www.migros.ch/en/product/815340500210",
@@ -4645,7 +5225,8 @@
     "Price": 4.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "131415000000": {
     "Product Link": "https://www.migros.ch/en/product/131415000000",
@@ -4653,7 +5234,8 @@
     "Price": 2.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233100281502": {
     "Product Link": "https://www.migros.ch/en/product/233100281502",
@@ -4661,7 +5243,8 @@
     "Price": 5.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251200301500": {
     "Product Link": "https://www.migros.ch/en/product/251200301500",
@@ -4669,7 +5252,8 @@
     "Price": 9.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "111187800200": {
     "Product Link": "https://www.migros.ch/en/product/111187800200",
@@ -4677,7 +5261,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "113151000000": {
     "Product Link": "https://www.migros.ch/en/product/113151000000",
@@ -4685,7 +5270,8 @@
     "Price": 3.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "112930005200": {
     "Product Link": "https://www.migros.ch/en/product/112930005200",
@@ -4693,7 +5279,8 @@
     "Price": 0.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101008200000": {
     "Product Link": "https://www.migros.ch/en/product/101008200000",
@@ -4701,7 +5288,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "760525600022": {
     "Product Link": "https://www.migros.ch/en/product/760525600022",
@@ -4709,7 +5297,8 @@
     "Price": 17.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104431000000": {
     "Product Link": "https://www.migros.ch/en/product/104431000000",
@@ -4717,7 +5306,8 @@
     "Price": 1.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "233021293502": {
     "Product Link": "https://www.migros.ch/en/product/233021293502",
@@ -4725,7 +5315,8 @@
     "Price": 4.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "251406311000": {
     "Product Link": "https://www.migros.ch/en/product/251406311000",
@@ -4733,7 +5324,8 @@
     "Price": 2.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513206900000": {
     "Product Link": "https://www.migros.ch/en/product/513206900000",
@@ -4741,7 +5333,8 @@
     "Price": 0.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "102040100000": {
     "Product Link": "https://www.migros.ch/en/product/102040100000",
@@ -4749,7 +5342,8 @@
     "Price": 1.3,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "701158400000": {
     "Product Link": "https://www.migros.ch/en/product/701158400000",
@@ -4757,7 +5351,8 @@
     "Price": 7.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "701158300001": {
     "Product Link": "https://www.migros.ch/en/product/701158300001",
@@ -4765,7 +5360,8 @@
     "Price": 9.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "701158300002": {
     "Product Link": "https://www.migros.ch/en/product/701158300002",
@@ -4773,7 +5369,8 @@
     "Price": 9.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513393800000": {
     "Product Link": "https://www.migros.ch/en/product/513393800000",
@@ -4781,7 +5378,8 @@
     "Price": 1.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "204558900000": {
     "Product Link": "https://www.migros.ch/en/product/204558900000",
@@ -4789,7 +5387,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520359200000": {
     "Product Link": "https://www.migros.ch/en/product/520359200000",
@@ -4797,7 +5396,8 @@
     "Price": 1.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513393900000": {
     "Product Link": "https://www.migros.ch/en/product/513393900000",
@@ -4805,7 +5405,8 @@
     "Price": 1.0,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513206600000": {
     "Product Link": "https://www.migros.ch/en/product/513206600000",
@@ -4813,7 +5414,8 @@
     "Price": 0.7,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "2023-05-29"
+    "Discontinued": "2023-05-29",
+    "Include": "Yes"
   },
   "100200900000": {
     "Product Link": "https://www.migros.ch/en/product/100200900000",
@@ -4821,7 +5423,8 @@
     "Price": 1.25,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104251000000": {
     "Product Link": "https://www.migros.ch/en/product/104251000000",
@@ -4829,7 +5432,8 @@
     "Price": 15.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109031300000": {
     "Product Link": "https://www.migros.ch/en/product/109031300000",
@@ -4837,7 +5441,8 @@
     "Price": 0.25,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "107117500000": {
     "Product Link": "https://www.migros.ch/en/product/107117500000",
@@ -4845,7 +5450,8 @@
     "Price": 3.5,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101136400000": {
     "Product Link": "https://www.migros.ch/en/product/101136400000",
@@ -4853,7 +5459,8 @@
     "Price": 0.85,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109033800000": {
     "Product Link": "https://www.migros.ch/en/product/109033800000",
@@ -4861,7 +5468,8 @@
     "Price": 4.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101303000000": {
     "Product Link": "https://www.migros.ch/en/product/101303000000",
@@ -4869,7 +5477,8 @@
     "Price": 6.6,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512425800000": {
     "Product Link": "https://www.migros.ch/en/product/512425800000",
@@ -4877,7 +5486,8 @@
     "Price": 8.3,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "No"
   },
   "120252300000": {
     "Product Link": "https://www.migros.ch/en/product/120252300000",
@@ -4885,7 +5495,8 @@
     "Price": 0.95,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "505033500000": {
     "Product Link": "https://www.migros.ch/en/product/505033500000",
@@ -4893,7 +5504,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "166000100000": {
     "Product Link": "https://www.migros.ch/en/product/166000100000",
@@ -4901,7 +5513,8 @@
     "Price": 12.15,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106002600000": {
     "Product Link": "https://www.migros.ch/en/product/106002600000",
@@ -4909,7 +5522,8 @@
     "Price": 0.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106628200000": {
     "Product Link": "https://www.migros.ch/en/product/106628200000",
@@ -4917,7 +5531,8 @@
     "Price": 2.2,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101121400000": {
     "Product Link": "https://www.migros.ch/en/product/101121400000",
@@ -4925,7 +5540,8 @@
     "Price": 0.85,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512086200000": {
     "Product Link": "https://www.migros.ch/en/product/512086200000",
@@ -4933,7 +5549,8 @@
     "Price": 0.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109033500000": {
     "Product Link": "https://www.migros.ch/en/product/109033500000",
@@ -4941,7 +5558,8 @@
     "Price": 0.75,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106002700000": {
     "Product Link": "https://www.migros.ch/en/product/106002700000",
@@ -4949,7 +5567,8 @@
     "Price": 0.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "103531900000": {
     "Product Link": "https://www.migros.ch/en/product/103531900000",
@@ -4957,7 +5576,8 @@
     "Price": 1.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "511012400000": {
     "Product Link": "https://www.migros.ch/en/product/511012400000",
@@ -4965,7 +5585,8 @@
     "Price": 0.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "520387600000": {
     "Product Link": "https://www.migros.ch/en/product/520387600000",
@@ -4973,7 +5594,8 @@
     "Price": 6.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "157212500000": {
     "Product Link": "https://www.migros.ch/en/product/157212500000",
@@ -4981,7 +5603,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101008100000": {
     "Product Link": "https://www.migros.ch/en/product/101008100000",
@@ -4989,7 +5612,8 @@
     "Price": 1.0,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109034000000": {
     "Product Link": "https://www.migros.ch/en/product/109034000000",
@@ -4997,7 +5621,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "513660400000": {
     "Product Link": "https://www.migros.ch/en/product/513660400000",
@@ -5005,7 +5630,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "511013000000": {
     "Product Link": "https://www.migros.ch/en/product/511013000000",
@@ -5013,7 +5639,8 @@
     "Price": 1.4,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "720878400000": {
     "Product Link": "https://www.migros.ch/en/product/720878400000",
@@ -5021,7 +5648,8 @@
     "Price": 2.9,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "101053100000": {
     "Product Link": "https://www.migros.ch/en/product/101053100000",
@@ -5029,7 +5657,8 @@
     "Price": 1.8,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "109034400000": {
     "Product Link": "https://www.migros.ch/en/product/109034400000",
@@ -5037,7 +5666,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106002800000": {
     "Product Link": "https://www.migros.ch/en/product/106002800000",
@@ -5045,7 +5675,8 @@
     "Price": 0.7,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "157212600000": {
     "Product Link": "https://www.migros.ch/en/product/157212600000",
@@ -5053,7 +5684,8 @@
     "Price": 1.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "512424200000": {
     "Product Link": "https://www.migros.ch/en/product/512424200000",
@@ -5061,7 +5693,8 @@
     "Price": 17.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "703204100000": {
     "Product Link": "https://www.migros.ch/en/product/703204100000",
@@ -5069,7 +5702,8 @@
     "Price": 4.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "106002500000": {
     "Product Link": "https://www.migros.ch/en/product/106002500000",
@@ -5077,7 +5711,8 @@
     "Price": 0.9,
     "Category": "grocery",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "505041600000": {
     "Product Link": "https://www.migros.ch/en/product/505041600000",
@@ -5085,7 +5720,8 @@
     "Price": 1.8,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706524900000": {
     "Product Link": "https://www.migros.ch/en/product/706524900000",
@@ -5093,7 +5729,8 @@
     "Price": 3.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "706603800000": {
     "Product Link": "https://www.migros.ch/en/product/706603800000",
@@ -5101,7 +5738,8 @@
     "Price": 1.5,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700159000001": {
     "Product Link": "https://www.migros.ch/en/product/700159000001",
@@ -5109,7 +5747,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-10",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500004": {
     "Product Link": "https://www.migros.ch/en/product/700170500004",
@@ -5117,7 +5756,8 @@
     "Price": 1.95,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500007": {
     "Product Link": "https://www.migros.ch/en/product/700170500007",
@@ -5125,7 +5765,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500009": {
     "Product Link": "https://www.migros.ch/en/product/700170500009",
@@ -5133,7 +5774,8 @@
     "Price": 45.95,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500005": {
     "Product Link": "https://www.migros.ch/en/product/700170500005",
@@ -5141,7 +5783,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "212524000000": {
     "Product Link": "https://www.migros.ch/en/product/212524000000",
@@ -5149,7 +5792,8 @@
     "Price": 3.15,
     "Category": "grocery",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "702050700000": {
     "Product Link": "https://www.migros.ch/en/product/702050700000",
@@ -5157,7 +5801,8 @@
     "Price": 3.2,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500002": {
     "Product Link": "https://www.migros.ch/en/product/700170500002",
@@ -5165,7 +5810,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500006": {
     "Product Link": "https://www.migros.ch/en/product/700170500006",
@@ -5173,7 +5819,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500001": {
     "Product Link": "https://www.migros.ch/en/product/700170500001",
@@ -5181,7 +5828,8 @@
     "Price": 2.95,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500008": {
     "Product Link": "https://www.migros.ch/en/product/700170500008",
@@ -5189,7 +5837,8 @@
     "Price": 3.95,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "196500501500": {
     "Product Link": "https://www.migros.ch/en/product/196500501500",
@@ -5197,7 +5846,8 @@
     "Price": 4.25,
     "Category": "grocery",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "700170500003": {
     "Product Link": "https://www.migros.ch/en/product/700170500003",
@@ -5205,7 +5855,8 @@
     "Price": 3.5,
     "Category": "other",
     "Introduced": "2023-05-18",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   },
   "104410100000": {
     "Product Link": "https://www.migros.ch/en/product/104410100000",
@@ -5213,6 +5864,7 @@
     "Price": 1.6,
     "Category": "grocery",
     "Introduced": "2023-05-29",
-    "Discontinued": "NA"
+    "Discontinued": "NA",
+    "Include": "Yes"
   }
 }
