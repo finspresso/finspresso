@@ -91,6 +91,12 @@ If you want to collect the latest product prices as well as update the MySQL tab
 ./update_all.sh mbudget
 ```
 
+or via make command:
+
+```sh
+make update_mbudget
+```
+
 ## Make .php files accessible to local XAMPP server
 
 In order for th local XAMPP server to be able to respond to the request sent out by e.g. [mbudget_tracker.html](browser/html/mbudget_tracker.html), you need to create a softlink to all the files in the `browser/html` and `browser/php_files` folder in the XAMPP base folder (`/opt/lampp/htdocs/`):
