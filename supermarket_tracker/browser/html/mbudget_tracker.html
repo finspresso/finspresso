@@ -52,12 +52,24 @@
                     </select>
                 </form>
             </td>
+            <br>
         </tr>
+
         <tr>
             <td> Product URL </td>
             <td>
-                <a href="https://www.w3schools.com/" id="product1_url">Visit W3Schools.com!</a>
+                <a href="" id="product1_url">-</a>
             </td>
+        </tr>
+        <tr>
+            <td> Average: </td>
+            <td>
+                <select name="average-dropdown" id="average-dropdown" onchange="loadAverageData()">
+                    <option value="average_overall">Average overall</option>
+                    <option value="average_grocery">Average grocery</option>
+                    <option value="average_other">Average other</option>
+            </td>
+            <br>
         </tr>
     </table>
     <br>
@@ -118,6 +130,24 @@
                 method: "GET",
                 success: function (data) {
                     loadedData = data;
+                    //console.log(loadedData);
+                    //updateGraph(category);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+
+        };
+
+        var loadAverageData = function () {
+            let dropdownAverage = document.getElementById("average-dropdown");
+            let averageCurrent = dropdownAverage.options[dropdownAverage.selectedIndex].text;
+            $.ajax({
+                url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + averageCurrent + "`",
+                method: "GET",
+                success: function (data) {
+                    loadedData = data;
                     console.log(loadedData);
                     //updateGraph(category);
                 },
@@ -127,6 +157,7 @@
             });
 
         };
+
         var updateProductURL = function () {
             let dropdownProduct = document.getElementById("product1-dropdown");
             const productCurrent = dropdownProduct.options[dropdownProduct.selectedIndex].value;
