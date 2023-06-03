@@ -122,16 +122,15 @@
 
         var loadProductData = function () {
             let dropdownProduct = document.getElementById("product1-dropdown");
-            let productCurrent = dropdownProduct.options[dropdownProduct.selectedIndex].value;
-            let productID = productDict[productCurrent]["Article"];
+            let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+            let productID = productDict[productName]["Article"];
             updateProductURL();
             $.ajax({
                 url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + productID + "`",
                 method: "GET",
                 success: function (data) {
                     loadedData = data;
-                    //console.log(loadedData);
-                    //updateGraph(category);
+                    updateGraph();
                 },
                 error: function (data) {
                     console.log(data);
@@ -142,14 +141,14 @@
 
         var loadAverageData = function () {
             let dropdownAverage = document.getElementById("average-dropdown");
-            let averageCurrent = dropdownAverage.options[dropdownAverage.selectedIndex].text;
+            let averageName = dropdownAverage.options[dropdownAverage.selectedIndex].text;
             $.ajax({
-                url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + averageCurrent + "`",
+                url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + averageName + "`",
                 method: "GET",
                 success: function (data) {
-                    loadedData = data;
-                    console.log(loadedData);
-                    //updateGraph(category);
+                    loadedAverageData = data;
+                    //console.log(loadedData);
+                    updateGraph();
                 },
                 error: function (data) {
                     console.log(data);
@@ -166,7 +165,64 @@
             product_url_element.text = productDict[productCurrent]["Product Link"];
         };
 
+        function updateGraph() {
+            let dropdownProduct = document.getElementById("product1-dropdown");
+            let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+            let productID = productDict[productName]["Article"];
+            var dates = [];
+            var values = [];
+            for (var i in loadedData) {
+                var current_date = new Date(loadedData[i]["Date"]);
+                dates.push(loadedData[i]["Date"]);
+                values.push(loadedData[i][productID]);
+            }
+            let dropdownAverage = document.getElementById("average-dropdown");
+            let averageName = dropdownAverage.options[dropdownAverage.selectedIndex].text;
+            var datesAverage = [];
+            var valuesAverage = [];
+            for (var i in loadedAverageData) {
+                valuesAverage.push(loadedAverageData[i][averageName]);
+            }
+            var chartdata = {
+                labels: dates,
+                datasets: [
+                    {
+                        label: productName,
+                        data: values,
+                    },
+                    {
+                        label: averageName,
+                        data: valuesAverage,
+                    },
+                ],
+            };
+            chart.config.data = chartdata;
+            chart.update();
+
+        }
+        var loadedData = [];
+        var loadedAverageData = [];
+        const labels = [1, 2];
+        let dataInit = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "NA",
+                    data: [],
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    tension: 0.1,
+                },
+            ],
+        };
+        const configInit = {
+            type: "line",
+            data: dataInit,
+        };
+        var ctx = document.getElementById("chartCompare").getContext("2d");
+        var chart = new Chart(ctx, configInit);
         loadProducts();
+        loadAverageData();
     </script>
 </body>
 
