@@ -188,10 +188,12 @@
                 datasets: [
                     {
                         label: productName,
+                        borderColor: colorCodeMBudget,
                         data: values,
                     },
                     {
                         label: averageName,
+                        borderColor: "rgb(105, 145, 246)",
                         data: valuesAverage,
                     },
                 ],
@@ -203,6 +205,7 @@
         var loadedData = [];
         var loadedAverageData = [];
         const labels = [1, 2];
+        var colorCodeMBudget = "rgb(0, 122, 43)";
         let dataInit = {
             labels: labels,
             datasets: [
@@ -210,7 +213,7 @@
                     label: "NA",
                     data: [],
                     fill: false,
-                    borderColor: "rgb(75, 192, 192)",
+                    borderColor: colorCodeMBudget,
                     tension: 0.1,
                 },
             ],
