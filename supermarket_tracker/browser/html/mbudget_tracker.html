@@ -95,7 +95,10 @@
                     for (var i in data) {
                         productDict[data[i]["Product Name"]] = data[i];
                         product_list.push(data[i]["Product Name"]);
-
+                        if (data[i]["Include"] === "Yes") {
+                            productDict[data[i]["Product Name"]] = data[i];
+                            product_list.push(data[i]["Product Name"]);
+                        }
                     }
                     product_list = product_list.sort();
                     for (var j = 1; j <= max_graphs; j++) {
