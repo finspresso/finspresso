@@ -8,6 +8,7 @@ import re
 import time
 
 
+from collections import Counter
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -346,6 +347,29 @@ class SuperMarketTracker:
                                 )
                                 exit(1)
                     dict_reference.update(new_articles_dict)
+                non_unique_name_dict = self.get_non_unique_names(dict_reference)
+                n_non_unique = len(non_unique_name_dict)
+                logger.info("Found %s non-unique article names", n_non_unique)
+                counter = 0
+                for non_unique_name, articles in non_unique_name_dict.items():
+                    counter += 1
+                    logger.info("%s/%s", counter, n_non_unique)
+                    logger.info(
+                        f"The articles {articles} have all the product name {non_unique_name}"
+                    )
+                    for article_non_unique in articles:
+                        product_link = dict_reference[article_non_unique][
+                            "Product Link"
+                        ]
+                        input_string = (
+                            f"Please provide new product name for {product_link}\n"
+                        )
+
+                        input_name = input(input_string)
+                        dict_reference[article_non_unique][
+                            "Product Name"
+                        ] = input_name  # Table water with 4% orange juice (6 × 1.5 l)
+
             if len(dict_reference) > 0:
                 with reference_json.open(mode="w") as outfile:
                     json.dump(dict_reference, outfile, indent=4, ensure_ascii=False)
@@ -355,6 +379,20 @@ class SuperMarketTracker:
                 "Reference file %s does not exist. Please provide this file",
                 reference_json,
             )
+
+    def get_non_unique_names(self, dict_reference):
+        product_names = [
+            product_dict["Product Name"] for product_dict in dict_reference.values()
+        ]
+        non_unique_names = [k for k, v in Counter(product_names).most_common() if v > 1]
+        non_unique_name_dict = dict()
+        for name in non_unique_names:
+            non_unique_name_dict[name] = tuple(
+                article
+                for article, product_dict in dict_reference.items()
+                if product_dict["Product Name"] == name
+            )
+        return non_unique_name_dict
 
     def update_metadata_table(self, credentials):
         self.db_interface = DBInterface(credentials=credentials, print_all_tables=False)
