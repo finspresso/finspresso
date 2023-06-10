@@ -92,9 +92,8 @@
                 success: function (data) {
                     //console.log(data);
                     let product_list = [];
+                    let counter = 0;
                     for (var i in data) {
-                        productDict[data[i]["Product Name"]] = data[i];
-                        product_list.push(data[i]["Product Name"]);
                         if (data[i]["Include"] === "Yes") {
                             productDict[data[i]["Product Name"]] = data[i];
                             product_list.push(data[i]["Product Name"]);

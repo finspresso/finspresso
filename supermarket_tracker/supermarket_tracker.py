@@ -63,6 +63,16 @@ class SuperMarketTracker:
         with file_path.open("r") as file:
             self.config = json.load(file)
 
+    def get_product_category(self, product_id):
+        product_category = self.config["default_category"]
+        for category, mask in self.config["categories"].items():
+            if mask != "default":
+                match = re.search(mask, product_id)
+                if match:
+                    product_category = category
+                    break
+        return product_category
+
     def collect_products(self, headless=True):
         options = Options()
         if headless:
@@ -131,6 +141,7 @@ class SuperMarketTracker:
                     match = re.search("([0-9]+)", product_link)
                     if match:
                         product_id = match.group(1)
+                        product_category = self.get_product_category(product_id)
                     else:
                         logger.error(
                             "Cannot extract product ID from link %s", product_link
@@ -162,11 +173,12 @@ class SuperMarketTracker:
                             "Could not extract price for product %s", product_name
                         )
                     logger.info(
-                        "%s, %s, %s, %s",
+                        "%s, %s, %s, %s, %s",
                         product_id,
                         product_link,
                         product_name,
                         product_price,
+                        product_category,
                     )
                     if self.take_screenshots:
                         self.get_element_screenshot(
@@ -176,6 +188,7 @@ class SuperMarketTracker:
                         product_link,
                         product_name,
                         product_price,
+                        product_category,
                     ]
                 except NoSuchElementException:
                     logger.warning(
@@ -184,7 +197,7 @@ class SuperMarketTracker:
         finally:
             driver.quit()
         df = pd.DataFrame.from_dict(product_dict, orient="index")
-        df.columns = ["Product Link", "Product Name", "Price"]
+        df.columns = ["Product Link", "Product Name", "Price", "Category"]
         df.to_excel(download_folder / Path("mbudget_prices.xlsx"))
         delta = datetime.datetime.now() - now
         logger.info("Total download took %ss", round(delta.total_seconds(), 1))
