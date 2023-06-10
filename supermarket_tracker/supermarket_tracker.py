@@ -63,42 +63,10 @@ class SuperMarketTracker:
         with file_path.open("r") as file:
             self.config = json.load(file)
 
-    def download_prices(self):
+    def collect_products(self, headless=True):
         options = Options()
-        options.add_argument("--headless")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        self.download_dict = dict()
-        now = datetime.datetime.now()
-        download_folder = (
-            Path(self.data_folder)
-            / Path(self.name)
-            / Path(now.strftime("%Y%m%d_%H%M%S"))
-        )
-        download_folder.mkdir()
-        for product in self.config["products"]:
-            product_id = product["id"]
-            self.download_dict[product_id] = {"price": "NA", "name": product["name"]}
-            url = self.config["base_url"] + "/" + product["id"]
-            driver = webdriver.Chrome(
-                service=Service(ChromeDriverManager().install()), options=options
-            )
-            logger.info("Downloading product %s", product["name"])
-            driver.get(url)
-            try:
-                element = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.CLASS_NAME, "actual"))
-                )
-                self.download_dict[product_id]["price"] = element.text
-                if self.take_screenshots:
-                    driver.save_screenshot(download_folder / Path(product_id + ".png"))
-            finally:
-                driver.quit()
-        logger.info(self.download_dict)
-
-    def collect_products(self):
-        options = Options()
-        options.add_argument("--headless")
+        if headless:
+            options.add_argument("--headless")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         self.download_dict = dict()
@@ -168,11 +136,20 @@ class SuperMarketTracker:
                             "Cannot extract product ID from link %s", product_link
                         )
                         continue
-                    subelement = element.find_element(
+
+                    description_element = element.find_element(
                         By.XPATH,
-                        ".//div/div[1]/a[2]/span[1]/lsp-product-name/div/span[2]/span",
+                        ".//div/div[1]/a[2]/span[1]/lsp-product-name/div/span[2]",
                     )
-                    product_name = subelement.text
+
+                    span_elements = description_element.find_elements(
+                        By.TAG_NAME, "span"
+                    )
+                    if len(span_elements):
+                        product_name = " - ".join(
+                            [span_element.text for span_element in span_elements]
+                        )
+
                     subelement = element.find_element(
                         By.XPATH,
                         ".//div/div[1]/a[2]/span[1]/lsp-product-price/span/span/span",
@@ -513,11 +490,6 @@ def main():
         action="store_true",
     )
     parser.add_argument(
-        "--download_prices",
-        help="If selected, dowloads latest prices for all products corresponding to config name",
-        action="store_true",
-    )
-    parser.add_argument(
         "--collect_products",
         help="If selected, creates list with all products corresponding to config name",
         action="store_true",
@@ -558,6 +530,11 @@ def main():
               in the MYSQL database",
         action="store_true",
     )
+    parser.add_argument(
+        "--no_headless",
+        help="If selected, opens up browser window",
+        action="store_true",
+    )
 
     credentials_sql = dict()
     args = parser.parse_args()
@@ -568,10 +545,9 @@ def main():
     tracker_handler = SuperMarketTracker(
         args.name, args.data_folder, take_screenshots=args.take_screenshots
     )
-    if args.download_prices:
-        tracker_handler.download_prices()
+    headless = not args.no_headless
     if args.collect_products:
-        tracker_handler.collect_products()
+        tracker_handler.collect_products(headless=headless)
     if args.create_reference_json:
         tracker_handler.create_reference_json()
     if args.update_reference_json != "":

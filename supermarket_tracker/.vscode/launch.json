@@ -2,20 +2,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Update MBugdet prices",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceRoot}/supermarket_tracker.py",
-      "cwd": "${workspaceRoot}",
-      "args": [
-        "--name",
-        "mbudget",
-        "--download_prices",
-        "--take_screenshots"
-      ],
-      "console": "integratedTerminal"
-    },
-    {
       "name": "Collect MBugdet products",
       "type": "python",
       "request": "launch",
@@ -26,6 +12,21 @@
         "mbudget",
         "--collect_products",
         "--take_screenshots"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Collect MBugdet products (no-headless)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/supermarket_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--name",
+        "mbudget",
+        "--collect_products",
+        "--take_screenshots",
+        "--no_headless"
       ],
       "console": "integratedTerminal"
     },
