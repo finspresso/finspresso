@@ -1,0 +1,9 @@
+{
+  "collection_url": "https://www.migros.ch/en/brand/m-budget",
+  "base_url": "https://www.migros.ch/de/product",
+  "default_category": "grocery",
+  "categories": {
+    "grocery": "default",
+    "other": "^5.*|^7.*|^109.*"
+  }
+}
