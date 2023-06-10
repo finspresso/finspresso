@@ -31,7 +31,7 @@ Please note, if you use the option `--take_screenshots` the whole process takes 
 
 ### Creation of reference .json
 
-If you have run the collection of the prices as described above the first time, you need create a file called `references/mbudget/product_sorted.xlsx`. This file is based on the .xlsx file that resides in `data/mbudget/<Date and time of run>/mbudget_prices.xlsx`. Then you need to open this file and create three more columns called `Category`, `Introduced`, `Discontinued`. The category is either `grocery` for edible items or `other`. Please insert, the day of the collection into the column `Introduced` in the format `YYYY-MM-DD`. In the column `Discontinued` the value `NA` can be filled in.
+If you have run the collection of the prices as described above the first time, you need to create a file called `references/mbudget/product_sorted.xlsx`. This file is based on the .xlsx file that resides in `data/mbudget/<Date and time of run>/mbudget_prices.xlsx`. Then you need to open this file and create two more columns called `Introduced`, `Discontinued`. Please insert, the day of the collection into the column `Introduced` in the format `YYYY-MM-DD`. In the column `Discontinued` the value `NA` can be filled in.
 
 ![product_sorted](images/product_sorted.png)
 
