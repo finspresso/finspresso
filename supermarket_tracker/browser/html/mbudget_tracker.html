@@ -11,7 +11,9 @@
 <head>
     <title> MBudget tracker</title>
     <style type="text/css">
-        h1 { font-family: Arial; }
+          body {
+            font-family: Arial;
+            }
         .chart-container {
             width: 640px;
             height: auto;
@@ -38,6 +40,29 @@
         .dropdown_white {background:white;}
         .dropdown_gray {background:gray;}
 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 4px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #007A2B; /* MBudget green*/
+            color: white;
+        }
+
+        select {
+            width: 200px;
+        }
+
     </style>
 
 </head>
@@ -45,25 +70,39 @@
 <body>
     <h1>MBudget tracker</h1>
     <table>
+        <thead>
+            <tr>
+              <th></th>
+              <th>Selection</th>
+              <th>Name</th>
+              <th>URL</th>
+            </tr>
+        <tbody>
         <tr>
             <td> Product </td>
+            <td>
+                <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateGraph()" checked=true>
+            </td>
             <td>
                 <form action="">
                     <select id="product1-dropdown" name="Product1" onchange="loadProductData()" checked=true>
                     </select>
                 </form>
             </td>
+            <td>
+                <a href="" id="product1_url">-</a>
+            </td>
             <br>
         </tr>
 
         <tr>
-            <td> Product URL </td>
-            <td>
-                <a href="" id="product1_url">-</a>
-            </td>
+
         </tr>
         <tr>
             <td> Average: </td>
+            <td>
+                <input type="checkbox" id="average_checkbox" name="average_checkbox" onchange="updateGraph()" checked=true>
+            </td>
             <td>
                 <select name="average-dropdown" id="average-dropdown" onchange="loadAverageData()">
                     <option value="average_overall">Average overall</option>
@@ -72,6 +111,7 @@
             </td>
             <br>
         </tr>
+        </tbody>
     </table>
     <br>
     <div class="chartBox">
@@ -85,6 +125,24 @@
             baseURL = "https://www.finspresso.com";
         }
         baseURL = baseURL + "/supermarket_tracker/php_files";
+
+        function updateCheckboxes() {
+            for (var i=1; i <= max_graphs; i++) {
+                let dropdown = document.getElementById("product" + i + "-dropdown");
+                if (document.getElementById("enable" + i + "_checkbox").checked) {
+                    dropdown.disabled = false;
+                } else {
+                    dropdown.disabled = true;
+                }
+            }
+            let dropdown = document.getElementById("average-dropdown");
+            if (document.getElementById("average_checkbox").checked) {
+                dropdown.disabled = false;
+            } else {
+                dropdown.disabled = true;
+            }
+        }
+
         var loadProducts = function () {
             $.ajax({
                 url: baseURL + "/get_mbudget_products.php",
@@ -162,44 +220,58 @@
 
         var updateProductURL = function () {
             let dropdownProduct = document.getElementById("product1-dropdown");
-            const productCurrent = dropdownProduct.options[dropdownProduct.selectedIndex].value;
-            let product_url_element = document.getElementById("product1_url");
-            product_url_element.href = productDict[productCurrent]["Product Link"];
-            product_url_element.text = productDict[productCurrent]["Product Link"];
+            if (dropdownProduct) {
+                const productCurrent = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+                let product_url_element = document.getElementById("product1_url");
+                product_url_element.href = productDict[productCurrent]["Product Link"];
+                product_url_element.text = productDict[productCurrent]["Product Link"];
+            }
         };
 
         function updateGraph() {
-            let dropdownProduct = document.getElementById("product1-dropdown");
-            let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
-            let productID = productDict[productName]["Article"];
+            updateCheckboxes();
+            datasets = [];
             var dates = [];
-            var values = [];
-            for (var i in loadedData) {
-                var current_date = new Date(loadedData[i]["Date"]);
-                dates.push(loadedData[i]["Date"]);
-                values.push(loadedData[i][productID]);
+            let dropdownProduct = document.getElementById("product1-dropdown");
+            if (dropdownProduct.options[dropdownProduct.selectedIndex] && document.getElementById("enable1_checkbox").checked) {
+                var values = [];
+                let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+                let productID = productDict[productName]["Article"];
+                for (var i in loadedData) {
+                    var current_date = new Date(loadedData[i]["Date"]);
+                    values.push(loadedData[i][productID]);
+                }
+                let data_element = {
+                        label: productName,
+                        borderColor: colorCodeMBudget,
+                        data: values,
+                        };
+                datasets.push(data_element);
+
             }
             let dropdownAverage = document.getElementById("average-dropdown");
             let averageName = dropdownAverage.options[dropdownAverage.selectedIndex].text;
             var datesAverage = [];
             var valuesAverage = [];
-            for (var i in loadedAverageData) {
-                valuesAverage.push(loadedAverageData[i][averageName]);
+            if (document.getElementById("average_checkbox").checked) {
+                for (var i in loadedAverageData) {
+                    valuesAverage.push(loadedAverageData[i][averageName]);
+                }
+                let data_element = {
+                            label: averageName,
+                            borderColor: "rgb(105, 145, 246)",
+                            data: valuesAverage,
+                        }
+                datasets.push(data_element);
+            }
+            if (datasets.length > 0) {
+                for (var i in loadedAverageData) {
+                dates.push(loadedAverageData[i]["Date"]);
+            }
             }
             var chartdata = {
                 labels: dates,
-                datasets: [
-                    {
-                        label: productName,
-                        borderColor: colorCodeMBudget,
-                        data: values,
-                    },
-                    {
-                        label: averageName,
-                        borderColor: "rgb(105, 145, 246)",
-                        data: valuesAverage,
-                    },
-                ],
+                datasets: datasets,
             };
             chart.config.data = chartdata;
             chart.update();
