@@ -233,21 +233,23 @@
             datasets = [];
             var dates = [];
             let dropdownProduct = document.getElementById("product1-dropdown");
-            if (dropdownProduct.options[dropdownProduct.selectedIndex] && document.getElementById("enable1_checkbox").checked) {
-                var values = [];
-                let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
-                let productID = productDict[productName]["Article"];
-                for (var i in loadedData) {
-                    var current_date = new Date(loadedData[i]["Date"]);
-                    values.push(loadedData[i][productID]);
+            if (dropdownProduct.options[dropdownProduct.selectedIndex]) {
+                if (document.getElementById("enable1_checkbox").checked) {
+                    var values = [];
+                    let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+                    let productID = productDict[productName]["Article"];
+                    for (var i in loadedData) {
+                        var current_date = new Date(loadedData[i]["Date"]);
+                        values.push(loadedData[i][productID]);
+                    }
+                    console.log(values);
+                    let data_element = {
+                            label: productName,
+                            borderColor: colorCodeMBudget,
+                            data: values,
+                            };
+                    datasets.push(data_element);
                 }
-                let data_element = {
-                        label: productName,
-                        borderColor: colorCodeMBudget,
-                        data: values,
-                        };
-                datasets.push(data_element);
-
             }
             let dropdownAverage = document.getElementById("average-dropdown");
             let averageName = dropdownAverage.options[dropdownAverage.selectedIndex].text;
