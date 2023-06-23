@@ -463,14 +463,28 @@ class SuperMarketTracker:
                     index=[datetime.datetime.strptime(reference["Date"], "%Y-%m-%d")],
                 )
                 grocery_cols = [
-                    x for x in df.columns if dict_reference[x]["Category"] == "grocery"
+                    x
+                    for x in df.columns
+                    if dict_reference[x]["Category"] == "grocery"
+                    and dict_reference[x]["Category"] != "NA"
                 ]
                 other_cols = [
-                    x for x in df.columns if dict_reference[x]["Category"] == "other"
+                    x
+                    for x in df.columns
+                    if dict_reference[x]["Category"] == "other"
+                    and dict_reference[x]["Category"] != "NA"
                 ]
-                df.insert(0, "Average other", df.loc[:, other_cols].mean(axis=1))
-                df.insert(0, "Average grocery", df.loc[:, grocery_cols].mean(axis=1))
-                df.insert(0, "Average overall", df.mean(axis=1))
+                df.insert(
+                    0,
+                    "Average other",
+                    df.loc[:, other_cols].mean(axis=1, numeric_only=True),
+                )
+                df.insert(
+                    0,
+                    "Average grocery",
+                    df.loc[:, grocery_cols].mean(axis=1, numeric_only=True),
+                )
+                df.insert(0, "Average overall", df.mean(axis=1, numeric_only=True))
                 df.index.name = "Date"
                 df.reset_index(inplace=True)
                 type_dict = self.db_interface.infer_sqlalchemy_datatypes(df)
