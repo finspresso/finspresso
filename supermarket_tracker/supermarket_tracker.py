@@ -3,6 +3,7 @@ import json
 import logging
 import coloredlogs
 import datetime
+import numpy as np
 import pandas as pd
 import re
 import time
@@ -210,7 +211,8 @@ class SuperMarketTracker:
         if reference_json.exists():
             logger.info("Reference file %s exists", reference_json)
             with reference_json.open(mode="r") as file_input:
-                dict_reference = json.load(file_input)
+                reference = json.load(file_input)
+                dict_reference = reference["Products"]
                 reference_set = set(dict_reference.keys())
                 active_set = set(
                     [
@@ -335,14 +337,24 @@ class SuperMarketTracker:
                 product_sorted_xlsx,
             )
 
-    def update_reference_json(self, discontinued_articles, df_new_articles):
+    def update_reference_json(
+        self, df, discontinued_articles, new_articles, update_date
+    ):
+        df_new_articles = df.loc[new_articles, :]
         reference_json = self.reference_folder / Path("product_reference.json")
         if reference_json.exists():
             logger.info("Reference file %s exists", reference_json)
             dict_reference = dict()
             with reference_json.open(mode="r") as file:
-                dict_reference = json.load(file)
+                reference = json.load(file)
+                reference["Date"] = update_date
+                dict_reference = reference["Products"]
                 today = datetime.datetime.now().strftime("%Y-%m-%d")
+                for article in dict_reference.keys():
+                    if article in df.index:
+                        dict_reference[article]["Price"] = df.loc[article, "Price"]
+                    else:
+                        dict_reference[article]["Price"] = "NA"
                 for article in discontinued_articles:
                     dict_reference[article]["Discontinued"] = today
                 if not df_new_articles.empty:
@@ -380,10 +392,11 @@ class SuperMarketTracker:
                 dict_reference = SuperMarketTracker.check_for_duplicate_names(
                     dict_reference
                 )
+                reference["Products"] = dict_reference
 
             if len(dict_reference) > 0:
                 with reference_json.open(mode="w") as outfile:
-                    json.dump(dict_reference, outfile, indent=4, ensure_ascii=False)
+                    json.dump(reference, outfile, indent=4, ensure_ascii=False)
                     logger.info("Updated %s", reference_json)
         else:
             logger.error(
@@ -400,7 +413,8 @@ class SuperMarketTracker:
             logger.info("Reference file %s exists", reference_json)
             dict_reference = dict()
             with reference_json.open(mode="r") as file:
-                dict_reference = json.load(file)
+                reference = json.load(file)
+                dict_reference = reference["Products"]
                 df = pd.DataFrame.from_dict(dict_reference, orient="index")
                 df.drop(labels="Price", axis=1, inplace=True)
                 df.index.name = "Article"
@@ -438,12 +452,16 @@ class SuperMarketTracker:
             logger.info("Reference file %s exists", reference_json)
             dict_reference = dict()
             with reference_json.open(mode="r") as file:
-                dict_reference = json.load(file)
+                reference = json.load(file)
+                dict_reference = reference["Products"]
                 price_dict = {
                     article: article_dict["Price"]
                     for article, article_dict in dict_reference.items()
                 }
-                df = pd.DataFrame(price_dict, index=[datetime.datetime.now()])
+                df = pd.DataFrame(
+                    price_dict,
+                    index=[datetime.datetime.strptime(reference["Date"], "%Y-%m-%d")],
+                )
                 grocery_cols = [
                     x for x in df.columns if dict_reference[x]["Category"] == "grocery"
                 ]
@@ -476,6 +494,7 @@ class SuperMarketTracker:
                     credentials["db_name"],
                 )
                 self.db_interface.connect()
+                df.replace("NA", np.nan, inplace=True)
                 df.to_sql(
                     table_name,
                     con=self.db_interface.conn,
@@ -581,13 +600,24 @@ def main():
                 exit(1)
         if collection_file.exists():
             logger.info("File %s exists", collection_file)
+            match = re.search("(20[0-9]{2})([0-9]{2})([0-9]{2})", str(collection_file))
+            if match is None:
+                logger.error(
+                    "Could not extract date of format YYYYMMDD from name %s",
+                    collection_file,
+                )
+                exit(1)
+            update_date = match.group(1) + "-" + match.group(2) + "-" + match.group(3)
             df = pd.read_excel(collection_file, index_col=0)
             df.index = df.index.map(lambda x: str(x))
             discontinued_articles, new_articles = tracker_handler.compare_to_reference(
                 df
             )
             tracker_handler.update_reference_json(
-                discontinued_articles, df.loc[new_articles, :]
+                df,
+                discontinued_articles,
+                new_articles,
+                update_date,
             )
         else:
             logger.error("File %s does not exist", collection_file)
