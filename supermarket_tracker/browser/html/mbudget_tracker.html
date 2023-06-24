@@ -13,6 +13,7 @@
     <style type="text/css">
           body {
             font-family: Arial;
+            color: black;
             }
         .chart-container {
             width: 640px;
@@ -37,8 +38,10 @@
             width: 200px;
             /* Width of the outside container */
         }
-        .dropdown_white {background:white;}
-        .dropdown_gray {background:gray;}
+        .dropdown_white {background:white;
+                        color:black;}
+        .dropdown_gray {background:gray;
+                        color:black;}
 
         table {
             border-collapse: collapse;
@@ -68,7 +71,6 @@
 </head>
 
 <body>
-    <h1>MBudget tracker</h1>
     <table>
         <thead>
             <tr>
@@ -242,7 +244,6 @@
                         var current_date = new Date(loadedData[i]["Date"]);
                         values.push(loadedData[i][productID]);
                     }
-                    console.log(values);
                     let data_element = {
                             label: productName,
                             borderColor: colorCodeMBudget,
