@@ -90,7 +90,7 @@
         <tr>
             <td> Product (grocery) </td>
             <td>
-                <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateGraph()" checked=true>
+                <input type="checkbox" id="enable1_grocery_checkbox" name="enable1_grocery_checkbox" onchange="updateGraph()" checked=true>
             </td>
             <td>
                 <form action="">
@@ -106,7 +106,7 @@
         <tr>
             <td> Product (other) </td>
             <td>
-                <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox" onchange="updateGraph()" checked=true>
+                <input type="checkbox" id="enable1_other_checkbox" name="enable1_other_checkbox" onchange="updateGraph()" checked=true>
             </td>
             <td>
                 <form action="">
@@ -154,7 +154,15 @@
         function updateCheckboxes() {
             for (var i=1; i <= max_graphs; i++) {
                 let dropdown = document.getElementById("product" + i + "-dropdown-grocery");
-                if (document.getElementById("enable" + i + "_checkbox").checked) {
+                if (document.getElementById("enable" + i + "_grocery_checkbox").checked) {
+                    dropdown.disabled = false;
+                } else {
+                    dropdown.disabled = true;
+                }
+            }
+            for (var i=1; i <= max_graphs; i++) {
+                let dropdown = document.getElementById("product" + i + "-dropdown-other");
+                if (document.getElementById("enable" + i + "_other_checkbox").checked) {
                     dropdown.disabled = false;
                 } else {
                     dropdown.disabled = true;
@@ -286,7 +294,7 @@
             var dates = [];
             let dropdownProduct = document.getElementById("product1-dropdown-grocery");
             if (dropdownProduct.options[dropdownProduct.selectedIndex]) {
-                if (document.getElementById("enable1_checkbox").checked) {
+                if (document.getElementById("enable1_grocery_checkbox").checked) {
                     var values = [];
                     let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
                     let productID = productDict[productName]["Article"];
@@ -304,7 +312,7 @@
             }
             dropdownProduct = document.getElementById("product1-dropdown-other");
             if (dropdownProduct.options[dropdownProduct.selectedIndex]) {
-                if (document.getElementById("enable2_checkbox").checked) {
+                if (document.getElementById("enable1_other_checkbox").checked) {
                     var values = [];
                     let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
                     let productID = productDict[productName]["Article"];
