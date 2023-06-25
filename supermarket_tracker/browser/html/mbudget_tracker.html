@@ -11,7 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(function(){
-         $("#product1-dropdown").select2();
+         $("#product1-dropdown-grocery").select2();
+        });
+        $(function(){
+         $("#product1-dropdown-other").select2();
         });
         $(function(){
          $("#average-dropdown").select2();
@@ -46,10 +49,6 @@
             width: 200px;
             /* Width of the outside container */
         }
-        .dropdown_white {background:white;
-                        color:black;}
-        .dropdown_gray {background:gray;
-                        color:black;}
 
         table {
             border-collapse: collapse;
@@ -89,18 +88,34 @@
             </tr>
         <tbody>
         <tr>
-            <td> Product </td>
+            <td> Product (grocery) </td>
             <td>
                 <input type="checkbox" id="enable1_checkbox" name="enable1_checkbox" onchange="updateGraph()" checked=true>
             </td>
             <td>
                 <form action="">
-                    <select id="product1-dropdown" name="Product1" onchange="loadProductData()" checked=true>
+                    <select id="product1-dropdown-grocery" name="Product1-grocery" onchange="loadProductDataGrocery()" checked=true>
                     </select>
                 </form>
             </td>
             <td>
-                <a href="" id="product1_url">-</a>
+                <a href="" id="product1_grocery_url">-</a>
+            </td>
+            <br>
+        </tr>
+        <tr>
+            <td> Product (other) </td>
+            <td>
+                <input type="checkbox" id="enable2_checkbox" name="enable2_checkbox" onchange="updateGraph()" checked=true>
+            </td>
+            <td>
+                <form action="">
+                    <select id="product1-dropdown-other" name="Product1-other" onchange="loadProductDataOther()" checked=true>
+                    </select>
+                </form>
+            </td>
+            <td>
+                <a href="" id="product1_other_url">-</a>
             </td>
             <br>
         </tr>
@@ -138,7 +153,7 @@
 
         function updateCheckboxes() {
             for (var i=1; i <= max_graphs; i++) {
-                let dropdown = document.getElementById("product" + i + "-dropdown");
+                let dropdown = document.getElementById("product" + i + "-dropdown-grocery");
                 if (document.getElementById("enable" + i + "_checkbox").checked) {
                     dropdown.disabled = false;
                 } else {
@@ -158,32 +173,42 @@
                 url: baseURL + "/get_mbudget_products.php",
                 method: "GET",
                 success: function (data) {
-                    //console.log(data);
-                    let product_list = [];
+                    let product_list_grocery = [];
+                    let product_list_other = [];
                     let counter = 0;
                     for (var i in data) {
                         if (data[i]["Include"] === "Yes") {
                             productDict[data[i]["Product Name"]] = data[i];
-                            product_list.push(data[i]["Product Name"]);
+                            if (data[i]["Category"] === "grocery") {
+                                product_list_grocery.push(data[i]["Product Name"]);
+                            } else {
+                                product_list_other.push(data[i]["Product Name"]);
+                            }
                         }
                     }
-                    product_list = product_list.sort();
+                    product_list_grocery = product_list_grocery.sort();
                     for (var j = 1; j <= max_graphs; j++) {
-                        let dropdown = document.getElementById("product" + j +"-dropdown");
-                        for (product of product_list) {
+                        let dropdown = document.getElementById("product" + j +"-dropdown-grocery");
+                        for (product of product_list_grocery) {
                             let option = document.createElement("option");
                             option.text = product;
                             option.value = product;
-                            if (productDict[product]["Category"] === "other") {
-                                option.className = "dropdown_gray";
-                            } else {
-                                option.className = "dropdown_white";
-                            }
                             dropdown.add(option);
                         }
                         dropdown.selectedIndex = 0;
                     }
-                    loadProductData();
+                    for (var j = 1; j <= max_graphs; j++) {
+                        let dropdown = document.getElementById("product" + j +"-dropdown-other");
+                        for (product of product_list_other) {
+                            let option = document.createElement("option");
+                            option.text = product;
+                            option.value = product;
+                            dropdown.add(option);
+                        }
+                        dropdown.selectedIndex = 0;
+                    }
+                    loadProductDataGrocery();
+                    loadProductDataOther();
                 },
                 error: function (data) {
                     console.log(data);
@@ -191,16 +216,34 @@
             });
         };
 
-        var loadProductData = function () {
-            let dropdownProduct = document.getElementById("product1-dropdown");
+        var loadProductDataGrocery = function () {
+            let dropdownProduct = document.getElementById("product1-dropdown-grocery");
             let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
             let productID = productDict[productName]["Article"];
-            updateProductURL();
+            updateProductURL("grocery");
             $.ajax({
                 url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + productID + "`",
                 method: "GET",
                 success: function (data) {
-                    loadedData = data;
+                    loadedDataGrocery = data;
+                    updateGraph();
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+            });
+
+        };
+        var loadProductDataOther = function () {
+            let dropdownProduct = document.getElementById("product1-dropdown-other");
+            let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+            let productID = productDict[productName]["Article"];
+            updateProductURL("other");
+            $.ajax({
+                url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + productID + "`",
+                method: "GET",
+                success: function (data) {
+                    loadedDataOther = data;
                     updateGraph();
                 },
                 error: function (data) {
@@ -218,7 +261,6 @@
                 method: "GET",
                 success: function (data) {
                     loadedAverageData = data;
-                    //console.log(loadedData);
                     updateGraph();
                 },
                 error: function (data) {
@@ -228,11 +270,11 @@
 
         };
 
-        var updateProductURL = function () {
-            let dropdownProduct = document.getElementById("product1-dropdown");
+        var updateProductURL = function (category) {
+            let dropdownProduct = document.getElementById("product1-dropdown-" + category);
             if (dropdownProduct) {
                 const productCurrent = dropdownProduct.options[dropdownProduct.selectedIndex].value;
-                let product_url_element = document.getElementById("product1_url");
+                let product_url_element = document.getElementById("product1_" + category +"_url");
                 product_url_element.href = productDict[productCurrent]["Product Link"];
                 product_url_element.text = productDict[productCurrent]["Product Link"];
             }
@@ -242,19 +284,37 @@
             updateCheckboxes();
             datasets = [];
             var dates = [];
-            let dropdownProduct = document.getElementById("product1-dropdown");
+            let dropdownProduct = document.getElementById("product1-dropdown-grocery");
             if (dropdownProduct.options[dropdownProduct.selectedIndex]) {
                 if (document.getElementById("enable1_checkbox").checked) {
                     var values = [];
                     let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
                     let productID = productDict[productName]["Article"];
-                    for (var i in loadedData) {
-                        var current_date = new Date(loadedData[i]["Date"]);
-                        values.push(loadedData[i][productID]);
+                    for (var i in loadedDataGrocery) {
+                        var current_date = new Date(loadedDataGrocery[i]["Date"]);
+                        values.push(loadedDataGrocery[i][productID]);
                     }
                     let data_element = {
                             label: productName,
                             borderColor: colorCodeMBudget,
+                            data: values,
+                            };
+                    datasets.push(data_element);
+                }
+            }
+            dropdownProduct = document.getElementById("product1-dropdown-other");
+            if (dropdownProduct.options[dropdownProduct.selectedIndex]) {
+                if (document.getElementById("enable2_checkbox").checked) {
+                    var values = [];
+                    let productName = dropdownProduct.options[dropdownProduct.selectedIndex].value;
+                    let productID = productDict[productName]["Article"];
+                    for (var i in loadedDataOther) {
+                        var current_date = new Date(loadedDataOther[i]["Date"]);
+                        values.push(loadedDataOther[i][productID]);
+                    }
+                    let data_element = {
+                            label: productName,
+                            borderColor: colorCodeMigros,
                             data: values,
                             };
                     datasets.push(data_element);
@@ -285,13 +345,16 @@
                 datasets: datasets,
             };
             chart.config.data = chartdata;
+            console.log("chart.update()");
             chart.update();
 
         }
-        var loadedData = [];
+        var loadedDataGrocery = [];
+        var loadedDataOther = [];
         var loadedAverageData = [];
         const labels = [1, 2];
         var colorCodeMBudget = "rgb(0, 122, 43)";
+        var colorCodeMigros = "rgb(255, 102, 0)";
         let dataInit = {
             labels: labels,
             datasets: [
