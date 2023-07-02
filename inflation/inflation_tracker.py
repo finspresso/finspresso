@@ -10,12 +10,23 @@ import coloredlogs
 import datetime
 import sys
 import re
+import requests
+import time
 from pathlib import Path
 from pyqtgraph.Qt import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
 from db_interface.db_interface import DBInterface
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 # Global settings
 warnings.simplefilter(action="ignore", category=FutureWarning)
@@ -393,6 +404,59 @@ class LIK(QtGui.QTabWidget):
             dtype=type_dict,
             index_label="id",
         )
+
+    @staticmethod
+    def download_data_bfs(headless=False):
+        options = Options()
+        url = "https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.html"
+        if headless:
+            options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()), options=options
+        )
+        driver.get(url)
+        try:
+            logger.info("Searching for data download button")
+            element = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        "/html/body/div[2]/div[3]/div/div[2]/div/div[1]/div[7]/div/div[1]/div/div/div/ul/li[1]/div/div/a",
+                    )
+                )
+            )
+            logger.info("Clicking on data download button")
+            driver.execute_script("arguments[0].click();", element)
+
+            time.sleep(3)
+        except (TimeoutException, NoSuchElementException):
+            logger.warning("Download button found. aborting.")
+            exit(1)
+        try:
+            logger.info("Searching for file download button")
+            element = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        "/html/body/div[2]/div[3]/div/div[2]/div/div[1]/div[3]/div/div[1]/div/p/a",
+                    )
+                )
+            )
+            download_url = element.get_attribute("href")
+            if download_url is None:
+                logger.error("No proper download URL found")
+                exit(1)
+            logger.info("Downloading xlsx file from url %s", download_url)
+            download_response = requests.get(download_url, auth=("user", "pass"))
+            if download_response.status_code == 200:
+                with open("test.xlsx", "wb") as fd:
+                    fd.write(download_response.content)
+
+        except (TimeoutException, NoSuchElementException):
+            logger.warning("File Download button found. aborting.")
+            exit(1)
 
 
 class LIKEvolution(QtGui.QWidget):
@@ -1263,6 +1327,11 @@ def main():
         help="If selected, stores sub-cateories names in subcategory.csv",
         action="store_true",
     )
+    parser.add_argument(
+        "--download_data_bfs",
+        help="Downloads the latest data from the BFS website",
+        action="store_true",
+    )
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
@@ -1276,7 +1345,9 @@ def main():
     }
     if args.credentials_file != "":
         credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
-
+    if args.download_data_bfs:
+        LIK.download_data_bfs()
+        exit(0)
     main_window = MainWindow(
         source_lik_weights=args.lik_weights,
         source_lik_evolution=args.lik_evolution,
@@ -1288,6 +1359,7 @@ def main():
         and not args.upload_to_sql
         and not args.create_lik_color_sql_table
         and not args.store_names_json
+        and not args.download_data_bfs
     ):
         main_window.show()
         sys.exit(app.exec_())

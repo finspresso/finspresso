@@ -11,7 +11,18 @@
         "--lik_weights",
         "data/lik_weights.xlsx",
         "--lik_evolution",
-        "data/lik_evolution.xlsx"
+        "/home/fabian/Downloads/su-d-05.02.67.xlsx"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Download latest LIK data",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--download_data_bfs"
       ],
       "console": "integratedTerminal"
     },
@@ -77,7 +88,7 @@
       "cwd": "${workspaceRoot}",
       "args": [
         "--lik_evolution",
-        "data/lik_evolution.xlsx",
+        "/home/fabian/Downloads/su-d-05.02.67.xlsx",
         "--credentials_file",
         "credentials/sql_credentials.json",
         "--upload_to_sql"
