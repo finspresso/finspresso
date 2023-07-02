@@ -145,6 +145,7 @@ def upload_data_to_sql_table(df, credentials, table_name, language="English"):
         table_name,
         credentials["db_name"],
     )
+    db_interface.connect()
     df.to_sql(
         table_name,
         con=db_interface.conn,
@@ -153,6 +154,7 @@ def upload_data_to_sql_table(df, credentials, table_name, language="English"):
         dtype=type_dict,
         index_label="id",
     )
+    db_interface.close()
 
 
 class MplCanvas(FigureCanvasQTAgg):

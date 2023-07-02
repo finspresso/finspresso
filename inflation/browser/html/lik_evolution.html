@@ -108,11 +108,26 @@
         <canvas id="chartSubCategoryLIK"></canvas>
     </div>
     <script>
+        var updateMaxYear = function () {
+            let currentYear = new Date().getFullYear();
+            let min_input = document.getElementById("min_input");
+            min_input.max= currentYear;
+            let max_input = document.getElementById("max_input");
+            max_input.max= currentYear;
+            max_input.value = currentYear;
+            let min_slider = document.getElementById("min_slider");
+            min_slider.max = currentYear;
+            let max_slider = document.getElementById("max_slider");
+            max_slider.max = currentYear;
+            max_slider.value = currentYear;
+        };
         var baseURL = "";
         if (location.hostname === "www.finspresso.com") {
             baseURL = "https://www.finspresso.com";
         }
         baseURL = baseURL + "/inflation/php_files";
+        updateMaxYear();
+
         var loadData = function (category) {
             $.ajax({
                 url: baseURL + "/get_lik_evolution_data.php?q=" + "`" + category + "`",
@@ -126,6 +141,7 @@
                 },
             });
         };
+
         var loadSubData = function () {
             let dropdown = document.getElementById("category-dropdown");
             const categoryCurrent = dropdown.options[dropdown.selectedIndex].value;
