@@ -406,7 +406,23 @@ class LIK(QtGui.QTabWidget):
         )
 
     @staticmethod
+    def get_latest_collection_folder(download_folder):
+        latest_collection_date = "NA"
+        date_folder_list = []
+        for path in download_folder.iterdir():
+            if path.is_dir():
+                match = re.search("[0-9]{8}", path.name)
+                if match:
+                    date_folder_list.append(path.name)
+        if len(date_folder_list) > 0:
+            date_folder_list.sort()
+            latest_collection_date = date_folder_list[-1]
+        return latest_collection_date
+
+    @staticmethod
     def download_data_bfs(headless=False):
+        download_folder = Path("downloads") / Path("lik")
+        latest_collection_date = LIK.get_latest_collection_folder(download_folder)
         options = Options()
         url = "https://www.bfs.admin.ch/bfs/de/home/statistiken/preise/landesindex-konsumentenpreise/detailresultate.html"
         if headless:
@@ -418,6 +434,37 @@ class LIK(QtGui.QTabWidget):
         )
         driver.get(url)
         try:
+            logger.info("Checking for covered period")
+            element = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        "//p[contains(text(), 'Zeitraum:')]",
+                    )
+                )
+            )
+            if element:
+                match = re.search(
+                    "1.12.1982-([0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4})", element.text
+                )
+                if match is None:
+                    logger.error("Cannot extract covered period")
+                    exit(1)
+                end_date = datetime.datetime.strptime(match.group(1), "%d.%m.%Y")
+                logger.info("End date of covered period is %s", match.group(1))
+                if latest_collection_date != "NA":
+                    last_date = datetime.datetime.strptime(
+                        latest_collection_date, "%Y%m%d"
+                    )
+                    if end_date <= last_date:
+                        logger.warning(
+                            "End date at %s not newer than existing db end date %s\nAborting.",
+                            end_date,
+                            last_date,
+                        )
+                        exit(0)
+                    else:
+                        logger.info("Newer data detected. Continuing with download")
             logger.info("Searching for data download button")
             element = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located(
@@ -451,8 +498,12 @@ class LIK(QtGui.QTabWidget):
             logger.info("Downloading xlsx file from url %s", download_url)
             download_response = requests.get(download_url, auth=("user", "pass"))
             if download_response.status_code == 200:
-                with open("test.xlsx", "wb") as fd:
+                download_folder_new = download_folder / end_date.strftime("%Y%m%d")
+                download_folder_new.mkdir()
+                download_file = download_folder_new / "lik.xlsx"
+                with download_file.open("wb") as fd:
                     fd.write(download_response.content)
+                    logger.info("Stored new LIK data in %s", download_file)
 
         except (TimeoutException, NoSuchElementException):
             logger.warning("File Download button found. aborting.")
