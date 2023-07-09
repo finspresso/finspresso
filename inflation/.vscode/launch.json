@@ -16,6 +16,20 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Run inflation tracker (latest)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--lik_weights",
+        "data/lik_weights.xlsx",
+        "--lik_evolution",
+        "latest"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Download latest LIK data",
       "type": "python",
       "request": "launch",
@@ -89,6 +103,21 @@
       "args": [
         "--lik_evolution",
         "/home/fabian/Downloads/su-d-05.02.67.xlsx",
+        "--credentials_file",
+        "credentials/sql_credentials.json",
+        "--upload_to_sql"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Upload data to SQL table (latest)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--lik_evolution",
+        "latest",
         "--credentials_file",
         "credentials/sql_credentials.json",
         "--upload_to_sql"

@@ -420,7 +420,7 @@ class LIK(QtGui.QTabWidget):
         return latest_collection_date
 
     @staticmethod
-    def download_data_bfs(headless=False):
+    def download_data_bfs(headless=True):
         download_folder = Path("downloads") / Path("lik")
         latest_collection_date = LIK.get_latest_collection_folder(download_folder)
         options = Options()
@@ -621,8 +621,15 @@ class LIKEvolution(QtGui.QWidget):
         self.category_cb_evolution.setCurrentText(self.translated_index[current_index])
 
     def get_lik_evolution_data(self, source_file):
-        logger.info("Loading %s...", source_file)
-        df_raw = pd.read_excel(source_file)
+        source_file_loading = source_file
+        if source_file == "latest":
+            download_folder = Path("downloads") / Path("lik")
+            latest_collection_date = LIK.get_latest_collection_folder(download_folder)
+            source_file_loading = (
+                download_folder / Path(latest_collection_date) / Path("lik.xlsx")
+            )
+        logger.info("Loading %s...", source_file_loading)
+        df_raw = pd.read_excel(source_file_loading)
         category_names = [name.lstrip() for name in df_raw.iloc[422:435, 5]]
         end_of_month_list = [
             get_last_date_of_month(x.year, x.month) for x in df_raw.iloc[2, 14:]
@@ -651,7 +658,7 @@ class LIKEvolution(QtGui.QWidget):
             dtype="float64",
         )
         self.translated_index = self.df_lik_evolution.index.values.tolist()
-        logger.info("%s loaded", source_file)
+        logger.info("%s loaded", source_file_loading)
 
     def create_category_combobox_evolution(self, cb_list, current_text):
         self.category_cb_evolution = QtGui.QComboBox()
