@@ -1,5 +1,5 @@
 {
-  "Date": "2023-07-08",
+  "Date": "2023-07-16",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -346,7 +346,7 @@
     "130757000000": {
       "Product Link": "https://www.migros.ch/en/product/130757000000",
       "Product Name": "Orange juice",
-      "Price": "NA",
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-17",
@@ -553,10 +553,10 @@
     "231001781000": {
       "Product Link": "https://www.migros.ch/en/product/231001781000",
       "Product Name": "Assorted cold cuts - 3 varieties",
-      "Price": 1.25,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-07-16",
       "Include": "Yes"
     },
     "204141300000": {
@@ -706,7 +706,7 @@
     "101912200000": {
       "Product Link": "https://www.migros.ch/en/product/101912200000",
       "Product Name": "Chips - Bell pepper",
-      "Price": 3.5,
+      "Price": 3.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -715,10 +715,10 @@
     "274502603400": {
       "Product Link": "https://www.migros.ch/en/product/274502603400",
       "Product Name": "Carrots",
-      "Price": 3.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-07-16",
       "Include": "Yes"
     },
     "153225000000": {
@@ -994,7 +994,7 @@
     "101912300000": {
       "Product Link": "https://www.migros.ch/en/product/101912300000",
       "Product Name": "Chips - Natural",
-      "Price": 3.5,
+      "Price": 3.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1156,7 +1156,7 @@
     "232100152703": {
       "Product Link": "https://www.migros.ch/en/product/232100152703",
       "Product Name": "Country Hunter - 3 pieces",
-      "Price": 4.95,
+      "Price": 4.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1201,7 +1201,7 @@
     "251366100000": {
       "Product Link": "https://www.migros.ch/en/product/251366100000",
       "Product Name": "Salmon trout - Smoked, sliced",
-      "Price": 4.5,
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1507,7 +1507,7 @@
     "210127724000": {
       "Product Link": "https://www.migros.ch/en/product/210127724000",
       "Product Name": "Swiss hard cheese 240-360g",
-      "Price": "NA",
+      "Price": 1.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -3703,7 +3703,7 @@
     "166002800000": {
       "Product Link": "https://www.migros.ch/en/product/166002800000",
       "Product Name": "Chicken wings",
-      "Price": 10.35,
+      "Price": 10.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3937,7 +3937,7 @@
     "231525483202": {
       "Product Link": "https://www.migros.ch/en/product/231525483202",
       "Product Name": "Turkey Ham",
-      "Price": 2.9,
+      "Price": 2.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4198,10 +4198,10 @@
     "210452400000": {
       "Product Link": "https://www.migros.ch/en/product/210452400000",
       "Product Name": "M-Budget Rahmkäse",
-      "Price": 1.35,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-07-16",
       "Include": "Yes"
     },
     "160392600000": {
@@ -4747,7 +4747,7 @@
     "231525583602": {
       "Product Link": "https://www.migros.ch/en/product/231525583602",
       "Product Name": "Chicken breast",
-      "Price": "NA",
+      "Price": 3.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -5791,7 +5791,7 @@
     "271708308500": {
       "Product Link": "https://www.migros.ch/en/product/271708308500",
       "Product Name": "Peppers - 2-3 colors",
-      "Price": "NA",
+      "Price": 1.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": 3.45,
+      "Price": 2.95,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5890,9 +5890,27 @@
     "110129800000": {
       "Product Link": "https://www.migros.ch/en/product/110129800000",
       "Product Name": "Pâtisserie fourée à la framboise - Framboise",
-      "Price": 6.4,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-07-08",
+      "Discontinued": "2023-07-16",
+      "Include": "Yes"
+    },
+    "130650100000": {
+      "Product Link": "https://www.migros.ch/en/product/130650100000",
+      "Product Name": "M-Budget Dressing French, 1 Liter",
+      "Price": 2.95,
+      "Category": "grocery",
+      "Introduced": "2023-07-16",
+      "Discontinued": "NA",
+      "Include": "Yes"
+    },
+    "274461603300": {
+      "Product Link": "https://www.migros.ch/en/product/274461603300",
+      "Product Name": "Potatoes - Waxy",
+      "Price": 4.6,
+      "Category": "grocery",
+      "Introduced": "2023-07-16",
       "Discontinued": "NA",
       "Include": "Yes"
     }
