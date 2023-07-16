@@ -13,3 +13,16 @@ python supermarket_tracker.py --name $name --credentials_file credentials/sql_cr
 
 echo "Updating MySQL prices table"
 python supermarket_tracker.py --name $name --credentials_file credentials/sql_credentials.json --update_prices_table
+
+git status | grep "product_reference.json"
+if [ $? == "0" ]
+then
+    file_name="references/$name/product_reference.json"
+    echo "Committing $file_name"
+    pre-commit run --files $file_name
+    git add $file_name
+    git commit -m "Updating product_reference for $name"
+
+    echo "Pushing changes"
+    git push
+fi
