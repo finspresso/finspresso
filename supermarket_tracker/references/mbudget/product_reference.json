@@ -1,5 +1,5 @@
 {
-  "Date": "2023-07-16",
+  "Date": "2023-07-23",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -328,7 +328,7 @@
     "103302600000": {
       "Product Link": "https://www.migros.ch/en/product/103302600000",
       "Product Name": "Olive oil - Virgin",
-      "Price": 7.0,
+      "Price": 6.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -715,7 +715,7 @@
     "274502603400": {
       "Product Link": "https://www.migros.ch/en/product/274502603400",
       "Product Name": "Carrots",
-      "Price": "NA",
+      "Price": 3.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -1084,7 +1084,7 @@
     "264400702500": {
       "Product Link": "https://www.migros.ch/en/product/264400702500",
       "Product Name": "Kiwi - Green",
-      "Price": "NA",
+      "Price": 3.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -1093,7 +1093,7 @@
     "212307526000": {
       "Product Link": "https://www.migros.ch/en/product/212307526000",
       "Product Name": "Italian extra hard cheese, 3/4 fat, from raw milk",
-      "Price": 1.7,
+      "Price": 1.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1624,7 +1624,7 @@
     "204125100000": {
       "Product Link": "https://www.migros.ch/en/product/204125100000",
       "Product Name": "Coffee cream - UHT homogenised - 15% Milk fat",
-      "Price": 1.8,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1885,7 +1885,7 @@
     "104485400000": {
       "Product Link": "https://www.migros.ch/en/product/104485400000",
       "Product Name": "Rösti",
-      "Price": 3.3,
+      "Price": 3.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3613,7 +3613,7 @@
     "113253600000": {
       "Product Link": "https://www.migros.ch/en/product/113253600000",
       "Product Name": "M-Budget Zitronencake",
-      "Price": 2.4,
+      "Price": 2.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3622,7 +3622,7 @@
     "113253700000": {
       "Product Link": "https://www.migros.ch/en/product/113253700000",
       "Product Name": "M-Budget Marmorcake",
-      "Price": 2.4,
+      "Price": 2.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3730,7 +3730,7 @@
     "104431200000": {
       "Product Link": "https://www.migros.ch/en/product/104431200000",
       "Product Name": "Risotto",
-      "Price": 2.0,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4198,7 +4198,7 @@
     "210452400000": {
       "Product Link": "https://www.migros.ch/en/product/210452400000",
       "Product Name": "M-Budget Rahmkäse",
-      "Price": "NA",
+      "Price": 1.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -4927,7 +4927,7 @@
     "104230200000": {
       "Product Link": "https://www.migros.ch/en/product/104230200000",
       "Product Name": "Baked cereal mixture - Natural",
-      "Price": 3.25,
+      "Price": 3.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5188,7 +5188,7 @@
     "204014000000": {
       "Product Link": "https://www.migros.ch/en/product/204014000000",
       "Product Name": "M-Budget Vollmilch IP-SUISSE",
-      "Price": 2.25,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5215,10 +5215,10 @@
     "107173000000": {
       "Product Link": "https://www.migros.ch/en/product/107173000000",
       "Product Name": "Drink powder with soluble coffee - Cappuccino",
-      "Price": 1.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-07-23",
       "Include": "Yes"
     },
     "100103000000": {
@@ -5287,7 +5287,7 @@
     "274432203400": {
       "Product Link": "https://www.migros.ch/en/product/274432203400",
       "Product Name": "Potatoes - Floury Cooking",
-      "Price": 4.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -5845,7 +5845,7 @@
     "277108110400": {
       "Product Link": "https://www.migros.ch/en/product/277108110400",
       "Product Name": "onions - 2kg bag",
-      "Price": 3.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5908,10 +5908,10 @@
     "274461603300": {
       "Product Link": "https://www.migros.ch/en/product/274461603300",
       "Product Name": "Potatoes - Waxy",
-      "Price": 4.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-07-16",
-      "Discontinued": "NA",
+      "Discontinued": "2023-07-23",
       "Include": "Yes"
     }
   }
