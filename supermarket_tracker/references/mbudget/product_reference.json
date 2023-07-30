@@ -1,5 +1,5 @@
 {
-  "Date": "2023-07-23",
+  "Date": "2023-07-30",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -58,7 +58,7 @@
     "196520001500": {
       "Product Link": "https://www.migros.ch/en/product/196520001500",
       "Product Name": "Imported eggs XS - Free-range",
-      "Price": 4.95,
+      "Price": 5.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -103,7 +103,7 @@
     "231500281202": {
       "Product Link": "https://www.migros.ch/en/product/231500281202",
       "Product Name": "Front ham",
-      "Price": 2.95,
+      "Price": 2.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1084,7 +1084,7 @@
     "264400702500": {
       "Product Link": "https://www.migros.ch/en/product/264400702500",
       "Product Name": "Kiwi - Green",
-      "Price": 3.4,
+      "Price": 3.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -1354,7 +1354,7 @@
     "210629924000": {
       "Product Link": "https://www.migros.ch/en/product/210629924000",
       "Product Name": "Swiss hard cheese 223-333g",
-      "Price": 1.25,
+      "Price": 1.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2074,7 +2074,7 @@
     "130927800000": {
       "Product Link": "https://www.migros.ch/en/product/130927800000",
       "Product Name": "Vegetable Meatballs",
-      "Price": 3.6,
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2596,7 +2596,7 @@
     "502018000000": {
       "Product Link": "https://www.migros.ch/en/product/502018000000",
       "Product Name": "M-Budget Bad- und Kalkreiniger",
-      "Price": 1.1,
+      "Price": 1.05,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3568,7 +3568,7 @@
     "165055000000": {
       "Product Link": "https://www.migros.ch/en/product/165055000000",
       "Product Name": "Prawns Cocktail - Cooked & peeled",
-      "Price": 5.65,
+      "Price": 5.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5287,7 +5287,7 @@
     "274432203400": {
       "Product Link": "https://www.migros.ch/en/product/274432203400",
       "Product Name": "Potatoes - Floury Cooking",
-      "Price": "NA",
+      "Price": 6.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
