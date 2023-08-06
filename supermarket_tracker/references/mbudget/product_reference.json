@@ -1,5 +1,5 @@
 {
-  "Date": "2023-07-30",
+  "Date": "2023-08-06",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -742,7 +742,7 @@
     "122006900000": {
       "Product Link": "https://www.migros.ch/en/product/122006900000",
       "Product Name": "Multivitamin fruit juice - With 12% fruit juices and 9 vitamins",
-      "Price": 2.5,
+      "Price": 2.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1084,7 +1084,7 @@
     "264400702500": {
       "Product Link": "https://www.migros.ch/en/product/264400702500",
       "Product Name": "Kiwi - Green",
-      "Price": 3.2,
+      "Price": 3.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -2065,7 +2065,7 @@
     "160178500000": {
       "Product Link": "https://www.migros.ch/en/product/160178500000",
       "Product Name": "Ham croissant",
-      "Price": 4.8,
+      "Price": 4.75,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": 2.95,
+      "Price": 2.8,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
