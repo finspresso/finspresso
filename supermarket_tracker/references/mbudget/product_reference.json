@@ -1,5 +1,5 @@
 {
-  "Date": "2023-08-06",
+  "Date": "2023-08-13",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -49,10 +49,10 @@
     "243100410000": {
       "Product Link": "https://www.migros.ch/en/product/243100410000",
       "Product Name": "Chicken escalope",
-      "Price": 1.45,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "196520001500": {
@@ -139,10 +139,10 @@
     "233520691202": {
       "Product Link": "https://www.migros.ch/en/product/233520691202",
       "Product Name": "Bacon",
-      "Price": 1.85,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "200604600000": {
@@ -220,10 +220,10 @@
     "231040080102": {
       "Product Link": "https://www.migros.ch/en/product/231040080102",
       "Product Name": "Meatloaf sliced",
-      "Price": 1.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "103530600000": {
@@ -292,10 +292,10 @@
     "220221085000": {
       "Product Link": "https://www.migros.ch/en/product/220221085000",
       "Product Name": "Minced meat - Mixed",
-      "Price": 1.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "104601200000": {
@@ -436,10 +436,10 @@
     "243150600000": {
       "Product Link": "https://www.migros.ch/en/product/243150600000",
       "Product Name": "Diced chicken",
-      "Price": 1.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "513206800000": {
@@ -499,7 +499,7 @@
     "111901300000": {
       "Product Link": "https://www.migros.ch/en/product/111901300000",
       "Product Name": "Light wheat bread - Part baked",
-      "Price": "NA",
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -508,10 +508,10 @@
     "220660085000": {
       "Product Link": "https://www.migros.ch/en/product/220660085000",
       "Product Name": "Pork kidney pie",
-      "Price": 2.25,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "212580100000": {
@@ -544,10 +544,10 @@
     "220220085000": {
       "Product Link": "https://www.migros.ch/en/product/220220085000",
       "Product Name": "Minced beef – 690-720g",
-      "Price": 1.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "231001781000": {
@@ -778,10 +778,10 @@
     "220224010500": {
       "Product Link": "https://www.migros.ch/en/product/220224010500",
       "Product Name": "Beef cutlets",
-      "Price": 2.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "815324424110": {
@@ -931,10 +931,10 @@
     "220660080000": {
       "Product Link": "https://www.migros.ch/en/product/220660080000",
       "Product Name": "Pork fillet – 900-1100g",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "500117000000": {
@@ -985,10 +985,10 @@
     "231040920000": {
       "Product Link": "https://www.migros.ch/en/product/231040920000",
       "Product Name": "Meatloaf whole",
-      "Price": 9.75,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "101912300000": {
@@ -1021,10 +1021,10 @@
     "220624085000": {
       "Product Link": "https://www.migros.ch/en/product/220624085000",
       "Product Name": "Pork cut-ups",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "106501600000": {
@@ -1093,10 +1093,10 @@
     "212307526000": {
       "Product Link": "https://www.migros.ch/en/product/212307526000",
       "Product Name": "Italian extra hard cheese, 3/4 fat, from raw milk",
-      "Price": 1.65,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "101902400000": {
@@ -1120,10 +1120,10 @@
     "210474228000": {
       "Product Link": "https://www.migros.ch/en/product/210474228000",
       "Product Name": "Raclette - Block",
-      "Price": 1.35,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "232358481602": {
@@ -1210,10 +1210,10 @@
     "220655085000": {
       "Product Link": "https://www.migros.ch/en/product/220655085000",
       "Product Name": "Pork chop neck",
-      "Price": 1.25,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "109031600000": {
@@ -1282,10 +1282,10 @@
     "210409924000": {
       "Product Link": "https://www.migros.ch/en/product/210409924000",
       "Product Name": "Fontal",
-      "Price": 1.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "230112060102": {
@@ -1354,19 +1354,19 @@
     "210629924000": {
       "Product Link": "https://www.migros.ch/en/product/210629924000",
       "Product Name": "Swiss hard cheese 223-333g",
-      "Price": 1.15,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "220250085000": {
       "Product Link": "https://www.migros.ch/en/product/220250085000",
       "Product Name": "Beef patties",
-      "Price": 3.4,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "160154100000": {
@@ -1507,7 +1507,7 @@
     "210127724000": {
       "Product Link": "https://www.migros.ch/en/product/210127724000",
       "Product Name": "Swiss hard cheese 240-360g",
-      "Price": 1.15,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -1984,19 +1984,19 @@
     "220281530000": {
       "Product Link": "https://www.migros.ch/en/product/220281530000",
       "Product Name": "Beef fillet",
-      "Price": 5.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "220282040000": {
       "Product Link": "https://www.migros.ch/en/product/220282040000",
       "Product Name": "Beef entrecôte",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "220281040000": {
@@ -2155,10 +2155,10 @@
     "212586024000": {
       "Product Link": "https://www.migros.ch/en/product/212586024000",
       "Product Name": "Gorgonzola",
-      "Price": 1.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "100200600000": {
@@ -2245,10 +2245,10 @@
     "220662085500": {
       "Product Link": "https://www.migros.ch/en/product/220662085500",
       "Product Name": "Pork fillet – 450-700g",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "166001400000": {
@@ -2497,10 +2497,10 @@
     "220659045000": {
       "Product Link": "https://www.migros.ch/en/product/220659045000",
       "Product Name": "Pork cordon bleu",
-      "Price": 2.1,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "109033200000": {
@@ -2578,10 +2578,10 @@
     "220634001200": {
       "Product Link": "https://www.migros.ch/en/product/220634001200",
       "Product Name": "Pork steak grill",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "520356900000": {
@@ -2722,10 +2722,10 @@
     "220658545000": {
       "Product Link": "https://www.migros.ch/en/product/220658545000",
       "Product Name": "Sliced pork - Breaded",
-      "Price": 2.1,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "704509800000": {
@@ -2848,10 +2848,10 @@
     "251406311000": {
       "Product Link": "https://www.migros.ch/en/product/251406311000",
       "Product Name": "M-Budget ASC White Tiger Crevetten roh",
-      "Price": 2.7,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "236716758000": {
@@ -2938,10 +2938,10 @@
     "220654085000": {
       "Product Link": "https://www.migros.ch/en/product/220654085000",
       "Product Name": "Pork sideburns lean",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "520250400000": {
@@ -2956,28 +2956,28 @@
     "231525584202": {
       "Product Link": "https://www.migros.ch/en/product/231525584202",
       "Product Name": "M-Budget Pouletstreifen Paprika",
-      "Price": 2.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "241000250000": {
       "Product Link": "https://www.migros.ch/en/product/241000250000",
       "Product Name": "M-Budget Poulet ganz nature",
-      "Price": 7.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "241102550000": {
       "Product Link": "https://www.migros.ch/en/product/241102550000",
       "Product Name": "M-Budget Pouletflügel gewürzt",
-      "Price": 7.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "720124000000": {
@@ -3163,10 +3163,10 @@
     "220220085092": {
       "Product Link": "https://www.migros.ch/en/product/220220085092",
       "Product Name": "Minced beef – 500g",
-      "Price": 1.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "772748500000": {
@@ -3190,10 +3190,10 @@
     "220221085100": {
       "Product Link": "https://www.migros.ch/en/product/220221085100",
       "Product Name": "M-Budget Hackfleisch gemischt",
-      "Price": 1.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "227220625000": {
@@ -3856,10 +3856,10 @@
     "233533261000": {
       "Product Link": "https://www.migros.ch/en/product/233533261000",
       "Product Name": "Rolled shoulder ham",
-      "Price": 1.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "706603800000": {
@@ -4198,7 +4198,7 @@
     "210452400000": {
       "Product Link": "https://www.migros.ch/en/product/210452400000",
       "Product Name": "M-Budget Rahmkäse",
-      "Price": 1.4,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -4378,10 +4378,10 @@
     "233527030000": {
       "Product Link": "https://www.migros.ch/en/product/233527030000",
       "Product Name": "M-Budget Kochspeck",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "130927400000": {
@@ -4432,10 +4432,10 @@
     "210630024000": {
       "Product Link": "https://www.migros.ch/en/product/210630024000",
       "Product Name": "St-Paulin",
-      "Price": 1.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "513359300000": {
@@ -4522,10 +4522,10 @@
     "212413626000": {
       "Product Link": "https://www.migros.ch/en/product/212413626000",
       "Product Name": "Dutch semi-hard cheese, fat, made from pasteurised milk",
-      "Price": 9.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "107159200000": {
@@ -4684,10 +4684,10 @@
     "106275800000": {
       "Product Link": "https://www.migros.ch/en/product/106275800000",
       "Product Name": "Breadcrumbs",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "106409500000": {
@@ -4810,7 +4810,7 @@
     "130360000000": {
       "Product Link": "https://www.migros.ch/en/product/130360000000",
       "Product Name": "Pasta salad - With ham",
-      "Price": 2.55,
+      "Price": 2.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4963,10 +4963,10 @@
     "220222085000": {
       "Product Link": "https://www.migros.ch/en/product/220222085000",
       "Product Name": "Beef ragout",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-13",
       "Include": "Yes"
     },
     "160153900000": {
@@ -5287,7 +5287,7 @@
     "274432203400": {
       "Product Link": "https://www.migros.ch/en/product/274432203400",
       "Product Name": "Potatoes - Floury Cooking",
-      "Price": 6.5,
+      "Price": 5.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -5386,7 +5386,7 @@
     "263300902300": {
       "Product Link": "https://www.migros.ch/en/product/263300902300",
       "Product Name": "Oranges - Blond",
-      "Price": 4.4,
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5912,6 +5912,33 @@
       "Category": "grocery",
       "Introduced": "2023-07-16",
       "Discontinued": "2023-07-23",
+      "Include": "Yes"
+    },
+    "100111500000": {
+      "Product Link": "https://www.migros.ch/en/product/100111500000",
+      "Product Name": "M-Budget Noir 71%",
+      "Price": 1.4,
+      "Category": "grocery",
+      "Introduced": "2023-08-13",
+      "Discontinued": "NA",
+      "Include": "Yes"
+    },
+    "815336024220": {
+      "Product Link": "https://www.migros.ch/en/product/815336024220",
+      "Product Name": "LADIES SLIP MAXI_M = 40/42,black",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2023-08-13",
+      "Discontinued": "NA",
+      "Include": "Yes"
+    },
+    "815324424210": {
+      "Product Link": "https://www.migros.ch/en/product/815324424210",
+      "Product Name": "LADIES SLIP MIDI_M = 40/42,white",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2023-08-13",
+      "Discontinued": "NA",
       "Include": "Yes"
     }
   }
