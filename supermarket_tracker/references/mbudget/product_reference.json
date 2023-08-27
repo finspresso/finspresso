@@ -1,5 +1,5 @@
 {
-  "Date": "2023-08-20",
+  "Date": "2023-08-27",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -121,7 +121,7 @@
     "120983100000": {
       "Product Link": "https://www.migros.ch/en/product/120983100000",
       "Product Name": "Special drink containing caffeine",
-      "Price": 6.5,
+      "Price": 6.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -175,7 +175,7 @@
     "120983300000": {
       "Product Link": "https://www.migros.ch/en/product/120983300000",
       "Product Name": "Special drink containing caffeine - Zero Sugar",
-      "Price": 6.5,
+      "Price": 6.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -715,7 +715,7 @@
     "274502603400": {
       "Product Link": "https://www.migros.ch/en/product/274502603400",
       "Product Name": "Carrots",
-      "Price": 3.65,
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -2308,7 +2308,7 @@
     "120983000000": {
       "Product Link": "https://www.migros.ch/en/product/120983000000",
       "Product Name": "M-BUD ENERGY POMEGR. 250",
-      "Price": 0.55,
+      "Price": 0.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2326,7 +2326,7 @@
     "120983200000": {
       "Product Link": "https://www.migros.ch/en/product/120983200000",
       "Product Name": "M-Budget Energy Drink",
-      "Price": 0.55,
+      "Price": 0.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2335,7 +2335,7 @@
     "120983400000": {
       "Product Link": "https://www.migros.ch/en/product/120983400000",
       "Product Name": "M-BUD ENERGY ZERO 25CL",
-      "Price": 0.55,
+      "Price": 0.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2659,7 +2659,7 @@
     "500426300000": {
       "Product Link": "https://www.migros.ch/en/product/500426300000",
       "Product Name": "Stain remover",
-      "Price": 5.95,
+      "Price": 4.8,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3595,10 +3595,10 @@
     "106100900000": {
       "Product Link": "https://www.migros.ch/en/product/106100900000",
       "Product Name": "M-Budget Bouillon Huhn",
-      "Price": 1.1,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-08-27",
       "Include": "Yes"
     },
     "113119600000": {
@@ -5827,7 +5827,7 @@
     "109035500000": {
       "Product Link": "https://www.migros.ch/en/product/109035500000",
       "Product Name": "Croquettes for adult dogs - Beef",
-      "Price": 9.5,
+      "Price": 9.9,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
