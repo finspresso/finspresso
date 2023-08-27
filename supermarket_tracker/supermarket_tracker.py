@@ -13,6 +13,8 @@ from collections import Counter
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -86,7 +88,9 @@ class SuperMarketTracker:
             / Path(now.strftime("%Y%m%d_%H%M%S"))
         )
         download_folder.mkdir()
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()), options=options
+        )
         self.max_window_height = driver.get_window_size()["height"]
         self.current_offset = 0
         driver.get(self.config["collection_url"])

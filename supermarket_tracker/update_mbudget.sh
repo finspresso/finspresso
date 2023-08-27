@@ -46,7 +46,7 @@ fi
 echo "Setting links to credentials correctly"
 softLinkMYSQLFinspresso
 
-echo "Enabling portforwarding to finpresso"
+echo "Enabling portforwarning to finpresso"
 portforwarding_finspresso
 
 
