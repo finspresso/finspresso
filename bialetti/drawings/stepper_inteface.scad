@@ -9,7 +9,7 @@ dial_width = 20 + tolerance ;
 dial_breadth = 10 + tolerance;
 
 interface_thickness = 4;
-interface_height = 10;
+interface_height = 12;
 
 
 
@@ -23,7 +23,6 @@ difference(){
 
 
     //shaft
-    translate([0, 0, -0.1])
     cylinder(h=2.5, r1=2.5, r2=2.5, center=false, $fn=100);
     translate([0, 0, 2.5])
     intersection() {
