@@ -1,4 +1,8 @@
 #include <SD.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 File myFile;
 
@@ -22,10 +26,15 @@ void setup()
    pinMode(chipSelectPin, OUTPUT);
 
   if (!SD.begin(chipSelectPin)) {
-    Serial.println("initialization failed!");
+    Serial.println("SD card initialization failed!");
     return;
   }
-  Serial.println("initialization done.");
+  Serial.println("SD card initialization done.");
+
+  Serial.print("Trying to init I2C LED\n");
+  lcd.init();
+  Serial.print("I2C LED init complete\n");
+  lcd.backlight();
 
 }
 
@@ -34,6 +43,9 @@ void loop()
   long VinAnalog = analogRead(analogPin);
   float tempK = beta / (log(analogReadResolution / float(VinAnalog) - 1) + beta / TReference); //TK=beta/(ln(RT/RN)+beta/TN)
   float tempC = kelvinToCentigradeClecius(tempK);
+  lcd.clear();
+  lcd.print(tempC);
+  lcd.print("C");
   writeToSD(tempC);
   Serial.print("Temp: ");
   Serial.print(tempC);
