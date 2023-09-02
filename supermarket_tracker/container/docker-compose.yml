@@ -6,13 +6,15 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=mypassword"
     restart: unless-stopped
-
+    volumes:
+      - "./mysql_test:/var/lib/mysql"
+    ports:
+      - "3308:3306"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: unless-stopped
     environment:
       PMA_HOST: test_db
-      PMA_ARBITRARY: 1
     depends_on:
       - db
     ports:
