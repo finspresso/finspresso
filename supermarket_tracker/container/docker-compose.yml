@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:latest
+    container_name: test_db
+    environment:
+      - "MYSQL_ROOT_PASSWORD=mypassword"
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: test_db
+      PMA_ARBITRARY: 1
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
