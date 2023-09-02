@@ -13,6 +13,7 @@ File myFile;
 float TReference = 298.0; // Reference temperature in Kelvin of the resistor
 float KelvinOffset = 273.0; // 0°C expressed in Kelvin
 int analogReadResolution = 1024;
+String logFileName = "templog1.txt";
 
 
 void setup()
@@ -36,6 +37,9 @@ void setup()
   Serial.print("I2C LED init complete\n");
   lcd.backlight();
 
+  logFileName = determineNewFile();
+  Serial.print("logfile:");
+  Serial.println(logFileName);
 }
 
 void loop()
@@ -59,8 +63,23 @@ float kelvinToCentigradeClecius(float tempK)
   return tempK - KelvinOffset;
 }
 
+String determineNewFile () {
+  int increment = 1;
+  String prefix = "templog";
+  String filename = prefix + increment + ".txt";
+  while (true) {
+    filename = prefix + increment + ".txt";
+    if (SD.exists(filename)) {
+      increment++;
+    } else {
+      break;
+    }
+  }
+  return filename;
+}
+
 void writeToSD(float tempC) {
-  myFile = SD.open("temp.txt", FILE_WRITE);
+  myFile = SD.open(logFileName, FILE_WRITE);
   // if the file opened okay, write to it:
   if (myFile) {
     long execTime = millis() / 1e3;
