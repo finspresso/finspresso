@@ -19,3 +19,8 @@ services:
       - db
     ports:
       - "8080:80"
+  apache:
+    image: apache-own:latest
+    restart: unless-stopped
+    ports:
+      - "8081:80"
