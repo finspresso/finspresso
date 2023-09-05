@@ -13,9 +13,13 @@
             width: 640px;
             height: auto;
         }
-
         .chartBox {
-            width: 750px;
+            width: 600px;
+         }
+        @media only screen and (max-width: 400px) {
+        .chartBox {
+            width: 350px;
+         }
         }
 
         .input_field_class {
@@ -29,9 +33,46 @@
         }
 
         .slidecontainer {
+            width: 300px;
+            /* Width of the outside container */
+        }
+        @media only screen and (max-width: 400px) {
+        .slidecontainer {
+            width: 100px;
+         }
+        }
+        .inputcontainer {
             width: 200px;
             /* Width of the outside container */
         }
+
+        @media only screen and (max-width: 400px) {
+        .inputcontainer {
+            width: 100px;
+         }
+        }
+        input[type=range] {
+            width: 100px;
+        }
+        @media only screen and (max-width: 400px) {
+            input[type=range] {
+            width: 40px;
+        }
+        input[type=number] {
+            width: 100px;
+        }
+        @media only screen and (max-width: 400px) {
+            input[type=number] {
+            width: 80px;
+        }
+        input[type=text] {
+            width: 100px;
+        }
+        @media only screen and (max-width: 400px) {
+            input[type=text] {
+            width: 80px;
+        }
+    }
     </style>
 
 </head>
@@ -48,14 +89,16 @@
         <tr>
             <td> First year </td>
             <td>
-                <div class="slidecontainer">
+                <div class="slidecontainer"></div>
                     <input type="range" min="1982" max="2022" value="2015" class="slider" id="min_slider"
                         oninput="updateTimeSpanSlider()">
                 </div>
             </td>
             <td>
-                <input type="number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
-                    oninput="updateTimeSpanManual()" class="input_field_class" />
+                <div class="inputcontainer">
+                    <input type="number" name="min_input" min="1982" max="2022" value="2015" id="min_input"
+                        oninput="updateTimeSpanManual()" class="input_field_class" />
+                </div>
             </td>
         </tr>
         <tr>
@@ -67,8 +110,10 @@
                 </div>
             </td>
             <td>
-                <input type="number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
-                    oninput="updateTimeSpanManual()" class="input_field_class" />
+                <div class="inputcontainer">
+                    <input type="number" name="max_input" min="1982" max="2022" value="2022" id="max_input"
+                        oninput="updateTimeSpanManual()" class="input_field_class" />
+                </div>
             </td>
         </tr>
         <tr>
@@ -76,8 +121,10 @@
             <td>
             </td>
             <td>
+                <div class="inputcontainer">
                 <input type="text" name="relative_change" value="NA" id="relative_change" readonly
                     class="readonly_field_class" />
+                </div>
             </td>
         </tr>
     </table>
