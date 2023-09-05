@@ -23,7 +23,7 @@ then
     sudo $lampp_path/apache2/scripts/ctl.sh start
 fi
 
-/opt/google/chrome/chrome http://localhost/supermarket_tracker/html/mbudget_tracker.html &
+/opt/google/chrome/chrome http://localhost/supermarket_tracker/html/mbudget_tracker.html > /dev/null 2>&1 &
 
 read -p "Do you see data in mbudget_tracker.html? (y/n) "
 
@@ -46,7 +46,7 @@ fi
 echo "Setting links to credentials correctly"
 softLinkMYSQLFinspresso
 
-echo "Enabling portforwarding to finpresso"
+echo "Enabling portforwarding to finspresso"
 portforwarding_finspresso
 
 
