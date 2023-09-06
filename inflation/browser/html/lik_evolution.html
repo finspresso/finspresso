@@ -14,12 +14,17 @@
             height: auto;
         }
         .chartBox {
-            width: 850px;
-         }
-        @media only screen and (max-width: 400px) {
-        .chartBox {
-            width: 350px;
-         }
+            position: relative;
+            left: 0px;
+            width: 50vw;
+        }
+        @media only screen and (max-width: 600px) {
+            .chartBox {
+                position: relative;
+                left: 0px;
+                height: 20vh;
+                width: 90vw;
+            }
         }
 
         .input_field_class {
@@ -150,7 +155,6 @@
         </td>
     </tr>
     </table>
-    <br>
     <div class="chartBox">
         <canvas id="chartSubCategoryLIK"></canvas>
     </div>
