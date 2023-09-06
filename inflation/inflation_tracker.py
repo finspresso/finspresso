@@ -792,6 +792,18 @@ class LIKEvolution(QtGui.QWidget):
         df_lik_evolution = download_data_from_sql_table(credentials, "lik_evolution")
         return df_lik_evolution
 
+    def check_new_data_lik_evolution(self, credentials):
+        df_lik_evolution_upstream = self.download_lik_evolution_from_sql(credentials)
+        if df_lik_evolution_upstream.empty:
+            logger.warning("Upstream db empty")
+            return True
+        latest_date_upstream = df_lik_evolution_upstream.iloc[-1]["Date"]
+        latest_date_new = self.df_lik_evolution.columns[-1]
+        if latest_date_new > latest_date_upstream:
+            logger.info("New data not present in upstream db")
+            return True
+        return False
+
 
 class LIKWeights(QtGui.QWidget):
     def __init__(self, lik_weight_source, current_language, color_dict_lik):
@@ -1278,8 +1290,12 @@ class InflationTracker(QtGui.QTabWidget):
         self.lik.lik_evolution.create_sql_table(credentials)
 
     def upload_data_to_sql_tables(self, credentials):
-        self.compare_tool.upload_lik_evolution_to_sql(credentials)
-        self.lik.lik_evolution.upload_lik_evolution_to_sql(credentials)
+        if self.lik.lik_evolution.check_new_data_lik_evolution(credentials):
+            logger.info("New data present. Uploading to upstream SQL db")
+            self.compare_tool.upload_lik_evolution_to_sql(credentials)
+            self.lik.lik_evolution.upload_lik_evolution_to_sql(credentials)
+        else:
+            logger.warning("No new data present. Not uploading to upstream SQL db.")
 
     def download_data_from_sql_tables(self, credentials):
         df_lik_evolution = self.lik.lik_evolution.download_lik_evolution_from_sql(
