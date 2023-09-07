@@ -1,17 +1,20 @@
 version: "3.8"
 services:
   db:
-    image: mysql:latest
+    image: mysql:8.0-debian
     container_name: test_db
     environment:
       - "MYSQL_ROOT_PASSWORD=mypassword"
     restart: unless-stopped
+    # volumes:
+    #   - "./mysql-8-volume:/var/lib/mysql"
     volumes:
-      - "./mysql_test:/var/lib/mysql"
+      - mysql-db-volume:/var/lib/mysql
     ports:
-      - "3308:3306"
+      - "3308:3306" #ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'mypassword';
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     restart: unless-stopped
     environment:
       PMA_HOST: test_db
@@ -20,7 +23,10 @@ services:
     ports:
       - "8080:80"
   apache:
-    image: apache-own:latest
+    image: apache-php:test
+    container_name: apache-php
     restart: unless-stopped
     ports:
       - "8081:80"
+volumes:
+  mysql-db-volume:
