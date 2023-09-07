@@ -125,6 +125,19 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Download data from SQL table",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--credentials_file",
+        "credentials/sql_credentials.json",
+        "--download_from_sql"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Create LIK color SQL table",
       "type": "python",
       "request": "launch",

@@ -20,12 +20,12 @@ sudo $lampp_path/apache2/scripts/ctl.sh status | grep "apache not running"
 if [ $? == 0 ]
 then
     echo "Starting Apache2 server"
-    sudo $lampp_path/apache2/scripts/ctl.sh start
+    sudo $lampp_path/apache2/scripts/ctl.sh start 1> /dev/null
 fi
 
-/opt/google/chrome/chrome http://localhost/supermarket_tracker/html/mbudget_tracker.html > /dev/null 2>&1 &
+/opt/google/chrome/chrome /opt/google/chrome/chrome http://localhost/inflation/html/lik_evolution.html > /dev/null 2>&1 &
 
-read -p "Do you see data in mbudget_tracker.html? (y/n) "
+read -p "Do you see data in lik_evolution.html? (y/n) "
 
 if [ $REPLY != "y" ]
 then
@@ -33,9 +33,13 @@ then
     exit 1
 fi
 
-./update_all.sh mbudget
+python inflation_tracker.py --download_data_bfs
 
-read -p "Do you see new data in mbudge_tracker.html? (y/n) "
+
+python inflation_tracker.py --lik_evolution latest --credentials_file credentials/sql_credentials.json --upload_to_sql
+
+
+read -p "Do you see new data in lik_evolution.html? (y/n) "
 
 if [ $REPLY != "y" ]
 then
@@ -49,5 +53,5 @@ softLinkMYSQLFinspresso
 echo "Enabling portforwarding to finspresso"
 portforwarding_finspresso
 
-
-python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials.json --update_metadata_table --update_prices_table
+echo "Updating data to finspresso db"
+python inflation_tracker.py --lik_evolution latest --credentials_file credentials/sql_credentials.json --upload_to_sql

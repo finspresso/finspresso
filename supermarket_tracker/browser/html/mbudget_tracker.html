@@ -25,36 +25,34 @@
           body {
             font-family: Arial;
             color: black;
+            height: 400px;
             }
-        .chart-container {
-            width: 640px;
-            height: auto;
-        }
 
         .chartBox {
-            width: 750px;
+            position: relative;
+            left: 0px;
+            height: 50vh;
+            width: 50vw;
         }
-
-        .input_field_class {
-            width: 200px;
+        @media only screen and (max-width: 600px) {
+            .chartBox {
+                position: relative;
+                left: 0px;
+                height: 50vh;
+                width: 80vw;
+            }
         }
 
         .readonly_field_class {
-            width: 200px;
+            width: 30%;
             background-color: #a9a9a93c;
             border: none;
         }
 
-        .slidecontainer {
-            width: 200px;
-            /* Width of the outside container */
-        }
-
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 70%;
         }
-
         th, td {
             text-align: left;
             padding: 4px;
@@ -72,6 +70,17 @@
         select {
             width: 200px;
         }
+        @media only screen and (max-width: 600px) {
+            select {
+                width: 150px;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+        .desktop{
+            display: none;
+        }
+    }
 
     </style>
 
@@ -84,7 +93,7 @@
               <th></th>
               <th>Selection</th>
               <th>Name</th>
-              <th>URL</th>
+              <th class="desktop">URL</th>
             </tr>
         <tbody>
         <tr>
@@ -98,7 +107,7 @@
                     </select>
                 </form>
             </td>
-            <td>
+            <td class="desktop">
                 <a href="" id="product1_grocery_url">-</a>
             </td>
             <br>
@@ -114,7 +123,7 @@
                     </select>
                 </form>
             </td>
-            <td>
+            <td class="desktop">
                 <a href="" id="product1_other_url">-</a>
             </td>
             <br>
@@ -374,9 +383,11 @@
                 },
             ],
         };
+        var options = {maintainAspectRatio: false}
         const configInit = {
             type: "line",
             data: dataInit,
+            options: options,
         };
         var ctx = document.getElementById("chartCompare").getContext("2d");
         var chart = new Chart(ctx, configInit);
