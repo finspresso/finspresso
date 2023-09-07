@@ -1,5 +1,5 @@
 {
-  "Date": "2023-09-03",
+  "Date": "2023-08-27",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -67,7 +67,7 @@
     "233000581302": {
       "Product Link": "https://www.migros.ch/en/product/233000581302",
       "Product Name": "Dried meat",
-      "Price": 5.7,
+      "Price": 5.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -319,7 +319,7 @@
     "233011010102": {
       "Product Link": "https://www.migros.ch/en/product/233011010102",
       "Product Name": "Raw ham",
-      "Price": 4.4,
+      "Price": 5.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1696,7 +1696,7 @@
     "111200800000": {
       "Product Link": "https://www.migros.ch/en/product/111200800000",
       "Product Name": "Toast light wheat bread",
-      "Price": 1.35,
+      "Price": 1.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2056,10 +2056,10 @@
     "101715400000": {
       "Product Link": "https://www.migros.ch/en/product/101715400000",
       "Product Name": "Chocolate balls - Milk with filling",
-      "Price": "NA",
+      "Price": 9.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "2023-09-03",
+      "Discontinued": "NA",
       "Include": "Yes"
     },
     "160178500000": {
@@ -2488,7 +2488,7 @@
     "162025900000": {
       "Product Link": "https://www.migros.ch/en/product/162025900000",
       "Product Name": "French fries",
-      "Price": 8.5,
+      "Price": 8.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2902,7 +2902,7 @@
     "105260700000": {
       "Product Link": "https://www.migros.ch/en/product/105260700000",
       "Product Name": "Dried grapes",
-      "Price": 1.4,
+      "Price": 1.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3523,7 +3523,7 @@
     "233021293502": {
       "Product Link": "https://www.migros.ch/en/product/233021293502",
       "Product Name": "M-Budget Schweins-Möckli geräucht",
-      "Price": 4.95,
+      "Price": 4.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3532,7 +3532,7 @@
     "151003000000": {
       "Product Link": "https://www.migros.ch/en/product/151003000000",
       "Product Name": "Jam - Raspberries",
-      "Price": 1.95,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3685,7 +3685,7 @@
     "162002200000": {
       "Product Link": "https://www.migros.ch/en/product/162002200000",
       "Product Name": "Potato slices - Wedges",
-      "Price": 5.3,
+      "Price": 5.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3730,7 +3730,7 @@
     "104431200000": {
       "Product Link": "https://www.migros.ch/en/product/104431200000",
       "Product Name": "Risotto",
-      "Price": 2.0,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3838,10 +3838,10 @@
     "101715600000": {
       "Product Link": "https://www.migros.ch/en/product/101715600000",
       "Product Name": "Christmas chocolate mix",
-      "Price": "NA",
+      "Price": 8.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "2023-09-03",
+      "Discontinued": "NA",
       "Include": "Yes"
     },
     "212569200000": {
@@ -4324,7 +4324,7 @@
     "161629100000": {
       "Product Link": "https://www.migros.ch/en/product/161629100000",
       "Product Name": "Peas",
-      "Price": 2.7,
+      "Price": 2.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4513,7 +4513,7 @@
     "151003100000": {
       "Product Link": "https://www.migros.ch/en/product/151003100000",
       "Product Name": "Jam - Black cherry",
-      "Price": 1.95,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5983,33 +5983,6 @@
       "Price": 3.6,
       "Category": "other",
       "Introduced": "2023-08-20",
-      "Discontinued": "NA",
-      "Include": "Yes"
-    },
-    "160154000000": {
-      "Product Link": "https://www.migros.ch/en/product/160154000000",
-      "Product Name": "M-Budget Pizza Prosciutto",
-      "Price": 3.15,
-      "Category": "grocery",
-      "Introduced": "2023-09-03",
-      "Discontinued": "NA",
-      "Include": "Yes"
-    },
-    "101003100000": {
-      "Product Link": "https://www.migros.ch/en/product/101003100000",
-      "Product Name": "Marshmallow",
-      "Price": 2.0,
-      "Category": "grocery",
-      "Introduced": "2023-09-03",
-      "Discontinued": "NA",
-      "Include": "Yes"
-    },
-    "110401800000": {
-      "Product Link": "https://www.migros.ch/en/product/110401800000",
-      "Product Name": "Brown gingerbread",
-      "Price": 1.5,
-      "Category": "grocery",
-      "Introduced": "2023-09-03",
       "Discontinued": "NA",
       "Include": "Yes"
     }
