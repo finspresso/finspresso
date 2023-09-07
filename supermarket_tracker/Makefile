@@ -8,7 +8,7 @@ run_apache:
 	docker run -d --name apache -p 8081:80 --rm apache-own:latest
 
 build_apache_php:
-	docker build -f container/Dockerfile -t apache-php:test . --no-cache
+	docker build -f container/Dockerfile_Apache_PHP -t apache-php:test .
 
 run_apache_php:
 	docker run -d --name apache-php -p 8081:80 --rm apache-php:test
