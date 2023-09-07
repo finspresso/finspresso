@@ -12,3 +12,8 @@ build_apache_php:
 
 run_apache_php:
 	docker run -d --name apache-php -p 8081:80 --rm apache-php:test
+
+build_mysql_server:
+	docker build -f container/MYSQL.Dockerfile -t mysql-server:test .
+
+build_all: build_apache_php build_mysql_server
