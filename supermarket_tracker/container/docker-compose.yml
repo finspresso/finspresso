@@ -9,7 +9,7 @@ services:
     # volumes:
     #   - "./mysql-8-volume:/var/lib/mysql"
     volumes:
-      - mysql-db-volume:/var/lib/mysql
+      - mysql-8-db-volume:/var/lib/mysql
     ports:
       - "3308:3306" #ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'mypassword';
   phpmyadmin:
@@ -29,4 +29,4 @@ services:
     ports:
       - "8081:80"
 volumes:
-  mysql-db-volume:
+  mysql-8-db-volume:
