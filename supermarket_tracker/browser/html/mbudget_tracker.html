@@ -385,7 +385,25 @@
                 },
             ],
         };
-        var options = {maintainAspectRatio: false}
+        var options = {
+                maintainAspectRatio: false,
+                scales: {
+                            x:
+                                {
+                                    title: {
+                                        display: true,
+                                        text: 'Date',
+                                     }
+                                },
+                            y:
+                                {
+                                    title: {
+                                        display: true,
+                                        text: '[CHF]',
+                                     }
+                                }
+                        },
+        };
         const configInit = {
             type: "line",
             data: dataInit,
