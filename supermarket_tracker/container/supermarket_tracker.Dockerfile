@@ -44,6 +44,7 @@ COPY requirements.txt /var/supermarket_tracker/
 
 
 RUN pip install --upgrade pip
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y default-libmysqlclient-dev
 RUN pip install -r /var/supermarket_tracker/requirements.txt
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git
@@ -60,4 +61,8 @@ RUN mkdir -p /var/supermarket_tracker/configs
 RUN mkdir -p /var/supermarket_tracker/references/mbudget/
 COPY configs/mbudget.json /var/supermarket_tracker/configs/
 COPY references/mbudget/product_reference.json /var/supermarket_tracker/references/mbudget/
+
+COPY credentials/sql_credentials_docker.json /var/supermarket_tracker/credentials/sql_credentials.json
+
+
 ENTRYPOINT ["/var/supermarket_tracker/entrypoint_supermarket.sh"]

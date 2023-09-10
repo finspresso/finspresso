@@ -10,4 +10,4 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN docker-php-ext-install mysqli
 
 # docker run -d --name apache-php -p 81:80 --rm apache-php:latest
-#http://localhost:81/supermarket_tracker/html/mbudget_tracker.html
+#http://localhost:8081/supermarket_tracker/html/mbudget_tracker.html
