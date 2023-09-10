@@ -38,13 +38,10 @@ RUN mkdir /var/supermarket_tracker
 COPY supermarket_tracker.py /var/supermarket_tracker/
 COPY requirements.txt /var/supermarket_tracker/
 
+
 RUN pip install --upgrade pip
 RUN pip install -r /var/supermarket_tracker/requirements.txt
 
+COPY container/entrypoint_supermarket.sh /var/supermarket_tracker/
 
-
-
-
-#ENTRYPOINT ["pyenv", "init", "-"]
-# ENTRYPOINT ["ls", "-la" ]
-# ENTRYPOINT ["pyenv init"]
+ENTRYPOINT ["/var/supermarket_tracker/entrypoint_supermarket.sh"]

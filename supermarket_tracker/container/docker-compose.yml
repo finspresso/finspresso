@@ -24,5 +24,9 @@ services:
     restart: unless-stopped
     ports:
       - "8081:80"
+  supermarket_tracker:
+    image: supermarket_tracker
+    container_name: supermarket_tracker
+    restart: unless-stopped
 volumes:
   mysql-db-volume:
