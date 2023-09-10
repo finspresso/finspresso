@@ -1,5 +1,5 @@
 {
-  "Date": "2023-08-27",
+  "Date": "2023-09-10",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -67,7 +67,7 @@
     "233000581302": {
       "Product Link": "https://www.migros.ch/en/product/233000581302",
       "Product Name": "Dried meat",
-      "Price": 5.8,
+      "Price": 5.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -319,7 +319,7 @@
     "233011010102": {
       "Product Link": "https://www.migros.ch/en/product/233011010102",
       "Product Name": "Raw ham",
-      "Price": 5.15,
+      "Price": 4.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1030,7 +1030,7 @@
     "106501600000": {
       "Product Link": "https://www.migros.ch/en/product/106501600000",
       "Product Name": "Sauce for frying",
-      "Price": 6.5,
+      "Price": 6.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1318,7 +1318,7 @@
     "130271000000": {
       "Product Link": "https://www.migros.ch/en/product/130271000000",
       "Product Name": "Pizza with tomato sauce and mozzarella – Margherita – 1100g",
-      "Price": 5.9,
+      "Price": 5.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1723,7 +1723,7 @@
     "251402850000": {
       "Product Link": "https://www.migros.ch/en/product/251402850000",
       "Product Name": "Prawns in Lake",
-      "Price": 6.25,
+      "Price": 6.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2029,7 +2029,7 @@
     "100200900000": {
       "Product Link": "https://www.migros.ch/en/product/100200900000",
       "Product Name": "Dark chocolate bar - With raspberry flavoured sugar fondant filling",
-      "Price": 1.25,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2056,10 +2056,10 @@
     "101715400000": {
       "Product Link": "https://www.migros.ch/en/product/101715400000",
       "Product Name": "Chocolate balls - Milk with filling",
-      "Price": 9.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-09-10",
       "Include": "Yes"
     },
     "160178500000": {
@@ -2092,7 +2092,7 @@
     "100201000000": {
       "Product Link": "https://www.migros.ch/en/product/100201000000",
       "Product Name": "Milk chocolate bar - With milk cream filling",
-      "Price": 1.2,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2488,7 +2488,7 @@
     "162025900000": {
       "Product Link": "https://www.migros.ch/en/product/162025900000",
       "Product Name": "French fries",
-      "Price": 8.4,
+      "Price": 8.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2533,7 +2533,7 @@
     "107192700000": {
       "Product Link": "https://www.migros.ch/en/product/107192700000",
       "Product Name": "Coffee Capsules - Espresso, compatible Delizio system",
-      "Price": 8.9,
+      "Price": 8.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2902,7 +2902,7 @@
     "105260700000": {
       "Product Link": "https://www.migros.ch/en/product/105260700000",
       "Product Name": "Dried grapes",
-      "Price": 1.45,
+      "Price": 1.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3064,7 +3064,7 @@
     "100102900000": {
       "Product Link": "https://www.migros.ch/en/product/100102900000",
       "Product Name": "Chocolate bars - Milk chocolate with whole hazelnuts",
-      "Price": 1.2,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3523,7 +3523,7 @@
     "233021293502": {
       "Product Link": "https://www.migros.ch/en/product/233021293502",
       "Product Name": "M-Budget Schweins-Möckli geräucht",
-      "Price": 4.5,
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3532,7 +3532,7 @@
     "151003000000": {
       "Product Link": "https://www.migros.ch/en/product/151003000000",
       "Product Name": "Jam - Raspberries",
-      "Price": 2.25,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3685,7 +3685,7 @@
     "162002200000": {
       "Product Link": "https://www.migros.ch/en/product/162002200000",
       "Product Name": "Potato slices - Wedges",
-      "Price": 5.15,
+      "Price": 5.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3730,7 +3730,7 @@
     "104431200000": {
       "Product Link": "https://www.migros.ch/en/product/104431200000",
       "Product Name": "Risotto",
-      "Price": 2.2,
+      "Price": 2.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3838,10 +3838,10 @@
     "101715600000": {
       "Product Link": "https://www.migros.ch/en/product/101715600000",
       "Product Name": "Christmas chocolate mix",
-      "Price": 8.9,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-09-10",
       "Include": "Yes"
     },
     "212569200000": {
@@ -4324,7 +4324,7 @@
     "161629100000": {
       "Product Link": "https://www.migros.ch/en/product/161629100000",
       "Product Name": "Peas",
-      "Price": 2.65,
+      "Price": 2.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4378,7 +4378,7 @@
     "233527030000": {
       "Product Link": "https://www.migros.ch/en/product/233527030000",
       "Product Name": "M-Budget Kochspeck",
-      "Price": 1.5,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -4513,7 +4513,7 @@
     "151003100000": {
       "Product Link": "https://www.migros.ch/en/product/151003100000",
       "Product Name": "Jam - Black cherry",
-      "Price": 2.25,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4729,7 +4729,7 @@
     "106002400000": {
       "Product Link": "https://www.migros.ch/en/product/106002400000",
       "Product Name": "ABC soup",
-      "Price": 0.7,
+      "Price": 0.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4837,7 +4837,7 @@
     "106100700000": {
       "Product Link": "https://www.migros.ch/en/product/106100700000",
       "Product Name": "Vegetable stock – 140g",
-      "Price": 1.1,
+      "Price": 1.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4954,7 +4954,7 @@
     "107129200000": {
       "Product Link": "https://www.migros.ch/en/product/107129200000",
       "Product Name": "Coffee Capsules - Lungo, compatible Delizio system",
-      "Price": 8.9,
+      "Price": 8.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5152,7 +5152,7 @@
     "106100800000": {
       "Product Link": "https://www.migros.ch/en/product/106100800000",
       "Product Name": "Beef stock",
-      "Price": 1.1,
+      "Price": 1.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5359,7 +5359,7 @@
     "106002800000": {
       "Product Link": "https://www.migros.ch/en/product/106002800000",
       "Product Name": "Tomato soup – 95g",
-      "Price": 0.7,
+      "Price": 0.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5539,7 +5539,7 @@
     "106002500000": {
       "Product Link": "https://www.migros.ch/en/product/106002500000",
       "Product Name": "Mushroom soup",
-      "Price": 0.9,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5557,7 +5557,7 @@
     "106002600000": {
       "Product Link": "https://www.migros.ch/en/product/106002600000",
       "Product Name": "Tomato soup – 18g",
-      "Price": 0.9,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5836,10 +5836,10 @@
     "106618900000": {
       "Product Link": "https://www.migros.ch/en/product/106618900000",
       "Product Name": "Tomato ketchup",
-      "Price": 1.1,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-09-10",
       "Include": "Yes"
     },
     "277108110400": {
