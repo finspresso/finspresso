@@ -616,7 +616,7 @@ def main():
         interactive = False
         logger.info("Running in non-interactive mode")
     else:
-        logger.info("Running in interative mode")
+        logger.info("Running in interactive mode")
     if args.credentials_file != "":
         credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
     tracker_handler = SuperMarketTracker(

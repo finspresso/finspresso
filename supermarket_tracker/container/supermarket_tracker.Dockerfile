@@ -66,3 +66,5 @@ COPY credentials/sql_credentials_docker.json /var/supermarket_tracker/credential
 
 
 ENTRYPOINT ["/var/supermarket_tracker/entrypoint_supermarket.sh"]
+
+#Next: Run update_all.sh in docker container: 1) Enable commit and push or auto-creation of PR with new roduct_reference.json 2) Upload to MySQL docker db 3) Upload to MySQL finpresso db
