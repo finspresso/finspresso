@@ -358,11 +358,12 @@ class SuperMarketTracker:
                 for article in discontinued_articles:
                     dict_reference[article]["Discontinued"] = today
                 if not df_new_articles.empty:
-                    df_new_articles["Category"] = "NA"
                     df_new_articles["Introduced"] = today
                     df_new_articles["Discontinued"] = "NA"
                     new_articles_dict = df_new_articles.to_dict(orient="index")
+                    df_new_articles["Include"] = "Yes"
                     if self.interactive:
+                        df_new_articles["Category"] = "NA"
                         for article in new_articles_dict.keys():
                             product_name = new_articles_dict[article]["Product Name"]
                             product_link = new_articles_dict[article]["Product Link"]
@@ -388,7 +389,18 @@ class SuperMarketTracker:
                                     "Unknown include input %s. Aborting", input_cat
                                 )
                                 exit(1)
-                    dict_reference.update(new_articles_dict)
+                    else:
+                        for article in new_articles_dict.keys():
+                            product_name = new_articles_dict[article]["Product Name"]
+                            product_link = new_articles_dict[article]["Product Link"]
+                            product_category = new_articles_dict[article]["Category"]
+                            logger.info(
+                                "Adding product: %s\nLink: %s\nCategory: %s",
+                                product_name,
+                                product_link,
+                                product_category,
+                            )
+
                 dict_reference = SuperMarketTracker.check_for_duplicate_names(
                     dict_reference
                 )
@@ -588,15 +600,29 @@ def main():
         help="If selected, opens up browser window",
         action="store_true",
     )
+    parser.add_argument(
+        "--non_interactive",
+        help="If selected, no products are added without asking",
+        action="store_true",
+    )
 
     credentials_sql = dict()
     args = parser.parse_args()
 
     logger.info("Consider tracking category %s", args.name)
+    interactive = True
+    if args.non_interactive:
+        interactive = False
+        logger.info("Running in non-interactive mode")
+    else:
+        logger.info("Running in interative mode")
     if args.credentials_file != "":
         credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
     tracker_handler = SuperMarketTracker(
-        args.name, args.data_folder, take_screenshots=args.take_screenshots
+        args.name,
+        args.data_folder,
+        take_screenshots=args.take_screenshots,
+        interactive=interactive,
     )
     headless = not args.no_headless
     if args.collect_products:
