@@ -17,9 +17,9 @@ build_mysql_server:
 	docker build -f container/MYSQL.Dockerfile -t mysql-server:test .
 
 build_supermarket_tracker:
-	docker build -f container/supermarket_tracker.Dockerfile -t supermarket_tracker .
+	docker build -f supermarket_tracker/container/supermarket_tracker.Dockerfile -t supermarket_tracker .
 
 run_supermarket_tracker:
-	docker run -d --name supermarket_tracker --rm supermarket_tracker
+	docker run -d --name supermarket_tracker  --rm supermarket_tracker
 
 build_all: build_apache_php build_mysql_server build_supermarket_tracker
