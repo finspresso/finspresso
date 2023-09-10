@@ -97,12 +97,13 @@ class SuperMarketTracker:
         try:
             while True:
                 try:
+                    xpath_extension_button = "/html/body/app-root/div[1]/lsp-shop/div/div/div/mo-brand-view-container/main/div/div/mo-brand-view-layout/div/div/div[2]/app-products-display/div[2]/div/a"
                     logger.info("Searching for extension button")
                     element = WebDriverWait(driver, 5).until(
                         EC.presence_of_element_located(
                             (
                                 By.XPATH,
-                                '//*[@id="brand-search-products-content"]/div[2]/app-products-display/div[2]/div/button',
+                                xpath_extension_button,
                             )
                         )
                     )
