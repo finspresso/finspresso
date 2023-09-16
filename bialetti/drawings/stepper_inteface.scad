@@ -3,31 +3,47 @@
 // length = 8.5
 // flat length = 6
 
-tolerance = 2;
-dial_height = 37 + tolerance;
-dial_width = 20 + tolerance ;
-dial_breadth = 10 + tolerance;
+tolerance = 1;
+dial_breadth = 37 + tolerance;
+dial_width = 10 + tolerance ;
+dial_height = 7 + tolerance;
 
-interface_thickness = 4;
-interface_height = 12;
+
+
+offset_r = 2.5;
+offset_height = 2.5;
+shaft_flat_height = 6;
+shaft_flat_r = 2.2;
+total_height_shaft = shaft_flat_height + offset_height;
+
+
+interface_breadth = dial_breadth * 5 / 4;
+interface_width = dial_width * 5 / 4;
+interface_height = shaft_flat_height + dial_height;
+
+
+inter_cube_x = shaft_flat_r * 5;
+inter_cube_y = 1.7 * 2;
+
+
 
 
 
 difference(){
-    translate([-dial_breadth * 2 / 2, -dial_width * 2 / 2, ])
-    cube(size = [dial_breadth * 2, dial_width * 2, interface_height], center = false);
+    translate([-interface_breadth / 2, -interface_width / 2, 0])
+    cube(size = [interface_breadth , interface_width , interface_height], center = false);
 
     // dial
-    translate([-dial_breadth / 2, -dial_width / 2, interface_thickness])
+    translate([-dial_breadth / 2, -dial_width / 2, shaft_flat_height + tolerance])
     cube(size = [dial_breadth, dial_width, dial_height], center = false);
 
 
-    //shaft
-    cylinder(h=2.5, r1=2.5, r2=2.5, center=false, $fn=100);
-    translate([0, 0, 2.5])
+   //shaft
+    translate([0, 0, -offset_height])
+    cylinder(h=offset_height, r1=offset_r, r2=offset_r, center=false, $fn=100);
     intersection() {
-      cylinder(h=6, r1=2, r2=2, center=false, $fn=100);
-      translate([-1.5, -5, 0.0])
-      cube([3,10,6]);
+      cylinder(h=shaft_flat_height + tolerance, r1=shaft_flat_r, r2=shaft_flat_r, center=false, $fn=100);
+      translate([-inter_cube_x / 2, -inter_cube_y / 2, 0.0])
+      cube([inter_cube_x, inter_cube_y, shaft_flat_height + tolerance]);
     }
 }
