@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 LABEL maintainer "Jon Lemonade <jon.lemonade@finspresso.com>"
 
 WORKDIR /
-
+ARG GH_TOKEN_ARG
 RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -44,6 +44,13 @@ RUN pip install --upgrade pip
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y default-libmysqlclient-dev
 RUN pip install -r /var/supermarket_tracker/requirements.txt
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git
+
+RUN wget https://github.com/cli/cli/releases/download/v2.34.0/gh_2.34.0_linux_amd64.deb -O gh_amd64.deb
+RUN apt install ./gh_amd64.deb && rm ./gh_amd64.deb
+
+
+ENV GH_TOKEN=$GH_TOKEN_ARG
+
 RUN git clone --branch feature/docker_compose --recursive https://github.com/finspresso/finspresso.git /var/finspresso
 
 ENV FINSPRESSO_ROOT="/var/finspresso"
