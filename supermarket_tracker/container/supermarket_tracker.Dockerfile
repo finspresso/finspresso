@@ -64,6 +64,12 @@ COPY references/mbudget/product_reference.json $FINSPRESSO_ROOT/supermarket_trac
 
 COPY credentials/sql_credentials_docker.json $FINSPRESSO_ROOT/supermarket_tracker/credentials/sql_credentials.json
 COPY container/entrypoint_supermarket.sh /
+ARG USER_EMAIL
+ARG USER_NAME
+RUN git config --global user.email $USER_EMAIL
+RUN git config --global user.name $USER_NAME
+RUN cd $FINSPRESSO_ROOT && git remote set-url origin https://finspresso:$GH_TOKEN@github.com/finspresso/finspresso.git
+
 ENTRYPOINT ["sh", "-c", "$FINSPRESSO_ROOT/supermarket_tracker/container/entrypoint_supermarket.sh"]
 
 #Next: Run update_all.sh in docker container: 1) Enable commit and push or auto-creation of PR with new roduct_reference.json 2) Upload to MySQL docker db 3) Upload to MySQL finpresso db
