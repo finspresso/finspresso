@@ -39,32 +39,25 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y /google-chrome.deb
 
 RUN mkdir /var/supermarket_tracker
-COPY supermarket_tracker.py /var/supermarket_tracker/
 COPY requirements.txt /var/supermarket_tracker/
-
-
 RUN pip install --upgrade pip
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y default-libmysqlclient-dev
 RUN pip install -r /var/supermarket_tracker/requirements.txt
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git
-RUN git clone --recursive https://github.com/finspresso/finspresso.git /var/finspresso
+RUN git clone --branch feature/docker_compose --recursive https://github.com/finspresso/finspresso.git /var/finspresso
 
-RUN pip install /var/finspresso/db_interface_package
+ENV FINSPRESSO_ROOT="/var/finspresso"
+RUN pip install $FINSPRESSO_ROOT/db_interface_package
 
+RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/data/mbudget
+RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/configs
+RUN mkdir -p $FINSPRESSO_ROOT/references/mbudget/
+COPY configs/mbudget.json $FINSPRESSO_ROOT/supermarket_tracker/configs/
+COPY references/mbudget/product_reference.json $FINSPRESSO_ROOT/supermarket_tracker/references/mbudget/
 
-COPY container/entrypoint_supermarket.sh /var/supermarket_tracker/
-
-
-RUN mkdir -p /var/supermarket_tracker/data/mbudget
-RUN mkdir -p /var/supermarket_tracker/configs
-RUN mkdir -p /var/supermarket_tracker/references/mbudget/
-COPY configs/mbudget.json /var/supermarket_tracker/configs/
-COPY references/mbudget/product_reference.json /var/supermarket_tracker/references/mbudget/
-
-COPY credentials/sql_credentials_docker.json /var/supermarket_tracker/credentials/sql_credentials.json
-
-
-ENTRYPOINT ["/var/supermarket_tracker/entrypoint_supermarket.sh"]
+COPY credentials/sql_credentials_docker.json $FINSPRESSO_ROOT/supermarket_tracker/credentials/sql_credentials.json
+COPY container/entrypoint_supermarket.sh /
+ENTRYPOINT ["sh", "-c", "$FINSPRESSO_ROOT/supermarket_tracker/container/entrypoint_supermarket.sh"]
 
 #Next: Run update_all.sh in docker container: 1) Enable commit and push or auto-creation of PR with new roduct_reference.json 2) Upload to MySQL docker db 3) Upload to MySQL finpresso db
+# Add volume to store screenshots for later storing them
