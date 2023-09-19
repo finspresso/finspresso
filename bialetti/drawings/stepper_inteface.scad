@@ -3,9 +3,11 @@
 // length = 8.5
 // flat length = 6
 
+// Next: Do a chamfer where motor shaft comes in
+
 tolerance = 1;
 dial_breadth = 37 + tolerance;
-dial_width = 10 + tolerance ;
+dial_width = 11 + tolerance ;
 dial_height = 7 + tolerance;
 
 
@@ -13,12 +15,12 @@ dial_height = 7 + tolerance;
 offset_r = 2.5;
 offset_height = 2.5;
 shaft_flat_height = 6;
-shaft_flat_r = 2.2;
+shaft_flat_r = 2.5;
 total_height_shaft = shaft_flat_height + offset_height;
 
 
 interface_breadth = dial_breadth * 5 / 4;
-interface_width = dial_width * 5 / 4;
+interface_width = dial_width * 6 / 4;
 interface_height = shaft_flat_height + dial_height;
 
 
