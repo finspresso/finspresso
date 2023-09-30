@@ -51,7 +51,7 @@ intersection() {
 }
 
 // Chamfer
-chamfer_height = 1.0;
+chamfer_height = 2.0;
 cylinder(h=chamfer_height, r1=offset_r + 1, r2=inter_cube_y / 2, center=false, $fn=100);
 
 }
