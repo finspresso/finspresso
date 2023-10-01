@@ -1,7 +1,7 @@
 #!/bin/bash
 
 name=$1
-new_branch=$2 # branch_name=`date +%s`
+auto_upload=$2 # branch_name=`date +%s`
 
 echo "Collecting data with Selenium of type $name"
 python supermarket_tracker.py --name $name --collect_products --take_screenshots
@@ -18,10 +18,11 @@ python supermarket_tracker.py --name $name --credentials_file credentials/sql_cr
 git status | grep "product_reference.json"
 if [ $? == "0" ]
 then
-    if [ ! -z $new_branch ]
+    if [ ! -z $auto_upload ]
     then
-        echo "Creating new branch with name $new_branch"
-        git checkout -b $new_branch
+        branch_name=$(date +%s)
+        echo "Creating new branch with name $branch_name"
+        git checkout -b $branch_name
     fi
     file_name="references/$name/product_reference.json"
     echo "Committing $file_name"
@@ -30,5 +31,12 @@ then
     git commit -m "Updating product_reference for $name"
 
     echo "Pushing changes"
-    git push
+    git push -u origin
+    if [ ! -z $auto_upload ]
+    then
+        git push -u origin $branch_name
+        gh pr create --title "Updating Mbudget" --body "Updated product_reference.json"
+    else
+        git push
+    fi
 fi
