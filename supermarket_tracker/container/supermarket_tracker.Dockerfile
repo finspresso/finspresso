@@ -24,6 +24,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
         liblzma-dev \
         git
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim
+
 RUN git clone https://github.com/pyenv/pyenv.git /pyenv
 ENV PYENV_ROOT /pyenv
 ENV PATH=$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
@@ -36,7 +38,7 @@ RUN pyenv global 3.8.5
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /google-chrome.deb
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y /google-chrome.deb
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y /google-chrome.deb --fix-missing
 
 RUN mkdir /var/supermarket_tracker
 COPY requirements.txt /var/supermarket_tracker/
@@ -50,7 +52,6 @@ RUN apt install ./gh_amd64.deb && rm ./gh_amd64.deb
 
 
 ENV GH_TOKEN=$GH_TOKEN_ARG
-
 RUN git clone --branch feature/docker_compose --recursive https://github.com/finspresso/finspresso.git /var/finspresso
 
 ENV FINSPRESSO_ROOT="/var/finspresso"
@@ -69,8 +70,8 @@ ARG USER_NAME
 RUN git config --global user.email $USER_EMAIL
 RUN git config --global user.name $USER_NAME
 RUN cd $FINSPRESSO_ROOT && git remote set-url origin https://finspresso:$GH_TOKEN@github.com/finspresso/finspresso.git
-
+RUN cd $FINSPRESSO_ROOT && pre-commit install
 ENTRYPOINT ["sh", "-c", "$FINSPRESSO_ROOT/supermarket_tracker/container/entrypoint_supermarket.sh"]
 
-#Next: Run update_all.sh in docker container: 1) Enable commit and push or auto-creation of PR with new roduct_reference.json 2) Upload to MySQL docker db 3) Upload to MySQL finpresso db
-# Add volume to store screenshots for later storing them
+#Next: Run update_all.sh in docker container: 1) Enable commit and push or auto-creation of PR with new product_reference.json via github cli 2) Upload to MySQL docker db 3) Upload to MySQL finpresso db
+# 4) Add volume to store screenshots for later storing them
