@@ -1,5 +1,5 @@
 {
-  "Date": "2023-09-10",
+  "Date": "2023-10-01",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -337,7 +337,7 @@
     "212706500000": {
       "Product Link": "https://www.migros.ch/en/product/212706500000",
       "Product Name": "Processed cheese preparation, fat, pasteurised - 10 slices",
-      "Price": 2.25,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1012,7 +1012,7 @@
     "110169000000": {
       "Product Link": "https://www.migros.ch/en/product/110169000000",
       "Product Name": "Puffed rice with milk chocolate coating",
-      "Price": 2.5,
+      "Price": 2.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1615,7 +1615,7 @@
     "153415100000": {
       "Product Link": "https://www.migros.ch/en/product/153415100000",
       "Product Name": "Button mushrooms - Sliced",
-      "Price": 1.25,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1696,7 +1696,7 @@
     "111200800000": {
       "Product Link": "https://www.migros.ch/en/product/111200800000",
       "Product Name": "Toast light wheat bread",
-      "Price": 1.45,
+      "Price": 1.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2866,7 +2866,7 @@
     "153222900000": {
       "Product Link": "https://www.migros.ch/en/product/153222900000",
       "Product Name": "Tomato puree – Glas 680g",
-      "Price": 1.3,
+      "Price": 1.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3208,7 +3208,7 @@
     "760525600040": {
       "Product Link": "https://www.migros.ch/en/product/760525600040",
       "Product Name": "M-Budget blau / weiss Armbanduhr",
-      "Price": 17.9,
+      "Price": 12.55,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3217,7 +3217,7 @@
     "760525600020": {
       "Product Link": "https://www.migros.ch/en/product/760525600020",
       "Product Name": "M-Budget schwarz/weiss Armbanduhr",
-      "Price": 17.9,
+      "Price": 12.55,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3280,7 +3280,7 @@
     "760525600022": {
       "Product Link": "https://www.migros.ch/en/product/760525600022",
       "Product Name": "M-Budget schwarz Armbanduhr",
-      "Price": 17.9,
+      "Price": 12.55,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4963,7 +4963,7 @@
     "220222085000": {
       "Product Link": "https://www.migros.ch/en/product/220222085000",
       "Product Name": "Beef ragout",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -5035,7 +5035,7 @@
     "104220800000": {
       "Product Link": "https://www.migros.ch/en/product/104220800000",
       "Product Name": "Muesli",
-      "Price": 2.8,
+      "Price": 2.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5386,7 +5386,7 @@
     "263300902300": {
       "Product Link": "https://www.migros.ch/en/product/263300902300",
       "Product Name": "Oranges - Blond",
-      "Price": 4.95,
+      "Price": 5.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5566,7 +5566,7 @@
     "110555100000": {
       "Product Link": "https://www.migros.ch/en/product/110555100000",
       "Product Name": "Petit-Beurre",
-      "Price": 1.95,
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5908,7 +5908,7 @@
     "274461603300": {
       "Product Link": "https://www.migros.ch/en/product/274461603300",
       "Product Name": "Potatoes - Waxy",
-      "Price": "NA",
+      "Price": 5.95,
       "Category": "grocery",
       "Introduced": "2023-07-16",
       "Discontinued": "2023-07-23",
@@ -5926,10 +5926,10 @@
     "815336024220": {
       "Product Link": "https://www.migros.ch/en/product/815336024220",
       "Product Name": "LADIES SLIP MAXI_M = 40/42,black",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-08-13",
-      "Discontinued": "NA",
+      "Discontinued": "2023-10-01",
       "Include": "Yes"
     },
     "815324424210": {
