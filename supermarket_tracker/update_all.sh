@@ -34,7 +34,6 @@ then
     git commit -m "Updating product_reference for $name"
 
     echo "Pushing changes"
-    git push -u origin
     if [ ! -z $auto_upload ]
     then
         git push -u origin $branch_name
