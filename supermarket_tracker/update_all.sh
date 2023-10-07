@@ -1,7 +1,10 @@
 #!/bin/bash
 
 name=$1
-auto_upload=$2 # branch_name=`date +%s`
+base_branch=${2:-master}
+auto_upload=$3 # branch_name=`date +%s`
+
+echo "Base branch is $base_branch"
 
 echo "Collecting data with Selenium of type $name"
 python supermarket_tracker.py --name $name --collect_products --take_screenshots
@@ -35,7 +38,7 @@ then
     if [ ! -z $auto_upload ]
     then
         git push -u origin $branch_name
-        gh pr create --title "Updating Mbudget" --body "Updated product_reference.json"
+        gh pr create --title "Updating Mbudget" --base $base_branch --body "Updated product_reference.json"
     else
         git push
     fi
