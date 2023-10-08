@@ -60,7 +60,7 @@ then
     python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials.json --update_metadata_table --update_prices_table
 else
     cd $FINSPRESSO_ROOT/supermarket_tracker
-    mkdir -p data
+    mkdir -p data/mbudget
     git checkout $BASE_BRANCH
     git fetch origin
     git merge orgin/$BASE_BRANCH
