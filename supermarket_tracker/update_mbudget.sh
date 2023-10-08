@@ -1,16 +1,15 @@
 #!/bin/bash
 #set -e
 
-shopt -s expand_aliases
-source $HOME/.bash_aliases
+
 
 local_run=$1
-
-
 
 if [ "$local_run" = "True" ]
 then
     echo "Updating MBudget prices locally"
+    shopt -s expand_aliases
+    source $HOME/.bash_aliases
     echo "Setting links to credentials correctly"
     softLinkMYSQLDummy
 
