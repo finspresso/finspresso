@@ -58,7 +58,7 @@ RUN git clone --branch ${BASE_BRANCH} --recursive https://github.com/finspresso/
 ENV FINSPRESSO_ROOT="/var/finspresso"
 RUN pip install $FINSPRESSO_ROOT/db_interface_package
 
-RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/data/mbudget
+RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/
 RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/configs
 RUN mkdir -p $FINSPRESSO_ROOT/references/mbudget/
 COPY configs/mbudget.json $FINSPRESSO_ROOT/supermarket_tracker/configs/
