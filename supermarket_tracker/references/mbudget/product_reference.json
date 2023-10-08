@@ -1,5 +1,5 @@
 {
-  "Date": "2023-10-01",
+  "Date": "2023-10-08",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -1120,7 +1120,7 @@
     "210474228000": {
       "Product Link": "https://www.migros.ch/en/product/210474228000",
       "Product Name": "Raclette - Block",
-      "Price": 1.35,
+      "Price": 1.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3766,10 +3766,10 @@
     "130919400000": {
       "Product Link": "https://www.migros.ch/en/product/130919400000",
       "Product Name": "M-Budget Plant-Based Gehacktes vegan",
-      "Price": 4.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-10-08",
       "Include": "Yes"
     },
     "512082600000": {
@@ -5611,7 +5611,7 @@
     "120801100000": {
       "Product Link": "https://www.migros.ch/en/product/120801100000",
       "Product Name": "M-Budget Mineral mit Co2",
-      "Price": 0.35,
+      "Price": 0.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5620,7 +5620,7 @@
     "120850500000": {
       "Product Link": "https://www.migros.ch/en/product/120850500000",
       "Product Name": "M-Budget Mineral ohne Co2",
-      "Price": 0.35,
+      "Price": 0.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5827,7 +5827,7 @@
     "109035500000": {
       "Product Link": "https://www.migros.ch/en/product/109035500000",
       "Product Name": "Croquettes for adult dogs - Beef",
-      "Price": 9.9,
+      "Price": 9.5,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": 2.8,
+      "Price": 2.4,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5890,7 +5890,7 @@
     "110129800000": {
       "Product Link": "https://www.migros.ch/en/product/110129800000",
       "Product Name": "Pâtisserie fourée à la framboise - Framboise",
-      "Price": "NA",
+      "Price": 6.4,
       "Category": "grocery",
       "Introduced": "2023-07-08",
       "Discontinued": "2023-07-16",
