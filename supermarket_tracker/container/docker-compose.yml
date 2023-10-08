@@ -28,5 +28,8 @@ services:
     image: supermarket_tracker
     container_name: supermarket_tracker
     restart: unless-stopped
+    volumes:
+      - supermarket-data-volume:/var/finspresso/supermarket_tracker/data
 volumes:
   mysql-db-volume:
+  supermarket-data-volume:

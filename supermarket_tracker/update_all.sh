@@ -2,7 +2,7 @@
 
 name=$1
 base_branch=${2:-master}
-auto_upload=$3 # branch_name=`date +%s`
+auto_upload=${3:-False}
 
 echo "Base branch is $base_branch"
 
@@ -21,7 +21,7 @@ python supermarket_tracker.py --name $name --credentials_file credentials/sql_cr
 git status | grep "product_reference.json"
 if [ $? == "0" ]
 then
-    if [ ! -z $auto_upload ]
+    if [ "$auto_upload" = "True" ]
     then
         branch_name=$(date +%s)
         echo "Creating new branch with name $branch_name"
@@ -34,7 +34,7 @@ then
     git commit -m "Updating product_reference for $name"
 
     echo "Pushing changes"
-    if [ ! -z $auto_upload ]
+    if [ "$auto_upload" = "True" ]
     then
         git push -u origin $branch_name
         gh pr create --title "Updating Mbudget" --base $base_branch --body "Updated product_reference.json"

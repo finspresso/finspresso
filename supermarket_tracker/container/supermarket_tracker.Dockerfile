@@ -52,7 +52,8 @@ RUN apt install ./gh_amd64.deb && rm ./gh_amd64.deb
 
 
 ENV GH_TOKEN=$GH_TOKEN_ARG
-RUN git clone --branch feature/docker_compose --recursive https://github.com/finspresso/finspresso.git /var/finspresso
+ENV BASE_BRANCH="feature/docker_compose"
+RUN git clone --branch ${BASE_BRANCH} --recursive https://github.com/finspresso/finspresso.git /var/finspresso
 
 ENV FINSPRESSO_ROOT="/var/finspresso"
 RUN pip install $FINSPRESSO_ROOT/db_interface_package
