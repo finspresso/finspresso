@@ -66,5 +66,8 @@ else
     git merge orgin/$BASE_BRANCH
     auto_upload="True"
     ./update_all.sh mbudget $BASE_BRANCH $auto_upload
+    ssh -4 -v -fN finspresso_mysql_portforward
+    python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials_finspresso.json --update_metadata_table --update_prices_table
+
     echo "Updating MBudget prices in container"
 fi

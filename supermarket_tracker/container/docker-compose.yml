@@ -30,6 +30,8 @@ services:
     restart: unless-stopped
     volumes:
       - supermarket-data-volume:/var/finspresso/supermarket_tracker/data
+      - ssh-config-volume:/root/.ssh
 volumes:
   mysql-db-volume:
   supermarket-data-volume:
+  ssh-config-volume:
