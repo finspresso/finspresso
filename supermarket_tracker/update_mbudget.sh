@@ -68,6 +68,6 @@ else
     ./update_all.sh mbudget $BASE_BRANCH $auto_upload
     ssh -4 -v -fN finspresso_mysql_portforward
     python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials_finspresso.json --update_metadata_table --update_prices_table
-
+    #Next make docker volume for credentials folder in which you copy in sql_credentials.json of MYSQL docker container ans sql_credentials_finspresso.json of MYSQL finspresso db
     echo "Updating MBudget prices in container"
 fi
