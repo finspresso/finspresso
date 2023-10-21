@@ -40,15 +40,17 @@ difference(){
     cube(size = [dial_breadth, dial_width, dial_height], center = false);
 
 
-//shaft
-translate([0, 0, -offset_height])
-cylinder(h=offset_height, r1=offset_r, r2=offset_r, center=false, $fn=100);
+    //shaft
+    translate([5, 0, 0]) {
+        translate([0, 0, -offset_height])
+        cylinder(h=offset_height, r1=offset_r, r2=offset_r, center=false, $fn=100);
 
-intersection() {
-  cylinder(h=shaft_flat_height + tolerance, r1=shaft_flat_r, r2=shaft_flat_r, center=false, $fn=100);
-  translate([-inter_cube_x / 2, -inter_cube_y / 2, 0.0])
-  cube([inter_cube_x, inter_cube_y, shaft_flat_height + tolerance]);
-}
+        intersection() {
+          cylinder(h=shaft_flat_height + tolerance, r1=shaft_flat_r, r2=shaft_flat_r, center=false, $fn=100);
+          translate([-inter_cube_x / 2, -inter_cube_y / 2, 0.0])
+          cube([inter_cube_x, inter_cube_y, shaft_flat_height + tolerance]);
+        }
+    }
 
 // Chamfer
 chamfer_height = 2.0;
