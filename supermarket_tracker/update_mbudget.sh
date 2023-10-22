@@ -63,7 +63,7 @@ else
     mkdir -p data/mbudget
     git checkout $BASE_BRANCH
     git fetch origin
-    git merge orgin/$BASE_BRANCH
+    git merge origin/$BASE_BRANCH
     auto_upload="True"
     ./update_all.sh mbudget $BASE_BRANCH $auto_upload
     ssh -4 -v -fN finspresso_mysql_portforward
