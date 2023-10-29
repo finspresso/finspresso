@@ -31,7 +31,9 @@ services:
     volumes:
       - supermarket-data-volume:/var/finspresso/supermarket_tracker/data
       - ssh-config-volume:/root/.ssh
+      - credentials-volume:/var/finspresso/supermarket_tracker/credentials
 volumes:
   mysql-db-volume:
   supermarket-data-volume:
   ssh-config-volume:
+  credentials-volume:

@@ -64,7 +64,6 @@ RUN mkdir -p $FINSPRESSO_ROOT/references/mbudget/
 COPY configs/mbudget.json $FINSPRESSO_ROOT/supermarket_tracker/configs/
 COPY references/mbudget/product_reference.json $FINSPRESSO_ROOT/supermarket_tracker/references/mbudget/
 
-COPY credentials/sql_credentials_docker.json $FINSPRESSO_ROOT/supermarket_tracker/credentials/sql_credentials.json
 COPY container/entrypoint_supermarket.sh /
 ARG USER_EMAIL
 ARG USER_NAME
