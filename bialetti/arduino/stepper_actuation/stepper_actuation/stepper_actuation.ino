@@ -3,6 +3,8 @@
 const int stepsPerRevolution = 2048; // change this to fit the number of steps per revolution
 const int rolePerMinute = 10;        // Adjustable range of 28BYJ-48 stepper is 0~17 rpm
 int currentState = -1;
+const int ledPin = 9;
+const int switchPin = 7;
 
 //set steps and the connection with MCU
 Stepper stepper(stepsPerRevolution, 2, 3, 4, 5);
@@ -11,18 +13,24 @@ void setup()
 {
   Serial.begin(9600);
   stepper.setSpeed(rolePerMinute);
-    pinMode(7, INPUT);
+  // Configure pin to read state of switch
+  pinMode(switchPin , INPUT);
+  // Configure output pin for LED
+  pinMode(ledPin, OUTPUT);
 }
 
 bool switchOn()
 {
-  int switchState = digitalRead(2);
+  int switchState = digitalRead(switchPin);
+  delay(5);
   if (switchState != currentState) {
     currentState = switchState;
     if (currentState == 1) {
       Serial.println("Switch in on state");
+      digitalWrite(ledPin, HIGH);
     } else {
       Serial.println("Switch in off state");
+      digitalWrite(ledPin, LOW);
     }
   }
   if (currentState == 1) {
