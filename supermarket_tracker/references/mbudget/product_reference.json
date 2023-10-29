@@ -1,5 +1,5 @@
 {
-  "Date": "2023-10-22",
+  "Date": "2023-10-29",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -364,7 +364,7 @@
     "271802302500": {
       "Product Link": "https://www.migros.ch/en/product/271802302500",
       "Product Name": "Mushroom",
-      "Price": 2.35,
+      "Price": 2.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-01",
@@ -1408,7 +1408,7 @@
     "130507900000": {
       "Product Link": "https://www.migros.ch/en/product/130507900000",
       "Product Name": "Lasagne - Alla bolognese",
-      "Price": 5.95,
+      "Price": 5.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1804,7 +1804,7 @@
     "721285300000": {
       "Product Link": "https://www.migros.ch/en/product/721285300000",
       "Product Name": "M-Budget Bleistifte HB",
-      "Price": 1.9,
+      "Price": 1.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2056,7 +2056,7 @@
     "101715400000": {
       "Product Link": "https://www.migros.ch/en/product/101715400000",
       "Product Name": "Chocolate balls - Milk with filling",
-      "Price": "NA",
+      "Price": 9.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-09-10",
@@ -2074,10 +2074,10 @@
     "130927800000": {
       "Product Link": "https://www.migros.ch/en/product/130927800000",
       "Product Name": "Vegetable Meatballs",
-      "Price": 3.55,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-10-29",
       "Include": "Yes"
     },
     "162557500000": {
@@ -2524,7 +2524,7 @@
     "720878400000": {
       "Product Link": "https://www.migros.ch/en/product/720878400000",
       "Product Name": "Sticky notes - 76 x 76mm, 4 x 100 sheets",
-      "Price": 2.9,
+      "Price": 2.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3235,10 +3235,10 @@
     "770797400000": {
       "Product Link": "https://www.migros.ch/en/product/770797400000",
       "Product Name": "M-Budget BT1094 Over-Ear Kopfhörer",
-      "Price": 29.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-10-29",
       "Include": "Yes"
     },
     "792206400000": {
@@ -3550,7 +3550,7 @@
     "110505400000": {
       "Product Link": "https://www.migros.ch/en/product/110505400000",
       "Product Name": "Waffles - With hazelnut cream filling",
-      "Price": 2.9,
+      "Price": 2.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3766,7 +3766,7 @@
     "130919400000": {
       "Product Link": "https://www.migros.ch/en/product/130919400000",
       "Product Name": "M-Budget Plant-Based Gehacktes vegan",
-      "Price": "NA",
+      "Price": 4.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-08",
@@ -3838,7 +3838,7 @@
     "101715600000": {
       "Product Link": "https://www.migros.ch/en/product/101715600000",
       "Product Name": "Christmas chocolate mix",
-      "Price": "NA",
+      "Price": 8.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-09-10",
@@ -4540,7 +4540,7 @@
     "251317000000": {
       "Product Link": "https://www.migros.ch/en/product/251317000000",
       "Product Name": "Trout fillets - Smoked",
-      "Price": 7.1,
+      "Price": 7.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-17",
@@ -4576,7 +4576,7 @@
     "266000309400": {
       "Product Link": "https://www.migros.ch/en/product/266000309400",
       "Product Name": "M-Budget Baumnüsse Grenoble",
-      "Price": "NA",
+      "Price": 5.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-22",
@@ -5791,7 +5791,7 @@
     "271708308500": {
       "Product Link": "https://www.migros.ch/en/product/271708308500",
       "Product Name": "Peppers - 2-3 colors",
-      "Price": 1.6,
+      "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
