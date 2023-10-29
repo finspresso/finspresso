@@ -73,5 +73,4 @@ RUN cd $FINSPRESSO_ROOT && git remote set-url origin https://finspresso:$GH_TOKE
 RUN cd $FINSPRESSO_ROOT && pre-commit install
 ENTRYPOINT ["sh", "-c", "$FINSPRESSO_ROOT/supermarket_tracker/container/entrypoint_supermarket.sh"]
 
-#Next: Run update_all.sh in docker container: 1) Enable commit and push or auto-creation of PR with new product_reference.json via github cli (only create PR if there was a change) 2) Upload to MySQL docker db 3) Upload to MySQL finpresso db
-# 4) Add volume to store screenshots for later storing them
+#Next: Add tornado webserver such job can be started with a click
