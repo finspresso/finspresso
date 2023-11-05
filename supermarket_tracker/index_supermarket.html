@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button to Execute Bash Script</title>
+</head>
+<body>
+    <button id="executeButton">Execute Bash Script</button>
+    <script>
+        document.getElementById('executeButton').addEventListener('click', function() {
+            fetch('/execute', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Bash script executed successfully.');
+                    } else {
+                        console.error('Error executing the Bash script.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
