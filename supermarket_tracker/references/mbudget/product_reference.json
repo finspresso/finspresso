@@ -1,5 +1,5 @@
 {
-  "Date": "2023-10-29",
+  "Date": "2023-11-05",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -31,7 +31,7 @@
     "204242000000": {
       "Product Link": "https://www.migros.ch/en/product/204242000000",
       "Product Name": "Cooking butter",
-      "Price": 3.3,
+      "Price": 3.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -949,10 +949,10 @@
     "251446000000": {
       "Product Link": "https://www.migros.ch/en/product/251446000000",
       "Product Name": "Surimi sticks",
-      "Price": 2.4,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-11-05",
       "Include": "Yes"
     },
     "232360051702": {
@@ -3235,7 +3235,7 @@
     "770797400000": {
       "Product Link": "https://www.migros.ch/en/product/770797400000",
       "Product Name": "M-Budget BT1094 Over-Ear Kopfhörer",
-      "Price": "NA",
+      "Price": 29.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-29",
@@ -5287,7 +5287,7 @@
     "274432203400": {
       "Product Link": "https://www.migros.ch/en/product/274432203400",
       "Product Name": "Potatoes - Floury Cooking",
-      "Price": 5.5,
+      "Price": 5.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -5908,7 +5908,7 @@
     "274461603300": {
       "Product Link": "https://www.migros.ch/en/product/274461603300",
       "Product Name": "Potatoes - Waxy",
-      "Price": 5.5,
+      "Price": 5.95,
       "Category": "grocery",
       "Introduced": "2023-07-16",
       "Discontinued": "2023-07-23",
