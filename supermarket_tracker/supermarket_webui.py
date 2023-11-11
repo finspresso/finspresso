@@ -5,8 +5,7 @@ import subprocess
 
 
 class MainHandler(tornado.web.RequestHandler):
-    def __init__(self, index_file):
-        super().__init__()
+    def initialize(self, index_file):
         self.index_file = index_file
 
     def get(self):
@@ -32,7 +31,7 @@ class ExecuteBashScriptHandler(tornado.web.RequestHandler):
 def make_app(index_file):
     return tornado.web.Application(
         [
-            (r"/", MainHandler(index_file=index_file)),
+            (r"/", MainHandler, {"index_file": index_file}),
             (r"/execute", ExecuteBashScriptHandler),
         ]
     )
