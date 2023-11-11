@@ -1,12 +1,17 @@
+import argparse
 import asyncio
 import tornado
 import subprocess
 
 
 class MainHandler(tornado.web.RequestHandler):
+    def __init__(self, index_file):
+        super().__init__()
+        self.index_file = index_file
+
     def get(self):
         # Load the HTML content with the button
-        with open("index_supermarket.html", "r") as f:
+        with open(self.index_file, "r") as f:
             html_content = f.read()
         self.write(html_content)
 
@@ -24,17 +29,21 @@ class ExecuteBashScriptHandler(tornado.web.RequestHandler):
             self.write(f"Error executing Bash script: {e}")
 
 
-def make_app():
+def make_app(index_file):
     return tornado.web.Application(
         [
-            (r"/", MainHandler),
+            (r"/", MainHandler(index_file=index_file)),
             (r"/execute", ExecuteBashScriptHandler),
         ]
     )
 
 
 async def main():
-    app = make_app()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--index-file", default="index_supermarket.html")
+    args = parser.parse_args()
+    index_file = args.index_file
+    app = make_app(index_file)
     app.listen(8888)
     shutdown_event = asyncio.Event()
     await shutdown_event.wait()

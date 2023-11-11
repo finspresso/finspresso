@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "Calling entrypoint_supermarket.sh"
-python $FINSPRESSO_ROOT/supermarket_tracker/supermarket_webui.py
+python $FINSPRESSO_ROOT/supermarket_tracker/supermarket_webui.py --index-file $FINSPRESSO_ROOT/supermarket_tracker/index_supermarket.html
+
 while true;
 do
     sleep 3
