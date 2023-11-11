@@ -1,7 +1,15 @@
 {
   "dividend_history": [
     {
-      "payable_date": "2022-03-29",
+      "payable_date": "2023-09-27",
+      "distribution per share": 0.1735
+    },
+    {
+      "payable_date": "2023-06-28",
+      "distribution per share": 0.6342
+    },
+    {
+      "payable_date": "2023-03-29",
       "distribution per share": 0.1651
     },
     {
