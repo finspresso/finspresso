@@ -1,6 +1,10 @@
 {
   "dividend_history": [
     {
+      "payable_date": "2023-07-20",
+      "distribution per share": 0.66
+    },
+    {
       "payable_date": "2023-05-15",
       "distribution per share": 0.58
     },
