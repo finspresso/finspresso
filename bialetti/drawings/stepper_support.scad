@@ -2,10 +2,11 @@
 // flat bit = 3
 // length = 8.5
 // flat length = 6
+dial_rotation_axis = 5;
 tolerance = 2;
 dial_height = 37;
 hearth_thickness = 39.6;
-hearth_offset_origin = 97; //102.5 - dial_height / 2;
+hearth_offset_origin = 97 - dial_rotation_axis; //102.5 - dial_height / 2;
 housing_diameter = 28.4;
 support_breadth =  44;
 support_height = 5;
