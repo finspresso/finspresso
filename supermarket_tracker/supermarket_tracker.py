@@ -279,7 +279,7 @@ class SuperMarketTracker:
         return timestamp_string
 
     @staticmethod
-    def check_for_duplicate_names(dict_reference):
+    def check_for_duplicate_names(dict_reference, interactive):
         non_unique_name_dict = SuperMarketTracker.get_non_unique_names(dict_reference)
         n_non_unique = len(non_unique_name_dict)
         logger.info("Found %s non-unique article names", n_non_unique)
@@ -290,12 +290,22 @@ class SuperMarketTracker:
             logger.info(
                 f"The articles {articles} have all the product name {non_unique_name}"
             )
+            counter_article = 0
             for article_non_unique in articles:
+                counter_article += 1
                 product_link = dict_reference[article_non_unique]["Product Link"]
-                input_string = f"Please provide new product name for {product_link}\n"
+                if interactive:
+                    input_string = (
+                        f"Please provide new product name for {product_link}\n"
+                    )
+                    new_name = input(input_string)
+                else:
+                    new_name = non_unique_name + " " + str(counter_article)
+                logger.info(
+                    "Giving name %s to article %s", new_name, article_non_unique
+                )
 
-                input_name = input(input_string)
-                dict_reference[article_non_unique]["Product Name"] = input_name
+                dict_reference[article_non_unique]["Product Name"] = new_name
 
         return dict_reference
 
@@ -326,7 +336,7 @@ class SuperMarketTracker:
             df_ref["Include"] = "Yes"
             dict_reference = df_ref.to_dict(orient="index")
             dict_reference = SuperMarketTracker.check_for_duplicate_names(
-                dict_reference
+                dict_reference, self.interactive
             )
             reference_json = self.reference_folder / Path("product_reference.json")
             with reference_json.open(mode="w") as outfile:
@@ -401,9 +411,10 @@ class SuperMarketTracker:
                                 product_link,
                                 product_category,
                             )
+                dict_reference.update(new_articles_dict)
 
                 dict_reference = SuperMarketTracker.check_for_duplicate_names(
-                    dict_reference
+                    dict_reference, self.interactive
                 )
                 reference["Products"] = dict_reference
 

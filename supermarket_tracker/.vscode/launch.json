@@ -11,7 +11,8 @@
         "--name",
         "mbudget",
         "--collect_products",
-        "--take_screenshots"
+        "--take_screenshots",
+        "--non_interactive"
       ],
       "console": "integratedTerminal"
     },
@@ -39,7 +40,8 @@
       "args": [
         "--name",
         "mbudget",
-        "--collect_products"
+        "--collect_products",
+        "--non_interactive"
       ],
       "console": "integratedTerminal"
     },
