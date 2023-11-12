@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Button to Execute Bash Script</title>
+    <title>Update side</title>
 </head>
 <body>
-    <button id="executeButton">Execute Bash Script</button>
+    <button id="executeButton">Updating MBudget tracker</button>
     <script>
         document.getElementById('executeButton').addEventListener('click', function() {
             fetch('/execute', { method: 'POST' })
                 .then(response => {
                     if (response.ok) {
-                        console.log('Bash script executed successfully.');
+                        console.log('POST HTTP command /execute response ok.');
                     } else {
-                        console.error('Error executing the Bash script.');
+                        console.error('POST HTTP command /execute response failed.');
                     }
                 })
                 .catch(error => {

@@ -21,7 +21,7 @@ class ExecuteBashScriptHandler(tornado.web.RequestHandler):
         try:
             self.write("Executing my script (POST)")
             print("Executing my script (POST)")
-            subprocess.run(["mytest.sh"], check=True)
+            subprocess.run(["update_mbudget.sh"], check=True)
             self.set_status(200)
         except subprocess.CalledProcessError as e:
             self.set_status(500)
