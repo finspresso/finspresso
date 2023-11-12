@@ -1,5 +1,5 @@
 {
-  "Date": "2023-11-05",
+  "Date": "2023-11-12",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -787,10 +787,10 @@
     "815324424110": {
       "Product Link": "https://www.migros.ch/en/product/815324424110",
       "Product Name": "LADIES SLIP MIDI_S = 36/38,white",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-11-12",
       "Include": "Yes"
     },
     "815336024210": {
@@ -1327,7 +1327,7 @@
     "502024000000": {
       "Product Link": "https://www.migros.ch/en/product/502024000000",
       "Product Name": "Cleaning cloths for glasses",
-      "Price": 2.75,
+      "Price": 2.8,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1678,7 +1678,7 @@
     "156053900000": {
       "Product Link": "https://www.migros.ch/en/product/156053900000",
       "Product Name": "Tomatoes, dried",
-      "Price": 1.9,
+      "Price": 2.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2839,7 +2839,7 @@
     "251200301500": {
       "Product Link": "https://www.migros.ch/en/product/251200301500",
       "Product Name": "M-Budget ASC Lachsfilet mit Haut",
-      "Price": 10.2,
+      "Price": 9.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2956,7 +2956,7 @@
     "231525584202": {
       "Product Link": "https://www.migros.ch/en/product/231525584202",
       "Product Name": "M-Budget Pouletstreifen Paprika",
-      "Price": 2.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3073,10 +3073,10 @@
     "200811900000": {
       "Product Link": "https://www.migros.ch/en/product/200811900000",
       "Product Name": "Quark cream - Vanilla",
-      "Price": 0.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-11-12",
       "Include": "Yes"
     },
     "700873100000": {
@@ -3415,7 +3415,7 @@
     "130757100000": {
       "Product Link": "https://www.migros.ch/en/product/130757100000",
       "Product Name": "Blood orange juice",
-      "Price": 3.45,
+      "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5746,10 +5746,10 @@
     "101136400000": {
       "Product Link": "https://www.migros.ch/en/product/101136400000",
       "Product Name": "Chewing gum without sugar - Spearmint",
-      "Price": 0.85,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-11-12",
       "Include": "Yes"
     },
     "101121400000": {
@@ -5791,7 +5791,7 @@
     "271708308500": {
       "Product Link": "https://www.migros.ch/en/product/271708308500",
       "Product Name": "Peppers - 2-3 colors",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -5926,7 +5926,7 @@
     "815336024220": {
       "Product Link": "https://www.migros.ch/en/product/815336024220",
       "Product Name": "LADIES SLIP MAXI_M = 40/42,black",
-      "Price": "NA",
+      "Price": 4.0,
       "Category": "other",
       "Introduced": "2023-08-13",
       "Discontinued": "2023-10-01",
