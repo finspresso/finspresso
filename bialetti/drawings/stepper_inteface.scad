@@ -9,6 +9,7 @@ tolerance = 1;
 dial_breadth = 37 + tolerance;
 dial_width = 11  + tolerance ;
 dial_height = 7 + tolerance;
+rotation_axis_offset = 4;
 
 
 
@@ -41,7 +42,7 @@ difference(){
 
 
     //shaft
-    translate([5, 0, 0]) {
+    translate([rotation_axis_offset, 0, 0]) {
         translate([0, 0, -offset_height])
         cylinder(h=offset_height, r1=offset_r, r2=offset_r, center=false, $fn=100);
 
