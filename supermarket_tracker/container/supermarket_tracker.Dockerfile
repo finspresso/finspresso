@@ -52,7 +52,8 @@ RUN apt install ./gh_amd64.deb && rm ./gh_amd64.deb
 
 
 ENV GH_TOKEN=$GH_TOKEN_ARG
-ARG HERE=1
+ARG HERENOW4=1
+
 ENV BASE_BRANCH="feature/docker_compose"
 RUN git clone --branch ${BASE_BRANCH} --recursive https://github.com/finspresso/finspresso.git /var/finspresso
 
@@ -74,4 +75,4 @@ RUN cd $FINSPRESSO_ROOT && git remote set-url origin https://finspresso:$GH_TOKE
 RUN cd $FINSPRESSO_ROOT && pre-commit install
 ENTRYPOINT ["sh", "-c", "$FINSPRESSO_ROOT/supermarket_tracker/container/entrypoint_supermarket.sh"]
 
-#Next: Add argparse to pass correct path to file index_supermarket.html such that supermarket_webui.py can find the html file
+#Next: Check why Orange juice 2 and all the other new products are not visible in dropdown on the mbudget tracker even though present in the db
