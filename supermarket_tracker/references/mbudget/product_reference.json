@@ -1,5 +1,5 @@
 {
-  "Date": "2023-11-12",
+  "Date": "2023-11-19",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -31,7 +31,7 @@
     "204242000000": {
       "Product Link": "https://www.migros.ch/en/product/204242000000",
       "Product Name": "Cooking butter",
-      "Price": 3.45,
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -949,7 +949,7 @@
     "251446000000": {
       "Product Link": "https://www.migros.ch/en/product/251446000000",
       "Product Name": "Surimi sticks",
-      "Price": "NA",
+      "Price": 2.05,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-11-05",
@@ -2839,10 +2839,10 @@
     "251200301500": {
       "Product Link": "https://www.migros.ch/en/product/251200301500",
       "Product Name": "M-Budget ASC Lachsfilet mit Haut",
-      "Price": 9.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-11-19",
       "Include": "Yes"
     },
     "251406311000": {
@@ -4540,7 +4540,7 @@
     "251317000000": {
       "Product Link": "https://www.migros.ch/en/product/251317000000",
       "Product Name": "Trout fillets - Smoked",
-      "Price": 7.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-17",
@@ -5214,7 +5214,7 @@
     },
     "107173000000": {
       "Product Link": "https://www.migros.ch/en/product/107173000000",
-      "Product Name": "Drink powder with soluble coffee - Cappuccino",
+      "Product Name": "Drink powder with soluble coffee - Cappuccino 1",
       "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
@@ -5287,7 +5287,7 @@
     "274432203400": {
       "Product Link": "https://www.migros.ch/en/product/274432203400",
       "Product Name": "Potatoes - Floury Cooking",
-      "Price": 5.95,
+      "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -5386,7 +5386,7 @@
     "263300902300": {
       "Product Link": "https://www.migros.ch/en/product/263300902300",
       "Product Name": "Oranges - Blond",
-      "Price": 5.6,
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5430,7 +5430,7 @@
     },
     "264200701000": {
       "Product Link": "https://www.migros.ch/en/product/264200701000",
-      "Product Name": "M-Budget Bananen",
+      "Product Name": "M-Budget Bananen 1",
       "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
@@ -5908,7 +5908,7 @@
     "274461603300": {
       "Product Link": "https://www.migros.ch/en/product/274461603300",
       "Product Name": "Potatoes - Waxy",
-      "Price": 5.95,
+      "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2023-07-16",
       "Discontinued": "2023-07-23",
@@ -5989,66 +5989,66 @@
     "831226630320": {
       "Product Link": "https://www.migros.ch/en/product/831226630320",
       "Product Name": "Lady's socks 2-prs 1",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "700159000005": {
       "Product Link": "https://www.migros.ch/en/product/700159000005",
       "Product Name": "Mug - 7.5 cm diameter & 9.5 cm high / porcelain",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823724930384": {
       "Product Link": "https://www.migros.ch/en/product/823724930384",
       "Product Name": "Men's socks 2-prs 1",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340500510": {
       "Product Link": "https://www.migros.ch/en/product/815340500510",
       "Product Name": "M Budget Slip 1",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340500420": {
       "Product Link": "https://www.migros.ch/en/product/815340500420",
       "Product Name": "M Budget Slip 2",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823720130440": {
       "Product Link": "https://www.migros.ch/en/product/823720130440",
       "Product Name": "Men's sneakers 5-prs 1",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830222201020": {
       "Product Link": "https://www.migros.ch/en/product/830222201020",
       "Product Name": "Lady's Tights 1",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172200920": {
       "Product Link": "https://www.migros.ch/en/product/821172200920",
       "Product Name": "Men's Slip MBudget 1",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "233070031102": {
       "Product Link": "https://www.migros.ch/en/product/233070031102",
@@ -6085,18 +6085,18 @@
     "821172100648": {
       "Product Link": "https://www.migros.ch/en/product/821172100648",
       "Product Name": "Men's Shirt MBudget 1",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172200710": {
       "Product Link": "https://www.migros.ch/en/product/821172200710",
       "Product Name": "Men's Slip MBudget 2",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340600410": {
       "Product Link": "https://www.migros.ch/en/product/815340600410",
@@ -6109,26 +6109,26 @@
     "831223230284": {
       "Product Link": "https://www.migros.ch/en/product/831223230284",
       "Product Name": "Lady's sneakers 5-prs 1",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830222200817": {
       "Product Link": "https://www.migros.ch/en/product/830222200817",
       "Product Name": "Lady's Tights 2",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100620": {
       "Product Link": "https://www.migros.ch/en/product/821172100620",
       "Product Name": "Men's Shirt MBudget 2",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "151003200000": {
       "Product Link": "https://www.migros.ch/en/product/151003200000",
@@ -6141,10 +6141,10 @@
     "830222200820": {
       "Product Link": "https://www.migros.ch/en/product/830222200820",
       "Product Name": "Lady's Tights 3",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340600610": {
       "Product Link": "https://www.migros.ch/en/product/815340600610",
@@ -6157,42 +6157,42 @@
     "815340500320": {
       "Product Link": "https://www.migros.ch/en/product/815340500320",
       "Product Name": "M Budget Slip 3",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340500310": {
       "Product Link": "https://www.migros.ch/en/product/815340500310",
       "Product Name": "M Budget Slip 4",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172300948": {
       "Product Link": "https://www.migros.ch/en/product/821172300948",
       "Product Name": "Men's Short MBudget 1",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831223230320": {
       "Product Link": "https://www.migros.ch/en/product/831223230320",
       "Product Name": "Lady's sneakers 5-prs 2",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823724930320": {
       "Product Link": "https://www.migros.ch/en/product/823724930320",
       "Product Name": "Men's socks 2-prs 2",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815336024410": {
       "Product Link": "https://www.migros.ch/en/product/815336024410",
@@ -6205,18 +6205,18 @@
     "815340500620": {
       "Product Link": "https://www.migros.ch/en/product/815340500620",
       "Product Name": "M Budget Slip 5",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830224299920": {
       "Product Link": "https://www.migros.ch/en/product/830224299920",
       "Product Name": "Lady's Knee Socks",
-      "Price": 2.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "130757500000": {
       "Product Link": "https://www.migros.ch/en/product/130757500000",
@@ -6253,18 +6253,18 @@
     "821172300920": {
       "Product Link": "https://www.migros.ch/en/product/821172300920",
       "Product Name": "Men's Short MBudget 2",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100710": {
       "Product Link": "https://www.migros.ch/en/product/821172100710",
       "Product Name": "Men's Shirt MBudget 3",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "105260200000": {
       "Product Link": "https://www.migros.ch/en/product/105260200000",
@@ -6277,50 +6277,50 @@
     "815340500520": {
       "Product Link": "https://www.migros.ch/en/product/815340500520",
       "Product Name": "M Budget Slip 6",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831226630220": {
       "Product Link": "https://www.migros.ch/en/product/831226630220",
       "Product Name": "Lady's socks 2-prs 2",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831226630310": {
       "Product Link": "https://www.migros.ch/en/product/831226630310",
       "Product Name": "Lady's socks 2-prs 3",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100748": {
       "Product Link": "https://www.migros.ch/en/product/821172100748",
       "Product Name": "Men's Shirt MBudget 4",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830224100017": {
       "Product Link": "https://www.migros.ch/en/product/830224100017",
       "Product Name": "Lady's knee sock_one size,porcelaine",
-      "Price": 2.65,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172300748": {
       "Product Link": "https://www.migros.ch/en/product/821172300748",
       "Product Name": "Men's Short MBudget 3",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "160154000000": {
       "Product Link": "https://www.migros.ch/en/product/160154000000",
@@ -6341,10 +6341,10 @@
     "158562800000": {
       "Product Link": "https://www.migros.ch/en/product/158562800000",
       "Product Name": "M-BUD SALSA DIP SCHARF",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340600220": {
       "Product Link": "https://www.migros.ch/en/product/815340600220",
@@ -6357,18 +6357,18 @@
     "821172301020": {
       "Product Link": "https://www.migros.ch/en/product/821172301020",
       "Product Name": "Men's Short MBudget 4",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100948": {
       "Product Link": "https://www.migros.ch/en/product/821172100948",
       "Product Name": "Men's Shirt MBudget 5",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "106618300000": {
       "Product Link": "https://www.migros.ch/en/product/106618300000",
@@ -6381,34 +6381,34 @@
     "821172101048": {
       "Product Link": "https://www.migros.ch/en/product/821172101048",
       "Product Name": "Men's Shirt MBudget 6",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831226630284": {
       "Product Link": "https://www.migros.ch/en/product/831226630284",
       "Product Name": "Lady's socks 2-prs 4",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831223330384": {
       "Product Link": "https://www.migros.ch/en/product/831223330384",
       "Product Name": "Lady's socks 2-prs 5",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830222201021": {
       "Product Link": "https://www.migros.ch/en/product/830222201021",
       "Product Name": "Lady's Tights 4",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "200812100000": {
       "Product Link": "https://www.migros.ch/en/product/200812100000",
@@ -6421,50 +6421,50 @@
     "821172200910": {
       "Product Link": "https://www.migros.ch/en/product/821172200910",
       "Product Name": "Men's Slip MBudget 3",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172101020": {
       "Product Link": "https://www.migros.ch/en/product/821172101020",
       "Product Name": "Men's Shirt MBudget 7",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172200820": {
       "Product Link": "https://www.migros.ch/en/product/821172200820",
       "Product Name": "Men's Slip MBudget 4",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830222201017": {
       "Product Link": "https://www.migros.ch/en/product/830222201017",
       "Product Name": "Lady's Tights 5",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340500610": {
       "Product Link": "https://www.migros.ch/en/product/815340500610",
       "Product Name": "M Budget Slip 7",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172200720": {
       "Product Link": "https://www.migros.ch/en/product/821172200720",
       "Product Name": "Men's Slip MBudget 5",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "131110700000": {
       "Product Link": "https://www.migros.ch/en/product/131110700000",
@@ -6485,18 +6485,18 @@
     "831223230384": {
       "Product Link": "https://www.migros.ch/en/product/831223230384",
       "Product Name": "Lady's sneakers 5-prs 3",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100910": {
       "Product Link": "https://www.migros.ch/en/product/821172100910",
       "Product Name": "Men's Shirt MBudget 8",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815336024420": {
       "Product Link": "https://www.migros.ch/en/product/815336024420",
@@ -6509,42 +6509,42 @@
     "821172100810": {
       "Product Link": "https://www.migros.ch/en/product/821172100810",
       "Product Name": "Men's Shirt MBudget 9",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830222200821": {
       "Product Link": "https://www.migros.ch/en/product/830222200821",
       "Product Name": "Lady's Tights 6",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172200810": {
       "Product Link": "https://www.migros.ch/en/product/821172200810",
       "Product Name": "Men's Slip MBudget 6",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172200620": {
       "Product Link": "https://www.migros.ch/en/product/821172200620",
       "Product Name": "Men's Slip MBudget 7",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340600420": {
       "Product Link": "https://www.migros.ch/en/product/815340600420",
@@ -6557,18 +6557,18 @@
     "821172300720": {
       "Product Link": "https://www.migros.ch/en/product/821172300720",
       "Product Name": "Men's Short MBudget 5",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100720": {
       "Product Link": "https://www.migros.ch/en/product/821172100720",
       "Product Name": "Men's Shirt MBudget 10",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340600320": {
       "Product Link": "https://www.migros.ch/en/product/815340600320",
@@ -6589,34 +6589,34 @@
     "821172300648": {
       "Product Link": "https://www.migros.ch/en/product/821172300648",
       "Product Name": "Men's Short MBudget 6",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823720130420": {
       "Product Link": "https://www.migros.ch/en/product/823720130420",
       "Product Name": "Men's sneakers 5-prs 2",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831223230220": {
       "Product Link": "https://www.migros.ch/en/product/831223230220",
       "Product Name": "Lady's sneakers 5-prs 4",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831223330320": {
       "Product Link": "https://www.migros.ch/en/product/831223330320",
       "Product Name": "Lady's socks 2-prs 6",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340600510": {
       "Product Link": "https://www.migros.ch/en/product/815340600510",
@@ -6629,10 +6629,10 @@
     "815324424420": {
       "Product Link": "https://www.migros.ch/en/product/815324424420",
       "Product Name": "M Budget Midi Slip 2",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "271400708400": {
       "Product Link": "https://www.migros.ch/en/product/271400708400",
@@ -6645,34 +6645,34 @@
     "821172300820": {
       "Product Link": "https://www.migros.ch/en/product/821172300820",
       "Product Name": "Men's Short MBudget 7",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823724930443": {
       "Product Link": "https://www.migros.ch/en/product/823724930443",
       "Product Name": "Men's socks 2-prs 3",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "700159000002": {
       "Product Link": "https://www.migros.ch/en/product/700159000002",
       "Product Name": "Dinner plate - 26.5 cm diameter / porcelain",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172201020": {
       "Product Link": "https://www.migros.ch/en/product/821172201020",
       "Product Name": "Men's Slip MBudget 8",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "708004100000": {
       "Product Link": "https://www.migros.ch/en/product/708004100000",
@@ -6685,18 +6685,18 @@
     "831223330284": {
       "Product Link": "https://www.migros.ch/en/product/831223330284",
       "Product Name": "Lady's socks 2-prs 7",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823720130340": {
       "Product Link": "https://www.migros.ch/en/product/823720130340",
       "Product Name": "Men's sneakers 5-prs 3",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815336024310": {
       "Product Link": "https://www.migros.ch/en/product/815336024310",
@@ -6709,18 +6709,18 @@
     "823720130410": {
       "Product Link": "https://www.migros.ch/en/product/823720130410",
       "Product Name": "Men's sneakers 5-prs 4",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "700159000004": {
       "Product Link": "https://www.migros.ch/en/product/700159000004",
       "Product Name": "MB Coffeecup & UP",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "701122000003": {
       "Product Link": "https://www.migros.ch/en/product/701122000003",
@@ -6733,10 +6733,10 @@
     "821172301048": {
       "Product Link": "https://www.migros.ch/en/product/821172301048",
       "Product Name": "Men's Short MBudget 8",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "270400902300": {
       "Product Link": "https://www.migros.ch/en/product/270400902300",
@@ -6749,42 +6749,42 @@
     "823724930410": {
       "Product Link": "https://www.migros.ch/en/product/823724930410",
       "Product Name": "Men's socks 2-prs 4",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823720130320": {
       "Product Link": "https://www.migros.ch/en/product/823720130320",
       "Product Name": "Men's sneakers 5-prs 5",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "700159000007": {
       "Product Link": "https://www.migros.ch/en/product/700159000007",
       "Product Name": "Bowl - 18 cm diameter / porcelain",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "700159000006": {
       "Product Link": "https://www.migros.ch/en/product/700159000006",
       "Product Name": "Bowl - 14 cm diameter / porcelain",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100848": {
       "Product Link": "https://www.migros.ch/en/product/821172100848",
       "Product Name": "Men's Shirt MBudget 11",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "101003100000": {
       "Product Link": "https://www.migros.ch/en/product/101003100000",
@@ -6797,10 +6797,10 @@
     "821172100920": {
       "Product Link": "https://www.migros.ch/en/product/821172100920",
       "Product Name": "Men's Shirt MBudget 12",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "200801700000": {
       "Product Link": "https://www.migros.ch/en/product/200801700000",
@@ -6813,18 +6813,18 @@
     "700159000003": {
       "Product Link": "https://www.migros.ch/en/product/700159000003",
       "Product Name": "M-Budget deep plate",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831226630384": {
       "Product Link": "https://www.migros.ch/en/product/831226630384",
       "Product Name": "Lady's socks 2-prs 8",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "130930300000": {
       "Product Link": "https://www.migros.ch/en/product/130930300000",
@@ -6837,10 +6837,10 @@
     "830222201002": {
       "Product Link": "https://www.migros.ch/en/product/830222201002",
       "Product Name": "Lady's Tights 7",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340600620": {
       "Product Link": "https://www.migros.ch/en/product/815340600620",
@@ -6853,18 +6853,18 @@
     "830224100020": {
       "Product Link": "https://www.migros.ch/en/product/830224100020",
       "Product Name": "Lady's knee sock_one size,black",
-      "Price": 2.65,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172100820": {
       "Product Link": "https://www.migros.ch/en/product/821172100820",
       "Product Name": "Men's Shirt MBudget 13",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "131135200000": {
       "Product Link": "https://www.migros.ch/en/product/131135200000",
@@ -6877,34 +6877,34 @@
     "823720130384": {
       "Product Link": "https://www.migros.ch/en/product/823720130384",
       "Product Name": "Men's sneakers 5-prs 6",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "831223230310": {
       "Product Link": "https://www.migros.ch/en/product/831223230310",
       "Product Name": "Lady's sneakers 5-prs 5",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172201010": {
       "Product Link": "https://www.migros.ch/en/product/821172201010",
       "Product Name": "Men's Slip MBudget 9",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "821172300848": {
       "Product Link": "https://www.migros.ch/en/product/821172300848",
       "Product Name": "Men's Short MBudget 9",
-      "Price": 6.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "770798500000": {
       "Product Link": "https://www.migros.ch/en/product/770798500000",
@@ -6917,34 +6917,34 @@
     "815340500410": {
       "Product Link": "https://www.migros.ch/en/product/815340500410",
       "Product Name": "M Budget Slip 8",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823720130484": {
       "Product Link": "https://www.migros.ch/en/product/823720130484",
       "Product Name": "Men's sneakers 5-prs 7",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815340500220": {
       "Product Link": "https://www.migros.ch/en/product/815340500220",
       "Product Name": "M Budget Slip 9",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823724930343": {
       "Product Link": "https://www.migros.ch/en/product/823724930343",
       "Product Name": "Men's socks 2-prs 5",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "101053200000": {
       "Product Link": "https://www.migros.ch/en/product/101053200000",
@@ -6965,10 +6965,10 @@
     "823724930420": {
       "Product Link": "https://www.migros.ch/en/product/823724930420",
       "Product Name": "Men's socks 2-prs 6",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815336024320": {
       "Product Link": "https://www.migros.ch/en/product/815336024320",
@@ -6997,34 +6997,34 @@
     "821172101010": {
       "Product Link": "https://www.migros.ch/en/product/821172101010",
       "Product Name": "Men's Shirt MBudget 14",
-      "Price": 5.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "830224001120": {
       "Product Link": "https://www.migros.ch/en/product/830224001120",
       "Product Name": "Lady's Tights 8",
-      "Price": 2.35,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "823724930484": {
       "Product Link": "https://www.migros.ch/en/product/823724930484",
       "Product Name": "Men's socks 2-prs 7",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "815324424410": {
       "Product Link": "https://www.migros.ch/en/product/815324424410",
       "Product Name": "M Budget Midi Slip 3",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-19"
     },
     "233070032102": {
       "Product Link": "https://www.migros.ch/en/product/233070032102",
@@ -7040,6 +7040,22 @@
       "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2023-11-12",
+      "Discontinued": "NA"
+    },
+    "264200702100": {
+      "Product Link": "https://www.migros.ch/en/product/264200702100",
+      "Product Name": "M-Budget Bananen 2",
+      "Price": 1.5,
+      "Category": "grocery",
+      "Introduced": "2023-11-19",
+      "Discontinued": "NA"
+    },
+    "107173100000": {
+      "Product Link": "https://www.migros.ch/en/product/107173100000",
+      "Product Name": "Drink powder with soluble coffee - Cappuccino 2",
+      "Price": 3.5,
+      "Category": "grocery",
+      "Introduced": "2023-11-19",
       "Discontinued": "NA"
     }
   }
