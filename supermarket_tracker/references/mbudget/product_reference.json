@@ -1,5 +1,5 @@
 {
-  "Date": "2023-11-19",
+  "Date": "2023-11-26",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -13,7 +13,7 @@
     "200609600000": {
       "Product Link": "https://www.migros.ch/en/product/200609600000",
       "Product Name": "Mozzarella - Bar",
-      "Price": 2.3,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -121,7 +121,7 @@
     "120983100000": {
       "Product Link": "https://www.migros.ch/en/product/120983100000",
       "Product Name": "Special drink containing caffeine",
-      "Price": 6.95,
+      "Price": 6.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -175,7 +175,7 @@
     "120983300000": {
       "Product Link": "https://www.migros.ch/en/product/120983300000",
       "Product Name": "Special drink containing caffeine - Zero Sugar",
-      "Price": 6.95,
+      "Price": 6.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -796,10 +796,10 @@
     "815336024210": {
       "Product Link": "https://www.migros.ch/en/product/815336024210",
       "Product Name": "LADIES SLIP MAXI_M = 40/42,white",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2023-11-26",
       "Include": "Yes"
     },
     "823720130310": {
@@ -949,7 +949,7 @@
     "251446000000": {
       "Product Link": "https://www.migros.ch/en/product/251446000000",
       "Product Name": "Surimi sticks",
-      "Price": 2.05,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-11-05",
@@ -2308,7 +2308,7 @@
     "120983000000": {
       "Product Link": "https://www.migros.ch/en/product/120983000000",
       "Product Name": "M-BUD ENERGY POMEGR. 250",
-      "Price": 0.6,
+      "Price": 0.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2326,7 +2326,7 @@
     "120983200000": {
       "Product Link": "https://www.migros.ch/en/product/120983200000",
       "Product Name": "M-Budget Energy Drink",
-      "Price": 0.6,
+      "Price": 0.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2335,7 +2335,7 @@
     "120983400000": {
       "Product Link": "https://www.migros.ch/en/product/120983400000",
       "Product Name": "M-BUD ENERGY ZERO 25CL",
-      "Price": 0.6,
+      "Price": 0.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2839,7 +2839,7 @@
     "251200301500": {
       "Product Link": "https://www.migros.ch/en/product/251200301500",
       "Product Name": "M-Budget ASC Lachsfilet mit Haut",
-      "Price": "NA",
+      "Price": 9.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-11-19",
@@ -4683,7 +4683,7 @@
     },
     "106275800000": {
       "Product Link": "https://www.migros.ch/en/product/106275800000",
-      "Product Name": "Breadcrumbs",
+      "Product Name": "Breadcrumbs 1",
       "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
@@ -5386,7 +5386,7 @@
     "263300902300": {
       "Product Link": "https://www.migros.ch/en/product/263300902300",
       "Product Name": "Oranges - Blond",
-      "Price": 4.95,
+      "Price": 4.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5791,7 +5791,7 @@
     "271708308500": {
       "Product Link": "https://www.migros.ch/en/product/271708308500",
       "Product Name": "Peppers - 2-3 colors",
-      "Price": "NA",
+      "Price": 1.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -5926,7 +5926,7 @@
     "815336024220": {
       "Product Link": "https://www.migros.ch/en/product/815336024220",
       "Product Name": "LADIES SLIP MAXI_M = 40/42,black",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-08-13",
       "Discontinued": "2023-10-01",
@@ -6061,10 +6061,10 @@
     "815340600310": {
       "Product Link": "https://www.migros.ch/en/product/815340600310",
       "Product Name": "Ladies Hipster 2pcs 1",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "232103040002": {
       "Product Link": "https://www.migros.ch/en/product/232103040002",
@@ -6101,10 +6101,10 @@
     "815340600410": {
       "Product Link": "https://www.migros.ch/en/product/815340600410",
       "Product Name": "Ladies Hipster 2pcs 2",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "831223230284": {
       "Product Link": "https://www.migros.ch/en/product/831223230284",
@@ -6149,10 +6149,10 @@
     "815340600610": {
       "Product Link": "https://www.migros.ch/en/product/815340600610",
       "Product Name": "Ladies Hipster 2pcs 3",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "815340500320": {
       "Product Link": "https://www.migros.ch/en/product/815340500320",
@@ -6197,10 +6197,10 @@
     "815336024410": {
       "Product Link": "https://www.migros.ch/en/product/815336024410",
       "Product Name": "LADIES SLIP MAXI_XL = 48/50,white",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "815340500620": {
       "Product Link": "https://www.migros.ch/en/product/815340500620",
@@ -6341,7 +6341,7 @@
     "158562800000": {
       "Product Link": "https://www.migros.ch/en/product/158562800000",
       "Product Name": "M-BUD SALSA DIP SCHARF",
-      "Price": "NA",
+      "Price": 1.45,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -6349,10 +6349,10 @@
     "815340600220": {
       "Product Link": "https://www.migros.ch/en/product/815340600220",
       "Product Name": "Ladies Hipster 2pcs 4",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "821172301020": {
       "Product Link": "https://www.migros.ch/en/product/821172301020",
@@ -6477,10 +6477,10 @@
     "815340600520": {
       "Product Link": "https://www.migros.ch/en/product/815340600520",
       "Product Name": "Ladies Hipster 2pcs 5",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "831223230384": {
       "Product Link": "https://www.migros.ch/en/product/831223230384",
@@ -6501,10 +6501,10 @@
     "815336024420": {
       "Product Link": "https://www.migros.ch/en/product/815336024420",
       "Product Name": "LADIES SLIP MAXI_XL = 48/50,black",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "821172100810": {
       "Product Link": "https://www.migros.ch/en/product/821172100810",
@@ -6517,7 +6517,7 @@
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": "NA",
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -6549,10 +6549,10 @@
     "815340600420": {
       "Product Link": "https://www.migros.ch/en/product/815340600420",
       "Product Name": "Ladies Hipster 2pcs 6",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "821172300720": {
       "Product Link": "https://www.migros.ch/en/product/821172300720",
@@ -6573,10 +6573,10 @@
     "815340600320": {
       "Product Link": "https://www.migros.ch/en/product/815340600320",
       "Product Name": "Ladies Hipster 2pcs 7",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "220220085100": {
       "Product Link": "https://www.migros.ch/en/product/220220085100",
@@ -6621,10 +6621,10 @@
     "815340600510": {
       "Product Link": "https://www.migros.ch/en/product/815340600510",
       "Product Name": "Ladies Hipster 2pcs 8",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "815324424420": {
       "Product Link": "https://www.migros.ch/en/product/815324424420",
@@ -6701,10 +6701,10 @@
     "815336024310": {
       "Product Link": "https://www.migros.ch/en/product/815336024310",
       "Product Name": "LADIES SLIP MAXI_L = 44/46,white",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "823720130410": {
       "Product Link": "https://www.migros.ch/en/product/823720130410",
@@ -6725,10 +6725,10 @@
     "701122000003": {
       "Product Link": "https://www.migros.ch/en/product/701122000003",
       "Product Name": "M-BUDGET ROSSO 6ER, 24CL",
-      "Price": 9.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "821172301048": {
       "Product Link": "https://www.migros.ch/en/product/821172301048",
@@ -6845,10 +6845,10 @@
     "815340600620": {
       "Product Link": "https://www.migros.ch/en/product/815340600620",
       "Product Name": "Ladies Hipster 2pcs 9",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "830224100020": {
       "Product Link": "https://www.migros.ch/en/product/830224100020",
@@ -6973,10 +6973,10 @@
     "815336024320": {
       "Product Link": "https://www.migros.ch/en/product/815336024320",
       "Product Name": "LADIES SLIP MAXI_L = 44/46,black",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2023-11-26"
     },
     "121338700000": {
       "Product Link": "https://www.migros.ch/en/product/121338700000",
@@ -7056,6 +7056,30 @@
       "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2023-11-19",
+      "Discontinued": "NA"
+    },
+    "106275500000": {
+      "Product Link": "https://www.migros.ch/en/product/106275500000",
+      "Product Name": "Breadcrumbs 2",
+      "Price": 2.0,
+      "Category": "grocery",
+      "Introduced": "2023-11-26",
+      "Discontinued": "NA"
+    },
+    "158562600000": {
+      "Product Link": "https://www.migros.ch/en/product/158562600000",
+      "Product Name": "M-BUD TORTILLAS VOLLKORN",
+      "Price": 2.1,
+      "Category": "grocery",
+      "Introduced": "2023-11-26",
+      "Discontinued": "NA"
+    },
+    "158562500000": {
+      "Product Link": "https://www.migros.ch/en/product/158562500000",
+      "Product Name": "MBUD TORTILLA WEIZEN 496G",
+      "Price": 2.1,
+      "Category": "grocery",
+      "Introduced": "2023-11-26",
       "Discontinued": "NA"
     }
   }
