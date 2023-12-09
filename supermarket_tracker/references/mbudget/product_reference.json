@@ -1,5 +1,5 @@
 {
-  "Date": "2023-11-26",
+  "Date": "2023-12-09",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -130,7 +130,7 @@
     "251305500000": {
       "Product Link": "https://www.migros.ch/en/product/251305500000",
       "Product Name": "Atlantic salmon for canape - Smoked and pre-sliced - ASC",
-      "Price": 5.3,
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -328,7 +328,7 @@
     "103302600000": {
       "Product Link": "https://www.migros.ch/en/product/103302600000",
       "Product Name": "Olive oil - Virgin",
-      "Price": 6.9,
+      "Price": 7.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -580,7 +580,7 @@
     "263501108600": {
       "Product Link": "https://www.migros.ch/en/product/263501108600",
       "Product Name": "Lemon",
-      "Price": 2.4,
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -706,7 +706,7 @@
     "101912200000": {
       "Product Link": "https://www.migros.ch/en/product/101912200000",
       "Product Name": "Chips - Bell pepper",
-      "Price": 3.65,
+      "Price": 3.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -994,7 +994,7 @@
     "101912300000": {
       "Product Link": "https://www.migros.ch/en/product/101912300000",
       "Product Name": "Chips - Natural",
-      "Price": 3.65,
+      "Price": 3.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1057,7 +1057,7 @@
     "110211000000": {
       "Product Link": "https://www.migros.ch/en/product/110211000000",
       "Product Name": "Flûtes - With sea salt",
-      "Price": 1.5,
+      "Price": 1.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1633,7 +1633,7 @@
     "110555600000": {
       "Product Link": "https://www.migros.ch/en/product/110555600000",
       "Product Name": "Wafer with milk chocolate",
-      "Price": 1.8,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1741,7 +1741,7 @@
     "277000902400": {
       "Product Link": "https://www.migros.ch/en/product/277000902400",
       "Product Name": "Garlic",
-      "Price": 1.9,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2254,7 +2254,7 @@
     "166001400000": {
       "Product Link": "https://www.migros.ch/en/product/166001400000",
       "Product Name": "Diced chicken - With spice brine",
-      "Price": 10.95,
+      "Price": 11.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2488,7 +2488,7 @@
     "162025900000": {
       "Product Link": "https://www.migros.ch/en/product/162025900000",
       "Product Name": "French fries",
-      "Price": 8.5,
+      "Price": 8.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2542,7 +2542,7 @@
     "100130000000": {
       "Product Link": "https://www.migros.ch/en/product/100130000000",
       "Product Name": "Chocolate bars - White",
-      "Price": 0.8,
+      "Price": 0.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2686,7 +2686,7 @@
     "161615400000": {
       "Product Link": "https://www.migros.ch/en/product/161615400000",
       "Product Name": "Creamed spinach",
-      "Price": 2.1,
+      "Price": 2.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2758,7 +2758,7 @@
     "101053000000": {
       "Product Link": "https://www.migros.ch/en/product/101053000000",
       "Product Name": "Jelly candies - Peach & apple flavor",
-      "Price": 1.95,
+      "Price": 2.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3406,7 +3406,7 @@
     "101052700000": {
       "Product Link": "https://www.migros.ch/en/product/101052700000",
       "Product Name": "Jelly candies",
-      "Price": 2.1,
+      "Price": 2.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3559,7 +3559,7 @@
     "101400400000": {
       "Product Link": "https://www.migros.ch/en/product/101400400000",
       "Product Name": "Peanuts - Roasted and salted",
-      "Price": 3.6,
+      "Price": 3.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3766,7 +3766,7 @@
     "130919400000": {
       "Product Link": "https://www.migros.ch/en/product/130919400000",
       "Product Name": "M-Budget Plant-Based Gehacktes vegan",
-      "Price": 4.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-08",
@@ -3973,7 +3973,7 @@
     "162020100000": {
       "Product Link": "https://www.migros.ch/en/product/162020100000",
       "Product Name": "Croquettes",
-      "Price": 5.3,
+      "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4234,7 +4234,7 @@
     "110168900000": {
       "Product Link": "https://www.migros.ch/en/product/110168900000",
       "Product Name": "Pastry roll",
-      "Price": 2.95,
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4243,7 +4243,7 @@
     "105260600000": {
       "Product Link": "https://www.migros.ch/en/product/105260600000",
       "Product Name": "Trail mix - Classic",
-      "Price": 1.9,
+      "Price": 2.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4576,7 +4576,7 @@
     "266000309400": {
       "Product Link": "https://www.migros.ch/en/product/266000309400",
       "Product Name": "M-Budget Baumnüsse Grenoble",
-      "Price": 5.2,
+      "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-22",
@@ -4783,7 +4783,7 @@
     "122000100000": {
       "Product Link": "https://www.migros.ch/en/product/122000100000",
       "Product Name": "Orange juice - 100% fruit juice",
-      "Price": 1.3,
+      "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4873,7 +4873,7 @@
     "110200600000": {
       "Product Link": "https://www.migros.ch/en/product/110200600000",
       "Product Name": "Baby brezel",
-      "Price": 1.0,
+      "Price": 0.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4891,7 +4891,7 @@
     "105260500000": {
       "Product Link": "https://www.migros.ch/en/product/105260500000",
       "Product Name": "Trail mix - Exotic",
-      "Price": 1.9,
+      "Price": 2.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5026,7 +5026,7 @@
     "104475700000": {
       "Product Link": "https://www.migros.ch/en/product/104475700000",
       "Product Name": "Mashed Potatoes",
-      "Price": 2.1,
+      "Price": 2.05,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5071,7 +5071,7 @@
     "101053100000": {
       "Product Link": "https://www.migros.ch/en/product/101053100000",
       "Product Name": "Fruit candies - With orange, lemon and raspberry taste",
-      "Price": 1.8,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5539,7 +5539,7 @@
     "106002500000": {
       "Product Link": "https://www.migros.ch/en/product/106002500000",
       "Product Name": "Mushroom soup",
-      "Price": 1.1,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5557,7 +5557,7 @@
     "106002600000": {
       "Product Link": "https://www.migros.ch/en/product/106002600000",
       "Product Name": "Tomato soup – 18g",
-      "Price": 1.1,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5890,7 +5890,7 @@
     "110129800000": {
       "Product Link": "https://www.migros.ch/en/product/110129800000",
       "Product Name": "Pâtisserie fourée à la framboise - Framboise",
-      "Price": 6.4,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-07-08",
       "Discontinued": "2023-07-16",
@@ -6077,7 +6077,7 @@
     "105260300000": {
       "Product Link": "https://www.migros.ch/en/product/105260300000",
       "Product Name": "Dried figs",
-      "Price": 4.0,
+      "Price": 4.5,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -6949,7 +6949,7 @@
     "101053200000": {
       "Product Link": "https://www.migros.ch/en/product/101053200000",
       "Product Name": "Candy mixture",
-      "Price": 3.1,
+      "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -7080,6 +7080,14 @@
       "Price": 2.1,
       "Category": "grocery",
       "Introduced": "2023-11-26",
+      "Discontinued": "NA"
+    },
+    "158565600000": {
+      "Product Link": "https://www.migros.ch/en/product/158565600000",
+      "Product Name": "M-BUD SOJASAUCE",
+      "Price": 1.5,
+      "Category": "grocery",
+      "Introduced": "2023-12-09",
       "Discontinued": "NA"
     }
   }
