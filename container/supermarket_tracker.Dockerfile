@@ -68,6 +68,6 @@ RUN git config --global user.email $USER_EMAIL
 RUN git config --global user.name $USER_NAME
 RUN cd $FINSPRESSO_ROOT && git remote set-url origin https://finspresso:$GH_TOKEN@github.com/finspresso/finspresso.git
 RUN cd $FINSPRESSO_ROOT && pre-commit install
-ENTRYPOINT ["sh", "-c", "$FINSPRESSO_ROOT/supermarket_tracker/container/entrypoint_supermarket.sh"]
+ENTRYPOINT ["sh", "-c", "$FINSPRESSO_ROOT/container/entrypoint_supermarket.sh"]
 
 #Next: Check why Orange juice 2 and all the other new products are not visible in dropdown on the mbudget tracker even though present in the db
