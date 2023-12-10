@@ -41,7 +41,7 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y /google-chrome.deb --fix-missing
 
 RUN mkdir /var/supermarket_tracker
-COPY requirements.txt /var/supermarket_tracker/
+COPY supermarket_tracker/requirements.txt /var/supermarket_tracker/
 RUN pip install --upgrade pip
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y default-libmysqlclient-dev
 RUN pip install -r /var/supermarket_tracker/requirements.txt
@@ -63,7 +63,7 @@ RUN pip install $FINSPRESSO_ROOT/db_interface_package
 RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/
 RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/configs
 RUN mkdir -p $FINSPRESSO_ROOT/references/mbudget/
-COPY configs/mbudget.json $FINSPRESSO_ROOT/supermarket_tracker/configs/
+COPY supermarket_tracker/configs/mbudget.json $FINSPRESSO_ROOT/supermarket_tracker/configs/
 
 COPY container/entrypoint_supermarket.sh /
 ARG USER_EMAIL
