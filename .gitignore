@@ -11,3 +11,7 @@ db_interface_package/build
 db_interface_package/db_interface.egg-info.egg-info
 credentials/
 db_interface_package/db_interface.egg-info
+gh_token.txt
+user_email.txt
+user_name.txt
+inflation/downloads/
