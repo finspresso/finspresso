@@ -1,5 +1,5 @@
 {
-  "Date": "2023-12-09",
+  "Date": "2023-12-17",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -1075,7 +1075,7 @@
     "100112500000": {
       "Product Link": "https://www.migros.ch/en/product/100112500000",
       "Product Name": "Dark chocolate",
-      "Price": 0.6,
+      "Price": 0.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1165,7 +1165,7 @@
     "704522000000": {
       "Product Link": "https://www.migros.ch/en/product/704522000000",
       "Product Name": "Multipurpose bag - 20L - 50 x 65cm",
-      "Price": 0.95,
+      "Price": 0.9,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1597,7 +1597,7 @@
     "512116200000": {
       "Product Link": "https://www.migros.ch/en/product/512116200000",
       "Product Name": "MBUDGET BATH KOKOS&VA",
-      "Price": 1.9,
+      "Price": 1.85,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1606,7 +1606,7 @@
     "512116300000": {
       "Product Link": "https://www.migros.ch/en/product/512116300000",
       "Product Name": "MBUDGET BATH",
-      "Price": 1.9,
+      "Price": 1.85,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2029,7 +2029,7 @@
     "100200900000": {
       "Product Link": "https://www.migros.ch/en/product/100200900000",
       "Product Name": "Dark chocolate bar - With raspberry flavoured sugar fondant filling",
-      "Price": 1.1,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2092,7 +2092,7 @@
     "100201000000": {
       "Product Link": "https://www.migros.ch/en/product/100201000000",
       "Product Name": "Milk chocolate bar - With milk cream filling",
-      "Price": 1.1,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2164,7 +2164,7 @@
     "100200600000": {
       "Product Link": "https://www.migros.ch/en/product/100200600000",
       "Product Name": "Chocolate bars - Butter croissant with a milk chocolate - hazelnut filling",
-      "Price": 0.8,
+      "Price": 0.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2191,7 +2191,7 @@
     "161425700000": {
       "Product Link": "https://www.migros.ch/en/product/161425700000",
       "Product Name": "Mix of berries - Unsweetened",
-      "Price": 5.2,
+      "Price": 5.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2263,7 +2263,7 @@
     "104220600000": {
       "Product Link": "https://www.migros.ch/en/product/104220600000",
       "Product Name": "Muesli Nibbles - Chocolate",
-      "Price": 3.95,
+      "Price": 4.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2353,7 +2353,7 @@
     "100102800000": {
       "Product Link": "https://www.migros.ch/en/product/100102800000",
       "Product Name": "Chocolate bars - Milk chocolate, hazelnut chips",
-      "Price": 0.7,
+      "Price": 0.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2443,7 +2443,7 @@
     "100102700000": {
       "Product Link": "https://www.migros.ch/en/product/100102700000",
       "Product Name": "Chocolate bars - Milk chocolate – 100g",
-      "Price": 0.5,
+      "Price": 0.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3064,7 +3064,7 @@
     "100102900000": {
       "Product Link": "https://www.migros.ch/en/product/100102900000",
       "Product Name": "Chocolate bars - Milk chocolate with whole hazelnuts",
-      "Price": 1.1,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5035,7 +5035,7 @@
     "104220800000": {
       "Product Link": "https://www.migros.ch/en/product/104220800000",
       "Product Name": "Muesli",
-      "Price": 2.4,
+      "Price": 2.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5224,7 +5224,7 @@
     "100103000000": {
       "Product Link": "https://www.migros.ch/en/product/100103000000",
       "Product Name": "Chocolate bars - Milk chocolate – 400g",
-      "Price": 1.95,
+      "Price": 2.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5332,7 +5332,7 @@
     "100103100000": {
       "Product Link": "https://www.migros.ch/en/product/100103100000",
       "Product Name": "Milk chocolate - Milk chocolate with hazelnut chips",
-      "Price": 2.65,
+      "Price": 2.75,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -7088,6 +7088,14 @@
       "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-12-09",
+      "Discontinued": "NA"
+    },
+    "109034100000": {
+      "Product Link": "https://www.migros.ch/en/product/109034100000",
+      "Product Name": "Dental sticks",
+      "Price": 2.0,
+      "Category": "other",
+      "Introduced": "2023-12-17",
       "Discontinued": "NA"
     }
   }
