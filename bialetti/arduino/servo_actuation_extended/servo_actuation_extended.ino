@@ -33,17 +33,23 @@ void goToPosition(int targetPosition) {
   }
 }
 
+
 void loop()
 {
-  int deltaAngleDegree = 90;
-  int currentPosition = myservo.read();
-  int targetPosition = 0;
-  if (currentPosition > deltaAngleDegree) {
-    targetPosition = currentPosition - deltaAngleDegree;
-  } else {
-    targetPosition = currentPosition + deltaAngleDegree;
-  }
-  goToPosition(targetPosition);
-  goToPosition(initAngle);
+  int analogValue = analogRead(A0);
+  int mappedAngle = map(analogValue, 0, 1023, 0, 180);
+  Serial.println(mappedAngle);
+  goToPosition(mappedAngle);
+
+  // int deltaAngleDegree = 90;
+  // int currentPosition = myservo.read();
+  // int targetPosition = 0;
+  // if (currentPosition > deltaAngleDegree) {
+  //   targetPosition = currentPosition - deltaAngleDegree;
+  // } else {
+  //   targetPosition = currentPosition + deltaAngleDegree;
+  // }
+  // goToPosition(targetPosition);
+  // goToPosition(initAngle);
 
 }
