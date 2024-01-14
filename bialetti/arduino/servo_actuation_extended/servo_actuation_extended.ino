@@ -4,11 +4,14 @@
 Servo myservo;//create servo object to control a servo
 bool finished;
 int initAngle = 180;
-int pwmPin = 9;
+const int pwmPin = 9;
+const int potentiometerInputPin = 6;
 void setup()
 {
   Serial.begin(9600);
   Serial.println("Init");
+  pinMode(potentiometerInputPin, OUTPUT);
+  digitalWrite(potentiometerInputPin, HIGH);
   myservo.attach(pwmPin);//attachs the servo on pin 9 to servo object
   myservo.write(initAngle);
   finished = false;
