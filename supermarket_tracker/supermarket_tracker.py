@@ -411,7 +411,7 @@ class SuperMarketTracker:
                                 product_link,
                                 product_category,
                             )
-                dict_reference.update(new_articles_dict)
+                    dict_reference.update(new_articles_dict)
 
                 dict_reference = SuperMarketTracker.check_for_duplicate_names(
                     dict_reference, self.interactive
