@@ -1,5 +1,5 @@
 {
-  "Date": "2024-01-01",
+  "Date": "2024-01-14",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -31,7 +31,7 @@
     "204242000000": {
       "Product Link": "https://www.migros.ch/en/product/204242000000",
       "Product Name": "Cooking butter",
-      "Price": 3.5,
+      "Price": 3.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -130,10 +130,10 @@
     "251305500000": {
       "Product Link": "https://www.migros.ch/en/product/251305500000",
       "Product Name": "Atlantic salmon for canape - Smoked and pre-sliced - ASC",
-      "Price": 4.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-01-14",
       "Include": "Yes"
     },
     "233520691202": {
@@ -562,7 +562,7 @@
     "204141300000": {
       "Product Link": "https://www.migros.ch/en/product/204141300000",
       "Product Name": "Sour cream - Nature",
-      "Price": 6.25,
+      "Price": 6.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -625,7 +625,7 @@
     "105317700000": {
       "Product Link": "https://www.migros.ch/en/product/105317700000",
       "Product Name": "Walnut kernels",
-      "Price": 2.95,
+      "Price": 3.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -715,7 +715,7 @@
     "274502603400": {
       "Product Link": "https://www.migros.ch/en/product/274502603400",
       "Product Name": "Carrots",
-      "Price": 3.3,
+      "Price": 3.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -742,7 +742,7 @@
     "122006900000": {
       "Product Link": "https://www.migros.ch/en/product/122006900000",
       "Product Name": "Multivitamin fruit juice - With 12% fruit juices and 9 vitamins",
-      "Price": 2.65,
+      "Price": 2.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1876,7 +1876,7 @@
     "122020400000": {
       "Product Link": "https://www.migros.ch/en/product/122020400000",
       "Product Name": "Multifruit nectar - With 50% fruit juice",
-      "Price": 1.5,
+      "Price": 1.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2749,7 +2749,7 @@
     "105311400000": {
       "Product Link": "https://www.migros.ch/en/product/105311400000",
       "Product Name": "Ground hazelnuts",
-      "Price": 4.6,
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3217,10 +3217,10 @@
     "760525600020": {
       "Product Link": "https://www.migros.ch/en/product/760525600020",
       "Product Name": "M-Budget schwarz/weiss Armbanduhr",
-      "Price": 17.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-01-14",
       "Include": "Yes"
     },
     "761203900000": {
@@ -3280,10 +3280,10 @@
     "760525600022": {
       "Product Link": "https://www.migros.ch/en/product/760525600022",
       "Product Name": "M-Budget schwarz Armbanduhr",
-      "Price": 17.9,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-01-14",
       "Include": "Yes"
     },
     "701158300001": {
@@ -3451,7 +3451,7 @@
     "156012900000": {
       "Product Link": "https://www.migros.ch/en/product/156012900000",
       "Product Name": "Sandwich gherkins - Longitudinal section",
-      "Price": 1.4,
+      "Price": 1.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3640,7 +3640,7 @@
     "113211700000": {
       "Product Link": "https://www.migros.ch/en/product/113211700000",
       "Product Name": "M-Budget Zitronentörtchen",
-      "Price": 0.95,
+      "Price": 1.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3730,7 +3730,7 @@
     "104431200000": {
       "Product Link": "https://www.migros.ch/en/product/104431200000",
       "Product Name": "Risotto",
-      "Price": 2.0,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4045,7 +4045,7 @@
     "130541400000": {
       "Product Link": "https://www.migros.ch/en/product/130541400000",
       "Product Name": "Risotto - Ticinese",
-      "Price": 3.75,
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4693,7 +4693,7 @@
     "106409500000": {
       "Product Link": "https://www.migros.ch/en/product/106409500000",
       "Product Name": "Mild mustard",
-      "Price": 1.0,
+      "Price": 0.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5179,7 +5179,7 @@
     "204019900000": {
       "Product Link": "https://www.migros.ch/en/product/204019900000",
       "Product Name": "M-Budget Milch teilentr. IP-Suisse",
-      "Price": 2.2,
+      "Price": 2.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5188,7 +5188,7 @@
     "204014000000": {
       "Product Link": "https://www.migros.ch/en/product/204014000000",
       "Product Name": "M-Budget Vollmilch IP-SUISSE",
-      "Price": 2.2,
+      "Price": 2.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5440,7 +5440,7 @@
     "102040100000": {
       "Product Link": "https://www.migros.ch/en/product/102040100000",
       "Product Name": "Fine crystal sugar",
-      "Price": 1.3,
+      "Price": 1.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5845,7 +5845,7 @@
     "277108110400": {
       "Product Link": "https://www.migros.ch/en/product/277108110400",
       "Product Name": "onions - 2kg bag",
-      "Price": 2.9,
+      "Price": 3.2,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": "NA",
+      "Price": 2.5,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -6741,7 +6741,7 @@
     "270400902300": {
       "Product Link": "https://www.migros.ch/en/product/270400902300",
       "Product Name": "Endives",
-      "Price": 3.4,
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
