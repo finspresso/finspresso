@@ -1,5 +1,5 @@
 {
-  "Date": "2024-01-14",
+  "Date": "2024-01-21",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -130,7 +130,7 @@
     "251305500000": {
       "Product Link": "https://www.migros.ch/en/product/251305500000",
       "Product Name": "Atlantic salmon for canape - Smoked and pre-sliced - ASC",
-      "Price": "NA",
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-01-14",
@@ -607,7 +607,7 @@
     "264501202300": {
       "Product Link": "https://www.migros.ch/en/product/264501202300",
       "Product Name": "Avocados",
-      "Price": 1.8,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2830,7 +2830,7 @@
     "204026000000": {
       "Product Link": "https://www.migros.ch/en/product/204026000000",
       "Product Name": "M-Budget Mandeldrink",
-      "Price": 2.0,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3217,7 +3217,7 @@
     "760525600020": {
       "Product Link": "https://www.migros.ch/en/product/760525600020",
       "Product Name": "M-Budget schwarz/weiss Armbanduhr",
-      "Price": "NA",
+      "Price": 17.9,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-01-14",
@@ -3280,7 +3280,7 @@
     "760525600022": {
       "Product Link": "https://www.migros.ch/en/product/760525600022",
       "Product Name": "M-Budget schwarz Armbanduhr",
-      "Price": "NA",
+      "Price": 17.9,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-01-14",
@@ -4576,7 +4576,7 @@
     "266000309400": {
       "Product Link": "https://www.migros.ch/en/product/266000309400",
       "Product Name": "M-Budget Baumnüsse Grenoble",
-      "Price": 5.5,
+      "Price": 5.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-22",
@@ -5845,7 +5845,7 @@
     "277108110400": {
       "Product Link": "https://www.migros.ch/en/product/277108110400",
       "Product Name": "onions - 2kg bag",
-      "Price": 3.2,
+      "Price": 2.9,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -6517,7 +6517,7 @@
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": 1.2,
+      "Price": 1.4,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -7037,7 +7037,7 @@
     "260533803400": {
       "Product Link": "https://www.migros.ch/en/product/260533803400",
       "Product Name": "Pears",
-      "Price": 3.6,
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
