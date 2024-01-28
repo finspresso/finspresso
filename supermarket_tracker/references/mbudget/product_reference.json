@@ -1,5 +1,5 @@
 {
-  "Date": "2024-01-21",
+  "Date": "2024-01-28",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -256,10 +256,10 @@
     "130123900000": {
       "Product Link": "https://www.migros.ch/en/product/130123900000",
       "Product Name": "Egg spaetzle",
-      "Price": 3.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-01-28",
       "Include": "Yes"
     },
     "130140400000": {
@@ -463,7 +463,7 @@
     "153211500000": {
       "Product Link": "https://www.migros.ch/en/product/153211500000",
       "Product Name": "Tomato sauce - With basilico",
-      "Price": 1.2,
+      "Price": 1.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -724,10 +724,10 @@
     "153225000000": {
       "Product Link": "https://www.migros.ch/en/product/153225000000",
       "Product Name": "Tomato sauce",
-      "Price": 1.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-01-28",
       "Include": "Yes"
     },
     "230501600000": {
@@ -2371,7 +2371,7 @@
     "109034200000": {
       "Product Link": "https://www.migros.ch/en/product/109034200000",
       "Product Name": "Cat snacks - With chicken",
-      "Price": 2.8,
+      "Price": 2.6,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2668,7 +2668,7 @@
     "109034300000": {
       "Product Link": "https://www.migros.ch/en/product/109034300000",
       "Product Name": "Cat snacks - With salmon",
-      "Price": 2.8,
+      "Price": 2.6,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2866,7 +2866,7 @@
     "153222900000": {
       "Product Link": "https://www.migros.ch/en/product/153222900000",
       "Product Name": "Tomato puree – Glas 680g",
-      "Price": 1.25,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4297,7 +4297,7 @@
     "130541200000": {
       "Product Link": "https://www.migros.ch/en/product/130541200000",
       "Product Name": "Spaghetti Carbonara",
-      "Price": 2.9,
+      "Price": 2.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4459,7 +4459,7 @@
     "106655000000": {
       "Product Link": "https://www.migros.ch/en/product/106655000000",
       "Product Name": "Curry sauce",
-      "Price": 2.2,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4504,7 +4504,7 @@
     "720549500000": {
       "Product Link": "https://www.migros.ch/en/product/720549500000",
       "Product Name": "Self-adhesive tapes",
-      "Price": 1.0,
+      "Price": 0.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4720,7 +4720,7 @@
     "106655100000": {
       "Product Link": "https://www.migros.ch/en/product/106655100000",
       "Product Name": "Cocktail sauce",
-      "Price": 2.2,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4765,7 +4765,7 @@
     "106655300000": {
       "Product Link": "https://www.migros.ch/en/product/106655300000",
       "Product Name": "Tartare sauce",
-      "Price": 2.2,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4918,7 +4918,7 @@
     "106655200000": {
       "Product Link": "https://www.migros.ch/en/product/106655200000",
       "Product Name": "Garlic sauce",
-      "Price": 2.2,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5026,7 +5026,7 @@
     "104475700000": {
       "Product Link": "https://www.migros.ch/en/product/104475700000",
       "Product Name": "Mashed Potatoes",
-      "Price": 2.05,
+      "Price": 2.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5530,7 +5530,7 @@
     "166000100000": {
       "Product Link": "https://www.migros.ch/en/product/166000100000",
       "Product Name": "Swiss chicken whole",
-      "Price": 12.15,
+      "Price": 11.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": 2.5,
+      "Price": 2.4,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -6517,7 +6517,7 @@
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": 1.4,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -6637,10 +6637,10 @@
     "271400708400": {
       "Product Link": "https://www.migros.ch/en/product/271400708400",
       "Product Name": "Tomatoes 2",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2024-01-28"
     },
     "821172300820": {
       "Product Link": "https://www.migros.ch/en/product/821172300820",
