@@ -1,5 +1,5 @@
 {
-  "Date": "2024-03-10",
+  "Date": "2024-03-17",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -22,7 +22,7 @@
     "212602600000": {
       "Product Link": "https://www.migros.ch/en/product/212602600000",
       "Product Name": "Cream cheese - With herbs",
-      "Price": "NA",
+      "Price": 0.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -103,10 +103,10 @@
     "231500281202": {
       "Product Link": "https://www.migros.ch/en/product/231500281202",
       "Product Name": "Front ham",
-      "Price": 2.65,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-03-17",
       "Include": "Yes"
     },
     "212602900000": {
@@ -265,7 +265,7 @@
     "130140400000": {
       "Product Link": "https://www.migros.ch/en/product/130140400000",
       "Product Name": "Tortelloni - Spinach and ricotta",
-      "Price": "NA",
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -373,7 +373,7 @@
     "233091081200": {
       "Product Link": "https://www.migros.ch/en/product/233091081200",
       "Product Name": "Mostmöckli - Mostmöckli",
-      "Price": "NA",
+      "Price": 4.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -643,7 +643,7 @@
     "704504100000": {
       "Product Link": "https://www.migros.ch/en/product/704504100000",
       "Product Name": "Multipurpose bag - 20 x 30cm",
-      "Price": "NA",
+      "Price": 1.0,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -1237,10 +1237,10 @@
     "105317600000": {
       "Product Link": "https://www.migros.ch/en/product/105317600000",
       "Product Name": "Almonds - Unsalted",
-      "Price": 2.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-03-17",
       "Include": "Yes"
     },
     "105319900000": {
@@ -1588,7 +1588,7 @@
     "109031800000": {
       "Product Link": "https://www.migros.ch/en/product/109031800000",
       "Product Name": "Cat sticks - With game and poultry",
-      "Price": "NA",
+      "Price": 1.5,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -1867,10 +1867,10 @@
     "109031500000": {
       "Product Link": "https://www.migros.ch/en/product/109031500000",
       "Product Name": "Cat sticks - With lamb and turkey",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-03-17",
       "Include": "Yes"
     },
     "122020400000": {
@@ -1930,7 +1930,7 @@
     "502018300000": {
       "Product Link": "https://www.migros.ch/en/product/502018300000",
       "Product Name": "M-Budget Essigreiniger",
-      "Price": "NA",
+      "Price": 2.0,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -1984,7 +1984,7 @@
     "220281530000": {
       "Product Link": "https://www.migros.ch/en/product/220281530000",
       "Product Name": "Beef fillet",
-      "Price": 5.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -1993,7 +1993,7 @@
     "220282040000": {
       "Product Link": "https://www.migros.ch/en/product/220282040000",
       "Product Name": "Beef entrecôte",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -2254,7 +2254,7 @@
     "166001400000": {
       "Product Link": "https://www.migros.ch/en/product/166001400000",
       "Product Name": "Diced chicken - With spice brine",
-      "Price": "NA",
+      "Price": 11.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -3460,7 +3460,7 @@
     "251366000000": {
       "Product Link": "https://www.migros.ch/en/product/251366000000",
       "Product Name": "Wild salmon smoked",
-      "Price": "NA",
+      "Price": 9.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-03-10",
@@ -4963,7 +4963,7 @@
     "220222085000": {
       "Product Link": "https://www.migros.ch/en/product/220222085000",
       "Product Name": "Beef ragout",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -5953,7 +5953,7 @@
     "500426400000": {
       "Product Link": "https://www.migros.ch/en/product/500426400000",
       "Product Name": "M-BUDGET VORWASCHREINIGER",
-      "Price": "NA",
+      "Price": 3.0,
       "Category": "other",
       "Introduced": "2023-08-20",
       "Discontinued": "2024-03-10",
@@ -7165,10 +7165,10 @@
     "158586000000": {
       "Product Link": "https://www.migros.ch/en/product/158586000000",
       "Product Name": "Coconut milk",
-      "Price": 1.85,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-02-11",
-      "Discontinued": "NA"
+      "Discontinued": "2024-03-17"
     },
     "702050800000": {
       "Product Link": "https://www.migros.ch/en/product/702050800000",
@@ -7253,26 +7253,26 @@
     "160347300000": {
       "Product Link": "https://www.migros.ch/en/product/160347300000",
       "Product Name": "Ice cream - Double Date",
-      "Price": 3.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-03-10",
-      "Discontinued": "NA"
+      "Discontinued": "2024-03-17"
     },
     "160347100000": {
       "Product Link": "https://www.migros.ch/en/product/160347100000",
       "Product Name": "Ice cream - Almost Cookie",
-      "Price": 3.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-03-10",
-      "Discontinued": "NA"
+      "Discontinued": "2024-03-17"
     },
     "160355000000": {
       "Product Link": "https://www.migros.ch/en/product/160355000000",
       "Product Name": "Ice cream - Mini Mix",
-      "Price": 5.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-03-10",
-      "Discontinued": "NA"
+      "Discontinued": "2024-03-17"
     }
   }
 }
