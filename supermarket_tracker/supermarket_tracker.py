@@ -95,9 +95,10 @@ class SuperMarketTracker:
         self.current_offset = 0
         driver.get(self.config["collection_url"])
         try:
+            extension_button_counter = 0
             while True:
                 try:
-                    xpath_extension_button = "/html/body/app-root/div[1]/lsp-shop/div/div/div/mo-brand-view-container/main/div/div/mo-brand-view-layout/div/div/div[2]/app-products-display/div[2]/div/a"
+                    xpath_extension_button = "/html/body/app-root/div[1]/lsp-shop/div/div/div/div/div/mo-brand-view-container/main/div/div/mo-brand-view-layout/div/div/div[2]/app-products-display/div[2]/div/a"
                     logger.info("Searching for extension button")
                     element = WebDriverWait(driver, 5).until(
                         EC.presence_of_element_located(
@@ -110,8 +111,14 @@ class SuperMarketTracker:
                     logger.info("Clicking on extension button")
                     driver.execute_script("arguments[0].click();", element)
                     time.sleep(3)
+                    extension_button_counter += 1
                 except (TimeoutException, NoSuchElementException):
-                    logger.warning("No extension button found. Proceeding.")
+                    if extension_button_counter == 0:
+                        logger.error("Zero extension button found. Aborting")
+                        exit(1)
+                    logger.info(
+                        f"Pressed {extension_button_counter} extension buttons."
+                    )
                     break
             try:
                 logger.info("Searching for cookie banner")
