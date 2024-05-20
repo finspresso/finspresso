@@ -12,8 +12,8 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 
-const uint OUTPUT_PIN = 2;
-const uint MEASURE_PIN = 5;
+const uint OUTPUT_PIN = 22;
+const uint MEASURE_PIN = 17;
 
 float measure_duty_cycle(uint gpio) {
     // Only the PWM B pins can be used as inputs.
