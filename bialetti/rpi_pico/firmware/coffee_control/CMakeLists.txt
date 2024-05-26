@@ -6,7 +6,8 @@ target_link_libraries(coffee_control
                       pico_stdlib
                       hardware_adc
                       pico_cyw43_arch_none
-                      hardware_pwm)
+                      hardware_pwm
+                      pico_rc)
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(coffee_control 1)
