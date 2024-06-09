@@ -4,6 +4,6 @@
   "default_category": "grocery",
   "categories": {
     "grocery": "default",
-    "other": "^5.*|^7.*|^109.*"
+    "other": "^5.*|^7.*|^8.*|^109.*"
   }
 }

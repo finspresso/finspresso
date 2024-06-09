@@ -2,11 +2,9 @@ GH_TOKEN_ARG := $(shell cat gh_token.txt)
 USER_NAME := $(shell cat user_name.txt)
 USER_EMAIL := $(shell cat user_email.txt)
 
-update_mbudget:
-	/bin/bash update_all.sh mbudget
 
 build_apache:
-	docker build -f container/Dockerfile_Apache -t apache-own:latest .
+	docker build -f container/Dockerfile_Apache -t apache-own:test .
 
 run_apache:
 	docker run -d --name apache -p 8081:80 --rm apache-own:latest

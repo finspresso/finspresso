@@ -1,6 +1,14 @@
 {
   "dividend_history": [
     {
+      "payable_date": "2024-03-18",
+      "distribution per share": 0.86
+    },
+    {
+      "payable_date": "2024-03-11",
+      "distribution per share": 0.74
+    },
+    {
       "payable_date": "2023-07-20",
       "distribution per share": 0.66
     },
