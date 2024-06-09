@@ -38,7 +38,20 @@ float measure_duty_cycle(uint gpio) {
     return pwm_get_counter(slice_num) / max_possible_count;
 }
 
-
+// Function to set the servo angle
+void set_servo_angle(uint slice_num, uint channel, float angle) {
+    // // Convert the angle (0 to 180) to PWM duty cycle
+    float min_pulse_width = 1000.0f;  // 1 ms
+    float max_pulse_width = 2000.0f;  // 2 ms
+    float pulse_width = (angle / 180.0f) * (max_pulse_width - min_pulse_width) + min_pulse_width;
+    pwm_set_chan_level(slice_num, PWM_CHAN_A, pulse_width);
+    printf("Pulse Width: %f ms \n", pulse_width);
+    // Calculate the duty cycle as a percentage (1 ms to 2 ms pulse width in a 20 ms period)
+    // uint16_t duty_cycle = (uint16_t)((pulse_width / 20000.0f) * 65535.0f);
+    // // Set the PWM duty cycle
+    // printf("Output duty cycle: %i \n", duty_cycle);
+    // pwm_set_gpio_level(SERVO_PIN, duty_cycle);
+}
 
 
 int main() {
@@ -56,15 +69,23 @@ int main() {
     // Select ADC input 0 (GPIO26)
     adc_select_input(0);
 
-    // Configure PWM slice and set it running
-    // const uint count_top = 1000;
-    // pwm_config cfg = pwm_get_default_config();
-    // pwm_config_set_wrap(&cfg, count_top);
-    // pwm_init(pwm_gpio_to_slice_num(OUTPUT_PIN), &cfg, true);
-    // gpio_set_function(OUTPUT_PIN, GPIO_FUNC_PWM);
+        // Initialize the chosen GPIO pin for PWM output
+    gpio_set_function(SERVO_PIN, GPIO_FUNC_PWM);
 
-    rc_servo myServo = rc_servo_init(SERVO_PIN);
-    rc_servo_start(&myServo, 90);   // set servo1 na 90 degree
+    // Find the PWM slice and channel for the chosen GPIO pin
+    uint slice_num_servo = pwm_gpio_to_slice_num(SERVO_PIN);
+    uint channel_servo = pwm_gpio_to_channel(SERVO_PIN);
+
+    // Set the PWM frequency (50 Hz)
+    pwm_set_clkdiv(slice_num_servo, 125.0f);  // Assuming the system clock is 125 MHz
+    pwm_set_wrap(slice_num_servo, 19999);     // 20000 cycles per 50 Hz period
+
+
+    // Enable the PWM slice
+    pwm_set_enabled(slice_num_servo, true);
+    pwm_set_chan_level(slice_num_servo, PWM_CHAN_A, 1500);
+
+
     float ref_voltage = 3.3f; // [V]
     while (1) {
         // 12-bit conversion, assume max value == ADC_VREF == 3.3 V
@@ -79,12 +100,14 @@ int main() {
             cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
         }
         float output_duty_cycle = voltage / ref_voltage;
-        // pwm_set_gpio_level(OUTPUT_PIN, (uint16_t) (output_duty_cycle * (count_top + 1)));
-        float measured_duty_cycle = measure_duty_cycle(MEASURE_PIN);
-        printf("Output duty cycle = %.1f%%, measured input duty cycle = %.1f%%\n",
-                output_duty_cycle * 100.f, measured_duty_cycle * 100.f);
-        uint angle = 70;
-        rc_servo_set_angle(&myServo,angle);
-        sleep_ms(1000);
+        float angle = output_duty_cycle * 180.0;
+        set_servo_angle(slice_num_servo, channel_servo, angle);
+        sleep_ms(20);  // Delay between angle changes
+
+        // float measured_duty_cycle = measure_duty_cycle(MEASURE_PIN);
+        // printf("Output duty cycle = %.1f%%, measured input duty cycle = %.1f%%\n",
+        //         output_duty_cycle * 100.f, measured_duty_cycle * 100.f);
+        //uint angle = 70;
+        //rc_servo_set_angle(&myServo,angle);
     }
 }
