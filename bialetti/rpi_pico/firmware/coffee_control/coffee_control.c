@@ -17,7 +17,7 @@
 
 const uint OUTPUT_PIN = 22;
 const uint MEASURE_PIN = 17;
-const float MAX_ANGLE = 220.0;
+const float MAX_ANGLE = 270.0;
 
 float measure_duty_cycle(uint gpio) {
     // Only the PWM B pins can be used as inputs.
