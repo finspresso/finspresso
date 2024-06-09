@@ -17,6 +17,7 @@
 
 const uint OUTPUT_PIN = 22;
 const uint MEASURE_PIN = 17;
+const float MAX_ANGLE = 220.0;
 
 float measure_duty_cycle(uint gpio) {
     // Only the PWM B pins can be used as inputs.
@@ -41,9 +42,9 @@ float measure_duty_cycle(uint gpio) {
 // Function to set the servo angle
 void set_servo_angle(uint slice_num, uint channel, float angle) {
     // // Convert the angle (0 to 180) to PWM duty cycle
-    float min_pulse_width = 1000.0f;  // 1 ms
-    float max_pulse_width = 2000.0f;  // 2 ms
-    float pulse_width = (angle / 180.0f) * (max_pulse_width - min_pulse_width) + min_pulse_width;
+    float min_pulse_width = 600.0f;  // 1 ms
+    float max_pulse_width = 2500.0f;  // 2 ms
+    float pulse_width = (angle / MAX_ANGLE) * (max_pulse_width - min_pulse_width) + min_pulse_width;
     pwm_set_chan_level(slice_num, PWM_CHAN_A, pulse_width);
     printf("Pulse Width: %f ms \n", pulse_width);
     // Calculate the duty cycle as a percentage (1 ms to 2 ms pulse width in a 20 ms period)
@@ -100,7 +101,7 @@ int main() {
             cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
         }
         float output_duty_cycle = voltage / ref_voltage;
-        float angle = output_duty_cycle * 180.0;
+        float angle = output_duty_cycle * MAX_ANGLE;
         set_servo_angle(slice_num_servo, channel_servo, angle);
         sleep_ms(20);  // Delay between angle changes
 
