@@ -1,13 +1,13 @@
 {
-  "Date": "2024-06-09",
+  "Date": "2024-06-16",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
       "Product Name": "Bacon rolls",
-      "Price": 2.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-06-16",
       "Include": "Yes"
     },
     "200609600000": {
@@ -31,10 +31,10 @@
     "204242000000": {
       "Product Link": "https://www.migros.ch/en/product/204242000000",
       "Product Name": "Cooking butter",
-      "Price": 3.4,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-06-16",
       "Include": "Yes"
     },
     "210154000000": {
@@ -139,7 +139,7 @@
     "233520691202": {
       "Product Link": "https://www.migros.ch/en/product/233520691202",
       "Product Name": "Bacon",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -490,7 +490,7 @@
     "231500189602": {
       "Product Link": "https://www.migros.ch/en/product/231500189602",
       "Product Name": "Shoulder ham cubes",
-      "Price": 3.95,
+      "Price": 3.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -589,7 +589,7 @@
     "233120281302": {
       "Product Link": "https://www.migros.ch/en/product/233120281302",
       "Product Name": "Country smoked ham - Smoked",
-      "Price": 3.5,
+      "Price": 3.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -715,7 +715,7 @@
     "274502603400": {
       "Product Link": "https://www.migros.ch/en/product/274502603400",
       "Product Name": "Carrots",
-      "Price": 3.25,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -1399,7 +1399,7 @@
     "101136500000": {
       "Product Link": "https://www.migros.ch/en/product/101136500000",
       "Product Name": "Chewing Gum - Spearmint, without sugar",
-      "Price": 2.9,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2101,7 +2101,7 @@
     "101136600000": {
       "Product Link": "https://www.migros.ch/en/product/101136600000",
       "Product Name": "Chewing Gum - Menthol, extra strong, without sugar",
-      "Price": 2.9,
+      "Price": 1.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2641,10 +2641,10 @@
     "526227000000": {
       "Product Link": "https://www.migros.ch/en/product/526227000000",
       "Product Name": "Wet wipes",
-      "Price": 1.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-06-16",
       "Include": "Yes"
     },
     "130542400000": {
@@ -3766,7 +3766,7 @@
     "130919400000": {
       "Product Link": "https://www.migros.ch/en/product/130919400000",
       "Product Name": "M-Budget Plant-Based Gehacktes vegan",
-      "Price": 4.1,
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-08",
@@ -5845,7 +5845,7 @@
     "277108110400": {
       "Product Link": "https://www.migros.ch/en/product/277108110400",
       "Product Name": "onions - 2kg bag",
-      "Price": 2.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5854,7 +5854,7 @@
     "271401902600": {
       "Product Link": "https://www.migros.ch/en/product/271401902600",
       "Product Name": "Tomatoes - Cherry",
-      "Price": 3.95,
+      "Price": 2.8,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -6581,7 +6581,7 @@
     "220220085100": {
       "Product Link": "https://www.migros.ch/en/product/220220085100",
       "Product Name": "M-Budget Rindshackfleisch",
-      "Price": "NA",
+      "Price": 1.6,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-06-09"
@@ -7093,7 +7093,7 @@
     "109034100000": {
       "Product Link": "https://www.migros.ch/en/product/109034100000",
       "Product Name": "Dental sticks",
-      "Price": 2.0,
+      "Price": 1.6,
       "Category": "other",
       "Introduced": "2023-12-17",
       "Discontinued": "NA"
@@ -7101,10 +7101,10 @@
     "271401702500": {
       "Product Link": "https://www.migros.ch/en/product/271401702500",
       "Product Name": "M-Budget Datteltomaten",
-      "Price": 1.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-01-01",
-      "Discontinued": "NA"
+      "Discontinued": "2024-06-16"
     },
     "708144600000": {
       "Product Link": "https://www.migros.ch/en/product/708144600000",
@@ -7533,7 +7533,7 @@
     "526227400000": {
       "Product Link": "https://www.migros.ch/en/product/526227400000",
       "Product Name": "M-Budget Feuchttücher",
-      "Price": 1.95,
+      "Price": 1.5,
       "Category": "other",
       "Introduced": "2024-04-28",
       "Discontinued": "NA"
@@ -7664,6 +7664,46 @@
       "Price": 7.0,
       "Category": "other",
       "Introduced": "2024-06-09",
+      "Discontinued": "NA"
+    },
+    "130420200000": {
+      "Product Link": "https://www.migros.ch/en/product/130420200000",
+      "Product Name": "M-Budget Sandwich Chicken Curry",
+      "Price": 3.6,
+      "Category": "grocery",
+      "Introduced": "2024-06-16",
+      "Discontinued": "NA"
+    },
+    "233070076002": {
+      "Product Link": "https://www.migros.ch/en/product/233070076002",
+      "Product Name": "Bresaola",
+      "Price": 5.95,
+      "Category": "grocery",
+      "Introduced": "2024-06-16",
+      "Discontinued": "NA"
+    },
+    "105311700000": {
+      "Product Link": "https://www.migros.ch/en/product/105311700000",
+      "Product Name": "Cedar seeds",
+      "Price": 3.95,
+      "Category": "grocery",
+      "Introduced": "2024-06-16",
+      "Discontinued": "NA"
+    },
+    "101137700000": {
+      "Product Link": "https://www.migros.ch/en/product/101137700000",
+      "Product Name": "Chewing Gum - Berries flavour",
+      "Price": 1.95,
+      "Category": "grocery",
+      "Introduced": "2024-06-16",
+      "Discontinued": "NA"
+    },
+    "233070032500": {
+      "Product Link": "https://www.migros.ch/en/product/233070032500",
+      "Product Name": "Salami sticks",
+      "Price": 2.4,
+      "Category": "grocery",
+      "Introduced": "2024-06-16",
       "Discontinued": "NA"
     }
   }
