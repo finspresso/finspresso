@@ -23,6 +23,7 @@ add_subdirectory(hello_world)
 add_subdirectory(pontentiometer)
 add_subdirectory(measure_duty_cycle)
 add_subdirectory(coffee_control)
+add_subdirectory(led_flashing)
 
 add_compile_options(-Wall
         -Wno-format          # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
