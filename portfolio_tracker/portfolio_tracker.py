@@ -51,7 +51,7 @@ class TabWindow(QtGui.QTabWidget):
         ]
         self.holdings_file = Path(holdings_file)
         self.rejection_threshold = rejection_threshold
-        self.current_year = 2023  # datetime.datetime.now().year
+        self.current_year = datetime.datetime.now().year
         self.average_years = [1, 2, 3, 4, 5]
         self.colorbar = None
         self.async_download = async_download
@@ -720,7 +720,7 @@ class TabWindow(QtGui.QTabWidget):
 
     @staticmethod
     def get_dividends_per_year(dividends):
-        current_year = 2023  # datetime.datetime.now().year
+        current_year = datetime.datetime.now().year
         dividends_per_year = pd.Series(0.0, index=[current_year])
         if not dividends.empty:
             years = range(
