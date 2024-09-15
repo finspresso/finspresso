@@ -1,5 +1,5 @@
 {
-  "Date": "2024-09-08",
+  "Date": "2024-09-15",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -49,7 +49,7 @@
     "243100410000": {
       "Product Link": "https://www.migros.ch/en/product/243100410000",
       "Product Name": "Chicken escalope",
-      "Price": "NA",
+      "Price": 1.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -292,7 +292,7 @@
     "220221085000": {
       "Product Link": "https://www.migros.ch/en/product/220221085000",
       "Product Name": "Minced meat - Mixed 1",
-      "Price": 1.3,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -310,7 +310,7 @@
     "232343082000": {
       "Product Link": "https://www.migros.ch/en/product/232343082000",
       "Product Name": "Salami sliced",
-      "Price": 2.55,
+      "Price": 2.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -382,7 +382,7 @@
     "230500251502": {
       "Product Link": "https://www.migros.ch/en/product/230500251502",
       "Product Name": "Wiener - Hot Dog",
-      "Price": "NA",
+      "Price": 3.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-08",
@@ -436,7 +436,7 @@
     "243150600000": {
       "Product Link": "https://www.migros.ch/en/product/243150600000",
       "Product Name": "Diced chicken",
-      "Price": "NA",
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -544,7 +544,7 @@
     "220220085000": {
       "Product Link": "https://www.migros.ch/en/product/220220085000",
       "Product Name": "Minced beef – 690-720g",
-      "Price": 1.6,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -778,7 +778,7 @@
     "220224010500": {
       "Product Link": "https://www.migros.ch/en/product/220224010500",
       "Product Name": "Beef cutlets",
-      "Price": 2.8,
+      "Price": 2.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -1453,7 +1453,7 @@
     "241102110000": {
       "Product Link": "https://www.migros.ch/en/product/241102110000",
       "Product Name": "Chicken thighs",
-      "Price": "NA",
+      "Price": 7.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -2020,7 +2020,7 @@
     "165031300000": {
       "Product Link": "https://www.migros.ch/en/product/165031300000",
       "Product Name": "Pangasius fillets",
-      "Price": 9.5,
+      "Price": 8.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2245,7 +2245,7 @@
     "220662085500": {
       "Product Link": "https://www.migros.ch/en/product/220662085500",
       "Product Name": "Pork fillet – 450-700g",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -2857,10 +2857,10 @@
     "236716758000": {
       "Product Link": "https://www.migros.ch/en/product/236716758000",
       "Product Name": "Meat pie",
-      "Price": 8.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-09-15",
       "Include": "Yes"
     },
     "153222900000": {
@@ -2938,7 +2938,7 @@
     "220654085000": {
       "Product Link": "https://www.migros.ch/en/product/220654085000",
       "Product Name": "Pork sideburns lean",
-      "Price": 1.8,
+      "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3145,7 +3145,7 @@
     "232343008102": {
       "Product Link": "https://www.migros.ch/en/product/232343008102",
       "Product Name": "Salami sausage",
-      "Price": 6.45,
+      "Price": 6.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3163,7 +3163,7 @@
     "220220085092": {
       "Product Link": "https://www.migros.ch/en/product/220220085092",
       "Product Name": "Minced beef – 500g",
-      "Price": 1.6,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3199,7 +3199,7 @@
     "227220625000": {
       "Product Link": "https://www.migros.ch/en/product/227220625000",
       "Product Name": "M-Budget Hackballs Rinds",
-      "Price": "NA",
+      "Price": 4.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-08",
@@ -3514,7 +3514,7 @@
     "233100281502": {
       "Product Link": "https://www.migros.ch/en/product/233100281502",
       "Product Name": "M-Budget Mostbröckli",
-      "Price": "NA",
+      "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-08",
@@ -3703,7 +3703,7 @@
     "166002800000": {
       "Product Link": "https://www.migros.ch/en/product/166002800000",
       "Product Name": "Chicken wings",
-      "Price": 10.95,
+      "Price": 10.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4351,10 +4351,10 @@
     "233110181602": {
       "Product Link": "https://www.migros.ch/en/product/233110181602",
       "Product Name": "Lard paysan - Fumé",
-      "Price": 3.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-09-15",
       "Include": "Yes"
     },
     "122028500000": {
@@ -4378,7 +4378,7 @@
     "233527030000": {
       "Product Link": "https://www.migros.ch/en/product/233527030000",
       "Product Name": "M-Budget Kochspeck",
-      "Price": 1.65,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -5386,7 +5386,7 @@
     "263300902300": {
       "Product Link": "https://www.migros.ch/en/product/263300902300",
       "Product Name": "Oranges - Blond",
-      "Price": 4.9,
+      "Price": 4.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5890,7 +5890,7 @@
     "110129800000": {
       "Product Link": "https://www.migros.ch/en/product/110129800000",
       "Product Name": "Pâtisserie fourée à la framboise - Framboise",
-      "Price": 6.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-07-08",
       "Discontinued": "2023-07-16",
@@ -6517,7 +6517,7 @@
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": 1.8,
+      "Price": 1.6,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -6581,7 +6581,7 @@
     "220220085100": {
       "Product Link": "https://www.migros.ch/en/product/220220085100",
       "Product Name": "M-Budget Rindshackfleisch",
-      "Price": 1.6,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-06-09"
@@ -7557,10 +7557,10 @@
     "220662085592": {
       "Product Link": "https://www.migros.ch/en/product/220662085592",
       "Product Name": "Pork fillet",
-      "Price": 4.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-05-26",
-      "Discontinued": "NA"
+      "Discontinued": "2024-09-15"
     },
     "151489300000": {
       "Product Link": "https://www.migros.ch/en/product/151489300000",
@@ -7821,7 +7821,7 @@
     "220221085092": {
       "Product Link": "https://www.migros.ch/en/product/220221085092",
       "Product Name": "Minced meat - Mixed 2",
-      "Price": 1.3,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2024-08-18",
       "Discontinued": "NA"
@@ -7853,10 +7853,10 @@
     "233011010202": {
       "Product Link": "https://www.migros.ch/en/product/233011010202",
       "Product Name": "Raw ham 2",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-09-08",
-      "Discontinued": "NA"
+      "Discontinued": "2024-09-15"
     },
     "130704100000": {
       "Product Link": "https://www.migros.ch/en/product/130704100000",
@@ -7864,6 +7864,54 @@
       "Price": 2.65,
       "Category": "grocery",
       "Introduced": "2024-09-08",
+      "Discontinued": "NA"
+    },
+    "708104100000": {
+      "Product Link": "https://www.migros.ch/en/product/708104100000",
+      "Product Name": "M-BUDGET FLUEGEL-DOSENOEFFNER BLACK",
+      "Price": 4.95,
+      "Category": "other",
+      "Introduced": "2024-09-15",
+      "Discontinued": "NA"
+    },
+    "120938000000": {
+      "Product Link": "https://www.migros.ch/en/product/120938000000",
+      "Product Name": "M-Budget Tonic water",
+      "Price": 0.9,
+      "Category": "grocery",
+      "Introduced": "2024-09-15",
+      "Discontinued": "NA"
+    },
+    "701172200000": {
+      "Product Link": "https://www.migros.ch/en/product/701172200000",
+      "Product Name": "M-Budget Acqua 6pcs",
+      "Price": 7.95,
+      "Category": "other",
+      "Introduced": "2024-09-15",
+      "Discontinued": "NA"
+    },
+    "233070023200": {
+      "Product Link": "https://www.migros.ch/en/product/233070023200",
+      "Product Name": "M-Budget Beef Jerky Nature",
+      "Price": 3.95,
+      "Category": "grocery",
+      "Introduced": "2024-09-15",
+      "Discontinued": "NA"
+    },
+    "233070023400": {
+      "Product Link": "https://www.migros.ch/en/product/233070023400",
+      "Product Name": "M-Budget Beef Jerky Paprika",
+      "Price": 3.95,
+      "Category": "grocery",
+      "Introduced": "2024-09-15",
+      "Discontinued": "NA"
+    },
+    "233070023300": {
+      "Product Link": "https://www.migros.ch/en/product/233070023300",
+      "Product Name": "M-Budget Beef Jerky Jalapeño",
+      "Price": 3.95,
+      "Category": "grocery",
+      "Introduced": "2024-09-15",
       "Discontinued": "NA"
     }
   }
