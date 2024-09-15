@@ -70,7 +70,7 @@ int main() {
     // Select ADC input 0 (GPIO26)
     adc_select_input(0);
 
-        // Initialize the chosen GPIO pin for PWM output
+    // Initialize the chosen GPIO pin for PWM output
     gpio_set_function(SERVO_PIN, GPIO_FUNC_PWM);
 
     // Find the PWM slice and channel for the chosen GPIO pin
