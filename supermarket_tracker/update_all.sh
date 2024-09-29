@@ -41,4 +41,6 @@ then
     else
         git push
     fi
+else
+    echo "Not creating Git Pull request as product_reference.json unchanged"
 fi
