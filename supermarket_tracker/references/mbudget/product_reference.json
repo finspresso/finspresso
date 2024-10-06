@@ -1,5 +1,5 @@
 {
-  "Date": "2024-09-29",
+  "Date": "2024-10-06",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -580,7 +580,7 @@
     "263501108600": {
       "Product Link": "https://www.migros.ch/en/product/263501108600",
       "Product Name": "Lemon",
-      "Price": 1.9,
+      "Price": 2.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -607,7 +607,7 @@
     "264501202300": {
       "Product Link": "https://www.migros.ch/en/product/264501202300",
       "Product Name": "Avocados",
-      "Price": 1.95,
+      "Price": 2.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -714,7 +714,7 @@
     },
     "274502603400": {
       "Product Link": "https://www.migros.ch/en/product/274502603400",
-      "Product Name": "Carrots",
+      "Product Name": "Carrots 1",
       "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
@@ -1912,7 +1912,7 @@
     "227220040400": {
       "Product Link": "https://www.migros.ch/en/product/227220040400",
       "Product Name": "Beef Burger - 4 pieces",
-      "Price": 7.0,
+      "Price": 5.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2974,7 +2974,7 @@
     "241102550000": {
       "Product Link": "https://www.migros.ch/en/product/241102550000",
       "Product Name": "M-Budget Pouletflügel gewürzt",
-      "Price": 7.8,
+      "Price": 5.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -4639,10 +4639,10 @@
     "501108000000": {
       "Product Link": "https://www.migros.ch/en/product/501108000000",
       "Product Name": "Care product for dishwashers",
-      "Price": 1.75,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-10-06",
       "Include": "Yes"
     },
     "130324900000": {
@@ -5458,7 +5458,7 @@
     "212706600000": {
       "Product Link": "https://www.migros.ch/en/product/212706600000",
       "Product Name": "Processed cheese preparation",
-      "Price": 2.15,
+      "Price": 1.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5548,7 +5548,7 @@
     "102502900000": {
       "Product Link": "https://www.migros.ch/en/product/102502900000",
       "Product Name": "Lemon cake mix",
-      "Price": 1.75,
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5647,7 +5647,7 @@
     "102502800000": {
       "Product Link": "https://www.migros.ch/en/product/102502800000",
       "Product Name": "Baking mix for chocolate cake",
-      "Price": 1.75,
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-02-25",
@@ -5854,7 +5854,7 @@
     "271401902600": {
       "Product Link": "https://www.migros.ch/en/product/271401902600",
       "Product Name": "Tomatoes - Cherry",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -6637,7 +6637,7 @@
     "271400708400": {
       "Product Link": "https://www.migros.ch/en/product/271400708400",
       "Product Name": "Tomatoes 2",
-      "Price": 2.95,
+      "Price": 2.5,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-01-28"
@@ -7861,7 +7861,7 @@
     "130704100000": {
       "Product Link": "https://www.migros.ch/en/product/130704100000",
       "Product Name": "M-Budget Multifruchtsaft",
-      "Price": 2.65,
+      "Price": 2.95,
       "Category": "grocery",
       "Introduced": "2024-09-08",
       "Discontinued": "NA"
@@ -7944,6 +7944,30 @@
       "Price": 2.0,
       "Category": "other",
       "Introduced": "2024-09-29",
+      "Discontinued": "NA"
+    },
+    "130935000000": {
+      "Product Link": "https://www.migros.ch/en/product/130935000000",
+      "Product Name": "M-Budget Plant-Based Gehacktes",
+      "Price": 3.8,
+      "Category": "grocery",
+      "Introduced": "2024-10-06",
+      "Discontinued": "NA"
+    },
+    "520360500000": {
+      "Product Link": "https://www.migros.ch/en/product/520360500000",
+      "Product Name": "M-Budget Pflaster Wasserabweisend",
+      "Price": 1.0,
+      "Category": "other",
+      "Introduced": "2024-10-06",
+      "Discontinued": "NA"
+    },
+    "274502602200": {
+      "Product Link": "https://www.migros.ch/en/product/274502602200",
+      "Product Name": "Carrots 2",
+      "Price": 3.2,
+      "Category": "grocery",
+      "Introduced": "2024-10-06",
       "Discontinued": "NA"
     }
   }
