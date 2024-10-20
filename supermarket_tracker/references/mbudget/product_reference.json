@@ -1,5 +1,5 @@
 {
-  "Date": "2024-10-13",
+  "Date": "2024-10-20",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -148,7 +148,7 @@
     "200604600000": {
       "Product Link": "https://www.migros.ch/en/product/200604600000",
       "Product Name": "Cottage cheese",
-      "Price": 4.05,
+      "Price": 4.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -373,7 +373,7 @@
     "233091081200": {
       "Product Link": "https://www.migros.ch/en/product/233091081200",
       "Product Name": "Mostmöckli - Mostmöckli",
-      "Price": 4.1,
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -832,10 +832,10 @@
     "830224100002": {
       "Product Link": "https://www.migros.ch/en/product/830224100002",
       "Product Name": "Women knee highs – One size",
-      "Price": 2.65,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-10-20",
       "Include": "Yes"
     },
     "830224299917": {
@@ -1129,7 +1129,7 @@
     "232358481602": {
       "Product Link": "https://www.migros.ch/en/product/232358481602",
       "Product Name": "Poultry salami",
-      "Price": 3.0,
+      "Price": 2.75,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1138,7 +1138,7 @@
     "156020800000": {
       "Product Link": "https://www.migros.ch/en/product/156020800000",
       "Product Name": "Olives - Green, pitted",
-      "Price": 0.8,
+      "Price": 0.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1192,10 +1192,10 @@
     "701158400000": {
       "Product Link": "https://www.migros.ch/en/product/701158400000",
       "Product Name": "M-Budget M-Budget Acqua 6 pieces, 30.5cl",
-      "Price": 7.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-10-20",
       "Include": "Yes"
     },
     "251366100000": {
@@ -1210,7 +1210,7 @@
     "220655085000": {
       "Product Link": "https://www.migros.ch/en/product/220655085000",
       "Product Name": "Pork chop neck",
-      "Price": 1.25,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -1381,7 +1381,7 @@
     "156020900000": {
       "Product Link": "https://www.migros.ch/en/product/156020900000",
       "Product Name": "Black olives",
-      "Price": 0.8,
+      "Price": 0.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2173,10 +2173,10 @@
     "243996342000": {
       "Product Link": "https://www.migros.ch/en/product/243996342000",
       "Product Name": "Mini Crispy Pollo - Mini",
-      "Price": 5.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2024-10-20",
       "Include": "Yes"
     },
     "230560052002": {
@@ -2200,7 +2200,7 @@
     "706509600000": {
       "Product Link": "https://www.migros.ch/en/product/706509600000",
       "Product Name": "Universal cleaning cloths with fleece - 38x40cm",
-      "Price": 1.1,
+      "Price": 1.05,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2560,7 +2560,7 @@
     "514073500000": {
       "Product Link": "https://www.migros.ch/en/product/514073500000",
       "Product Name": "Toothbrush - Medium",
-      "Price": 0.8,
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2605,7 +2605,7 @@
     "514109300000": {
       "Product Link": "https://www.migros.ch/en/product/514109300000",
       "Product Name": "M-BUDGET ZP SENSITIVE",
-      "Price": 1.5,
+      "Price": 1.4,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2614,7 +2614,7 @@
     "514109400000": {
       "Product Link": "https://www.migros.ch/en/product/514109400000",
       "Product Name": "M-BUDGET ZP WHITENING",
-      "Price": 1.5,
+      "Price": 1.4,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2803,7 +2803,7 @@
     "514073600000": {
       "Product Link": "https://www.migros.ch/en/product/514073600000",
       "Product Name": "Toothbrush - Soft",
-      "Price": 0.8,
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3172,7 +3172,7 @@
     "772748500000": {
       "Product Link": "https://www.migros.ch/en/product/772748500000",
       "Product Name": "Ecouteur In-Ear - Noir",
-      "Price": "NA",
+      "Price": 9.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-08-18",
@@ -3208,7 +3208,7 @@
     "760525600040": {
       "Product Link": "https://www.migros.ch/en/product/760525600040",
       "Product Name": "M-Budget blau / weiss Armbanduhr",
-      "Price": "NA",
+      "Price": 17.9,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-04-01",
@@ -3235,7 +3235,7 @@
     "770797400000": {
       "Product Link": "https://www.migros.ch/en/product/770797400000",
       "Product Name": "M-Budget BT1094 Over-Ear Kopfhörer",
-      "Price": "NA",
+      "Price": 29.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-29",
@@ -4198,7 +4198,7 @@
     "210452400000": {
       "Product Link": "https://www.migros.ch/en/product/210452400000",
       "Product Name": "M-Budget Rahmkäse",
-      "Price": 1.4,
+      "Price": 1.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -4233,7 +4233,7 @@
     },
     "110168900000": {
       "Product Link": "https://www.migros.ch/en/product/110168900000",
-      "Product Name": "Pastry roll",
+      "Product Name": "Pastry roll 1",
       "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
@@ -5287,7 +5287,7 @@
     "274432203400": {
       "Product Link": "https://www.migros.ch/en/product/274432203400",
       "Product Name": "Potatoes - Floury Cooking",
-      "Price": 5.95,
+      "Price": 5.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": "NA",
+      "Price": 2.95,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5872,7 +5872,7 @@
     "500116400000": {
       "Product Link": "https://www.migros.ch/en/product/500116400000",
       "Product Name": "MBUD VOLLWASCHM. 4.94KG",
-      "Price": 9.5,
+      "Price": 9.45,
       "Category": "other",
       "Introduced": "2023-07-08",
       "Discontinued": "NA",
@@ -5890,7 +5890,7 @@
     "110129800000": {
       "Product Link": "https://www.migros.ch/en/product/110129800000",
       "Product Name": "Pâtisserie fourée à la framboise - Framboise",
-      "Price": 6.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-07-08",
       "Discontinued": "2023-07-16",
@@ -5908,7 +5908,7 @@
     "274461603300": {
       "Product Link": "https://www.migros.ch/en/product/274461603300",
       "Product Name": "Potatoes - Waxy",
-      "Price": 5.95,
+      "Price": 5.8,
       "Category": "grocery",
       "Introduced": "2023-07-16",
       "Discontinued": "2023-07-23",
@@ -6637,7 +6637,7 @@
     "271400708400": {
       "Product Link": "https://www.migros.ch/en/product/271400708400",
       "Product Name": "Tomatoes 2",
-      "Price": 2.5,
+      "Price": 1.9,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-01-28"
@@ -6909,7 +6909,7 @@
     "770798500000": {
       "Product Link": "https://www.migros.ch/en/product/770798500000",
       "Product Name": "M-Budget In-Ear Earbuds TS-200 In-Ear Kopfhörer",
-      "Price": "NA",
+      "Price": 29.95,
       "Category": "other",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-08-18"
@@ -7037,7 +7037,7 @@
     "260533803400": {
       "Product Link": "https://www.migros.ch/en/product/260533803400",
       "Product Name": "Pears",
-      "Price": 3.3,
+      "Price": 2.95,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -7741,7 +7741,7 @@
     "792210600000": {
       "Product Link": "https://www.migros.ch/en/product/792210600000",
       "Product Name": "M-Budget 312 (16Stk.) Hörgerätebatterie 2",
-      "Price": "NA",
+      "Price": 24.95,
       "Category": "other",
       "Introduced": "2024-07-28",
       "Discontinued": "2024-09-08"
@@ -7773,7 +7773,7 @@
     "792210500000": {
       "Product Link": "https://www.migros.ch/en/product/792210500000",
       "Product Name": "M-Budget 13 (16Stk.) Hörgerätebatterie 2",
-      "Price": "NA",
+      "Price": 24.95,
       "Category": "other",
       "Introduced": "2024-07-28",
       "Discontinued": "2024-09-08"
@@ -7781,7 +7781,7 @@
     "792210400000": {
       "Product Link": "https://www.migros.ch/en/product/792210400000",
       "Product Name": "M-Budget 10 (16Stk.) Hörgerätebatterie 2",
-      "Price": "NA",
+      "Price": 24.95,
       "Category": "other",
       "Introduced": "2024-07-28",
       "Discontinued": "2024-09-08"
@@ -8037,7 +8037,7 @@
     "110300500000": {
       "Product Link": "https://www.migros.ch/en/product/110300500000",
       "Product Name": "Rusk 2",
-      "Price": 2.0,
+      "Price": 1.75,
       "Category": "grocery",
       "Introduced": "2024-10-13",
       "Discontinued": "NA"
@@ -8104,6 +8104,30 @@
       "Price": 2.45,
       "Category": "grocery",
       "Introduced": "2024-10-13",
+      "Discontinued": "NA"
+    },
+    "760912300020": {
+      "Product Link": "https://www.migros.ch/en/product/760912300020",
+      "Product Name": "M-Budget Uhrenband 18m 1",
+      "Price": 3.95,
+      "Category": "other",
+      "Introduced": "2024-10-20",
+      "Discontinued": "NA"
+    },
+    "110556200000": {
+      "Product Link": "https://www.migros.ch/en/product/110556200000",
+      "Product Name": "Pastry roll 2",
+      "Price": 1.85,
+      "Category": "grocery",
+      "Introduced": "2024-10-20",
+      "Discontinued": "NA"
+    },
+    "760912300040": {
+      "Product Link": "https://www.migros.ch/en/product/760912300040",
+      "Product Name": "M-Budget Uhrenband 18m 2",
+      "Price": 3.95,
+      "Category": "other",
+      "Introduced": "2024-10-20",
       "Discontinued": "NA"
     }
   }
