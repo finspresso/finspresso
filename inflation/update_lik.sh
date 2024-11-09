@@ -23,7 +23,7 @@ then
     sudo $lampp_path/apache2/scripts/ctl.sh start 1> /dev/null
 fi
 
-/opt/google/chrome/chrome /opt/google/chrome/chrome http://localhost/inflation/html/lik_evolution.html > /dev/null 2>&1 &
+/opt/google/chrome/chrome  http://localhost/inflation/html/lik_evolution.html > /dev/null 2>&1 &
 
 read -p "Do you see data in lik_evolution.html? (y/n) "
 
