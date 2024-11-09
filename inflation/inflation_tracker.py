@@ -11,7 +11,6 @@ import datetime
 import sys
 import re
 import requests
-import time
 from pathlib import Path
 from pyqtgraph.Qt import QtGui, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
@@ -442,15 +441,36 @@ class LIK(QtGui.QTabWidget):
         )
         driver.get(url)
         try:
+            logger.info("Checking for link to .xlsx download side")
+            element = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        "/html/body/div/main/section/div/div/div/ul[2]/li[1]/div/div/div/div/ul/li[1]/div/div[2]/div[2]/div/a",
+                    )
+                )
+            )
+            logger.info("Link found. Clicking on it...")
+            driver.execute_script("arguments[0].click();", element)
+        except (TimeoutException, NoSuchElementException):
+            logger.error("Link to .xlsx download side not found.")
+            exit(1)
+        try:
             logger.info("Checking for covered period")
             element = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located(
                     (
                         By.XPATH,
-                        "//p[contains(text(), 'Zeitraum:')]",
+                        "//h3[contains(text(), 'Dargestellter Zeitraum')]",
                     )
                 )
             )
+        except (TimeoutException, NoSuchElementException):
+            logger.error("Could not determine covered period.")
+            exit(1)
+        try:
+            logger.info("Trying to extract covered period")
+            element = element.find_element(By.XPATH, "./following-sibling::div")
             if element:
                 match = re.search(
                     "1.12.1982-([0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4})", element.text
@@ -473,21 +493,8 @@ class LIK(QtGui.QTabWidget):
                         exit(0)
                     else:
                         logger.info("Newer data detected. Continuing with download")
-            logger.info("Searching for data download button")
-            element = WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located(
-                    (
-                        By.XPATH,
-                        "/html/body/div[2]/div[3]/div/div[2]/div/div[1]/div[7]/div/div[1]/div/div/div/ul/li[1]/div/div/a",
-                    )
-                )
-            )
-            logger.info("Clicking on data download button")
-            driver.execute_script("arguments[0].click();", element)
-
-            time.sleep(3)
         except (TimeoutException, NoSuchElementException):
-            logger.warning("Download button found. aborting.")
+            logger.error("Could not extract covered period")
             exit(1)
         try:
             logger.info("Searching for file download button")
@@ -495,7 +502,7 @@ class LIK(QtGui.QTabWidget):
                 EC.presence_of_element_located(
                     (
                         By.XPATH,
-                        "/html/body/div[2]/div[3]/div/div[2]/div/div[1]/div[3]/div/div[1]/div/p/a",
+                        "/html/body/div/main/section[1]/div/div/section[2]/div/div[2]/div/div/ul/li/a",
                     )
                 )
             )
@@ -1429,6 +1436,11 @@ def main():
         help="Downloads the latest data from the BFS website",
         action="store_true",
     )
+    parser.add_argument(
+        "--not_headless",
+        help="If sets, runs Selium not in full mode",
+        action="store_true",
+    )
 
     args = parser.parse_args()
     app = QtGui.QApplication(sys.argv)
@@ -1443,7 +1455,7 @@ def main():
     if args.credentials_file != "":
         credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
     if args.download_data_bfs:
-        LIK.download_data_bfs()
+        LIK.download_data_bfs(headless=(not args.not_headless))
         exit(0)
     main_window = MainWindow(
         source_lik_weights=args.lik_weights,
