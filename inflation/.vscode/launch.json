@@ -41,6 +41,18 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Download latest LIK data (Not headless)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/inflation_tracker.py",
+      "cwd": "${workspaceRoot}",
+      "args": [
+        "--download_data_bfs",
+        "--not_headless"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Store names to JSON",
       "type": "python",
       "request": "launch",
