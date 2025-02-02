@@ -25,7 +25,7 @@ services:
     ports:
       - "8081:80"
   supermarket_tracker:
-    image: supermarket_tracker
+    image: supermarket_tracker:latest
     container_name: supermarket_tracker
     restart: unless-stopped
     ports:
