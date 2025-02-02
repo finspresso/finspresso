@@ -51,12 +51,20 @@ class SuperMarketTracker:
                 if match:
                     date_folder_list.append(path.name)
         if len(date_folder_list) > 0:
-            date_folder_list.sort()
-            self.latest_collection_file = (
-                download_folder
-                / Path(date_folder_list[-1])
-                / Path(self.name + "_prices.xlsx")
-            )
+            date_folder_list.sort(reverse=True)
+            for data_folder in date_folder_list:
+                self.latest_collection_file = (
+                    download_folder
+                    / Path(data_folder)
+                    / Path(self.name + "_prices.xlsx")
+                )
+                if self.latest_collection_file.exists():
+                    return
+                logger.warning(
+                    "%s does not exists. Trying next...", self.latest_collection_file
+                )
+            logger.error("No valid .xlsx file found")
+            self.latest_collection_file = "NA"
 
     def load_config(self):
         file_path = Path("configs") / Path(self.name + ".json")
@@ -681,6 +689,7 @@ def main():
             )
         else:
             logger.error("File %s does not exist", collection_file)
+            exit(1)
     if args.update_metadata_table:
         if len(credentials_sql) == 0:
             logger.error(
