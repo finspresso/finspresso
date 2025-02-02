@@ -1,5 +1,5 @@
 {
-  "Date": "2024-12-15",
+  "Date": "2025-02-02",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -130,7 +130,7 @@
     "251305500000": {
       "Product Link": "https://www.migros.ch/en/product/251305500000",
       "Product Name": "Atlantic salmon for canape - Smoked and pre-sliced - ASC",
-      "Price": 4.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-01-14",
@@ -274,7 +274,7 @@
     "230105200000": {
       "Product Link": "https://www.migros.ch/en/product/230105200000",
       "Product Name": "Roast sausage",
-      "Price": "NA",
+      "Price": 3.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-12-15",
@@ -328,7 +328,7 @@
     "103302600000": {
       "Product Link": "https://www.migros.ch/en/product/103302600000",
       "Product Name": "Olive oil - Virgin",
-      "Price": 11.0,
+      "Price": 10.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -373,7 +373,7 @@
     "233091081200": {
       "Product Link": "https://www.migros.ch/en/product/233091081200",
       "Product Name": "Mostmöckli - Mostmöckli",
-      "Price": "NA",
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-12-15",
@@ -400,10 +400,10 @@
     "526010200000": {
       "Product Link": "https://www.migros.ch/en/product/526010200000",
       "Product Name": "Household paper",
-      "Price": 2.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "271713502300": {
@@ -544,7 +544,7 @@
     "220220085000": {
       "Product Link": "https://www.migros.ch/en/product/220220085000",
       "Product Name": "Minced beef – 690-720g",
-      "Price": 1.2,
+      "Price": 1.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -571,7 +571,7 @@
     "200740500000": {
       "Product Link": "https://www.migros.ch/en/product/200740500000",
       "Product Name": "Cheese mixture - For pizza and gratin",
-      "Price": 3.8,
+      "Price": 3.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -769,7 +769,7 @@
     "110555400000": {
       "Product Link": "https://www.migros.ch/en/product/110555400000",
       "Product Name": "Choco sprits",
-      "Price": 1.95,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -994,7 +994,7 @@
     "101912300000": {
       "Product Link": "https://www.migros.ch/en/product/101912300000",
       "Product Name": "Chips - Natural",
-      "Price": 3.45,
+      "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1219,7 +1219,7 @@
     "109031600000": {
       "Product Link": "https://www.migros.ch/en/product/109031600000",
       "Product Name": "Cat sticks - With trout and salmon",
-      "Price": 1.5,
+      "Price": 1.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1291,7 +1291,7 @@
     "230112060102": {
       "Product Link": "https://www.migros.ch/en/product/230112060102",
       "Product Name": "Poultry bratwurst",
-      "Price": "NA",
+      "Price": 4.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-12-15",
@@ -1327,7 +1327,7 @@
     "502024000000": {
       "Product Link": "https://www.migros.ch/en/product/502024000000",
       "Product Name": "Cleaning cloths for glasses",
-      "Price": 2.55,
+      "Price": 2.5,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1399,7 +1399,7 @@
     "101136500000": {
       "Product Link": "https://www.migros.ch/en/product/101136500000",
       "Product Name": "Chewing Gum - Spearmint, without sugar",
-      "Price": 1.95,
+      "Price": 1.85,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1417,7 +1417,7 @@
     "109031400000": {
       "Product Link": "https://www.migros.ch/en/product/109031400000",
       "Product Name": "Cat sticks - With poultry and liver",
-      "Price": 1.5,
+      "Price": 1.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1480,7 +1480,7 @@
     "706519200000": {
       "Product Link": "https://www.migros.ch/en/product/706519200000",
       "Product Name": "Microfibre universal cleaning cloths",
-      "Price": 2.65,
+      "Price": 2.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1534,7 +1534,7 @@
     "153236600000": {
       "Product Link": "https://www.migros.ch/en/product/153236600000",
       "Product Name": "Pesto alla genovese",
-      "Price": 1.6,
+      "Price": 1.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1633,7 +1633,7 @@
     "110555600000": {
       "Product Link": "https://www.migros.ch/en/product/110555600000",
       "Product Name": "Wafer with milk chocolate",
-      "Price": 1.95,
+      "Price": 2.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1660,7 +1660,7 @@
     "106126900000": {
       "Product Link": "https://www.migros.ch/en/product/106126900000",
       "Product Name": "Vegetable stock - 12 cubes, 1 cube = 5dl stock",
-      "Price": 0.9,
+      "Price": 0.85,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1669,7 +1669,7 @@
     "706524900000": {
       "Product Link": "https://www.migros.ch/en/product/706524900000",
       "Product Name": "Fine microfibre universal cleaning cloths",
-      "Price": 3.95,
+      "Price": 3.4,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1678,7 +1678,7 @@
     "156053900000": {
       "Product Link": "https://www.migros.ch/en/product/156053900000",
       "Product Name": "Tomatoes, dried",
-      "Price": 1.85,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1912,7 +1912,7 @@
     "227220040400": {
       "Product Link": "https://www.migros.ch/en/product/227220040400",
       "Product Name": "Beef Burger - 4 pieces",
-      "Price": 5.0,
+      "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1930,10 +1930,10 @@
     "502018300000": {
       "Product Link": "https://www.migros.ch/en/product/502018300000",
       "Product Name": "M-Budget Essigreiniger",
-      "Price": 2.0,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "500426200000": {
@@ -2056,7 +2056,7 @@
     "101715400000": {
       "Product Link": "https://www.migros.ch/en/product/101715400000",
       "Product Name": "Chocolate balls - Milk with filling",
-      "Price": 9.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-09-10",
@@ -2065,7 +2065,7 @@
     "160178500000": {
       "Product Link": "https://www.migros.ch/en/product/160178500000",
       "Product Name": "Ham croissant",
-      "Price": 4.75,
+      "Price": 4.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2101,7 +2101,7 @@
     "101136600000": {
       "Product Link": "https://www.migros.ch/en/product/101136600000",
       "Product Name": "Chewing Gum - Menthol, extra strong, without sugar",
-      "Price": 1.95,
+      "Price": 1.85,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2137,7 +2137,7 @@
     "709316700000": {
       "Product Link": "https://www.migros.ch/en/product/709316700000",
       "Product Name": "Napkins - green",
-      "Price": 1.95,
+      "Price": 2.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2146,7 +2146,7 @@
     "709316500000": {
       "Product Link": "https://www.migros.ch/en/product/709316500000",
       "Product Name": "Napkins - orange",
-      "Price": 1.95,
+      "Price": 2.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2191,7 +2191,7 @@
     "161425700000": {
       "Product Link": "https://www.migros.ch/en/product/161425700000",
       "Product Name": "Mix of berries - Unsweetened",
-      "Price": 3.6,
+      "Price": 4.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2227,10 +2227,10 @@
     "101052900000": {
       "Product Link": "https://www.migros.ch/en/product/101052900000",
       "Product Name": "Coke bottle",
-      "Price": 1.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "105311500000": {
@@ -2245,7 +2245,7 @@
     "220662085500": {
       "Product Link": "https://www.migros.ch/en/product/220662085500",
       "Product Name": "Pork fillet – 450-700g",
-      "Price": 3.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -2263,7 +2263,7 @@
     "104220600000": {
       "Product Link": "https://www.migros.ch/en/product/104220600000",
       "Product Name": "Muesli Nibbles - Chocolate",
-      "Price": 4.5,
+      "Price": 4.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2398,10 +2398,10 @@
     "110102000000": {
       "Product Link": "https://www.migros.ch/en/product/110102000000",
       "Product Name": "Double biscuits - With cocoa cream filling",
-      "Price": 1.7,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "120252300000": {
@@ -2479,10 +2479,10 @@
     "502017900000": {
       "Product Link": "https://www.migros.ch/en/product/502017900000",
       "Product Name": "All-purpose cleaner - Energy",
-      "Price": 0.75,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "162025900000": {
@@ -2614,7 +2614,7 @@
     "514109400000": {
       "Product Link": "https://www.migros.ch/en/product/514109400000",
       "Product Name": "M-BUDGET ZP WHITENING",
-      "Price": 1.4,
+      "Price": 1.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2866,7 +2866,7 @@
     "153222900000": {
       "Product Link": "https://www.migros.ch/en/product/153222900000",
       "Product Name": "Tomato puree – Glas 680g",
-      "Price": 1.2,
+      "Price": 1.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2884,7 +2884,7 @@
     "104211800000": {
       "Product Link": "https://www.migros.ch/en/product/104211800000",
       "Product Name": "Corn flakes with 8 vitamins",
-      "Price": 1.8,
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2902,7 +2902,7 @@
     "105260700000": {
       "Product Link": "https://www.migros.ch/en/product/105260700000",
       "Product Name": "Dried grapes",
-      "Price": 1.4,
+      "Price": 1.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3037,7 +3037,7 @@
     "106125400000": {
       "Product Link": "https://www.migros.ch/en/product/106125400000",
       "Product Name": "Chicken stock",
-      "Price": 0.9,
+      "Price": 0.85,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3145,7 +3145,7 @@
     "232343008102": {
       "Product Link": "https://www.migros.ch/en/product/232343008102",
       "Product Name": "Salami sausage",
-      "Price": 5.5,
+      "Price": 5.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3163,7 +3163,7 @@
     "220220085092": {
       "Product Link": "https://www.migros.ch/en/product/220220085092",
       "Product Name": "Minced beef – 500g",
-      "Price": 1.2,
+      "Price": 1.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3424,7 +3424,7 @@
     "512082400000": {
       "Product Link": "https://www.migros.ch/en/product/512082400000",
       "Product Name": "Liquid soap refill - Freesia - ?Refill bag",
-      "Price": 1.8,
+      "Price": 1.65,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3433,7 +3433,7 @@
     "203518000000": {
       "Product Link": "https://www.migros.ch/en/product/203518000000",
       "Product Name": "Soy drink - Calcium",
-      "Price": 1.6,
+      "Price": 1.4,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3694,7 +3694,7 @@
     "512082700000": {
       "Product Link": "https://www.migros.ch/en/product/512082700000",
       "Product Name": "Liquid soap refill - Vanilla and almond - Refill bag",
-      "Price": 1.8,
+      "Price": 1.65,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3748,7 +3748,7 @@
     "157212500000": {
       "Product Link": "https://www.migros.ch/en/product/157212500000",
       "Product Name": "Pasta carbonara",
-      "Price": 1.75,
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3811,7 +3811,7 @@
     "514073700000": {
       "Product Link": "https://www.migros.ch/en/product/514073700000",
       "Product Name": "M-BUD BRUSH KIDS 2 PCS",
-      "Price": 0.8,
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3820,7 +3820,7 @@
     "514073800000": {
       "Product Link": "https://www.migros.ch/en/product/514073800000",
       "Product Name": "M-BUD BRUSH JUNIOR 2 PCS",
-      "Price": 0.8,
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3829,16 +3829,16 @@
     "101715500000": {
       "Product Link": "https://www.migros.ch/en/product/101715500000",
       "Product Name": "Milk Croquetten",
-      "Price": 9.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "101715600000": {
       "Product Link": "https://www.migros.ch/en/product/101715600000",
       "Product Name": "Christmas chocolate mix",
-      "Price": 9.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-09-10",
@@ -3982,7 +3982,7 @@
     "156013000000": {
       "Product Link": "https://www.migros.ch/en/product/156013000000",
       "Product Name": "Cornichons",
-      "Price": 1.45,
+      "Price": 1.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4108,7 +4108,7 @@
     "157212800000": {
       "Product Link": "https://www.migros.ch/en/product/157212800000",
       "Product Name": "Risotto - Asparagus",
-      "Price": 1.85,
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4135,7 +4135,7 @@
     "130422000000": {
       "Product Link": "https://www.migros.ch/en/product/130422000000",
       "Product Name": "M-Budget Weggli Lyoner",
-      "Price": 1.7,
+      "Price": 1.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4162,7 +4162,7 @@
     "130424000000": {
       "Product Link": "https://www.migros.ch/en/product/130424000000",
       "Product Name": "M-Budget Sandwich Chicken Cocktail",
-      "Price": 3.65,
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4432,7 +4432,7 @@
     "210630024000": {
       "Product Link": "https://www.migros.ch/en/product/210630024000",
       "Product Name": "St-Paulin",
-      "Price": 1.3,
+      "Price": 1.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -4450,7 +4450,7 @@
     "106124200000": {
       "Product Link": "https://www.migros.ch/en/product/106124200000",
       "Product Name": "Beef stock - 12 cubes, 1 cube = 5dl stock",
-      "Price": 0.9,
+      "Price": 0.85,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4468,7 +4468,7 @@
     "157212700000": {
       "Product Link": "https://www.migros.ch/en/product/157212700000",
       "Product Name": "Risotto - Milanese",
-      "Price": 1.85,
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4486,7 +4486,7 @@
     "151003300000": {
       "Product Link": "https://www.migros.ch/en/product/151003300000",
       "Product Name": "M-Budget Konfitüre Erdbeer",
-      "Price": 1.3,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4576,7 +4576,7 @@
     "266000309400": {
       "Product Link": "https://www.migros.ch/en/product/266000309400",
       "Product Name": "M-Budget Baumnüsse Grenoble",
-      "Price": 5.0,
+      "Price": 5.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-22",
@@ -4594,7 +4594,7 @@
     "157212600000": {
       "Product Link": "https://www.migros.ch/en/product/157212600000",
       "Product Name": "Pasta bolognese",
-      "Price": 1.75,
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4603,7 +4603,7 @@
     "507007300000": {
       "Product Link": "https://www.migros.ch/en/product/507007300000",
       "Product Name": "WC stick - Lemon",
-      "Price": 1.2,
+      "Price": 1.1,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4774,7 +4774,7 @@
     "121507800000": {
       "Product Link": "https://www.migros.ch/en/product/121507800000",
       "Product Name": "Syrup - Raspberry",
-      "Price": 3.45,
+      "Price": 3.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4900,16 +4900,16 @@
     "502017800000": {
       "Product Link": "https://www.migros.ch/en/product/502017800000",
       "Product Name": "Glass and all-purpose cleaner",
-      "Price": 1.1,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "121507900000": {
       "Product Link": "https://www.migros.ch/en/product/121507900000",
       "Product Name": "Syrup - Berries",
-      "Price": 3.45,
+      "Price": 3.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4990,7 +4990,7 @@
     "110555200000": {
       "Product Link": "https://www.migros.ch/en/product/110555200000",
       "Product Name": "Viennese shortbread",
-      "Price": "NA",
+      "Price": 1.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-08",
@@ -5053,7 +5053,7 @@
     "152030600000": {
       "Product Link": "https://www.migros.ch/en/product/152030600000",
       "Product Name": "Pineapple chunks in syrup",
-      "Price": "NA",
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-11-03",
@@ -5098,7 +5098,7 @@
     "107117500000": {
       "Product Link": "https://www.migros.ch/en/product/107117500000",
       "Product Name": "Roast coffee - Ground, 3/5 strength",
-      "Price": 3.5,
+      "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5134,7 +5134,7 @@
     "107118300000": {
       "Product Link": "https://www.migros.ch/en/product/107118300000",
       "Product Name": "Roasted coffee - In beans, 4/5 intensity",
-      "Price": 6.5,
+      "Price": 6.85,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5197,7 +5197,7 @@
     "104431000000": {
       "Product Link": "https://www.migros.ch/en/product/104431000000",
       "Product Name": "M-Budget Reis parboiled",
-      "Price": 1.5,
+      "Price": 1.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5386,7 +5386,7 @@
     "263300902300": {
       "Product Link": "https://www.migros.ch/en/product/263300902300",
       "Product Name": "Oranges - Blond",
-      "Price": 4.5,
+      "Price": 4.2,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5395,10 +5395,10 @@
     "156013200000": {
       "Product Link": "https://www.migros.ch/en/product/156013200000",
       "Product Name": "onions - 200g glass",
-      "Price": 1.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "511012400000": {
@@ -5521,7 +5521,7 @@
     "101303000000": {
       "Product Link": "https://www.migros.ch/en/product/101303000000",
       "Product Name": "Chocolate lozenges - Mix",
-      "Price": 7.5,
+      "Price": 8.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5575,7 +5575,7 @@
     "122028600000": {
       "Product Link": "https://www.migros.ch/en/product/122028600000",
       "Product Name": "Fruit juice - Tropical",
-      "Price": 6.0,
+      "Price": 5.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5638,16 +5638,16 @@
     "120801000000": {
       "Product Link": "https://www.migros.ch/en/product/120801000000",
       "Product Name": "Natural mineral water - Sparkling",
-      "Price": 1.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "102502800000": {
       "Product Link": "https://www.migros.ch/en/product/102502800000",
       "Product Name": "Baking mix for chocolate cake",
-      "Price": 1.7,
+      "Price": 1.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-02-25",
@@ -5665,10 +5665,10 @@
     "109106500000": {
       "Product Link": "https://www.migros.ch/en/product/109106500000",
       "Product Name": "Cat Litter - Clumping",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-02-02",
       "Include": "Yes"
     },
     "513851100000": {
@@ -5782,7 +5782,7 @@
     "514111100000": {
       "Product Link": "https://www.migros.ch/en/product/514111100000",
       "Product Name": "Cavity-inhibiting toothpaste - Refreshing mint flavor",
-      "Price": 0.6,
+      "Price": 0.5,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -6133,7 +6133,7 @@
     "151003200000": {
       "Product Link": "https://www.migros.ch/en/product/151003200000",
       "Product Name": "M-Budget Konfitüre Aprikosen",
-      "Price": 1.3,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -6581,7 +6581,7 @@
     "220220085100": {
       "Product Link": "https://www.migros.ch/en/product/220220085100",
       "Product Name": "M-Budget Rindshackfleisch",
-      "Price": 1.2,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-06-09"
@@ -6677,7 +6677,7 @@
     "708004100000": {
       "Product Link": "https://www.migros.ch/en/product/708004100000",
       "Product Name": "M-Budget Müllb. 25l",
-      "Price": 1.4,
+      "Price": 1.3,
       "Category": "other",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -6829,7 +6829,7 @@
     "130930300000": {
       "Product Link": "https://www.migros.ch/en/product/130930300000",
       "Product Name": "M-Budget Plant-Based Schnitzel",
-      "Price": 2.9,
+      "Price": 2.8,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -6989,7 +6989,7 @@
     "110401800000": {
       "Product Link": "https://www.migros.ch/en/product/110401800000",
       "Product Name": "Brown gingerbread",
-      "Price": 1.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-01-01"
@@ -7149,7 +7149,7 @@
     "266070209400": {
       "Product Link": "https://www.migros.ch/en/product/266070209400",
       "Product Name": "M-Budget Erdnüsse",
-      "Price": 5.95,
+      "Price": 5.9,
       "Category": "grocery",
       "Introduced": "2024-01-01",
       "Discontinued": "NA"
@@ -7157,7 +7157,7 @@
     "720586100000": {
       "Product Link": "https://www.migros.ch/en/product/720586100000",
       "Product Name": "Se klebebaender",
-      "Price": 2.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2024-01-01",
       "Discontinued": "2024-02-11"
@@ -7189,7 +7189,7 @@
     "109030800000": {
       "Product Link": "https://www.migros.ch/en/product/109030800000",
       "Product Name": "M-Budget Katzenstick mit Ente/Geflügel",
-      "Price": 1.5,
+      "Price": 1.25,
       "Category": "other",
       "Introduced": "2024-02-11",
       "Discontinued": "2024-08-18"
@@ -7213,7 +7213,7 @@
     "109030500000": {
       "Product Link": "https://www.migros.ch/en/product/109030500000",
       "Product Name": "Aliment complet pour chats adultes - Mix à la viande",
-      "Price": 1.5,
+      "Price": 1.25,
       "Category": "other",
       "Introduced": "2024-02-11",
       "Discontinued": "2024-08-18"
@@ -7221,7 +7221,7 @@
     "101947300000": {
       "Product Link": "https://www.migros.ch/en/product/101947300000",
       "Product Name": "M-Budget Stapelchips Paprika",
-      "Price": 1.85,
+      "Price": 1.9,
       "Category": "grocery",
       "Introduced": "2024-02-25",
       "Discontinued": "NA"
@@ -7341,7 +7341,7 @@
     "110555800000": {
       "Product Link": "https://www.migros.ch/en/product/110555800000",
       "Product Name": "M-BUD BUTTERWAFFELN 250G",
-      "Price": 2.9,
+      "Price": 2.4,
       "Category": "grocery",
       "Introduced": "2024-03-24",
       "Discontinued": "NA"
@@ -7389,7 +7389,7 @@
     "105318800000": {
       "Product Link": "https://www.migros.ch/en/product/105318800000",
       "Product Name": "M-Budget Cashew Bruch",
-      "Price": 2.8,
+      "Price": 2.95,
       "Category": "grocery",
       "Introduced": "2024-04-01",
       "Discontinued": "NA"
@@ -7437,7 +7437,7 @@
     "120940500000": {
       "Product Link": "https://www.migros.ch/en/product/120940500000",
       "Product Name": "Ice tea - Lemon 1",
-      "Price": 0.5,
+      "Price": 0.45,
       "Category": "grocery",
       "Introduced": "2024-04-21",
       "Discontinued": "NA"
@@ -7517,7 +7517,7 @@
     "120940600000": {
       "Product Link": "https://www.migros.ch/en/product/120940600000",
       "Product Name": "Ice tea - Peach",
-      "Price": 0.5,
+      "Price": 0.45,
       "Category": "grocery",
       "Introduced": "2024-04-21",
       "Discontinued": "NA"
@@ -7541,7 +7541,7 @@
     "526200200000": {
       "Product Link": "https://www.migros.ch/en/product/526200200000",
       "Product Name": "MBUD 12ER T'PAPIER FSC",
-      "Price": 4.75,
+      "Price": 4.55,
       "Category": "other",
       "Introduced": "2024-04-28",
       "Discontinued": "NA"
@@ -7557,7 +7557,7 @@
     "220662085592": {
       "Product Link": "https://www.migros.ch/en/product/220662085592",
       "Product Name": "Pork fillet",
-      "Price": "NA",
+      "Price": 3.0,
       "Category": "grocery",
       "Introduced": "2024-05-26",
       "Discontinued": "2024-09-15"
@@ -7565,7 +7565,7 @@
     "151489300000": {
       "Product Link": "https://www.migros.ch/en/product/151489300000",
       "Product Name": "Blossom honey - Squeeze",
-      "Price": 4.4,
+      "Price": 3.6,
       "Category": "grocery",
       "Introduced": "2024-05-26",
       "Discontinued": "NA"
@@ -7661,7 +7661,7 @@
     "501115300000": {
       "Product Link": "https://www.migros.ch/en/product/501115300000",
       "Product Name": "Dishwasher tabs ",
-      "Price": 7.0,
+      "Price": 6.6,
       "Category": "other",
       "Introduced": "2024-06-09",
       "Discontinued": "NA"
@@ -7669,7 +7669,7 @@
     "101137700000": {
       "Product Link": "https://www.migros.ch/en/product/101137700000",
       "Product Name": "Chewing Gum - Berries flavour",
-      "Price": 1.95,
+      "Price": 1.85,
       "Category": "grocery",
       "Introduced": "2024-07-28",
       "Discontinued": "NA"
@@ -7685,7 +7685,7 @@
     "704541300000": {
       "Product Link": "https://www.migros.ch/en/product/704541300000",
       "Product Name": "MBUD ALU FOIL 50Mx29CM",
-      "Price": 2.8,
+      "Price": 2.75,
       "Category": "other",
       "Introduced": "2024-07-28",
       "Discontinued": "NA"
@@ -7757,7 +7757,7 @@
     "233070076002": {
       "Product Link": "https://www.migros.ch/en/product/233070076002",
       "Product Name": "Bresaola",
-      "Price": "NA",
+      "Price": 5.2,
       "Category": "grocery",
       "Introduced": "2024-07-28",
       "Discontinued": "2024-11-03"
@@ -7861,7 +7861,7 @@
     "130704100000": {
       "Product Link": "https://www.migros.ch/en/product/130704100000",
       "Product Name": "M-Budget Multifruchtsaft",
-      "Price": 2.95,
+      "Price": 2.65,
       "Category": "grocery",
       "Introduced": "2024-09-08",
       "Discontinued": "NA"
@@ -7949,7 +7949,7 @@
     "130935000000": {
       "Product Link": "https://www.migros.ch/en/product/130935000000",
       "Product Name": "M-Budget Plant-Based Gehacktes",
-      "Price": 3.8,
+      "Price": 3.45,
       "Category": "grocery",
       "Introduced": "2024-10-06",
       "Discontinued": "NA"
@@ -8117,7 +8117,7 @@
     "110556200000": {
       "Product Link": "https://www.migros.ch/en/product/110556200000",
       "Product Name": "Pastry roll 2",
-      "Price": 1.85,
+      "Price": 2.2,
       "Category": "grocery",
       "Introduced": "2024-10-20",
       "Discontinued": "NA"
@@ -8165,7 +8165,7 @@
     "121521000000": {
       "Product Link": "https://www.migros.ch/en/product/121521000000",
       "Product Name": "Syrup - Elderflowers",
-      "Price": 3.45,
+      "Price": 3.35,
       "Category": "grocery",
       "Introduced": "2024-11-17",
       "Discontinued": "NA"
@@ -8205,7 +8205,7 @@
     "153236610000": {
       "Product Link": "https://www.migros.ch/en/product/153236610000",
       "Product Name": "Pesto Alla Calabrese",
-      "Price": 1.6,
+      "Price": 1.45,
       "Category": "grocery",
       "Introduced": "2024-12-01",
       "Discontinued": "NA"
@@ -8229,7 +8229,7 @@
     "220220085192": {
       "Product Link": "https://www.migros.ch/en/product/220220085192",
       "Product Name": "Minced beef",
-      "Price": 1.2,
+      "Price": 1.3,
       "Category": "grocery",
       "Introduced": "2024-12-01",
       "Discontinued": "NA"
@@ -8248,6 +8248,102 @@
       "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2024-12-08",
+      "Discontinued": "NA"
+    },
+    "815347000410": {
+      "Product Link": "https://www.migros.ch/en/product/815347000410",
+      "Product Name": "M Budget Slip Classic 1",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "212569600000": {
+      "Product Link": "https://www.migros.ch/en/product/212569600000",
+      "Product Name": "Le Carré",
+      "Price": 2.95,
+      "Category": "grocery",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "526010600000": {
+      "Product Link": "https://www.migros.ch/en/product/526010600000",
+      "Product Name": "M-Budget 6er Recycling Haushaltpapier",
+      "Price": 4.4,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "815347000220": {
+      "Product Link": "https://www.migros.ch/en/product/815347000220",
+      "Product Name": "M Budget Slip Classic 2",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "815347000620": {
+      "Product Link": "https://www.migros.ch/en/product/815347000620",
+      "Product Name": "M Budget Slip Classic 3",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "815347000610": {
+      "Product Link": "https://www.migros.ch/en/product/815347000610",
+      "Product Name": "M Budget Slip Classic 4",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "815347000420": {
+      "Product Link": "https://www.migros.ch/en/product/815347000420",
+      "Product Name": "M Budget Slip Classic 5",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "815347000210": {
+      "Product Link": "https://www.migros.ch/en/product/815347000210",
+      "Product Name": "M Budget Slip Classic 6",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "502016700000": {
+      "Product Link": "https://www.migros.ch/en/product/502016700000",
+      "Product Name": "Glass cleaner spray",
+      "Price": 1.1,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "815347000520": {
+      "Product Link": "https://www.migros.ch/en/product/815347000520",
+      "Product Name": "M Budget Slip Classic 7",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "815347000510": {
+      "Product Link": "https://www.migros.ch/en/product/815347000510",
+      "Product Name": "M Budget Slip Classic 8",
+      "Price": 4.0,
+      "Category": "other",
+      "Introduced": "2025-02-02",
+      "Discontinued": "NA"
+    },
+    "502016800000": {
+      "Product Link": "https://www.migros.ch/en/product/502016800000",
+      "Product Name": "All purpose cleaner - Lime scent",
+      "Price": 1.1,
+      "Category": "other",
+      "Introduced": "2025-02-02",
       "Discontinued": "NA"
     }
   }
