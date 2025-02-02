@@ -66,6 +66,10 @@ else
     git merge origin/$BASE_BRANCH
     auto_upload="True"
     ./update_all.sh mbudget $BASE_BRANCH $auto_upload
+    if [ $? -ne 0 ]; then
+        echo "update_all.sh did not run succesfully. Aborting."
+        exit 1
+    fi
     ssh -4 -v -fN finspresso_mysql_portforward
     python supermarket_tracker.py --name mbudget --credentials_file credentials/sql_credentials_finspresso.json --update_metadata_table --update_prices_table
     #Next make docker volume for credentials folder in which you copy in sql_credentials.json of MYSQL docker container ans sql_credentials_finspresso.json of MYSQL finspresso db
