@@ -249,6 +249,8 @@ class TabWindow(QtGui.QTabWidget):
         yf_ticker = yf.Ticker(ticker)
         if dividend_history == "yfinance":
             dividends = yf_ticker.dividends
+            if not dividends.empty:
+                dividends.index = dividends.index.tz_localize(None)
         else:
             dividends = self.load_dividends_from_file(dividend_history)
         dividends_per_year = self.get_dividends_per_year(dividends)
@@ -630,8 +632,8 @@ class TabWindow(QtGui.QTabWidget):
                 security["dividends per year"].index == self.current_year
             ].values
         else:
-            x = self.current_year
-            y = 0.0
+            x = [self.current_year]
+            y = [0.0]
         bargraph_current_year = pg.BarGraphItem(
             x=x,
             height=y,
@@ -683,7 +685,7 @@ class TabWindow(QtGui.QTabWidget):
             if self.colorbar is None:
                 cm = pg.colormap.get("plasma")
                 cm.reverse()
-                self.colorbar = pg.ColorBarItem(cmap=cm)
+                self.colorbar = pg.ColorBarItem(colorMap=cm)
             self.colorbar.setImageItem(
                 img,
                 insert_in=self.dividend_history.plot_widget_rmsd_overall.getPlotItem(),
