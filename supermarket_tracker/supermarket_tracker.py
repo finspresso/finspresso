@@ -51,12 +51,20 @@ class SuperMarketTracker:
                 if match:
                     date_folder_list.append(path.name)
         if len(date_folder_list) > 0:
-            date_folder_list.sort()
-            self.latest_collection_file = (
-                download_folder
-                / Path(date_folder_list[-1])
-                / Path(self.name + "_prices.xlsx")
-            )
+            date_folder_list.sort(reverse=True)
+            for data_folder in date_folder_list:
+                self.latest_collection_file = (
+                    download_folder
+                    / Path(data_folder)
+                    / Path(self.name + "_prices.xlsx")
+                )
+                if self.latest_collection_file.exists():
+                    return
+                logger.warning(
+                    "%s does not exists. Trying next...", self.latest_collection_file
+                )
+            logger.error("No valid .xlsx file found")
+            self.latest_collection_file = "NA"
 
     def load_config(self):
         file_path = Path("configs") / Path(self.name + ".json")
@@ -80,6 +88,7 @@ class SuperMarketTracker:
             options.add_argument("--headless")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--start-maximized")
         self.download_dict = dict()
         now = datetime.datetime.now()
         download_folder = (
@@ -95,9 +104,10 @@ class SuperMarketTracker:
         self.current_offset = 0
         driver.get(self.config["collection_url"])
         try:
+            extension_button_counter = 0
             while True:
                 try:
-                    xpath_extension_button = "/html/body/app-root/div[1]/lsp-shop/div/div/div/mo-brand-view-container/main/div/div/mo-brand-view-layout/div/div/div[2]/app-products-display/div[2]/div/a"
+                    xpath_extension_button = "/html/body/app-root/div[1]/lsp-shop/div/div/div/div/ng-component/main/div/div/div/div/div[2]/div/mo-items-display-view-more-btn/div/a"
                     logger.info("Searching for extension button")
                     element = WebDriverWait(driver, 5).until(
                         EC.presence_of_element_located(
@@ -110,8 +120,14 @@ class SuperMarketTracker:
                     logger.info("Clicking on extension button")
                     driver.execute_script("arguments[0].click();", element)
                     time.sleep(3)
+                    extension_button_counter += 1
                 except (TimeoutException, NoSuchElementException):
-                    logger.warning("No extension button found. Proceeding.")
+                    if extension_button_counter == 0:
+                        logger.error("Zero extension button found. Aborting")
+                        exit(1)
+                    logger.info(
+                        f"Pressed {extension_button_counter} extension buttons."
+                    )
                     break
             try:
                 logger.info("Searching for cookie banner")
@@ -152,7 +168,7 @@ class SuperMarketTracker:
 
                     description_element = element.find_element(
                         By.XPATH,
-                        ".//div/div[1]/a[2]/span[2]/lsp-product-name/div/span[2]",
+                        ".//div/div[1]/a[2]/span[2]/mo-product-name/div/span[2]",
                     )
 
                     span_elements = description_element.find_elements(
@@ -279,7 +295,7 @@ class SuperMarketTracker:
         return timestamp_string
 
     @staticmethod
-    def check_for_duplicate_names(dict_reference):
+    def check_for_duplicate_names(dict_reference, interactive):
         non_unique_name_dict = SuperMarketTracker.get_non_unique_names(dict_reference)
         n_non_unique = len(non_unique_name_dict)
         logger.info("Found %s non-unique article names", n_non_unique)
@@ -290,12 +306,22 @@ class SuperMarketTracker:
             logger.info(
                 f"The articles {articles} have all the product name {non_unique_name}"
             )
+            counter_article = 0
             for article_non_unique in articles:
+                counter_article += 1
                 product_link = dict_reference[article_non_unique]["Product Link"]
-                input_string = f"Please provide new product name for {product_link}\n"
+                if interactive:
+                    input_string = (
+                        f"Please provide new product name for {product_link}\n"
+                    )
+                    new_name = input(input_string)
+                else:
+                    new_name = non_unique_name + " " + str(counter_article)
+                logger.info(
+                    "Giving name %s to article %s", new_name, article_non_unique
+                )
 
-                input_name = input(input_string)
-                dict_reference[article_non_unique]["Product Name"] = input_name
+                dict_reference[article_non_unique]["Product Name"] = new_name
 
         return dict_reference
 
@@ -326,7 +352,7 @@ class SuperMarketTracker:
             df_ref["Include"] = "Yes"
             dict_reference = df_ref.to_dict(orient="index")
             dict_reference = SuperMarketTracker.check_for_duplicate_names(
-                dict_reference
+                dict_reference, self.interactive
             )
             reference_json = self.reference_folder / Path("product_reference.json")
             with reference_json.open(mode="w") as outfile:
@@ -359,11 +385,12 @@ class SuperMarketTracker:
                 for article in discontinued_articles:
                     dict_reference[article]["Discontinued"] = today
                 if not df_new_articles.empty:
-                    df_new_articles["Category"] = "NA"
                     df_new_articles["Introduced"] = today
                     df_new_articles["Discontinued"] = "NA"
                     new_articles_dict = df_new_articles.to_dict(orient="index")
+                    df_new_articles["Include"] = "Yes"
                     if self.interactive:
+                        df_new_articles["Category"] = "NA"
                         for article in new_articles_dict.keys():
                             product_name = new_articles_dict[article]["Product Name"]
                             product_link = new_articles_dict[article]["Product Link"]
@@ -389,9 +416,21 @@ class SuperMarketTracker:
                                     "Unknown include input %s. Aborting", input_cat
                                 )
                                 exit(1)
+                    else:
+                        for article in new_articles_dict.keys():
+                            product_name = new_articles_dict[article]["Product Name"]
+                            product_link = new_articles_dict[article]["Product Link"]
+                            product_category = new_articles_dict[article]["Category"]
+                            logger.info(
+                                "Adding product: %s\nLink: %s\nCategory: %s",
+                                product_name,
+                                product_link,
+                                product_category,
+                            )
                     dict_reference.update(new_articles_dict)
+
                 dict_reference = SuperMarketTracker.check_for_duplicate_names(
-                    dict_reference
+                    dict_reference, self.interactive
                 )
                 reference["Products"] = dict_reference
 
@@ -589,15 +628,29 @@ def main():
         help="If selected, opens up browser window",
         action="store_true",
     )
+    parser.add_argument(
+        "--non_interactive",
+        help="If selected, no products are added without asking",
+        action="store_true",
+    )
 
     credentials_sql = dict()
     args = parser.parse_args()
 
     logger.info("Consider tracking category %s", args.name)
+    interactive = True
+    if args.non_interactive:
+        interactive = False
+        logger.info("Running in non-interactive mode")
+    else:
+        logger.info("Running in interactive mode")
     if args.credentials_file != "":
         credentials_sql = DBInterface.load_db_credentials(args.credentials_file)
     tracker_handler = SuperMarketTracker(
-        args.name, args.data_folder, take_screenshots=args.take_screenshots
+        args.name,
+        args.data_folder,
+        take_screenshots=args.take_screenshots,
+        interactive=interactive,
     )
     headless = not args.no_headless
     if args.collect_products:
@@ -636,6 +689,7 @@ def main():
             )
         else:
             logger.error("File %s does not exist", collection_file)
+            exit(1)
     if args.update_metadata_table:
         if len(credentials_sql) == 0:
             logger.error(

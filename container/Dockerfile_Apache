@@ -1,0 +1,6 @@
+FROM httpd:latest
+RUN mkdir /usr/local/apache2/htdocs/supermarket_tracker
+COPY browser/ /usr/local/apache2/htdocs/supermarket_tracker/
+EXPOSE 80
+# docker run -d --name apache -p 81:80 --rm httpd
+#http://localhost:81/supermarket_tracker/html/mbudget_tracker.html
