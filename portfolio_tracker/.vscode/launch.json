@@ -2,16 +2,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run single holdings",
+      "name": "Run test holdings",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceRoot}/run.py",
+      "program": "${workspaceRoot}/portfolio_tracker.py",
       "cwd": "${workspaceRoot}",
       "args": [
         "--holdings_file",
-        "holdings_single.json"
+        "holdings_one.json"
       ],
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "env": {
+        "QT_QPA_PLATFORM": "xcb"
+      }
     },
     {
       "name": "Run own holdings",
@@ -23,19 +26,10 @@
         "--holdings_file",
         "holdings_own.json"
       ],
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Run small holdings",
-      "type": "python",
-      "request": "launch",
-      "program": "${workspaceRoot}/run.py",
-      "cwd": "${workspaceRoot}",
-      "args": [
-        "--holdings_file",
-        "holdings_one.json"
-      ],
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "env": {
+        "QT_QPA_PLATFORM": "xcb"
+      }
     },
     {
       "name": "Run oscillation holdings",
