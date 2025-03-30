@@ -7,7 +7,7 @@ auto_upload=${3:-False}
 echo "Base branch is $base_branch"
 
 echo "Collecting data with Selenium of type $name"
-python supermarket_tracker.py --name $name --collect_products --take_screenshots
+python supermarket_tracker.py --name $name --collect_products --take_screenshots --no_headless
 
 if [ $? -ne 0 ]; then
   echo "Failing to collect data."
