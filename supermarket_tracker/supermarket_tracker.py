@@ -181,7 +181,7 @@ class SuperMarketTracker:
 
                     subelement = element.find_element(
                         By.XPATH,
-                        ".//div/div[1]/a[2]/span[2]/lsp-product-price/span/span/span",
+                        ".//div/div[1]/a[2]/span[2]/mo-product-price/span/span/span",
                     )
                     match = re.search("([0-9]*\.[0-9]*)", subelement.text)
                     if match:
