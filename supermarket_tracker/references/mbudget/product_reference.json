@@ -1,5 +1,5 @@
 {
-  "Date": "2025-04-13",
+  "Date": "2025-04-18",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -112,7 +112,7 @@
     "212602900000": {
       "Product Link": "https://www.migros.ch/en/product/212602900000",
       "Product Name": "Cream cheese - Nature",
-      "Price": 1.9,
+      "Price": 1.75,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -265,7 +265,7 @@
     "130140400000": {
       "Product Link": "https://www.migros.ch/en/product/130140400000",
       "Product Name": "Tortelloni - Spinach and ricotta",
-      "Price": 2.25,
+      "Price": 2.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -355,10 +355,10 @@
     "110131600000": {
       "Product Link": "https://www.migros.ch/en/product/110131600000",
       "Product Name": "Petit-Beurre with milk chocolate",
-      "Price": 1.25,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-18",
       "Include": "Yes"
     },
     "271802302500": {
@@ -373,7 +373,7 @@
     "233091081200": {
       "Product Link": "https://www.migros.ch/en/product/233091081200",
       "Product Name": "Mostmöckli - Mostmöckli",
-      "Price": 3.95,
+      "Price": 4.45,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-12-15",
@@ -553,7 +553,7 @@
     "231001781000": {
       "Product Link": "https://www.migros.ch/en/product/231001781000",
       "Product Name": "Assorted cold cuts - 3 varieties",
-      "Price": 1.15,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-16",
@@ -1012,7 +1012,7 @@
     "110169000000": {
       "Product Link": "https://www.migros.ch/en/product/110169000000",
       "Product Name": "Puffed rice with milk chocolate coating",
-      "Price": 2.95,
+      "Price": 2.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1462,7 +1462,7 @@
     "130140500000": {
       "Product Link": "https://www.migros.ch/en/product/130140500000",
       "Product Name": "Tortelloni - Meat",
-      "Price": 2.25,
+      "Price": 2.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1759,7 +1759,7 @@
     "205324400000": {
       "Product Link": "https://www.migros.ch/en/product/205324400000",
       "Product Name": "Dessert with chocolate - Chocolat",
-      "Price": 2.1,
+      "Price": 2.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1768,7 +1768,7 @@
     "130140600000": {
       "Product Link": "https://www.migros.ch/en/product/130140600000",
       "Product Name": "Tortelloni - Cheese",
-      "Price": 2.25,
+      "Price": 2.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2209,7 +2209,7 @@
     "212524000000": {
       "Product Link": "https://www.migros.ch/en/product/212524000000",
       "Product Name": "Baked Camembert",
-      "Price": 2.8,
+      "Price": 3.1,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-06-23",
@@ -2245,7 +2245,7 @@
     "220662085500": {
       "Product Link": "https://www.migros.ch/en/product/220662085500",
       "Product Name": "Pork fillet – 450-700g",
-      "Price": 3.0,
+      "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -2821,7 +2821,7 @@
     "130140700000": {
       "Product Link": "https://www.migros.ch/en/product/130140700000",
       "Product Name": "M-Budget Tortelloni Tomaten-Mozzarella",
-      "Price": 2.25,
+      "Price": 2.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3451,7 +3451,7 @@
     "156012900000": {
       "Product Link": "https://www.migros.ch/en/product/156012900000",
       "Product Name": "Sandwich gherkins - Longitudinal section",
-      "Price": 1.85,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3550,10 +3550,10 @@
     "110505400000": {
       "Product Link": "https://www.migros.ch/en/product/110505400000",
       "Product Name": "Waffles - With hazelnut cream filling",
-      "Price": 3.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-18",
       "Include": "Yes"
     },
     "101400400000": {
@@ -4117,7 +4117,7 @@
     "231015500000": {
       "Product Link": "https://www.migros.ch/en/product/231015500000",
       "Product Name": "Saucisse extra",
-      "Price": 3.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-12-08",
@@ -4144,10 +4144,10 @@
     "130423000000": {
       "Product Link": "https://www.migros.ch/en/product/130423000000",
       "Product Name": "M-Budget Sandwich Chicken",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-18",
       "Include": "Yes"
     },
     "130433900000": {
@@ -4162,10 +4162,10 @@
     "130424000000": {
       "Product Link": "https://www.migros.ch/en/product/130424000000",
       "Product Name": "M-Budget Sandwich Chicken Cocktail",
-      "Price": 3.55,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-18",
       "Include": "Yes"
     },
     "130433100000": {
@@ -4189,10 +4189,10 @@
     "130455100000": {
       "Product Link": "https://www.migros.ch/en/product/130455100000",
       "Product Name": "M-Budget MSC Weggli mit Thon",
-      "Price": 2.15,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-18",
       "Include": "Yes"
     },
     "210452400000": {
@@ -4693,7 +4693,7 @@
     "106409500000": {
       "Product Link": "https://www.migros.ch/en/product/106409500000",
       "Product Name": "Mild mustard",
-      "Price": 1.0,
+      "Price": 0.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4909,10 +4909,10 @@
     "121507900000": {
       "Product Link": "https://www.migros.ch/en/product/121507900000",
       "Product Name": "Syrup - Berries",
-      "Price": 3.35,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-18",
       "Include": "Yes"
     },
     "106655200000": {
@@ -4990,7 +4990,7 @@
     "110555200000": {
       "Product Link": "https://www.migros.ch/en/product/110555200000",
       "Product Name": "Viennese shortbread",
-      "Price": 1.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-08",
@@ -5620,10 +5620,10 @@
     "120850500000": {
       "Product Link": "https://www.migros.ch/en/product/120850500000",
       "Product Name": "M-Budget Mineral ohne Co2",
-      "Price": 0.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-18",
       "Include": "Yes"
     },
     "111187800200": {
@@ -7037,10 +7037,10 @@
     "260533803400": {
       "Product Link": "https://www.migros.ch/en/product/260533803400",
       "Product Name": "Pears",
-      "Price": 3.6,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
-      "Discontinued": "NA"
+      "Discontinued": "2025-04-18"
     },
     "264200702100": {
       "Product Link": "https://www.migros.ch/en/product/264200702100",
@@ -7093,7 +7093,7 @@
     "109034100000": {
       "Product Link": "https://www.migros.ch/en/product/109034100000",
       "Product Name": "Dental sticks",
-      "Price": 0.95,
+      "Price": 0.9,
       "Category": "other",
       "Introduced": "2023-12-17",
       "Discontinued": "NA"
@@ -7557,7 +7557,7 @@
     "220662085592": {
       "Product Link": "https://www.migros.ch/en/product/220662085592",
       "Product Name": "Pork fillet",
-      "Price": 3.0,
+      "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2024-05-26",
       "Discontinued": "2024-09-15"
@@ -7645,7 +7645,7 @@
     "110216700000": {
       "Product Link": "https://www.migros.ch/en/product/110216700000",
       "Product Name": "Crispy savory biscuits 2",
-      "Price": 1.1,
+      "Price": 1.15,
       "Category": "grocery",
       "Introduced": "2024-05-26",
       "Discontinued": "NA"
@@ -8389,18 +8389,18 @@
     "130272400000": {
       "Product Link": "https://www.migros.ch/en/product/130272400000",
       "Product Name": "M-Budget Pizza Toskana",
-      "Price": 5.9,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2025-02-23",
-      "Discontinued": "NA"
+      "Discontinued": "2025-04-18"
     },
     "130272300000": {
       "Product Link": "https://www.migros.ch/en/product/130272300000",
       "Product Name": "M-Budget Toskana",
-      "Price": 3.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2025-02-23",
-      "Discontinued": "NA"
+      "Discontinued": "2025-04-18"
     },
     "251366100100": {
       "Product Link": "https://www.migros.ch/en/product/251366100100",
@@ -8501,7 +8501,7 @@
     "156001600000": {
       "Product Link": "https://www.migros.ch/en/product/156001600000",
       "Product Name": "Onions",
-      "Price": 0.95,
+      "Price": 1.1,
       "Category": "grocery",
       "Introduced": "2025-04-13",
       "Discontinued": "NA"
@@ -8576,6 +8576,14 @@
       "Price": 4.5,
       "Category": "grocery",
       "Introduced": "2025-04-13",
+      "Discontinued": "NA"
+    },
+    "233116000500": {
+      "Product Link": "https://www.migros.ch/en/product/233116000500",
+      "Product Name": "Smoked raw ham - Black Forest",
+      "Price": 5.5,
+      "Category": "grocery",
+      "Introduced": "2025-04-18",
       "Discontinued": "NA"
     }
   }
