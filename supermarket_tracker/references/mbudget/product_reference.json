@@ -1,5 +1,5 @@
 {
-  "Date": "2025-04-18",
+  "Date": "2025-04-27",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -373,7 +373,7 @@
     "233091081200": {
       "Product Link": "https://www.migros.ch/en/product/233091081200",
       "Product Name": "Mostmöckli - Mostmöckli",
-      "Price": 4.45,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-12-15",
@@ -1246,7 +1246,7 @@
     "105319900000": {
       "Product Link": "https://www.migros.ch/en/product/105319900000",
       "Product Name": "Nut mixture - Unsalted",
-      "Price": 3.4,
+      "Price": 3.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1642,7 +1642,7 @@
     "107118400000": {
       "Product Link": "https://www.migros.ch/en/product/107118400000",
       "Product Name": "Café en grains - In beans, 3/5 intensity.",
-      "Price": 9.3,
+      "Price": 10.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3235,7 +3235,7 @@
     "770797400000": {
       "Product Link": "https://www.migros.ch/en/product/770797400000",
       "Product Name": "M-Budget BT1094 Over-Ear Kopfhörer",
-      "Price": 29.85,
+      "Price": 29.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-10-29",
@@ -4432,7 +4432,7 @@
     "210630024000": {
       "Product Link": "https://www.migros.ch/en/product/210630024000",
       "Product Name": "St-Paulin",
-      "Price": 1.6,
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -4774,10 +4774,10 @@
     "121507800000": {
       "Product Link": "https://www.migros.ch/en/product/121507800000",
       "Product Name": "Syrup - Raspberry",
-      "Price": 3.35,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-04-27",
       "Include": "Yes"
     },
     "122000100000": {
@@ -4909,7 +4909,7 @@
     "121507900000": {
       "Product Link": "https://www.migros.ch/en/product/121507900000",
       "Product Name": "Syrup - Berries",
-      "Price": "NA",
+      "Price": 3.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-04-18",
@@ -5098,7 +5098,7 @@
     "107117500000": {
       "Product Link": "https://www.migros.ch/en/product/107117500000",
       "Product Name": "Roast coffee - Ground, 3/5 strength",
-      "Price": 5.8,
+      "Price": 7.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5134,7 +5134,7 @@
     "107118300000": {
       "Product Link": "https://www.migros.ch/en/product/107118300000",
       "Product Name": "Roasted coffee - In beans, 4/5 intensity",
-      "Price": 7.2,
+      "Price": 8.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5620,7 +5620,7 @@
     "120850500000": {
       "Product Link": "https://www.migros.ch/en/product/120850500000",
       "Product Name": "M-Budget Mineral ohne Co2",
-      "Price": "NA",
+      "Price": 0.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-04-18",
@@ -5638,7 +5638,7 @@
     "120801000000": {
       "Product Link": "https://www.migros.ch/en/product/120801000000",
       "Product Name": "Natural mineral water - Sparkling",
-      "Price": "NA",
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-02-02",
@@ -5908,7 +5908,7 @@
     "274461603300": {
       "Product Link": "https://www.migros.ch/en/product/274461603300",
       "Product Name": "Potatoes - Waxy",
-      "Price": 5.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-07-16",
       "Discontinued": "2023-07-23",
@@ -6325,7 +6325,7 @@
     "160154000000": {
       "Product Link": "https://www.migros.ch/en/product/160154000000",
       "Product Name": "M-Budget Pizza Prosciutto",
-      "Price": 3.15,
+      "Price": 2.8,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -6517,7 +6517,7 @@
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": 1.3,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -6909,7 +6909,7 @@
     "770798500000": {
       "Product Link": "https://www.migros.ch/en/product/770798500000",
       "Product Name": "M-Budget In-Ear Earbuds TS-200 In-Ear Kopfhörer",
-      "Price": 29.85,
+      "Price": 29.95,
       "Category": "other",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-08-18"
@@ -7037,7 +7037,7 @@
     "260533803400": {
       "Product Link": "https://www.migros.ch/en/product/260533803400",
       "Product Name": "Pears",
-      "Price": "NA",
+      "Price": 3.6,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2025-04-18"
@@ -7085,7 +7085,7 @@
     "158565600000": {
       "Product Link": "https://www.migros.ch/en/product/158565600000",
       "Product Name": "M-BUD SOJASAUCE",
-      "Price": 1.1,
+      "Price": 1.05,
       "Category": "grocery",
       "Introduced": "2023-12-09",
       "Discontinued": "2024-02-11"
@@ -7245,7 +7245,7 @@
     "101626000000": {
       "Product Link": "https://www.migros.ch/en/product/101626000000",
       "Product Name": "Chocolate eggs - Assorted filled",
-      "Price": 9.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-02-25",
       "Discontinued": "2024-04-01"
@@ -7381,7 +7381,7 @@
     "204511000000": {
       "Product Link": "https://www.migros.ch/en/product/204511000000",
       "Product Name": "M-Budget Espresso",
-      "Price": "NA",
+      "Price": 1.0,
       "Category": "grocery",
       "Introduced": "2024-04-01",
       "Discontinued": "2025-04-13"
@@ -7725,7 +7725,7 @@
     "107197800000": {
       "Product Link": "https://www.migros.ch/en/product/107197800000",
       "Product Name": "Coffee Capsules - Espresso, intensity 4/5, Delizio system",
-      "Price": 6.3,
+      "Price": 6.5,
       "Category": "grocery",
       "Introduced": "2024-07-28",
       "Discontinued": "NA"
@@ -7789,7 +7789,7 @@
     "107197600000": {
       "Product Link": "https://www.migros.ch/en/product/107197600000",
       "Product Name": "Coffee Capsules - Lungo, intensity 3/5, system Delizio",
-      "Price": 6.3,
+      "Price": 6.5,
       "Category": "grocery",
       "Introduced": "2024-07-28",
       "Discontinued": "NA"
@@ -7805,7 +7805,7 @@
     "107197700000": {
       "Product Link": "https://www.migros.ch/en/product/107197700000",
       "Product Name": "Coffee Capsules - Decaffeinato, intensity 3/5",
-      "Price": 6.3,
+      "Price": 6.5,
       "Category": "grocery",
       "Introduced": "2024-07-28",
       "Discontinued": "NA"
@@ -8584,6 +8584,38 @@
       "Price": 5.5,
       "Category": "grocery",
       "Introduced": "2025-04-18",
+      "Discontinued": "NA"
+    },
+    "231015510000": {
+      "Product Link": "https://www.migros.ch/en/product/231015510000",
+      "Product Name": "M-Budget Lyoner",
+      "Price": 2.5,
+      "Category": "grocery",
+      "Introduced": "2025-04-27",
+      "Discontinued": "NA"
+    },
+    "153921900000": {
+      "Product Link": "https://www.migros.ch/en/product/153921900000",
+      "Product Name": "M-BUD ERBSEN 270G",
+      "Price": 1.35,
+      "Category": "grocery",
+      "Introduced": "2025-04-27",
+      "Discontinued": "NA"
+    },
+    "131303500000": {
+      "Product Link": "https://www.migros.ch/en/product/131303500000",
+      "Product Name": "M-Budget Birchermüesli",
+      "Price": 2.95,
+      "Category": "grocery",
+      "Introduced": "2025-04-27",
+      "Discontinued": "NA"
+    },
+    "514073900000": {
+      "Product Link": "https://www.migros.ch/en/product/514073900000",
+      "Product Name": "M-BUD BRUSH MEDIUM PLUS",
+      "Price": 1.45,
+      "Category": "other",
+      "Introduced": "2025-04-27",
       "Discontinued": "NA"
     }
   }
