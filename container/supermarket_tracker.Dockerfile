@@ -49,14 +49,15 @@ RUN apt install ./gh_amd64.deb && rm ./gh_amd64.deb
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y default-libmysqlclient-dev
 
 ENV GH_TOKEN=$GH_TOKEN_ARG
+
 ENV FINSPRESSO_ROOT="/var/finspresso"
 ENV BASE_BRANCH="feature/docker_compose"
 RUN git clone --branch ${BASE_BRANCH} --recursive https://github.com/finspresso/finspresso.git $FINSPRESSO_ROOT
 
 RUN pip install --upgrade pip
 RUN pip install $FINSPRESSO_ROOT/db_interface_package
-RUN pip install -r $FINSPRESSO_ROOT/supermarket_tracker/requirements.txt
-RUN pip install -r $FINSPRESSO_ROOT/inflation/requirements.txt
+RUN pip install -r $FINSPRESSO_ROOT/supermarket_tracker/requirements.txt -v
+RUN pip install -r $FINSPRESSO_ROOT/inflation/requirements.txt -v
 
 RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/
 RUN mkdir -p $FINSPRESSO_ROOT/supermarket_tracker/configs
