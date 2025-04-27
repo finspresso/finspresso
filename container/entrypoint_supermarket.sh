@@ -13,5 +13,8 @@ python $FINSPRESSO_ROOT/container/webui.py --index-file $FINSPRESSO_ROOT/contain
 while true;
 do
     sleep 3
-
+    if ! pgrep -x Xvfb > /dev/null; then
+        echo "Xvfb is not running! Restarting Xvfb..."
+        Xvfb :99 -screen 0 1920x1080x24 &
+    fi
 done
