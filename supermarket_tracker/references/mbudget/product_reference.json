@@ -1,5 +1,5 @@
 {
-  "Date": "2025-05-04",
+  "Date": "2025-05-11",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -121,7 +121,7 @@
     "120983100000": {
       "Product Link": "https://www.migros.ch/en/product/120983100000",
       "Product Name": "Special drink containing caffeine",
-      "Price": "NA",
+      "Price": 6.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -139,7 +139,7 @@
     "233520691202": {
       "Product Link": "https://www.migros.ch/en/product/233520691202",
       "Product Name": "Bacon",
-      "Price": 1.85,
+      "Price": 2.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -193,7 +193,7 @@
     "231502083302": {
       "Product Link": "https://www.migros.ch/en/product/231502083302",
       "Product Name": "Ham",
-      "Price": 3.5,
+      "Price": 3.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -292,7 +292,7 @@
     "220221085000": {
       "Product Link": "https://www.migros.ch/en/product/220221085000",
       "Product Name": "Minced meat - Mixed 1",
-      "Price": "NA",
+      "Price": 1.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -382,7 +382,7 @@
     "230500251502": {
       "Product Link": "https://www.migros.ch/en/product/230500251502",
       "Product Name": "Wiener - Hot Dog",
-      "Price": 3.0,
+      "Price": 2.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-08",
@@ -427,7 +427,7 @@
     "212555700000": {
       "Product Link": "https://www.migros.ch/en/product/212555700000",
       "Product Name": "Brie",
-      "Price": 1.65,
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-01-01",
@@ -463,7 +463,7 @@
     "153211500000": {
       "Product Link": "https://www.migros.ch/en/product/153211500000",
       "Product Name": "Tomato sauce - With basilico",
-      "Price": "NA",
+      "Price": 1.05,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-04-13",
@@ -544,7 +544,7 @@
     "220220085000": {
       "Product Link": "https://www.migros.ch/en/product/220220085000",
       "Product Name": "Minced beef – 690-720g",
-      "Price": "NA",
+      "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -706,7 +706,7 @@
     "101912200000": {
       "Product Link": "https://www.migros.ch/en/product/101912200000",
       "Product Name": "Chips - Bell pepper",
-      "Price": 3.55,
+      "Price": 3.6,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -751,7 +751,7 @@
     "153232100000": {
       "Product Link": "https://www.migros.ch/en/product/153232100000",
       "Product Name": "Tomatoes 1",
-      "Price": "NA",
+      "Price": 0.75,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-04-13",
@@ -949,7 +949,7 @@
     "251446000000": {
       "Product Link": "https://www.migros.ch/en/product/251446000000",
       "Product Name": "Surimi sticks",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-11-05",
@@ -1021,7 +1021,7 @@
     "220624085000": {
       "Product Link": "https://www.migros.ch/en/product/220624085000",
       "Product Name": "Pork cut-ups",
-      "Price": "NA",
+      "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -1255,7 +1255,7 @@
     "512425800000": {
       "Product Link": "https://www.migros.ch/en/product/512425800000",
       "Product Name": "Condoms - Cylindrical with lubricating cream",
-      "Price": 7.5,
+      "Price": 6.65,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2866,7 +2866,7 @@
     "153222900000": {
       "Product Link": "https://www.migros.ch/en/product/153222900000",
       "Product Name": "Tomato puree – Glas 680g",
-      "Price": "NA",
+      "Price": 1.15,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-04-13",
@@ -2974,7 +2974,7 @@
     "241102550000": {
       "Product Link": "https://www.migros.ch/en/product/241102550000",
       "Product Name": "M-Budget Pouletflügel gewürzt",
-      "Price": 5.45,
+      "Price": 7.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3163,7 +3163,7 @@
     "220220085092": {
       "Product Link": "https://www.migros.ch/en/product/220220085092",
       "Product Name": "Minced beef – 500g",
-      "Price": 1.4,
+      "Price": 1.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3514,7 +3514,7 @@
     "233100281502": {
       "Product Link": "https://www.migros.ch/en/product/233100281502",
       "Product Name": "M-Budget Mostbröckli",
-      "Price": 5.2,
+      "Price": 4.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-08",
@@ -4161,7 +4161,7 @@
     },
     "130424000000": {
       "Product Link": "https://www.migros.ch/en/product/130424000000",
-      "Product Name": "M-Budget Sandwich Chicken Cocktail",
+      "Product Name": "M-Budget Sandwich Chicken Cocktail 1",
       "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
@@ -4188,7 +4188,7 @@
     },
     "130455100000": {
       "Product Link": "https://www.migros.ch/en/product/130455100000",
-      "Product Name": "M-Budget MSC Weggli mit Thon",
+      "Product Name": "M-Budget MSC Weggli mit Thon 1",
       "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
@@ -4351,7 +4351,7 @@
     "233110181602": {
       "Product Link": "https://www.migros.ch/en/product/233110181602",
       "Product Name": "Lard paysan - Fumé",
-      "Price": 2.95,
+      "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-15",
@@ -4711,7 +4711,7 @@
     "120908900000": {
       "Product Link": "https://www.migros.ch/en/product/120908900000",
       "Product Name": "Table water - With lemon flavor – Zero",
-      "Price": "NA",
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -4747,7 +4747,7 @@
     "231525583602": {
       "Product Link": "https://www.migros.ch/en/product/231525583602",
       "Product Name": "Chicken breast 1",
-      "Price": 3.55,
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -4774,7 +4774,7 @@
     "121507800000": {
       "Product Link": "https://www.migros.ch/en/product/121507800000",
       "Product Name": "Syrup - Raspberry",
-      "Price": "NA",
+      "Price": 3.35,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-04-27",
@@ -4864,7 +4864,7 @@
     "120911700000": {
       "Product Link": "https://www.migros.ch/en/product/120911700000",
       "Product Name": "Table water with 4% grapefruit juice - With 4% grapefruit juice",
-      "Price": "NA",
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -4999,7 +4999,7 @@
     "120911500000": {
       "Product Link": "https://www.migros.ch/en/product/120911500000",
       "Product Name": "Table water with 4% orange juice - With 4% orange juice – Zero",
-      "Price": "NA",
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -5062,7 +5062,7 @@
     "120915100000": {
       "Product Link": "https://www.migros.ch/en/product/120915100000",
       "Product Name": "Soft drink with Cola flavor, contains caffeine – Zero",
-      "Price": "NA",
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -5143,7 +5143,7 @@
     "120911200000": {
       "Product Link": "https://www.migros.ch/en/product/120911200000",
       "Product Name": "Table water - With lemon flavor",
-      "Price": "NA",
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -5809,7 +5809,7 @@
     "120911800000": {
       "Product Link": "https://www.migros.ch/en/product/120911800000",
       "Product Name": "Soft drink with Cola flavor, contains caffeine",
-      "Price": "NA",
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -5818,7 +5818,7 @@
     "120911600000": {
       "Product Link": "https://www.migros.ch/en/product/120911600000",
       "Product Name": "Table water with 4% grapefruit juice - With 4% fruit juice",
-      "Price": "NA",
+      "Price": 3.55,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-03-16",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": 2.0,
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -6221,7 +6221,7 @@
     "130757500000": {
       "Product Link": "https://www.migros.ch/en/product/130757500000",
       "Product Name": "Orange juice 2",
-      "Price": 2.6,
+      "Price": 3.0,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -6245,7 +6245,7 @@
     "107176500000": {
       "Product Link": "https://www.migros.ch/en/product/107176500000",
       "Product Name": "Aluminum coffee capsules - Intensity 6/10",
-      "Price": 6.45,
+      "Price": 6.0,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -6517,7 +6517,7 @@
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": "NA",
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -7221,10 +7221,10 @@
     "101947300000": {
       "Product Link": "https://www.migros.ch/en/product/101947300000",
       "Product Name": "M-Budget Stapelchips Paprika",
-      "Price": 1.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-02-25",
-      "Discontinued": "NA"
+      "Discontinued": "2025-05-11"
     },
     "109034500000": {
       "Product Link": "https://www.migros.ch/en/product/109034500000",
@@ -7253,7 +7253,7 @@
     "220622085000": {
       "Product Link": "https://www.migros.ch/en/product/220622085000",
       "Product Name": "Pork ragout",
-      "Price": "NA",
+      "Price": 1.0,
       "Category": "grocery",
       "Introduced": "2024-03-24",
       "Discontinued": "2024-05-26"
@@ -7621,7 +7621,7 @@
     "153225300000": {
       "Product Link": "https://www.migros.ch/en/product/153225300000",
       "Product Name": "Tomato sauce 2",
-      "Price": "NA",
+      "Price": 1.25,
       "Category": "grocery",
       "Introduced": "2024-05-26",
       "Discontinued": "2025-04-13"
@@ -7677,7 +7677,7 @@
     "130420200000": {
       "Product Link": "https://www.migros.ch/en/product/130420200000",
       "Product Name": "M-Budget Sandwich Chicken Curry",
-      "Price": 3.55,
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2024-07-28",
       "Discontinued": "2025-03-16"
@@ -7821,7 +7821,7 @@
     "220221085092": {
       "Product Link": "https://www.migros.ch/en/product/220221085092",
       "Product Name": "Minced meat - Mixed 2",
-      "Price": "NA",
+      "Price": 1.3,
       "Category": "grocery",
       "Introduced": "2024-08-18",
       "Discontinued": "2025-05-04"
@@ -7853,7 +7853,7 @@
     "233011010202": {
       "Product Link": "https://www.migros.ch/en/product/233011010202",
       "Product Name": "Raw ham 2",
-      "Price": 3.25,
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2024-09-08",
       "Discontinued": "2024-09-15"
@@ -8205,7 +8205,7 @@
     "153236610000": {
       "Product Link": "https://www.migros.ch/en/product/153236610000",
       "Product Name": "Pesto Alla Calabrese",
-      "Price": "NA",
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2024-12-01",
       "Discontinued": "2025-04-13"
@@ -8381,7 +8381,7 @@
     "107118700000": {
       "Product Link": "https://www.migros.ch/en/product/107118700000",
       "Product Name": "M-Budget Espresso gemahlen",
-      "Price": 3.3,
+      "Price": 4.0,
       "Category": "grocery",
       "Introduced": "2025-02-23",
       "Discontinued": "NA"
@@ -8616,6 +8616,30 @@
       "Price": 1.45,
       "Category": "other",
       "Introduced": "2025-04-27",
+      "Discontinued": "NA"
+    },
+    "130423100000": {
+      "Product Link": "https://www.migros.ch/en/product/130423100000",
+      "Product Name": "MBud Sandwich Chicken",
+      "Price": 3.85,
+      "Category": "grocery",
+      "Introduced": "2025-05-11",
+      "Discontinued": "NA"
+    },
+    "130423300000": {
+      "Product Link": "https://www.migros.ch/en/product/130423300000",
+      "Product Name": "M-Budget MSC Weggli mit Thon 2",
+      "Price": 1.65,
+      "Category": "grocery",
+      "Introduced": "2025-05-11",
+      "Discontinued": "NA"
+    },
+    "130423200000": {
+      "Product Link": "https://www.migros.ch/en/product/130423200000",
+      "Product Name": "M-Budget Sandwich Chicken Cocktail 2",
+      "Price": 3.85,
+      "Category": "grocery",
+      "Introduced": "2025-05-11",
       "Discontinued": "NA"
     }
   }
