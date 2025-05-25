@@ -1,5 +1,5 @@
 {
-  "Date": "2025-05-18",
+  "Date": "2025-05-25",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -112,7 +112,7 @@
     "212602900000": {
       "Product Link": "https://www.migros.ch/en/product/212602900000",
       "Product Name": "Cream cheese - Nature",
-      "Price": 1.75,
+      "Price": 1.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -760,7 +760,7 @@
     "243413500000": {
       "Product Link": "https://www.migros.ch/en/product/243413500000",
       "Product Name": "Crispy chicken - Breaded, prefried",
-      "Price": 9.8,
+      "Price": 9.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1642,7 +1642,7 @@
     "107118400000": {
       "Product Link": "https://www.migros.ch/en/product/107118400000",
       "Product Name": "Café en grains - In beans, 3/5 intensity.",
-      "Price": 10.95,
+      "Price": 9.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2578,7 +2578,7 @@
     "220634001200": {
       "Product Link": "https://www.migros.ch/en/product/220634001200",
       "Product Name": "Pork steak grill",
-      "Price": 2.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-08-13",
@@ -3703,7 +3703,7 @@
     "166002800000": {
       "Product Link": "https://www.migros.ch/en/product/166002800000",
       "Product Name": "Chicken wings",
-      "Price": 10.5,
+      "Price": 12.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -6517,7 +6517,7 @@
     "271102609200": {
       "Product Link": "https://www.migros.ch/en/product/271102609200",
       "Product Name": "Iceberg lettuce",
-      "Price": "NA",
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2023-11-19"
@@ -6637,7 +6637,7 @@
     "271400708400": {
       "Product Link": "https://www.migros.ch/en/product/271400708400",
       "Product Name": "Tomatoes 2",
-      "Price": 3.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-01-28"
@@ -7181,7 +7181,7 @@
     "196560001000": {
       "Product Link": "https://www.migros.ch/en/product/196560001000",
       "Product Name": "Imported picnic eggs 48g+ - Free-range",
-      "Price": 3.6,
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2024-02-11",
       "Discontinued": "NA"
@@ -7221,7 +7221,7 @@
     "101947300000": {
       "Product Link": "https://www.migros.ch/en/product/101947300000",
       "Product Name": "M-Budget Stapelchips Paprika",
-      "Price": "NA",
+      "Price": 1.8,
       "Category": "grocery",
       "Introduced": "2024-02-25",
       "Discontinued": "2025-05-11"
@@ -7949,7 +7949,7 @@
     "130935000000": {
       "Product Link": "https://www.migros.ch/en/product/130935000000",
       "Product Name": "M-Budget Plant-Based Gehacktes",
-      "Price": 3.4,
+      "Price": 3.45,
       "Category": "grocery",
       "Introduced": "2024-10-06",
       "Discontinued": "NA"
@@ -8541,10 +8541,10 @@
     "251305600000": {
       "Product Link": "https://www.migros.ch/en/product/251305600000",
       "Product Name": "Atlantic salmon for canape - Smoked and pre-sliced - GGAP",
-      "Price": 4.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2025-04-13",
-      "Discontinued": "NA"
+      "Discontinued": "2025-05-25"
     },
     "160354600000": {
       "Product Link": "https://www.migros.ch/en/product/160354600000",
@@ -8557,7 +8557,7 @@
     "212586100000": {
       "Product Link": "https://www.migros.ch/en/product/212586100000",
       "Product Name": "Gorgonzola - Mild",
-      "Price": 2.6,
+      "Price": 2.7,
       "Category": "grocery",
       "Introduced": "2025-04-13",
       "Discontinued": "NA"
