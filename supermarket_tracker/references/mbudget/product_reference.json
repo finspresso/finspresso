@@ -1,5 +1,5 @@
 {
-  "Date": "2025-05-25",
+  "Date": "2025-06-01",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -76,10 +76,10 @@
     "231001481202": {
       "Product Link": "https://www.migros.ch/en/product/231001481202",
       "Product Name": "Lyon cold cuts",
-      "Price": 2.35,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-01",
       "Include": "Yes"
     },
     "110152900000": {
@@ -1642,7 +1642,7 @@
     "107118400000": {
       "Product Link": "https://www.migros.ch/en/product/107118400000",
       "Product Name": "Café en grains - In beans, 3/5 intensity.",
-      "Price": 9.95,
+      "Price": 8.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1777,7 +1777,7 @@
     "104431100000": {
       "Product Link": "https://www.migros.ch/en/product/104431100000",
       "Product Name": "Basmati rice – 1kg",
-      "Price": 2.75,
+      "Price": 3.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2812,10 +2812,10 @@
     "153921700000": {
       "Product Link": "https://www.migros.ch/en/product/153921700000",
       "Product Name": "Peas, extra fine",
-      "Price": 1.4,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-01",
       "Include": "Yes"
     },
     "130140700000": {
@@ -5071,10 +5071,10 @@
     "101053100000": {
       "Product Link": "https://www.migros.ch/en/product/101053100000",
       "Product Name": "Fruit candies - With orange, lemon and raspberry taste",
-      "Price": 1.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-01",
       "Include": "Yes"
     },
     "501115200000": {
@@ -5134,7 +5134,7 @@
     "107118300000": {
       "Product Link": "https://www.migros.ch/en/product/107118300000",
       "Product Name": "Roasted coffee - In beans, 4/5 intensity",
-      "Price": 8.7,
+      "Price": 6.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5224,7 +5224,7 @@
     "100103000000": {
       "Product Link": "https://www.migros.ch/en/product/100103000000",
       "Product Name": "Chocolate bars - Milk chocolate – 400g",
-      "Price": 3.95,
+      "Price": 2.9,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -6637,7 +6637,7 @@
     "271400708400": {
       "Product Link": "https://www.migros.ch/en/product/271400708400",
       "Product Name": "Tomatoes 2",
-      "Price": "NA",
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "2024-01-28"
@@ -7101,7 +7101,7 @@
     "271401702500": {
       "Product Link": "https://www.migros.ch/en/product/271401702500",
       "Product Name": "M-Budget Datteltomaten",
-      "Price": 1.8,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-01-01",
       "Discontinued": "2024-07-28"
@@ -7365,10 +7365,10 @@
     "204510800000": {
       "Product Link": "https://www.migros.ch/en/product/204510800000",
       "Product Name": "M-Budget Caffè Macchiato",
-      "Price": 1.0,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2024-04-01",
-      "Discontinued": "NA"
+      "Discontinued": "2025-06-01"
     },
     "500317500000": {
       "Product Link": "https://www.migros.ch/en/product/500317500000",
@@ -7381,7 +7381,7 @@
     "204511000000": {
       "Product Link": "https://www.migros.ch/en/product/204511000000",
       "Product Name": "M-Budget Espresso",
-      "Price": 1.0,
+      "Price": 0.95,
       "Category": "grocery",
       "Introduced": "2024-04-01",
       "Discontinued": "2025-04-13"
@@ -8173,7 +8173,7 @@
     "100111600000": {
       "Product Link": "https://www.migros.ch/en/product/100111600000",
       "Product Name": "M-BUD CHOCOLAT ORANGE 70%",
-      "Price": 1.6,
+      "Price": 1.4,
       "Category": "grocery",
       "Introduced": "2024-11-17",
       "Discontinued": "NA"
@@ -8541,7 +8541,7 @@
     "251305600000": {
       "Product Link": "https://www.migros.ch/en/product/251305600000",
       "Product Name": "Atlantic salmon for canape - Smoked and pre-sliced - GGAP",
-      "Price": "NA",
+      "Price": 4.95,
       "Category": "grocery",
       "Introduced": "2025-04-13",
       "Discontinued": "2025-05-25"
