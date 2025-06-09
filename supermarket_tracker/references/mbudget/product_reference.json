@@ -1,5 +1,5 @@
 {
-  "Date": "2025-06-01",
+  "Date": "2025-06-09",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -76,7 +76,7 @@
     "231001481202": {
       "Product Link": "https://www.migros.ch/en/product/231001481202",
       "Product Name": "Lyon cold cuts",
-      "Price": "NA",
+      "Price": 2.3,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-01",
@@ -634,7 +634,7 @@
     "212412000000": {
       "Product Link": "https://www.migros.ch/en/product/212412000000",
       "Product Name": "Fromage allemand à pâte mi-dure et dure, trois quarts-gras et gras, à base de lait pasteurisé - In slices - Edam, Tilsit, Emmental",
-      "Price": 4.6,
+      "Price": 4.65,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -697,7 +697,7 @@
     "161426500000": {
       "Product Link": "https://www.migros.ch/en/product/161426500000",
       "Product Name": "Raspberries - Unsweetened",
-      "Price": 4.7,
+      "Price": 4.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1219,7 +1219,7 @@
     "109031600000": {
       "Product Link": "https://www.migros.ch/en/product/109031600000",
       "Product Name": "Cat sticks - With trout and salmon",
-      "Price": 1.25,
+      "Price": 1.35,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1417,7 +1417,7 @@
     "109031400000": {
       "Product Link": "https://www.migros.ch/en/product/109031400000",
       "Product Name": "Cat sticks - With poultry and liver",
-      "Price": 1.25,
+      "Price": 1.35,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1489,7 +1489,7 @@
     "165055900000": {
       "Product Link": "https://www.migros.ch/en/product/165055900000",
       "Product Name": "Shrimps - Raw, with notched shell",
-      "Price": 8.95,
+      "Price": 8.7,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1651,7 +1651,7 @@
     "500426000000": {
       "Product Link": "https://www.migros.ch/en/product/500426000000",
       "Product Name": "M-Budget M-Budget Farb & Schmutzfänger",
-      "Price": 3.3,
+      "Price": 2.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1921,7 +1921,7 @@
     "502018200000": {
       "Product Link": "https://www.migros.ch/en/product/502018200000",
       "Product Name": "M-Budget Entkalker",
-      "Price": 4.85,
+      "Price": 4.4,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1975,10 +1975,10 @@
     "109033400000": {
       "Product Link": "https://www.migros.ch/en/product/109033400000",
       "Product Name": "Complete food for adult dogs - Sensitive - with chicken and liver",
-      "Price": 0.75,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "220281530000": {
@@ -2389,10 +2389,10 @@
     "109033300000": {
       "Product Link": "https://www.migros.ch/en/product/109033300000",
       "Product Name": "Complete food for adult dogs - With chicken and liver",
-      "Price": 0.75,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "110102000000": {
@@ -2506,10 +2506,10 @@
     "109033200000": {
       "Product Link": "https://www.migros.ch/en/product/109033200000",
       "Product Name": "Complete food for adult dogs - With beef and liver",
-      "Price": 0.75,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "210589800000": {
@@ -2596,7 +2596,7 @@
     "502018000000": {
       "Product Link": "https://www.migros.ch/en/product/502018000000",
       "Product Name": "M-Budget Bad- und Kalkreiniger",
-      "Price": 1.0,
+      "Price": 0.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2893,10 +2893,10 @@
     "109031100000": {
       "Product Link": "https://www.migros.ch/en/product/109031100000",
       "Product Name": "Pâté - Rich in chicken with rice and inline",
-      "Price": 0.25,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "105260700000": {
@@ -2929,10 +2929,10 @@
     "109033500000": {
       "Product Link": "https://www.migros.ch/en/product/109033500000",
       "Product Name": "Complete food for older dogs (From 7 years) - Chicken and liver",
-      "Price": 0.75,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "220654085000": {
@@ -3136,10 +3136,10 @@
     "109030200000": {
       "Product Link": "https://www.migros.ch/en/product/109030200000",
       "Product Name": "Pâté - With beef",
-      "Price": 0.25,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "232343008102": {
@@ -3775,7 +3775,7 @@
     "512082600000": {
       "Product Link": "https://www.migros.ch/en/product/512082600000",
       "Product Name": "M-BUDGET SOAP DIS VAN/ALM",
-      "Price": 1.0,
+      "Price": 0.9,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -3865,7 +3865,7 @@
     "706603800000": {
       "Product Link": "https://www.migros.ch/en/product/706603800000",
       "Product Name": "- Household gloves - Size L",
-      "Price": 1.25,
+      "Price": 1.1,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-29",
@@ -3964,16 +3964,16 @@
     "109031200000": {
       "Product Link": "https://www.migros.ch/en/product/109031200000",
       "Product Name": "Pâté – Poultry- Adult",
-      "Price": 0.25,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "162020100000": {
       "Product Link": "https://www.migros.ch/en/product/162020100000",
       "Product Name": "Croquettes",
-      "Price": 6.25,
+      "Price": 6.0,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4108,7 +4108,7 @@
     "157212800000": {
       "Product Link": "https://www.migros.ch/en/product/157212800000",
       "Product Name": "Risotto - Asparagus",
-      "Price": 1.8,
+      "Price": 1.85,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -4333,16 +4333,16 @@
     "109031300000": {
       "Product Link": "https://www.migros.ch/en/product/109031300000",
       "Product Name": "Pâté – Poultry -  Senior",
-      "Price": 0.25,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "706603700000": {
       "Product Link": "https://www.migros.ch/en/product/706603700000",
       "Product Name": "- Household gloves - Size M",
-      "Price": 1.25,
+      "Price": 1.1,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2024-09-29",
@@ -4981,7 +4981,7 @@
     "706603600000": {
       "Product Link": "https://www.migros.ch/en/product/706603600000",
       "Product Name": "- Household gloves - Size S",
-      "Price": 1.25,
+      "Price": 1.1,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5098,7 +5098,7 @@
     "107117500000": {
       "Product Link": "https://www.migros.ch/en/product/107117500000",
       "Product Name": "Roast coffee - Ground, 3/5 strength",
-      "Price": 7.0,
+      "Price": 6.95,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5413,7 +5413,7 @@
     "106002700000": {
       "Product Link": "https://www.migros.ch/en/product/106002700000",
       "Product Name": "Bündnerfleisch with barley",
-      "Price": 0.6,
+      "Price": 0.5,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5512,7 +5512,7 @@
     "512082300000": {
       "Product Link": "https://www.migros.ch/en/product/512082300000",
       "Product Name": "Savon liquide fresh - Freesia - ?Refill bag",
-      "Price": 1.0,
+      "Price": 0.9,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5764,10 +5764,10 @@
     "109033800000": {
       "Product Link": "https://www.migros.ch/en/product/109033800000",
       "Product Name": "Croquettes for adult dogs - Poultry with inulin",
-      "Price": 4.95,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "520250700000": {
@@ -5827,10 +5827,10 @@
     "109035500000": {
       "Product Link": "https://www.migros.ch/en/product/109035500000",
       "Product Name": "Croquettes for adult dogs - Beef",
-      "Price": 9.5,
+      "Price": "NA",
       "Category": "other",
       "Introduced": "2023-06-10",
-      "Discontinued": "NA",
+      "Discontinued": "2025-06-09",
       "Include": "Yes"
     },
     "106618900000": {
@@ -5845,7 +5845,7 @@
     "277108110400": {
       "Product Link": "https://www.migros.ch/en/product/277108110400",
       "Product Name": "onions - 2kg bag",
-      "Price": 2.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": 1.8,
+      "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -6741,7 +6741,7 @@
     "270400902300": {
       "Product Link": "https://www.migros.ch/en/product/270400902300",
       "Product Name": "Endives",
-      "Price": 3.95,
+      "Price": 3.6,
       "Category": "grocery",
       "Introduced": "2023-11-12",
       "Discontinued": "NA"
@@ -7189,7 +7189,7 @@
     "109030800000": {
       "Product Link": "https://www.migros.ch/en/product/109030800000",
       "Product Name": "M-Budget Katzenstick mit Ente/Geflügel",
-      "Price": 1.25,
+      "Price": 1.35,
       "Category": "other",
       "Introduced": "2024-02-11",
       "Discontinued": "2024-08-18"
@@ -7213,7 +7213,7 @@
     "109030500000": {
       "Product Link": "https://www.migros.ch/en/product/109030500000",
       "Product Name": "Aliment complet pour chats adultes - Mix à la viande",
-      "Price": 1.25,
+      "Price": 1.35,
       "Category": "other",
       "Introduced": "2024-02-11",
       "Discontinued": "2024-08-18"
@@ -7229,7 +7229,7 @@
     "109034500000": {
       "Product Link": "https://www.migros.ch/en/product/109034500000",
       "Product Name": "M-Budget Kaustreifen mit Rind",
-      "Price": 0.9,
+      "Price": 0.8,
       "Category": "other",
       "Introduced": "2024-02-25",
       "Discontinued": "NA"
@@ -7253,7 +7253,7 @@
     "220622085000": {
       "Product Link": "https://www.migros.ch/en/product/220622085000",
       "Product Name": "Pork ragout",
-      "Price": 1.1,
+      "Price": 1.2,
       "Category": "grocery",
       "Introduced": "2024-03-24",
       "Discontinued": "2024-05-26"
@@ -7365,7 +7365,7 @@
     "204510800000": {
       "Product Link": "https://www.migros.ch/en/product/204510800000",
       "Product Name": "M-Budget Caffè Macchiato",
-      "Price": "NA",
+      "Price": 0.95,
       "Category": "grocery",
       "Introduced": "2024-04-01",
       "Discontinued": "2025-06-01"
@@ -7733,7 +7733,7 @@
     "107197900000": {
       "Product Link": "https://www.migros.ch/en/product/107197900000",
       "Product Name": "Coffee Capsules - Intensity 4/5",
-      "Price": 8.15,
+      "Price": 5.6,
       "Category": "grocery",
       "Introduced": "2024-07-28",
       "Discontinued": "NA"
@@ -8333,7 +8333,7 @@
     "526010600000": {
       "Product Link": "https://www.migros.ch/en/product/526010600000",
       "Product Name": "M-Budget 6er Recycling Haushaltpapier",
-      "Price": 4.4,
+      "Price": 3.95,
       "Category": "other",
       "Introduced": "2025-02-02",
       "Discontinued": "NA"
@@ -8381,7 +8381,7 @@
     "107118700000": {
       "Product Link": "https://www.migros.ch/en/product/107118700000",
       "Product Name": "M-Budget Espresso gemahlen",
-      "Price": 4.0,
+      "Price": 3.5,
       "Category": "grocery",
       "Introduced": "2025-02-23",
       "Discontinued": "NA"
@@ -8469,7 +8469,7 @@
     "107150500000": {
       "Product Link": "https://www.migros.ch/en/product/107150500000",
       "Product Name": "M-Budget Dolce Gusto Café au lait 30 Kaps",
-      "Price": 7.3,
+      "Price": 5.0,
       "Category": "grocery",
       "Introduced": "2025-03-16",
       "Discontinued": "NA"
@@ -8477,7 +8477,7 @@
     "107150600000": {
       "Product Link": "https://www.migros.ch/en/product/107150600000",
       "Product Name": "M-Budget Dolce Gusto Espresso 30 Kap.",
-      "Price": 7.3,
+      "Price": 5.0,
       "Category": "grocery",
       "Introduced": "2025-03-16",
       "Discontinued": "NA"
@@ -8557,10 +8557,10 @@
     "212586100000": {
       "Product Link": "https://www.migros.ch/en/product/212586100000",
       "Product Name": "Gorgonzola - Mild",
-      "Price": 2.7,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2025-04-13",
-      "Discontinued": "NA"
+      "Discontinued": "2025-06-09"
     },
     "160917600000": {
       "Product Link": "https://www.migros.ch/en/product/160917600000",
@@ -8589,10 +8589,10 @@
     "231015510000": {
       "Product Link": "https://www.migros.ch/en/product/231015510000",
       "Product Name": "M-Budget Lyoner",
-      "Price": 2.5,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2025-04-27",
-      "Discontinued": "NA"
+      "Discontinued": "2025-06-09"
     },
     "153921900000": {
       "Product Link": "https://www.migros.ch/en/product/153921900000",
@@ -8656,6 +8656,14 @@
       "Price": 3.95,
       "Category": "grocery",
       "Introduced": "2025-05-18",
+      "Discontinued": "NA"
+    },
+    "120985200000": {
+      "Product Link": "https://www.migros.ch/en/product/120985200000",
+      "Product Name": "Energy Drink - Pomegranate",
+      "Price": 6.95,
+      "Category": "grocery",
+      "Introduced": "2025-06-09",
       "Discontinued": "NA"
     }
   }
