@@ -1,5 +1,5 @@
 {
-  "Date": "2025-06-09",
+  "Date": "2025-06-15",
   "Products": {
     "233521000002": {
       "Product Link": "https://www.migros.ch/en/product/233521000002",
@@ -265,7 +265,7 @@
     "130140400000": {
       "Product Link": "https://www.migros.ch/en/product/130140400000",
       "Product Name": "Tortelloni - Spinach and ricotta",
-      "Price": 2.35,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1462,7 +1462,7 @@
     "130140500000": {
       "Product Link": "https://www.migros.ch/en/product/130140500000",
       "Product Name": "Tortelloni - Meat",
-      "Price": 2.35,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1768,7 +1768,7 @@
     "130140600000": {
       "Product Link": "https://www.migros.ch/en/product/130140600000",
       "Product Name": "Tortelloni - Cheese",
-      "Price": 2.35,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -1975,7 +1975,7 @@
     "109033400000": {
       "Product Link": "https://www.migros.ch/en/product/109033400000",
       "Product Name": "Complete food for adult dogs - Sensitive - with chicken and liver",
-      "Price": "NA",
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -2137,7 +2137,7 @@
     "709316700000": {
       "Product Link": "https://www.migros.ch/en/product/709316700000",
       "Product Name": "Napkins - green",
-      "Price": 2.15,
+      "Price": 2.5,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2146,7 +2146,7 @@
     "709316500000": {
       "Product Link": "https://www.migros.ch/en/product/709316500000",
       "Product Name": "Napkins - orange",
-      "Price": 2.15,
+      "Price": 2.5,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2389,7 +2389,7 @@
     "109033300000": {
       "Product Link": "https://www.migros.ch/en/product/109033300000",
       "Product Name": "Complete food for adult dogs - With chicken and liver",
-      "Price": "NA",
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -2416,7 +2416,7 @@
     "709316600000": {
       "Product Link": "https://www.migros.ch/en/product/709316600000",
       "Product Name": "Paper towels - Green - 33 x 33 cm, 30 pieces, 3 folds",
-      "Price": 1.0,
+      "Price": 1.2,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2506,7 +2506,7 @@
     "109033200000": {
       "Product Link": "https://www.migros.ch/en/product/109033200000",
       "Product Name": "Complete food for adult dogs - With beef and liver",
-      "Price": "NA",
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -2740,7 +2740,7 @@
     "709316400000": {
       "Product Link": "https://www.migros.ch/en/product/709316400000",
       "Product Name": "Paper towels - Orange - 33 x 33 cm, 30 pieces, 3 folds",
-      "Price": 1.0,
+      "Price": 1.2,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2821,7 +2821,7 @@
     "130140700000": {
       "Product Link": "https://www.migros.ch/en/product/130140700000",
       "Product Name": "M-Budget Tortelloni Tomaten-Mozzarella",
-      "Price": 2.35,
+      "Price": 2.25,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -2893,7 +2893,7 @@
     "109031100000": {
       "Product Link": "https://www.migros.ch/en/product/109031100000",
       "Product Name": "Pâté - Rich in chicken with rice and inline",
-      "Price": "NA",
+      "Price": 0.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -2929,7 +2929,7 @@
     "109033500000": {
       "Product Link": "https://www.migros.ch/en/product/109033500000",
       "Product Name": "Complete food for older dogs (From 7 years) - Chicken and liver",
-      "Price": "NA",
+      "Price": 0.75,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -3136,7 +3136,7 @@
     "109030200000": {
       "Product Link": "https://www.migros.ch/en/product/109030200000",
       "Product Name": "Pâté - With beef",
-      "Price": "NA",
+      "Price": 0.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -3964,7 +3964,7 @@
     "109031200000": {
       "Product Link": "https://www.migros.ch/en/product/109031200000",
       "Product Name": "Pâté – Poultry- Adult",
-      "Price": "NA",
+      "Price": 0.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -4333,7 +4333,7 @@
     "109031300000": {
       "Product Link": "https://www.migros.ch/en/product/109031300000",
       "Product Name": "Pâté – Poultry -  Senior",
-      "Price": "NA",
+      "Price": 0.25,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -4873,7 +4873,7 @@
     "110200600000": {
       "Product Link": "https://www.migros.ch/en/product/110200600000",
       "Product Name": "Baby brezel",
-      "Price": 0.85,
+      "Price": 0.8,
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "NA",
@@ -5764,7 +5764,7 @@
     "109033800000": {
       "Product Link": "https://www.migros.ch/en/product/109033800000",
       "Product Name": "Croquettes for adult dogs - Poultry with inulin",
-      "Price": "NA",
+      "Price": 4.95,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -5791,7 +5791,7 @@
     "271708308500": {
       "Product Link": "https://www.migros.ch/en/product/271708308500",
       "Product Name": "Peppers - 2-3 colors",
-      "Price": 1.9,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-10",
       "Discontinued": "2023-07-08",
@@ -5827,7 +5827,7 @@
     "109035500000": {
       "Product Link": "https://www.migros.ch/en/product/109035500000",
       "Product Name": "Croquettes for adult dogs - Beef",
-      "Price": "NA",
+      "Price": 9.5,
       "Category": "other",
       "Introduced": "2023-06-10",
       "Discontinued": "2025-06-09",
@@ -5845,7 +5845,7 @@
     "277108110400": {
       "Product Link": "https://www.migros.ch/en/product/277108110400",
       "Product Name": "onions - 2kg bag",
-      "Price": "NA",
+      "Price": 3.8,
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -5863,7 +5863,7 @@
     "273705702400": {
       "Product Link": "https://www.migros.ch/en/product/273705702400",
       "Product Name": "Zucchini",
-      "Price": 3.95,
+      "Price": "NA",
       "Category": "grocery",
       "Introduced": "2023-06-17",
       "Discontinued": "2023-06-23",
@@ -7285,7 +7285,7 @@
     "702051000000": {
       "Product Link": "https://www.migros.ch/en/product/702051000000",
       "Product Name": "M-Budget grill plate 28 cm",
-      "Price": "NA",
+      "Price": 3.8,
       "Category": "other",
       "Introduced": "2024-03-24",
       "Discontinued": "2024-04-14"
@@ -8437,7 +8437,7 @@
     "104287800000": {
       "Product Link": "https://www.migros.ch/en/product/104287800000",
       "Product Name": "Muesli Nibbles - With wild berries",
-      "Price": 3.6,
+      "Price": 3.3,
       "Category": "grocery",
       "Introduced": "2025-03-16",
       "Discontinued": "NA"
@@ -8557,7 +8557,7 @@
     "212586100000": {
       "Product Link": "https://www.migros.ch/en/product/212586100000",
       "Product Name": "Gorgonzola - Mild",
-      "Price": "NA",
+      "Price": 2.8,
       "Category": "grocery",
       "Introduced": "2025-04-13",
       "Discontinued": "2025-06-09"
