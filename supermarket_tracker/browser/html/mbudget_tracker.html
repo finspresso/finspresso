@@ -241,6 +241,7 @@
             $.ajax({
                 url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + productID + "`",
                 method: "GET",
+                cache: false,
                 success: function (data) {
                     loadedDataGrocery = data;
                     updateGraph();
@@ -259,6 +260,7 @@
             $.ajax({
                 url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + productID + "`",
                 method: "GET",
+                cache: false,
                 success: function (data) {
                     loadedDataOther = data;
                     updateGraph();
@@ -276,6 +278,7 @@
             $.ajax({
                 url: baseURL + "/get_mbudget_product_data.php?q=" + "`" + averageName + "`",
                 method: "GET",
+                cache: false,
                 success: function (data) {
                     loadedAverageData = data;
                     updateGraph();
@@ -363,7 +366,6 @@
             };
             chart.config.data = chartdata;
             chart.update();
-
         }
         var loadedDataGrocery = [];
         var loadedDataOther = [];

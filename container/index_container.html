@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update side</title>
+</head>
+<body>
+    <button id="executeButton">Updating MBudget tracker</button>
+    <script>
+        document.getElementById('executeButton').addEventListener('click', function() {
+            fetch('/execute', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('POST HTTP command /execute response ok.');
+                    } else {
+                        console.error('POST HTTP command /execute response failed.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
